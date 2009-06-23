@@ -12,7 +12,7 @@
 ||http || <font color="#050">Http 的发送</font> || *lang* ||
 ||ioc || <font color="#050">对象生命周期管理框架</font> ||  *lang*, *castors*, *json*, *aop* ||
 ||json || <font color="#050">JSON 的解析器和渲染器</font> ||  *lang*, *castors* ||
-||lang || <font color="#050">对 Java 语言的一点扩展，是一组Utility对象的集合</font> || ^不依赖任何第三方 jar 包^ ||
+||lang || <font color="#050">在 JDK 的基础上，提供了一些便利方法</font> || ^不依赖任何第三方 jar 包^ ||
 ||log || <font color="#050">轻便的 Log 打印的功能，并提供了监听器，可以和 Ioc 框架整合</font> || *aop* ||
 ||mvc || <font color="#050">Web 框架，提供了 Servlet 用来嵌入到 web.xml 中</font> || *ioc* ||
 ||service || <font color="#050">org.nutz.dao.Dao 接口的高级封装，提供了树形数据的操作能力</font> || *dao* ||
