@@ -1,4 +1,5 @@
-#介绍了 Nutz 所有的定级包，及其依赖关系
+#labels Featured
+# 介绍了 Nutz 所有的定级包，及其依赖关系
 
 = Nutz 的包依赖 =
 {{{
