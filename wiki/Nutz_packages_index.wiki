@@ -16,4 +16,4 @@
 ||log || <font color="#050">轻便的 Log 打印的功能，并提供了监听器，可以和 Ioc 框架整合</font> || *aop* ||
 ||mvc || <font color="#050">Web 框架，提供了 Servlet 用来嵌入到 web.xml 中</font> || *ioc* ||
 ||service || <font color="#050">org.nutz.dao.Dao 接口的高级封装，提供了树形数据的操作能力</font> || *dao* ||
-||trans || <font color="#050">用接口回调的方式，为 dao 提供事务性操作的支持。</font> || ^不依赖任何第三方 jar 包^ ||
+||trans || <font color="#050">用接口回调的方式，为 dao 提供事务性操作的支持。</font> || *lang* ||
