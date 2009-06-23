@@ -1,9 +1,11 @@
+#summary Nutz 所有顶级包的简要说明，及其依赖关系
 #labels Featured
-=Nutz 所有的定级包列表=
+
+=Nutz 所有的顶级包列表=
 
 ==org.nutz==
 || *包名* || *描述* || *依赖* ||
-||aop || 拦截器框架 || javassist.jar (3.0以上版本均可，但未经验证) ||
+||aop || 拦截器框架 || __javassist.jar__ (3.0以上版本均可，但未经验证) ||
 ||castors || 对象类型转换框架 || 不依赖任何第三方 jar 包 ||
 ||dao || 对象持久化框架 || lang, castors, trans ||
 ||filepool || 文件池框架 || lang, castors   ||
