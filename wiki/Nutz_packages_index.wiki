@@ -8,7 +8,7 @@
 ||aop || <font color="#050">拦截器框架</font> || _*javassist.jar*_ (3.0以上版本均可，但未经验证) ||
 ||castors || <font color="#050">对象类型转换框架</font> || *lang*, *json* ||
 ||dao || <font color="#050">对象持久化框架</font> || *lang*, *castors*, *trans* ||
-||filepool || <font color="#050">文件池框架</font> || *lang*, *castors*   ||
+||filepool || <font color="#050">文件池接口以及默认实现</font> || *lang*, *castors*   ||
 ||http || <font color="#050">Http 的发送</font> || *lang* ||
 ||ioc || <font color="#050">对象生命周期管理框架</font> ||  *lang*, *castors*, *json*, *aop* ||
 ||json || <font color="#050">JSON 的解析器和渲染器</font> ||  *lang*, *castors* ||
