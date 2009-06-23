@@ -6,7 +6,7 @@
 ==org.nutz==
 || *包名* || *描述* || *依赖* ||
 ||aop || <font color="#050">拦截器框架</font> || _*javassist.jar*_ (3.0以上版本均可，但未经验证) ||
-||castors || <font color="#050">对象类型转换框架</font> || ^不依赖任何第三方 jar 包^ ||
+||castors || <font color="#050">对象类型转换框架</font> || *lang*, *json* ||
 ||dao || <font color="#050">对象持久化框架</font> || *lang*, *castors*, *trans* ||
 ||filepool || <font color="#050">文件池框架</font> || *lang*, *castors*   ||
 ||http || <font color="#050">Http 的发送</font> || *lang* ||
