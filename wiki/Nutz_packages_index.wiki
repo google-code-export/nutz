@@ -9,7 +9,7 @@
 ||castors || <font color="#050">对象类型转换框架</font> || *lang*, *json* ||
 ||dao || <font color="#050">对象持久化框架</font> || *lang*, *castors*, *trans* ||
 ||filepool || <font color="#050">文件池接口以及默认实现</font> || *lang*, *castors*   ||
-||http || <font color="#050">Http 的发送</font> || *lang* ||
+||http || <font color="#050">Http 的发送</font> || *lang*,*servlet-api.jar* ||
 ||ioc || <font color="#050">对象生命周期管理框架</font> ||  *lang*, *castors*, *json*, *aop* ||
 ||json || <font color="#050">JSON 的解析器和渲染器</font> ||  *lang*, *castors* ||
 ||lang || <font color="#050">在 JDK 的基础上，提供了一些便利方法</font> || ^不依赖任何第三方 jar 包^ ||
