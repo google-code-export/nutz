@@ -49,7 +49,7 @@ public class MyBean {
 {
 // -----------------------------------------------------
 abc: {
-	type: "org.nutz.demo.MyBean",
+	type: "zzh.core.ioc.MyBean",
 	fields: {
 		level : 14,
 		time : "2009-9-21 12:15:23",
@@ -140,7 +140,7 @@ public class MyMethodListener implements MethodListener {
 {
 // -----------------------------------------------------
 abc: {
-	type: "org.nutz.demo.MyBean",
+	type: "zzh.core.ioc.MyBean",
 	fields: {
 		level : 14,
 		time : "2009-9-21 12:15:23",
@@ -203,7 +203,7 @@ Nutz 提供了一个内置的日志输出监听器，通过拦截器，可以很
 {
 // -----------------------------------------------------
 abc: {
-	type: "org.nutz.demo.MyBean",
+	type: "zzh.core.ioc.MyBean",
 	fields: {
 		level : 14,
 		time : "2009-9-21 12:15:23",
