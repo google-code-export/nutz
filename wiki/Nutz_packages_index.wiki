@@ -1,5 +1,4 @@
 #summary Nutz 所有顶级包的简要说明，及其依赖关系
-#labels Featured
 
 =Nutz 所有的顶级包列表=
 
