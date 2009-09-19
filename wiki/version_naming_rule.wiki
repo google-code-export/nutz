@@ -1,5 +1,4 @@
 #summary Nutz 版本 jar 包的的命名规则
-#labels Featured
 
 =Nutz 的每个版本 jar 包的命名遵照如下格式=
 
