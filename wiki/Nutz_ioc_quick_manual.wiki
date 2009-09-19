@@ -1,5 +1,4 @@
 #summary Nutz.Ioc 简要使用手册
-#labels Featured
 
 = 介绍 =
 
