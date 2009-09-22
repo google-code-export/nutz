@@ -1,13 +1,3 @@
-阿萨德发生的法律
-
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [Nutz Dao 手册]
-    * [Nutz_packages_index 索引]
-	    * [Nutz Dao 手册]
-              * [Nutz_packages_index 索引]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
- * [version_naming_rule Nutz 版本 jar 包的的命名规则]
+ * [Mission_of_nutz Nutz 的目标]
+ * [version_naming_rule Nutz 版本命名规则]
+ * [Nutz_packages_index Nutz 的包依赖关系]
