@@ -85,8 +85,8 @@ public class TryMyBean {
 在控制台则会输出
 {{{
 Level: 14
-Level: abc
-Level: 2009-09-21 12:15:23
+Name: abc
+Time: 2009-09-21 12:15:23
 }}}
 
 == 添加拦截器 ==
