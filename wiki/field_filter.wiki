@@ -1,8 +1,5 @@
 #summary  过滤字段
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
-
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 = 为什么需要过滤字段 =
 某些时候，尤其是在更新对象的时候，用户希望忽略某些字段。通过注解 [entity_annotations.html Nutz.Dao 实体注解] <font color="#AA7744">*@Readonly*</font> 可以达到 这个目的。但是更多的时候，对于 POJO 对象，只有在运行时，用户的程序才能决定哪些字段更新，哪些不更新。<font color="#AA7744">*@Readonly*</font> 注解可就达不到这个 目的了。 

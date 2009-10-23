@@ -1,8 +1,5 @@
 #summary  Nutz 的版本命名规范
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
- <font color="#AAA" size="1"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p><p align="right"> <font color="#AAA" size="1"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
 Nutz 每个版本 jar 包的命名遵照如下格式 
 
 {{{

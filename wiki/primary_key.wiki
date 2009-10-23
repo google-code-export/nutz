@@ -1,8 +1,5 @@
 #summary 主键生成策略
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
-
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
 = 关于 POJO 主键的说明 =
 关于 POJO 的主键，有下面几点说明： 

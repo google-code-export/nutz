@@ -1,8 +1,5 @@
 #summary Nutz.Mvc 概述
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
-
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 = 核心概念 =
 从 Nutz.Mvc 的观点来看，所谓 Mvc： 
 

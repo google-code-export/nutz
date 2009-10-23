@@ -1,8 +1,5 @@
 #summary 声明式拦截器
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
-
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 coming soon 
 
 这是 Nutz 唯一依赖于第三方 Jar 包的部分，它依赖于 Javassist 在 Ioc 文件中，你可以拦截任何一个对象的 public 或者 protected 方法 

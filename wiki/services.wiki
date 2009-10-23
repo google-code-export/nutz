@@ -1,8 +1,5 @@
 #summary 内置的服务类
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
-
-
-</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 = 什么是服务类，为什么需要它 =
 [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java Nutz.Dao 接口]可以针对任何 POJO 的进行操作。因为 是通用的 Dao 操作，所以多数接口函数都需要一个参数类说明 POJO 的类型，比如： 
