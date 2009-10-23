@@ -29,15 +29,14 @@
 index.xml 的格式如下: 
 
 {{{
-
-`<?xml version="1.0"?>
+<?xml version="1.0"?>
 <doc title="你的 Doc 文档名" author="作者名" index="目录级别">
 	<doc path="根目录下的文档名称.zdoc"	title="这个文档的标题"/>
 	<doc path="目录名称" title="目录标题">
 		<doc path="文档名称.zdoc"/>
 	</doc>
 </doc>
-`}}}
+}}}
 
 举一个更详细的例子，比如你有一个如下的目录结构 
 
@@ -46,8 +45,7 @@ http://www.zzh.com/nutz/imgs/ex01.png
 那么在 index.xml 的内容应该为 
 
 {{{
-
-`<?xml version="1.0"?>
+<?xml version="1.0"?>
 <doc title="文档示例" author="zozoh(zozohtnt@gmail.com)" index="0,1">
 	<doc path="preface.zdoc" title="前言"/>
 	<doc path="part1" title="第一部分">
@@ -55,7 +53,7 @@ http://www.zzh.com/nutz/imgs/ex01.png
 		<doc path="section1.zdoc"/>
 	</doc>
 </doc>
-`}}}
+}}}
 
       * `根元素 <doc> 对应到根目录 docroot，即，`*index.xml 所在的目录*。
       * 在跟元素你可以用 @author 属性声明这篇文档的默认作者，。如果目录下的 zDoc 文档没有声明 #author，那么便被认为是默认作者所写。

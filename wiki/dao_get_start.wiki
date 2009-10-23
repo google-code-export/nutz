@@ -18,21 +18,19 @@
 此处代码适用于PostgreSQL，如果你使用了不同的数据库，请自行修改相应建库语句： 
 
 {{{
-
-`CREATE TABLE t_person (
+CREATE TABLE t_person (
 id  SERIAL PRIMARY KEY,
 name  VARCHAR(50) NOT NULL UNIQUE,
 age INT
 );
-`}}}
+}}}
 
 ----
 =创建 POJO =
 在 Java 项目中建立一个POJO，比如 com.zzh.demo.Person : 
 
 {{{
-
-`import org.nutz.dao.entity.annotation.*;
+import org.nutz.dao.entity.annotation.*;
 
 @Table("t_person")   // 声明了Person对象的数据表
 public class Person {
@@ -73,20 +71,19 @@ public class Person {
 	}
 	
 }
-`}}}
+}}}
 
 ----
 =创建 main 函数 =
 随便建立一个有 main 函数的类，在 main 函数里这么写： 
 
 {{{
-
-`Dao dao = new NutDao(dataSource);
+Dao dao = new NutDao(dataSource);
 Person p = new Person();
 p.setName("ABC");
 p.setAge(20);
 dao.insert(p);
-`}}}
+}}}
 
 ----
 =最后一点说明 =

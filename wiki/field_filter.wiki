@@ -8,8 +8,7 @@
 如下代码，将只更新 Pet 的 id 和 name 字段： 
 
 {{{
-
-`FieldFilter.create(Pet.class, "id|name").run(new Atom() {
+FieldFilter.create(Pet.class, "id|name").run(new Atom() {
 	public void run() {
 		Pet pet = dao.fetch(Pet.class, 24);
 		pet.setName("ABC");
@@ -17,7 +16,7 @@
 		dao.update(pet);
 	}
 });
-`}}}
+}}}
 
  
 

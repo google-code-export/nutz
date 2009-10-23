@@ -45,8 +45,7 @@ http://www.zzh.com/nutz/imgs/links_manymany.png
 这三个对象，都有两个字段，一个是 id， 一个是 name，所以我为这三个类建立了一个父类 demo.dao.pojo.Pojo 
 
 {{{
-
-`public class Pojo {
+public class Pojo {
 
 @Column
 	@Id
@@ -73,15 +72,14 @@ http://www.zzh.com/nutz/imgs/links_manymany.png
 	}
 	
 }
-`}}}
+}}}
 
 接下来，我会通过这三个对象 ( Pet, Master, Food ) 分别为你演示如何设置映射关系 ( @One, @Many, @ManyMany ) 
 
 ----
 ===@One 的例子：demo.dao.pojo.Pet ===
 {{{
-
-`@Table("t_pet")
+@Table("t_pet")
 public class Pet extends Pojo {
 
 @Column
@@ -91,7 +89,7 @@ public class Pet extends Pojo {
 	public Master master;
 	
 }
-`}}}
+}}}
 
 其中： 
 
@@ -104,8 +102,7 @@ public class Pet extends Pojo {
 ----
 ===@Many 的例子：demo.dao.pojo.Master ===
 {{{
-
-`@Table("t_master")
+@Table("t_master")
 public class Master extends Pojo {
 
 @Many(target = Pet.class, field = "masterId")
@@ -120,7 +117,7 @@ public class Master extends Pojo {
 	}
 	
 }
-`}}}
+}}}
 
 其中： 
 
@@ -133,8 +130,7 @@ public class Master extends Pojo {
 ----
 ===@ManyMany 的例子：demo.dao.pojo.Food ===
 {{{
-
-`@Table("t_food")
+@Table("t_food")
 public class Food extends Pojo {
 
 @ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid")
@@ -149,7 +145,7 @@ public class Food extends Pojo {
 	}
 	
 }
-`}}}
+}}}
 
 其中： 
 
@@ -167,51 +163,46 @@ public class Food extends Pojo {
 
 ===获取一对一映射 ===
 {{{
-
-`Pet pet = dao.fetch(Pet.class, "XiaoBai");
+Pet pet = dao.fetch(Pet.class, "XiaoBai");
 dao.fetchLinks(pet, "master");
 System.out.println(pet.master.getName());
-`}}}
+}}}
 
 ===获取一对多映射 ===
 {{{
-
-`Master master = dao.fetch(Master.class, 23);
+Master master = dao.fetch(Master.class, 23);
 dao.fetchLinks(master, "pets");
 for (Pet pet : master.getPets())
 	System.out.println(pet.master.getName());
-`}}}
+}}}
 
 ===获取多对多映射 ===
 {{{
-
-`Food food = dao.fetch(Food.class, "Fish");
+Food food = dao.fetch(Food.class, "Fish");
 dao.fetchLinks(food, "pets");
 for (Pet pet : food.getPets())
 	System.out.println(pet.getName());
-`}}}
+}}}
 
 ===一次获取一对一，以及多对多映射字段 ===
 如果为 Pet 增加一个字段： 
 
 {{{
-
-`@ManyMany(target = Food.class, relation = "t_pet_food", from = "petid", to = "foodid")
+@ManyMany(target = Food.class, relation = "t_pet_food", from = "petid", to = "foodid")
 public List<Food> foods;
-`}}}
+}}}
 
 那么可以一次就获取这两个映射字段 
 
 {{{
-
-`Pet pet = dao.fetch(Pet.class, "XiaoBai");
+Pet pet = dao.fetch(Pet.class, "XiaoBai");
 
 dao.fetchLinks(pet, "master|foods");
 
 System.out.println(pet.master.getName());
 for(Food food : pet.foods)
 	System.out.println(food.getName());
-`}}}
+}}}
 
 上例中，正则表达式  “<font color="#AA0000">master|foods</font>” 匹配了 Pet 对象两个字段 -- <font color="#999999">master, foods</font>，因此 这两个字段会被 *fetchLinks* 函数填充 
 

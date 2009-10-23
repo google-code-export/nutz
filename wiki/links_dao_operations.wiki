@@ -4,16 +4,14 @@
 对于映射对象，Nutz.Dao 提供了一整套的标准 [basic_operations.html Dao 操作]。任何一个操作，都需要两个参数 
 
 {{{
-
-`<T> T xxxLinks(T obj, String regex);
-`}}}
+<T> T xxxLinks(T obj, String regex);
+}}}
 
 比如获取所有映射内容： 
 
 {{{
-
-`<T> T fetchLinks(T obj, String regex);
-`}}}
+<T> T fetchLinks(T obj, String regex);
+}}}
 
 *其中:* 
 
@@ -23,9 +21,8 @@
           * Nutz.Dao 会查看该对象所有声明了 <font color="#888888">@One</font>, <font color="#888888">@Many</font>, <font color="#888888">@ManyMany</font> 的字段，所有被此正则表达式匹配上的字段都将被执行相应操作
       * 总是返回该对象本身，有助于你连续书写类似如下的代码：
 {{{
-
-`dao.fetchLinks(obj,"field1|field2").updateLinks(obj,"field3|field4");
-`}}}
+dao.fetchLinks(obj,"field1|field2").updateLinks(obj,"field3|field4");
+}}}
 
       * <font color="#FF0000">*注意：*</font> 这里的映射操作并不支持 *级联*，我经过反复权衡，决定还是暂时不支持级联操作
           * 无论 insert / update / delete / fetch / clear 都不支持级联
@@ -37,17 +34,15 @@
 如果我们有两个对象： 
 
 {{{
-
-`Pet pet = dao.fetch(Pet.class,"XiaoBai");
+Pet pet = dao.fetch(Pet.class,"XiaoBai");
 pet.setMaster(new Master("zzh"));
-`}}}
+}}}
 
 我们可以插入映射对象： 
 
 {{{
-
-`dao.insertLinks(pet,"master");
-`}}}
+dao.insertLinks(pet,"master");
+}}}
 
 说明： 
 
@@ -60,18 +55,16 @@ pet.setMaster(new Master("zzh"));
 如果我们有两个对象： 
 
 {{{
-
-`Pet pet = new Pet();
+Pet pet = new Pet();
 pet.setName("XiaoBai");
 pet.setMaster(new Master("zzh"));
-`}}}
+}}}
 
 我们可以一次插入两个对象： 
 
 {{{
-
-`dao.insertWith(pet,"master");
-`}}}
+dao.insertWith(pet,"master");
+}}}
 
 说明： 
 
@@ -82,9 +75,8 @@ pet.setMaster(new Master("zzh"));
 例如： 
 
 {{{
-
-`Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master");
-`}}}
+Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master");
+}}}
 
 说明： 
 
@@ -96,10 +88,9 @@ pet.setMaster(new Master("zzh"));
 例如： 
 
 {{{
-
-`Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
+Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
 dao.clearLinks(pet,"master|foods");
-`}}}
+}}}
 
 说明： 
 
@@ -110,12 +101,11 @@ dao.clearLinks(pet,"master|foods");
 例如： 
 
 {{{
-
-`Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
+Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
 pet.setName("XiaoHei");
 pet.getMaster().setName("Peter");
 dao.updateWith(pet,"master");
-`}}}
+}}}
 
 说明： 
 
@@ -130,19 +120,17 @@ dao.updateWith(pet,"master");
 同上例，不过： 
 
 {{{
-
-`dao.updateLinks(pet,"master");
-`}}}
+dao.updateLinks(pet,"master");
+}}}
 
         * 仅仅有 master 字段对应的 Master 对象被更新
         * pet 对象不会被更新
 ----
 ==与映射对象一起删除deleteWith ==
 {{{
-
-`Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
+Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
 dao.deleteWith(pet, "master|foods");
-`}}}
+}}}
 
 说明： 
 
@@ -155,9 +143,8 @@ dao.deleteWith(pet, "master|foods");
 同上例，不过: 
 
 {{{
-
-`dao.deleteLinks(pet, "master|foods");
-`}}}
+dao.deleteLinks(pet, "master|foods");
+}}}
 
 说明： 
 

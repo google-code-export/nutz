@@ -3,17 +3,15 @@
 [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java Nutz.Dao 接口]可以针对任何 POJO 的进行操作。因为 是通用的 Dao 操作，所以多数接口函数都需要一个参数类说明 POJO 的类型，比如： 
 
 {{{
-
-`Pet pet = dao.fetch(Pet.class,"XiaoBai");
-`}}}
+Pet pet = dao.fetch(Pet.class,"XiaoBai");
+}}}
 
 单独的调用一行接口，多传入一个参数到没什么，但是如果频繁的被使用，每次都要多写一个参数毕竟很是麻烦。为此我又提供一层非常简单的 针对 [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java org.nutz.dao.Dao] 接口的封装。 譬如： 
 
 {{{
-
-`IdNameEntityService<Pet> pets = new IdNameEntityService<Pet>(dao){};
+IdNameEntityService<Pet> pets = new IdNameEntityService<Pet>(dao){};
 Pet pet = pets.fetch("XiaoBai");
-`}}}
+}}}
 
 这样，调用的时候，就不用每次都传入参数了。 
 

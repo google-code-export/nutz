@@ -32,13 +32,12 @@
 ----
 =插入 Insert =
 {{{
-
-`Person p = new Person();
+Person p = new Person();
 p.setName("Peter");
 p.setAge(22);
 dao.insert(p);
 System.out.println(p.getId());
-`}}}
+}}}
 
 Person 对象的 Id 被自动更新了。 
 
@@ -48,43 +47,38 @@ Person 对象的 Id 被自动更新了。
 根据名称获取 （如果你的实体声明了 @Name 字段） 
 
 {{{
-
-`Person p = dao.fetch(Person.class,"Peter");
+Person p = dao.fetch(Person.class,"Peter");
 System.out.println(p.getId());
-`}}}
+}}}
 
 根据 ID 获取 （如果你的实体声明了 @Id 字段） 
 
 {{{
-
-`Person p = dao.fetch(Person.class,2);
+Person p = dao.fetch(Person.class,2);
 System.out.println(p.getName());
-`}}}
+}}}
 
 ----
 =更新 Update =
 {{{
-
-`Person p = dao.fetch(Person.class,2);
+Person p = dao.fetch(Person.class,2);
 p.setAge(32);
 dao.update(p)
-`}}}
+}}}
 
 ----
 =删除 Delete =
 根据名称删除 （如果你的实体声明了 @Name 字段） 
 
 {{{
-
-`dao.delete(Person.class,"Peter");
-`}}}
+dao.delete(Person.class,"Peter");
+}}}
 
 根据 ID 删除 （如果你的实体声明了 @Id 字段） 
 
 {{{
-
-`dao.delete(Person.class,2);
-`}}}
+dao.delete(Person.class,2);
+}}}
 
  
 
@@ -92,15 +86,13 @@ dao.update(p)
 =查询 Query =
 ==查询全部记录 ==
 {{{
-
-`List<Person> = dao.query(Person.class,null,null);
-`}}}
+List<Person> = dao.query(Person.class,null,null);
+}}}
 
 ==按条件查询 ==
 {{{
-
-`List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
-`}}}
+List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
+}}}
 
         * Cnd 类的全名是 org.nutz.dao.Cnd
             * 它主要是用来快速替你建立一个 org.nutz.dao.Condition 接口的实现类
@@ -111,9 +103,8 @@ dao.update(p)
         * 关于更多的查询条件的说明，请参看 [condition.html 复杂条件]
 ==分页查询 ==
 {{{
-
-`List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
-`}}}
+List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
+}}}
 
         * dao.createPager 第一个参数是第几页，第二参数是一页有多少条记录
         * 关于分页更多的说明，请参看 [query_by_page.html 分页查询]
@@ -121,14 +112,12 @@ dao.update(p)
 =清除 Clear =
 ==清除所有记录 ==
 {{{
-
-`dao.clear(Person.class);
-`}}}
+dao.clear(Person.class);
+}}}
 
 ==按条件清除 ==
 {{{
-
-`dao.clear(Person.class,Cnd.where("id", ">", 35));
-`}}}
+dao.clear(Person.class,Cnd.where("id", ">", 35));
+}}}
 
         * 关于更多的清除条件的说明，请参看 [condition.html 复杂条件]
