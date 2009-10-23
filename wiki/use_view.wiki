@@ -10,8 +10,10 @@
 `那么，如何获取这个 taskCount 呢？ 每次都执行 SELECT COUNT(*) 吗？比较理想的一个解决方法就是使用视图。在视图的 SQL 语句中我 们可以利用数据库的方言，发挥数据库的效率。并且在程序代码里也会更加简洁。比如我们建立一个视图 v_employee `
 
 {{{
-SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FROM t_employee AS e;
-}}}
+
+`SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FROM t_employee AS e;
+`}}}
+
 <font color="#008800">这段代码仅仅是个示意，在不同的数据库上，有不同的写法</font> 
 
 `那么实际上，我们建立的这个 Employee 的 Java 对象就是要从 v_employee 获取，但是执行 insert, update 或者 delete 的时候，却是 操作 t_employee 的。为了这个特殊的需求， Nutz.Dao 提供了 @View 和 @Readonly 这两个注解。 `
@@ -21,7 +23,8 @@ SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FR
 我们直接来表述一下 Employee 这个 POJO，这里仅仅是个示意 
 
 {{{
-@Table("t_employee")
+
+`@Table("t_employee")
 @View("v_employee")		// <- 这里声明了视图
 public class Employee{
 
@@ -38,7 +41,8 @@ public class Employee{
 	...
 	
 }
-}}}
+`}}}
+
  
 
       * 通过 @View， Nutz.Dao 知道了当查询数据时候，应该从哪里获取数据

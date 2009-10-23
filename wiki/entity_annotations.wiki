@@ -24,8 +24,10 @@ Nutz.Dao 支持你为一个实体 声明一个 @Table 的同时也声明一个 @
 字段声明，告诉Nutz.Dao 本字段将作为一个Name来使用。一个实体的@Name 一般在数据表中都会做了唯一性约束。 所以当你依靠 @Name 来获取一个对象的时候，相当于Sql代码 
 
 {{{
-SELECT * FROM table WHERE name='...';
-}}}
+
+`SELECT * FROM table WHERE name='...';
+`}}}
+
 ----
 =@NotNull =
 字段声明, 如果你试图 Nutz.Dao 插入或者更新一个对象，给该字段赋null值将导致一个com.zzh.dao.FailToMakeSQLException 
@@ -66,8 +68,10 @@ SELECT * FROM table WHERE name='...';
 <font color="#FF0000">*注意:*</font> @Many 是一个略微让人疑惑的名称，你可能会想，你声明 @Many 的字段必须是一个容器或者数组，其实，它也可以 是一个单个对象。对于 Nutz.Dao来说，@Many字段确切的意义是说：参考字段(@Many.field) 是存放在 target 对象里的，而 @One则 表示参考字段是存放在当前对象的。 所以@Many 的确切意思是说“Can be Many”， 因此你甚至可以这么写 
 
 {{{
-@Many(target=A.class,field="id") private A a;
-}}}
+
+`@Many(target=A.class,field="id") private A a;
+`}}}
+
 那么你通过 dao.fetchMany() 将只返回一个结果。 
 
 ----

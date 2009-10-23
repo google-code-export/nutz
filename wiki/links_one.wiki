@@ -10,7 +10,8 @@ http://www.zzh.com/nutz/imgs/links_one.png
 在 POJO 类中字段中增加注解 *@One*： 
 
 {{{
-@Table("t_pet")
+
+`@Table("t_pet")
 public class Pet extends Pojo {
 
 @Column
@@ -20,7 +21,8 @@ public class Pet extends Pojo {
 	public Master master;
 	
 }
-}}}
+`}}}
+
 因此： 
 
       * POJO 类中*必须*存在一个字段，本 POJO 将通过该字段同目标 POJO 的主键关联

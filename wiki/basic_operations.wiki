@@ -11,11 +11,17 @@
 但是，Nutz.Dao 认为从使用者的角度来看，这四种操作还是有所不同的。比如，查询返回的结果，很多时候仅仅是一条记录。我们需要为这种情况进行优化。所以，Nutz.Dao 在传统关系型数据库数据操作的基础上定义了如下的数据操作： 
 
 || 插入 || Insert	|| 插入一条记录 ||
+
 || 删除 || Delete	|| 删除一条记录 ||
+
 || 更新 || Update	|| 更新一条记录 ||
+
 || 获取 || Fetch	|| 获取一条记录 ||
+
 || 查询 || Query	|| 根据条件获取多条记录 ||
+
 || 清除 || Clear	|| 根据条件删除多条记录	||
+
 因此，我们发现在 Nutz.Dao 的数据操作概念中，并不支持一次更新多条记录。 如果需要一次更新多条记录，你需要自己定义 SQL。 关于如何定义和管理自己的 SQL，请参看 [customized_sql.html 自定义SQL] 
 
 ----
@@ -26,12 +32,14 @@
 ----
 =插入 Insert =
 {{{
-Person p = new Person();
+
+`Person p = new Person();
 p.setName("Peter");
 p.setAge(22);
 dao.insert(p);
 System.out.println(p.getId());
-}}}
+`}}}
+
 Person 对象的 Id 被自动更新了。 
 
       * 如果你想手工维护你的实体 ID，在声明 @Id 的时候，可以声明成静态的，详情请看 [entity_annotations.html 实体声明] 关于 @Id 的描述
@@ -40,46 +48,60 @@ Person 对象的 Id 被自动更新了。
 根据名称获取 （如果你的实体声明了 @Name 字段） 
 
 {{{
-Person p = dao.fetch(Person.class,"Peter");
+
+`Person p = dao.fetch(Person.class,"Peter");
 System.out.println(p.getId());
-}}}
+`}}}
+
 根据 ID 获取 （如果你的实体声明了 @Id 字段） 
 
 {{{
-Person p = dao.fetch(Person.class,2);
+
+`Person p = dao.fetch(Person.class,2);
 System.out.println(p.getName());
-}}}
+`}}}
+
 ----
 =更新 Update =
 {{{
-Person p = dao.fetch(Person.class,2);
+
+`Person p = dao.fetch(Person.class,2);
 p.setAge(32);
 dao.update(p)
-}}}
+`}}}
+
 ----
 =删除 Delete =
 根据名称删除 （如果你的实体声明了 @Name 字段） 
 
 {{{
-dao.delete(Person.class,"Peter");
-}}}
+
+`dao.delete(Person.class,"Peter");
+`}}}
+
 根据 ID 删除 （如果你的实体声明了 @Id 字段） 
 
 {{{
-dao.delete(Person.class,2);
-}}}
+
+`dao.delete(Person.class,2);
+`}}}
+
  
 
 ----
 =查询 Query =
 ==查询全部记录 ==
 {{{
-List<Person> = dao.query(Person.class,null,null);
-}}}
+
+`List<Person> = dao.query(Person.class,null,null);
+`}}}
+
 ==按条件查询 ==
 {{{
-List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
-}}}
+
+`List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
+`}}}
+
         * Cnd 类的全名是 org.nutz.dao.Cnd
             * 它主要是用来快速替你建立一个 org.nutz.dao.Condition 接口的实现类
             * where() 函数 第一个参数是字段名，要和 Java 类里面的字段名相同。
@@ -89,18 +111,24 @@ List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), n
         * 关于更多的查询条件的说明，请参看 [condition.html 复杂条件]
 ==分页查询 ==
 {{{
-List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
-}}}
+
+`List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
+`}}}
+
         * dao.createPager 第一个参数是第几页，第二参数是一页有多少条记录
         * 关于分页更多的说明，请参看 [query_by_page.html 分页查询]
 ----
 =清除 Clear =
 ==清除所有记录 ==
 {{{
-dao.clear(Person.class);
-}}}
+
+`dao.clear(Person.class);
+`}}}
+
 ==按条件清除 ==
 {{{
-dao.clear(Person.class,Cnd.where("id", ">", 35));
-}}}
+
+`dao.clear(Person.class,Cnd.where("id", ">", 35));
+`}}}
+
         * 关于更多的清除条件的说明，请参看 [condition.html 复杂条件]

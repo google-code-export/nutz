@@ -17,11 +17,13 @@
 毫无疑问，首先，需要配置你的 POJO。 Nutz.Dao 提供的 @Table 注解本身就支持动态表明，比如： 
 
 {{{
-@Table("t_employee_${cid}")
+
+`@Table("t_employee_${cid}")
 public class Employee{
 	// The class fields and methods...
 }
-}}}
+`}}}
+
 `@Table 注解支持字符串模板的写法，在你希望放置动态表名变量的位置插入 ${变量名} ，如 ${cid}，那么 ${cid} 会在运行时被 Nutz.Dao 替换。 `
 
 如何替换？用什么替换？请看下面一节。 
@@ -31,7 +33,8 @@ public class Employee{
 Nutz.Dao 提供了一个小巧的类: org.nutz.dao.TableName。 通过这个类你可以随意设置你的动态表名： 
 
 {{{
-public void demoTableName(final Dao dao) {
+
+`public void demoTableName(final Dao dao) {
 	TableName.run(3, new Runnable() {
 		public void run() {
 			Employee peter = dao.fetch(Employee.class, "peter");
@@ -39,14 +42,17 @@ public void demoTableName(final Dao dao) {
 		}
 	});
 }
-}}}
+`}}}
+
 通过创建一个匿名 java.lang.Runnable 对象，你可以像静态 POJO 一样使用 Dao 接口的一切方法。因为通过你 传入的参数 3 (TableName.run 方法的第一个参数)， 以及前面的 @Table 声明，Nutz.Dao 已经很清楚如何操作 数据库了，它会用 3 替代 $cid。 
 
 如果细心一些，你会发现在 TableName.run 方法的声明是： 
 
 {{{
-public static void run(Object refer, Runnable atom);
-}}}
+
+`public static void run(Object refer, Runnable atom);
+`}}}
+
 是的，第一个参数是个 Object，也就是说，你可以传入任何对象，上面的例子我们传入的是个整数，Java编译器 会自动将其包裹成 Integer 对象。 考虑到动态表名可能存在的复杂性（在前面一节“动态表明的常用形式”提到），你还可以传入一个 Map 或者一个 POJO， Nutz.Dao 会根据你的传入为动态表名的多个变量同时赋值。下面我列出一个完整的*动态表名赋值规则* 
 
 ----
@@ -68,13 +74,15 @@ public static void run(Object refer, Runnable atom);
 使用 TableName.run 提供的动态表名模板的方式设置动态表名是很好的做法，也很安全。因为不会在 ThreadLocal 里面留下垃圾动态表名变量值。但是通过模板的写法另外一方面也限制了一定线程灵活性。所以上述例子还有另外 一个写法: 
 
 {{{
-public void demoTableName2(final Dao dao) {
+
+`public void demoTableName2(final Dao dao) {
 	TableName.set(3);
 	Employee peter = dao.fetch(Employee.class, "peter");
 	System.out.println(peter);
 	TableName.clear();
 }
-}}}
+`}}}
+
 在 TableName.set 和 TableName.clear 之间的代码，就是动态表名变量的生命周期。当然，这个写法存在两个潜在 的危险。 
 
         # 可能在 ThreadLocal 留下垃圾动态表名变量
@@ -82,7 +90,8 @@ public void demoTableName2(final Dao dao) {
 关于第一点，可以用 try...catch...finally 来解决: 
 
 {{{
-public void demoTableName3(final Dao dao) {
+
+`public void demoTableName3(final Dao dao) {
 	try {
 		TableName.set(3);
 		Employee peter = dao.fetch(Employee.class, "peter");
@@ -91,13 +100,15 @@ public void demoTableName3(final Dao dao) {
 		TableName.clear();
 	}
 }
-}}}
+`}}}
+
 这样，永远都不会留下垃圾动态表名了 
 
 关于第二点，是的，如果在 TableName.set(3) 之前你曾经设置了另一个动态表名变量，比如 
 
 {{{
-public void demoTableName_multi(final Dao dao) {
+
+`public void demoTableName_multi(final Dao dao) {
 	TableName.set(10);
 	Employee john = dao.fetch(Employee.class, "john");
 	System.out.println(john);
@@ -111,11 +122,13 @@ public void demoTableName_multi(final Dao dao) {
 	System.out.println(mary);
 	TableName.clear();
 }
-}}}
+`}}}
+
 当执行到 Employee mary = dao.fetch(Employee.class, "Mary"); 一定会出错，不是吗？ 所以比较安全的写法是 
 
 {{{
-public void demoTableName_multi(final Dao dao) {
+
+`public void demoTableName_multi(final Dao dao) {
 	TableName.set(10);
 	Employee john = dao.fetch(Employee.class, "john");
 	System.out.println(john);
@@ -131,11 +144,13 @@ public void demoTableName_multi(final Dao dao) {
 	System.out.println(mary);
 	TableName.clear();
 }
-}}}
+`}}}
+
 比较麻烦是吗？ 是的，使用 TableName.get ... TableName.set ... TableName.clear 虽然带来更大的灵活性， 但是写起来有点麻烦，这也是为什么我要提供模板写法，上面的例子用模板的写法看起来是这个样子的： 
 
 {{{
-public void demoTableName_multi_temp(final Dao dao) {
+
+`public void demoTableName_multi_temp(final Dao dao) {
 	TableName.run(10, new Runnable() {
 		public void run() {
 			Employee john = dao.fetch(Employee.class, "john");
@@ -151,7 +166,8 @@ public void demoTableName_multi_temp(final Dao dao) {
 		}
 	});
 }
-}}}
+`}}}
+
 看，虽然行数并没有减少，但是你不会犯错了。是的，模板写法主要的目的是 <font color="#AA8800">*为了让你不会出错*</font>。 Java 语法上的局限让上述写法不可避免的有点显得臃肿，但是，层次的确清晰了一些，不是吗？在这个方面，我也 期待这 Java 能向函数式编程靠近一些，提供闭包或者匿名函数，当然，前提是不能损害现在 Java 语言结构清晰 易于调试的优点。 
 
 ----
@@ -167,7 +183,8 @@ public void demoTableName_multi_temp(final Dao dao) {
 那么，我们的 Company 对象必然会有类似如下的代码： 
 
 {{{
-@Table("t_company")
+
+`@Table("t_company")
 public class Company {
 
 @Column
@@ -217,11 +234,13 @@ public class Company {
 	}
 	
 }
-}}}
+`}}}
+
 比如，我们要在控制台上打印"nutz" 的公司的 CEO 的名字时，代码将为： 
 
 {{{
-public void demoTableName_links_one(final Dao dao) {
+
+`public void demoTableName_links_one(final Dao dao) {
 	final Company nutz = dao.fetch(Company.class,"nutz");
 	TableName.run(nutz.getId(), new Runnable(){
 		public void run() {
@@ -230,13 +249,15 @@ public void demoTableName_links_one(final Dao dao) {
 	});
 	System.out.println(nutz.getCEO().getName());
 }
-}}}
+`}}}
+
 ----
 ===一对多映射 ===
 下面我们来增加一对多映射，是的，一个公司有很多雇员，不是吗？那么我们就为 Company 类增加一个新的字段 
 
 {{{
-@Table("t_company")
+
+`@Table("t_company")
 public class Company {
 
 // ... another fields ...
@@ -255,11 +276,13 @@ public class Company {
 	// ... another methods ...
 	
 }
-}}}
+`}}}
+
 可以看到，在字段 employees 增加了 @Many 说明，就像一般的一对多映射一样， field 项声明了 Employee 类 必须有一个名叫（companyId）的字段指向 Company 的主键。所以 Employee 类的代码为： 
 
 {{{
-@Table("t_employee_${cid}")
+
+`@Table("t_employee_${cid}")
 public class Employee {
 
 @Column
@@ -297,11 +320,13 @@ public class Employee {
 		this.name = name;
 	}
 }
-}}}
+`}}}
+
 一切设置完毕，我们就可以这么调用： 
 
 {{{
-public void demoTableName_links_many(final Dao dao) {
+
+`public void demoTableName_links_many(final Dao dao) {
 	final Company nutz = dao.fetch(Company.class, "nutz");
 	TableName.run(nutz.getId(), new Runnable() {
 		public void run() {
@@ -311,7 +336,8 @@ public void demoTableName_links_many(final Dao dao) {
 	for (Employee e : nutz.getEmployees())
 		System.out.println(e.getName());
 }
-}}}
+`}}}
+
 上面的程序会逐行打印出 nutz 公司所有的雇员名称。 
 
 ----
@@ -321,9 +347,11 @@ public void demoTableName_links_many(final Dao dao) {
 Nutz.Dao 提供了 @ManyMany 注解帮助你的 POJO 来声明多对多关联，比如在 Employee 类中可以增加一个新 的字段，表示某个雇员的下属。 
 
 {{{
-@ManyMany(target = Employee.class, relation = "t_employee_staff_${cid}", from = "eid", to = "sid")
+
+`@ManyMany(target = Employee.class, relation = "t_employee_staff_${cid}", from = "eid", to = "sid")
 private List<Employee> staffs;
-}}}
+`}}}
+
 请注意 
 
           * relation 项就是关联表的名称，这个名称也可以写成动态的。
@@ -332,7 +360,8 @@ private List<Employee> staffs;
 在调用代码里可以这样调用 
 
 {{{
-public void demoTableName_links_manymany(final Dao dao) {
+
+`public void demoTableName_links_manymany(final Dao dao) {
 	final Company nutz = dao.fetch(Company.class, "nutz");
 	TableName.run(nutz.getId(), new Runnable() {
 		public void run() {
@@ -343,7 +372,8 @@ public void demoTableName_links_manymany(final Dao dao) {
 		}
 	});
 }
-}}}
+`}}}
+
 这段代码将 nutz 公司雇员 Peter 的所有下属逐行打印出来。 
 
 ----

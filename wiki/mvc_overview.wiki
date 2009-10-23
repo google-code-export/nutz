@@ -15,7 +15,8 @@ Nutz.Mvc 的核心就是通过注解的方式，将这三者联系起来，完�
 用最直接的方法将一个 URL 映射到某一个 Java 函数上 比如： 
 
 {{{
-@IocBy("userActions")
+
+`@IocBy("userActions")
 public class UserActions{
 	@Url("/user/update")
 	@AdaptBy(JsonHttpAdaptor.class)
@@ -32,7 +33,8 @@ public class UserActions{
 	public void deleteUser(@Param("nm") String name){
 	}
 }
-}}}
+`}}}
+
       * @Ioc 注解不是必须的
           * 如果声明了这个注解，将会调用 Ioc.get() 方法，获取该类实例
           * 否则，将直接调用默认构造函数获取该类实例，该类的实例将不被缓存
@@ -55,20 +57,24 @@ public class UserActions{
                   * 如果声明了 ok 或者 error，则试图将其值作为该视图实例的构造函数的第一参数传入，否则，将调用默认构造函数
               * 如果你想增加新的视图类型，需要为 NutzServlet 增加配置信息，views 属性是个 Json 字符串，格式类似：
 {{{
-{
+
+`{
 	freemarker : "com.you.FreeMakerView",
 	velocity : "com.you.VelocityView",
 	webmacro : "com.you.WebmacroView"
 }
-}}}
+`}}}
+
 注，同样， key 值就是类型名，大小写不敏感。 Nutz.Mvc 默认提供了两种视图： 
 
 {{{
-{
+
+`{
 	jsp : "org.nutz.mvc.view.JspView",
 	json : "org.nutz.mvc.view.JsonView"
 }
-}}}
+`}}}
+
 这两个视图你不用声明，自然就有。但是如果你想替换它们的实现，你可以再 views 属性的 Json 字符串里面重写它们的值 
 
           * ok & error 属性表示函数顺利的执行以后，应该采用什么样的视图来渲染。
@@ -80,11 +86,13 @@ public class UserActions{
 将这个类配置在 NutzServlet 的参数中，用逗号分隔。NutzServlet 在启动的时候会初始化这些类 
 
 {{{
-<init-param>
+
+`<init-param>
 	<name>modules</name>
 	<value>
 		com.you.UserActions,
 		com.you.CompanyActions
 	</value>
 </init-param>
-}}}
+`}}}
+

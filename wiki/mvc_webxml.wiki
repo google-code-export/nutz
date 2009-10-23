@@ -3,7 +3,8 @@
 例子代码: 
 
 {{{
-<servlet>
+
+`<servlet>
 	<servlet-name>NutzMvc</servlet-name>
 	<servlet-class>org.nutz.mvc2.NutzServlet</servlet-class>
 	<!--==============================================================================================
@@ -49,11 +50,14 @@
 	</init-param>
 	<load-on-startup>1</load-on-startup>
 </servlet>
-}}}
+`}}}
+
 =声明 Servlet Mapping =
 {{{
-<servlet-mapping>
+
+`<servlet-mapping>
 	<servlet-name>NutzMvc</servlet-name>
 	<url-pattern>/*</url-pattern>
 </servlet-mapping>
-}}}
+`}}}
+

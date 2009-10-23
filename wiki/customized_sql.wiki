@@ -15,28 +15,36 @@ Nutz.Dao 自定义 SQL 的概述
 
       # 用户可以硬编码 SQL 语句，比如：
 {{{
-Sql sql = Sqls.create("DELETE FROM t_abc WHERE name='Peter'");
-}}}
+
+`Sql sql = Sqls.create("DELETE FROM t_abc WHERE name='Peter'");
+`}}}
+
       # 支持占位符的书写方式，比如：
 {{{
-Sql sql = Sqls.create("DELETE FROM $table WHERE name=@name");
+
+`Sql sql = Sqls.create("DELETE FROM $table WHERE name=@name");
 sql.vars().set("table","t_abc");
 sql.params().set("name","Peter");
-}}}
+`}}}
+
           * $table 将会被替换成 <font color="#FF00FF">`t_abc`</font>
           * @name 将会被替换成 <font color="#FF00FF">?</font>，用来创建 PreparedStatement
       # 用户可以将所有的 SQL 语句存放在一个或者多个文件中，语句的间隔可以通过注释，比如：
 {{{
-/* delete.data */
+
+`/* delete.data */
 DELETE FROM $table WHERE name LIKE @name
 /* update.data */
 UPDATE FROM $table SET name=@name WHERE id=@id
-}}}
+`}}}
+
 在你的 Java 代码中： 
 
 {{{
-Sql sql = dao.sqls().create("delete.data");
-}}}
+
+`Sql sql = dao.sqls().create("delete.data");
+`}}}
+
       # 你可以为你的 SQL 任意定制回调，后面会有详细讲解
 下面我们就由 org.nutz.dao.sql.Sql 接口入手，详细讲解一下 Nutz.Dao 的自定义 SQL 解决方案 
 
@@ -50,8 +58,10 @@ org.nutz.dao.sql.SqlImpl。你可以直接 new 这个对象，但是我不建议
 通过 org.nutz.dao.Sqls 类提供的静态方法 create，你可以很方便的构建你的 Sql 对象 
 
 {{{
-Sql sql = Sqls.create("INSERT INTO t_abc (name,age) VALUES('Peter',18);
-}}}
+
+`Sql sql = Sqls.create("INSERT INTO t_abc (name,age) VALUES('Peter',18);
+`}}}
+
 Sqls 提供的 fetchEntity, fetchInt, 以及 queryEntity 方法来帮助你构建 Sql 对象。它们之间的区别 在稍后会详细说明 
 
 通常的情况，你需要构建某些 *动态* 的 SQL，所以我也允许你为你的 SQL 设置占位符，占位符分两种： 
@@ -69,32 +79,37 @@ Sqls 提供的 fetchEntity, fetchInt, 以及 queryEntity 方法来帮助你构�
 所有的占位符可以同样的名称出现的多个地方。并且变量占位符和参数占位符的名称不互相干扰，比如: 
 
 {{{
-Sql sql = Sqls.create("INSERT INTO $table ($name,$age,$weight) VALUES(@name,@age,@weight)");
+
+`Sql sql = Sqls.create("INSERT INTO $table ($name,$age,$weight) VALUES(@name,@age,@weight)");
 // 为变量占位符设值
 sql.vars().set("table","t_person");
 sql.vars().set("name","f_name").set("age","f_age").set("weight","f_weight");
 // 为参数占位符设值
 sql.params().set("name","Peter").set("age",18).set("weight",60);
-}}}
+`}}}
+
 通过上例，我们可以看出，变量占位符和参数占位符的确可以重名且不相互干扰的。 
 
 ==如何执行 Sql 对象 ==
 当你顺利的创建了一个 Sql 对象，执行它就相当简单了，比如： 
 
 {{{
-void demoSql(Dao dao){
+
+`void demoSql(Dao dao){
 	Sql sql = Sqls.create("SELECT name FROM t_abc WHERE name LIKE @name");
 	sql.params().set("name", "A%");
 	dao.execute(sql);
 }
-}}}
+`}}}
+
 这就完了吗？我怎么取得查询的结果呢。是的，同 UPDATE, DELETE, INSERT 不同， SELECT 是需要返回 结果的，但是 Nutz.Dao 也不太清楚怎样为你自定义的 SELECT 语句返回结果，于是，就需要你设置回调。 
 
 ==回调的用处 ==
 接上例，你需要这么改造一下你的函数： 
 
 {{{
-List<String> demoSql(Dao dao) {
+
+`List<String> demoSql(Dao dao) {
 	Sql sql = Sqls.create("SELECT name FROM t_abc WHERE name LIKE @name");
 	sql.params().set("name", "A%");
 	sql.setCallback(new SqlCallback() {
@@ -108,7 +123,8 @@ List<String> demoSql(Dao dao) {
 	dao.execute(sql);
 	return sql.getList(String.class);
 }
-}}}
+`}}}
+
 看到熟悉的 ResultSet 了吧。 当然，如果你执行的不是 SELECT 语句，你依然可以设置回调，但是 ResultSet 参数就是 null  了。 
 
 总结一下： 
@@ -138,7 +154,8 @@ Nutz.Dao SQL 文件的格式
 下面是一个例子 
 
 {{{
-/*
+
+`/*
 这里是这个 SQL 文件的注释，你随便怎么写
 */
 /* sql1 */
@@ -148,7 +165,8 @@ DROP TABLE t_abc
 SELECT * FROM t_pet WHERE id=@id
 /* listpets*/
 SELECT * FROM t_pet $condition
-}}}
+`}}}
+
  
 
 ----
@@ -161,9 +179,11 @@ org.nutz.dao.SqlManager 接口，从这个接口中你就可以获得你预先�
 
 ==在构造时加载 ==
 {{{
-Dao dao = new NutDao(datasource,new FileSqlManager("demo/sqls/all.sqls"));
+
+`Dao dao = new NutDao(datasource,new FileSqlManager("demo/sqls/all.sqls"));
 System.out.println(dao.sqls().count());
-}}}
+`}}}
+
 上述代码将打印出 all.sqls 文件中 SQL 语句的数量。 路径 "demo/sqls/all.sqls" 是一个存在在 CLASSPATH 的文件。 
 
         * FileSqlManager 的构造函数接受数目可变的字符串对象，每个对象就是 SQL 文件的路径。
@@ -171,25 +191,30 @@ System.out.println(dao.sqls().count());
         * 如果你给出的 path 是一个目录，那么该目录下所有后缀为*.sqls* 的文件都会被加载
 ==在构造之后的任何时加载 ==
 {{{
-Dao dao = new NutDao(datasource);
+
+`Dao dao = new NutDao(datasource);
 ((NutDao)dao).setSqlManager(new FileSqlManager("demo/sqls/all.sqls"));
 System.out.println(dao.sqls().count());
-}}}
+`}}}
+
 ----
 =ComboSql （组合SQL） 的用处 =
 通过 Dao 接口的 execute 接口，可以传入数目可变的 SQL 对象。 SQL 对象可以从 Dao.sqls().create() 方法获得。 但是有些时候，你有可能需要批量的为多个 SQL 对象统一设定占位符的值。比如你有这么两个 SQL，需要同时执行。 
 
 {{{
-/* master.update */
+
+`/* master.update */
 UPDATE t_master SET petId=@petId WHERE id=@masterId
 
 /* pet.update */
 UPDATE t_pet SET masterid=@masterId WHERE id=@petId;
-}}}
+`}}}
+
 为了能让主人和宠物建立一个双向的一对一关联，那么在 Java 代码中，你就需要这样写： 
 
 {{{
-void demoCombo(Dao dao) {
+
+`void demoCombo(Dao dao) {
 	Sql uMaster = dao.sqls().create("master.update");
 	Sql uPet = dao.sqls().create("pet.update");
 	
@@ -198,16 +223,19 @@ void demoCombo(Dao dao) {
 	
 	dao.execute(uMaster, uPet);
 }
-}}}
+`}}}
+
 看，每个 SQL 都需要为占位符 petId 和 masterId 设值，如果使用 ComboSql，代码为： 
 
 {{{
-void demoCombo(Dao dao) {
+
+`void demoCombo(Dao dao) {
 	Sql sql = dao.sqls().createCombo("master.update", "pet.update");
 	sql.params().set("petId", 20).set("masterId", 16);
 	dao.execute(sql);
 }
-}}}
+`}}}
+
 代码少了很多，不是吗？ 
 
 关于 ComboSql，你还需要知道的是： 
@@ -223,8 +251,10 @@ void demoCombo(Dao dao) {
 在 Sql 对象中，我在接口里也设计了一个方法 : 
 
 {{{
-Sql setCondition(Condition condition);
-}}}
+
+`Sql setCondition(Condition condition);
+`}}}
+
 是的，你的 Sql 对象也可以使用 Condition，但是这个 Condition 要如何同你自定义的 SQL 拼装在一起呢， 这里，我提供了一个特殊的变量占位符 -- 条件变量占位符 $condition 
 
 ----
@@ -232,7 +262,8 @@ Sql setCondition(Condition condition);
 唯一需要说明的是，在你写作的 SQL 中，需要声明一个特殊的占位符，比如下面的代码输出所有 id 大 于 35 的 Pet 对象的名称 
 
 {{{
-Sql sql = Sqls.create("SELECT name FROM t_pet $condition");
+
+`Sql sql = Sqls.create("SELECT name FROM t_pet $condition");
 sql.setCondition(Cnd.where("id", ">", 35)).setCallback(new SqlCallback() {
 	public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
 		List<String> list = new LinkedList<String>();
@@ -244,13 +275,16 @@ sql.setCondition(Cnd.where("id", ">", 35)).setCallback(new SqlCallback() {
 dao.execute(sql);
 for (String name : sql.getList(String.class))
 	System.out.println(name);
-}}}
+`}}}
+
 请主要看看这两行代码： 
 
 {{{
-Sql sql = Sqls.create("SELECT name FROM t_pet $condition");
+
+`Sql sql = Sqls.create("SELECT name FROM t_pet $condition");
 sql.setCondition(Cnd.where("id", ">", 35));
-}}}
+`}}}
+
 第一行的占位符 $condition 已经被 Nutz.Dao 保留。声明了该占位符的 SQL 都可以使用 setCondition 函数。 否则，你设置的条件将无效。 
 
 同样的，针对 FetchSql 和 ExecutableSql 也是同样，例如： 
@@ -258,13 +292,15 @@ sql.setCondition(Cnd.where("id", ">", 35));
 ----
 ==另外一个例子 - 将所有的 id 大于 35 的 Pet 对象的 masterId 设置为 45 ==
 {{{
-void demoCondition2(Dao dao){
+
+`void demoCondition2(Dao dao){
 	Sql sql = Sqls.create("UPDATE t_pet SET masterid=@masterId $condition");
 	sql.params().set("masterId", 45);
 	sql.setCondition(Cnd.wrap("id>35"));
 	dao.execute(sql);
 }
-}}}
+`}}}
+
 ----
 ==使用 Entity<?> ==
 `Nutz.Dao 会将你的 POJO 预先处理，处理的结果就是 Entity<?>。你可以通过 Dao 接口的 getEntity() 方法 获取。你通过`[entity_annotations.html 实体注解]`配置的信息，尤其是 @Column 中配置的数据库字段的名字 （当数据库字段名同 Java 字段名不同时）尤其有用。Condition 接口的 toString(Entity<?>) 方法是你唯一 要实现的方法，如果你将一个 Condition 赋个了 Sql 对象，在生成真正 SQL 语句的时候，这个 Entity<?> 又要从那里来呢？答案是，(*你要预先设置}。 `
@@ -272,7 +308,8 @@ void demoCondition2(Dao dao){
 `如果你不设置 Entity<?>，那么你的 Condition 的 toString(Entity<?>) 参数就是 null。你可以通过 Dao 接口随时获取任何一个 POJO 的Entity<?>，但是如何设置给你的 Condition 呢，答案是，通过 Sql 对象。 `
 
 {{{
-void demoEntityCondition(Dao dao) {
+
+`void demoEntityCondition(Dao dao) {
 	Sql sql = Sqls.create("UPDATE t_pet SET masterid=@masterId $condition");
 	Entity<Pet> entity = dao.getEntity(Pet.class);
 	sql.setEntity(entity).setCondition(new Condition() {
@@ -282,12 +319,14 @@ void demoEntityCondition(Dao dao) {
 	});
 	dao.execute(sql);
 }
-}}}
+`}}}
+
 `很多时候，大量的 SQL 语句就是为了能够查出一些 POJO 对象，因此，我给你内置了两个回调，这两个回调都需要你 为你的 Sql 设置一个正确的 Entity<?> `
 
 ===获取实体的回调 ===
 {{{
-Pet demoEntityQuery(Dao dao) {
+
+`Pet demoEntityQuery(Dao dao) {
 	Sql sql = Sqls.create("SELECT * FROM t_pet $condition");
 	sql.setCallback(Sqls.callback.fetchEntity());
 	Entity<Pet> entity = dao.getEntity(Pet.class);
@@ -295,23 +334,27 @@ Pet demoEntityQuery(Dao dao) {
 	dao.execute(sql);
 	return sql.getObject(Pet.class);
 }
-}}}
+`}}}
+
 为了方便起见，你可以直接使用 Sqls.fetch 来创建你的 Sql 对象，这个函数会自动为你的 Sql 设置获取实体的回调 
 
 {{{
-Pet demoEntityQuery(Dao dao) {
+
+`Pet demoEntityQuery(Dao dao) {
 	Sql sql = Sqls.fetchEntity("SELECT * FROM t_pet $condition");
 	Entity<Pet> entity = dao.getEntity(Pet.class);
 	sql.setEntity(entity).setCondition(Cnd.wrap("id=15"));
 	dao.execute(sql);
 	return sql.getObject(Pet.class);
 }
-}}}
+`}}}
+
  
 
 ===查询实体的回调 ===
 {{{
-List<Pet> demoEntityQuery(Dao dao) {
+
+`List<Pet> demoEntityQuery(Dao dao) {
 	Sql sql = Sqls.create("SELECT * FROM t_pet $condition");
 	sql.setCallback(Sqls.callback.queryEntity());
 	Entity<Pet> entity = dao.getEntity(Pet.class);
@@ -320,7 +363,8 @@ List<Pet> demoEntityQuery(Dao dao) {
 	dao.execute(sql);
 	return sql.getList(Pet.class);
 }
-}}}
+`}}}
+
 上面的例子你不仅会发现我设置了一个查询实体的回调，还会发现我也设置了一个Pager对象，是的，直接使用自定义的 SQL 同 样可以支持[query_by_page.html 翻页查询] 
 
 那么，我提供了一个 Sqls.queryEntity 函数也就不奇怪了吧。 :) 
