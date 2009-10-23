@@ -1,4 +1,4 @@
-<wiki:toc max_depth="3"/>
+#summary 映射概述 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="3"/>
 ----
 =Nutz.Dao 支持的映射 =
 在结构化数据库设计中，很多应用都会用到数据与数据的关联。关联有三种形式 

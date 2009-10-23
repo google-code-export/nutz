@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary  更快的构建你的POJO <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 = 为什么需要提供更多构建 POJO 的手段 =
 当查询以及获取一个或者是多个 POJO 时，Nutz.Dao 采用反射来创建对象以及为对象的各个相关字段填充值。为了提高速度， Nutz.Dao 对对象采取一些缓存的策略，所以基本上不用去查询每个对象的构造函数以及getter，setter 或者公共字段,所有的 时间开销都集中在反射的 invoke 方法上。事实证明，这让 POJO 的构建速度提高了不少，但是对于那些还想对速度进行优化的 应用，怎么办呢？ Nutz.Dao 还提供了更加极限的手段。 
 

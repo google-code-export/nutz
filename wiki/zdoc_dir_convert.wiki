@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary zDoc 目录转换细则 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 = 将目录转换成另外一组 HTML 文档 =
       * 将 index.xml 的内容生成一组 HTML 元素
       * `根据根目录下 index.html 文件，将生成的 HTML 元素插入 index.html 占位符 ${html} 处`

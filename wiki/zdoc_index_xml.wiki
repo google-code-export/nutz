@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary  使用 index.xml 作为索引文件 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 = 关于 index.xml =
 ==为什么需要索引文件 ==
 通常，你会将你的很多 zDoc 文件分门别类的放在某个目录下。然后你有可能： 

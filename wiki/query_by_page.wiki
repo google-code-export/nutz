@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary 分页查询 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 ----
 =概述 =
 使用数据库的应用程序，多数情况下都需要使用 <font color="#0000AA">“分页”</font> 这个功能。尤其是在 Web 应用程序中，后端的分页查询尤其的普遍。 在以往的使用经验中，一个分页查询，除了能获取到一个列表外，我们通常需要如下几个信息才能在客户端显示出一个完整的翻页条。 

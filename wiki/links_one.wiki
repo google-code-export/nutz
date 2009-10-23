@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary 关于一对一映射 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 ----
 =关于一对一映射的概述 =
 http://www.zzh.com/nutz/imgs/links_one.png 

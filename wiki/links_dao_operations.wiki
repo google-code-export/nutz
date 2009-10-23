@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary  接口为映射提供的操作 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 ----
 =关于映射操作的概述 =
 对于映射对象，Nutz.Dao 提供了一整套的标准 [basic_operations.html Dao 操作]。任何一个操作，都需要两个参数 

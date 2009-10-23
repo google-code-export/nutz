@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary  zDoc语法 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 ----
 =什么是zDoc文档 =
       * zDoc 是纯文本的文档

@@ -1,4 +1,4 @@
-<wiki:toc max_depth="2"/>
+#summary  使用视图 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
 ----
 =为什么需要视图 =
 数据库将数据存储在数据表中，有些时候，为了展现某些数据，还需要跨越多个表进行计算。比如你有两个数据表 
