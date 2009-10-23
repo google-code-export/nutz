@@ -1,4 +1,6 @@
 #summary 利用 Castors 按类型控制字段输出
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="center"><font size=6>* 利用 Castors 按类型控制字段输出 *</font></p>
+----
  coming soon 
 

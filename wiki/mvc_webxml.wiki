@@ -1,5 +1,7 @@
 #summary  在 web.xml 的配置
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="center"><font size=6>*  在 web.xml 的配置 *</font></p>
+----
 <wiki:toc max_depth="2"/>
 = 声明 Servlet =
 例子代码: 

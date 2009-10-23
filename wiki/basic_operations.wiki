@@ -1,5 +1,7 @@
 #summary  Dao 接口的基本操作
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="center"><font size=6>*  Dao 接口的基本操作 *</font></p>
+----
 <wiki:toc max_depth="2"/>
 = 概述 =
 传统关系型数据库定义了四中数据操作： 

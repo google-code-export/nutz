@@ -1,5 +1,7 @@
 #summary 关于一对一映射
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="center"><font size=6>* 关于一对一映射 *</font></p>
+----
 <wiki:toc max_depth="2"/>
 ----
 =关于一对一映射的概述 =
