@@ -1,8 +1,8 @@
 #summary Nutz.Dao 入门
- <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
 
  <font color="#AAA" size="1"> * Verify By * </font>    *Peter.Tung* (<font color="#080"> mastung@gmail.com </font>)  *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)
-
+</p>
 <wiki:toc max_depth="2"/>
 ----
 =检查运行环境 =

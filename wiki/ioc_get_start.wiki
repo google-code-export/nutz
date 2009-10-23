@@ -1,8 +1,8 @@
 #summary  Nutz.Ioc 入门
- <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
 
 
-
+</p>
 <wiki:toc max_depth="4"/>
 = 所谓 Ioc =
 在我个人看来，Ioc 的概念很是简单：将一部分关于对象的依赖关系单独存储在某中介质里，并且 提供一个接口以及实现帮助使用者获得这些对象。做到这点便是一个合格的 Ioc 框架了。 

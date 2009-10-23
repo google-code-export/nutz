@@ -1,8 +1,8 @@
 #summary zDoc 概述
- <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
 
 
-
+</p>
 <wiki:toc max_depth="3"/>
 = 我为什么要建立 zDoc 项目? =
 开源项目最需要的（同时也是最缺乏的）就是丰富全面的文档。在建立开源项目 [http://nutz.googlecode.com Nutz] 的时候，我深刻的体会到了这一点。 为此，经过思考，我认为只要做到下面两件事： 

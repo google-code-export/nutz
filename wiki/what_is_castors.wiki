@@ -1,7 +1,7 @@
 #summary 什么是 Castors
- <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
 
 
-
+</p>
  coming soon 
 

@@ -1,8 +1,8 @@
 #summary  接口为映射提供的操作
- <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
 
 
-
+</p>
 <wiki:toc max_depth="2"/>
 ----
 =关于映射操作的概述 =
