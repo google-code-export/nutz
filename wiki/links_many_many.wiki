@@ -92,7 +92,7 @@ Nutz.Dao 则会执行如下 SQL 语句：
 {{{
 SELECT * FROM t_pet WHERE id IN (SELECT petid FROM t_pet_food WHERE foodid=${foodId});
 }}}
-选出的结果集中的第一个记录。 其中，占位符 ${foodId} 会被本 POJO 的主键值替换。 
+`选出的结果集中的第一个记录。 其中，占位符 ${foodId} 会被本 POJO 的主键值替换。 `
 
 ----
 =你可能还需要参考 =

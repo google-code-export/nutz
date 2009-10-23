@@ -34,13 +34,13 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 || *名称*		|| *zDoc 语法*			|| *文本*				||
 || 粗体			||` {*some text}		`|| *some text*			||
-|| 斜体			|| {/some text}		|| _some text_			||
+|| 斜体			||` {/some text}		`|| _some text_			||
 || 下划线		||` {_some text}		`|| some text			||
-|| 穿越线		|| {~some text}		|| ~~some text~~			||
+|| 穿越线		||` {~some text}		`|| ~~some text~~			||
 || 红色斜体		||` {#F00;_some text}	`|| <font color="#FF0000">some text</font>	||
 || 穿越线斜体	||` {*/~some text}		`|| ~~_*some text*_~~		||
-|| 标注			|| txt{^sup}			|| txt^sup^			||
-|| 底注			|| txt{,sub}			|| txt,,sub,,			||
+|| 标注			||` txt{^sup}			`|| txt^sup^			||
+|| 底注			||` txt{,sub}			`|| txt,,sub,,			||
 <font color="#008800">各个格式的组合，顺序没有限制</font> 
 
 =图片 =
@@ -83,7 +83,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 {{{
 }}}
 ----
-}}} 如果输出成 HTML 代码，则为 
+`}}} 如果输出成 HTML 代码，则为 `
 
 {{{
 <div class="hr"></div>
@@ -91,20 +91,20 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
  
 
 =代码 =
-      * 以 {{{ 开始的行，下面所有的行都被认为是代码，一直到 }}} 开始的行为止
+      * `以 {{{ 开始的行，下面所有的行都被认为是代码，一直到 }}} 开始的行为止`
       * `{{{<java> 表示代码的类型为java源代码`
           * 你可以随便输入你的代码类型，比如 C#, Python, SQL, HTML 等等
 比如 
 
 `{{{<Javascript> `
 
-function abc(msg){ 
+`function abc(msg){ `
 
 alert(msg); 
 
-} 
+`} `
 
-}}} 
+`}}} `
 
 将显示为: 
 

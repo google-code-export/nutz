@@ -22,7 +22,7 @@ public class Employee{
 	// The class fields and methods...
 }
 }}}
-@Table 注解支持字符串模板的写法，在你希望放置动态表名变量的位置插入 ${变量名} ，如 ${cid}，那么 ${cid} 会在运行时被 Nutz.Dao 替换。 
+`@Table 注解支持字符串模板的写法，在你希望放置动态表名变量的位置插入 ${变量名} ，如 ${cid}，那么 ${cid} 会在运行时被 Nutz.Dao 替换。 `
 
 如何替换？用什么替换？请看下面一节。 
 
