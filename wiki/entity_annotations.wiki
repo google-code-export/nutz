@@ -1,4 +1,7 @@
-#summary Nutz.Dao 实体注解(Entity Annotation) <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )<wiki:toc max_depth="2"/>
+#summary Nutz.Dao 实体注解(Entity Annotation)
+ <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+
+<wiki:toc max_depth="2"/>
 ----
 =@Table =
 类对象声明，表示一个 POJO 为一个Nutz.Dao可接受的对象，可以对应数据表或者视图 @Table("表或者视图名") 如果不声明值， 那么 Nutz.Dao 将把该对象的 getClass().getSimpleName().toLowerCase() 作为数据表的名称 

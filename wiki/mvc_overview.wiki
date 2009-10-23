@@ -1,4 +1,7 @@
-#summary Nutz.Mvc 概述 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )= 核心概念 =
+#summary Nutz.Mvc 概述
+ <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+
+= 核心概念 =
 从 Nutz.Mvc 的观点来看，所谓 Mvc： 
 
       * M 是处理数据的方式

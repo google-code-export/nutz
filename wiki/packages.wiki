@@ -1,4 +1,7 @@
-#summary Nutz 的包结构 <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )= org.nutz.* =
+#summary Nutz 的包结构
+ <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+
+= org.nutz.* =
 || *包名*	|| *描述*														|| *依赖* ||
 ||aop		|| 拦截器框架													|| *javassist.jar* ^(3.0以上版本均可，但未经验证)^ ||
 ||castors	|| 对象类型转换框架												|| *lang*, *json* ||
