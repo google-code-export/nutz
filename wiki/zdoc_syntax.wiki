@@ -125,6 +125,7 @@ function abc(msg){
 ||A||{*B}||[http://www.google.com Google]||
 ||X||{*YYY}||[http://www.apache.org Apache]||
 }}}
+
 将显示成： 
 
 ||A||*B*||[http://www.google.com Google]||
