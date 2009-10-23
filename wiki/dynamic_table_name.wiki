@@ -1,5 +1,7 @@
 #summary  动态表名
- <font color=#AAA>*By:</font>   *zozoh*
+ <font color="#AAA" size="1"> * By * </font>    *zozoh*
+
+
 
 <wiki:toc max_depth="3"/>
 ----

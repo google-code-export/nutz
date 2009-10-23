@@ -1,5 +1,7 @@
 #summary zDoc 概述
- <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+
 
 <wiki:toc max_depth="3"/>
 = 我为什么要建立 zDoc 项目? =

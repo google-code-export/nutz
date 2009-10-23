@@ -1,5 +1,7 @@
 #summary  Nutz.Ioc 入门
- <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+
 
 <wiki:toc max_depth="4"/>
 = 所谓 Ioc =

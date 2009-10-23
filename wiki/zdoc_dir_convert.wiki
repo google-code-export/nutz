@@ -1,5 +1,7 @@
 #summary zDoc 目录转换细则
- <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+
 
 <wiki:toc max_depth="2"/>
 = 将目录转换成另外一组 HTML 文档 =

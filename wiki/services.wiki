@@ -1,5 +1,7 @@
 #summary 内置的服务类
- <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+
 
 <wiki:toc max_depth="2"/>
 = 什么是服务类，为什么需要它 =

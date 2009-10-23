@@ -1,5 +1,7 @@
 #summary Nutz 的包结构
- <font color=#AAA>*By:</font>   *zozoh* ( <font color=#080>zozohtnt@gmail.com</font> )
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+
 
 = org.nutz.* =
 || *包名*	|| *描述*														|| *依赖* ||

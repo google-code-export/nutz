@@ -1,6 +1,7 @@
 #summary  写在前面的话
- <font color="#AAA" size="2"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
- <font color="#AAA" size="2"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)
+ <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)
+
+ <font color="#AAA" size="1"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)
 
  http://www.zzh.com/nutz/imgs/logo.png 
 
