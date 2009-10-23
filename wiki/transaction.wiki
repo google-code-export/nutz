@@ -78,11 +78,11 @@ public static void exec(int level, Atom... atoms);
 
 它可以是下列常量中的任意一个值： 
 
-        * Connection.TRANSACTION_READ_UNCOMMITTED
-        * Connection.TRANSACTION_READ_COMMITTED
-        * Connection.TRANSACTION_REPEATABLE_READ
-        * Connection.TRANSACTION_SERIALIZABLE
-<font color="#FF0000">*注意：*</font> 不能使用常量 Connection.TRANSACTION_NONE，因为它的意思是“不支持事务” 
+        * `Connection.TRANSACTION_READ_UNCOMMITTED`
+        * `Connection.TRANSACTION_READ_COMMITTED`
+        * `Connection.TRANSACTION_REPEATABLE_READ`
+        * `Connection.TRANSACTION_SERIALIZABLE`
+<font color="#FF0000">*注意：*</font>` 不能使用常量 Connection.TRANSACTION_NONE，因为它的意思是“不支持事务” `
 
 关于 level 参数的更多说明，请参看 [http://java.sun.com/javase/6/docs/api/java/sql/Connection.html#setTransactionIsolation(int) java.sql.Connection 的文档] 
 

@@ -24,7 +24,7 @@ FieldFilter.create(Pet.class, "id|name").run(new Atom() {
 
 http://www.zzh.com/nutz/imgs/funcs_field_filter.png 
 
-在调用 run 函数之前，你需要通过 set 方法（或者直接 FilterFilter.create 传入的参数）你可以设定一组名值对，其中以 POJO 的 Class<?> 为键，以 一个 FieldMatcher 对象为值。 FieldMatcher 对象有三个字段： 
+`在调用 run 函数之前，你需要通过 set 方法（或者直接 FilterFilter.create 传入的参数）你可以设定一组名值对，其中以 POJO 的 Class<?> 为键，以 一个 FieldMatcher 对象为值。 FieldMatcher 对象有三个字段： `
 
 http://www.zzh.com/nutz/imgs/funcs_field_matcher.png 
 

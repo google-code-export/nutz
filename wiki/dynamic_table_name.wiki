@@ -5,9 +5,9 @@
 
 ----
 =动态表名的常用形式 =
-通常情况下动态表名都是通过一个后缀来表示的。比如我们要记录全中国所有的公司已经其雇员，通常的设计是建立 两张数据表， t_company 记录公司，t_employee 记录雇员。由于考虑到 t_employee 的数量可能太过庞大，我们可 以将 t_employee 进行拆分，为每个公司建立一张雇员表。 比如 t_employee_1 记录 ID 为 1 的公司所有雇员， t_employee_19 记录 ID 为 19 的公司所有雇员。 
+`通常情况下动态表名都是通过一个后缀来表示的。比如我们要记录全中国所有的公司已经其雇员，通常的设计是建立 两张数据表， t_company 记录公司，t_employee 记录雇员。由于考虑到 t_employee 的数量可能太过庞大，我们可 以将 t_employee 进行拆分，为每个公司建立一张雇员表。 比如 t_employee_1 记录 ID 为 1 的公司所有雇员， t_employee_19 记录 ID 为 19 的公司所有雇员。 `
 
-当然，我们也不能排除动态表名的其他形式，比如，如果公司也是动态表名： t_company_3 表示在 ID 为 3 的国家 的公司。那么雇员表有可能呗设计成 t_employee_3_10， 在 ID 为 3 的国家且 ID 为 10 的公司所有的雇员记录 
+`当然，我们也不能排除动态表名的其他形式，比如，如果公司也是动态表名： t_company_3 表示在 ID 为 3 的国家 的公司。那么雇员表有可能呗设计成 t_employee_3_10， 在 ID 为 3 的国家且 ID 为 10 的公司所有的雇员记录 `
 
 另外，表名的中的变量可能不只是数字，也可能不只是后缀。考虑到这样的情况，同时也希望不增加 org.nutz.dao.Dao 接口的复杂程度， Nutz.Dao 将怎样为这样的数据库操作方法提供支持的呢？ 
 
@@ -156,7 +156,7 @@ public void demoTableName_multi_temp(final Dao dao) {
 
 ----
 ==在映射中的动态表明 ==
-通过Java注解 @One, @Many, @ManyMany，Nutz.Dao 支持对象间的映射。很自然的，对象间的映射自动的会支持动态 表名。比如，如果 Company 对象有个成员变量 private List<Employee> employees; 由于 Employee 是动态表名的 所以当获取 employee 的时候，同样也能支持动态表名。 
+`通过Java注解 @One, @Many, @ManyMany，Nutz.Dao 支持对象间的映射。很自然的，对象间的映射自动的会支持动态 表名。比如，如果 Company 对象有个成员变量 private List<Employee> employees; 由于 Employee 是动态表名的 所以当获取 employee 的时候，同样也能支持动态表名。 `
 
 ----
 ===一对一映射 ===

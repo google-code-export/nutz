@@ -11,12 +11,12 @@ http://www.zzh.com/nutz/imgs/links_one.png
 ==一对多映射 ==
 http://www.zzh.com/nutz/imgs/links_many.png 
 
-如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。 
+`如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。 `
 
 ==多对多映射 ==
 http://www.zzh.com/nutz/imgs/links_manymany.png 
 
-如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。 
+`如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。 `
 
 ----
 =Nutz.Dao 如何支持映射 =
@@ -95,8 +95,8 @@ public class Pet extends Pojo {
           * *field* 是本 POJO 类的关联字段名，这个字段用来存储目标 [primary_key.html POJO 类的主键]值。
 *更多详情请参考：* 
 
-          * 注解详细描述请参看 > [entity_annotations.html Nutz.Dao 实体注解] 关于*@One*这一节
-          * 关于使用的详细描述请参看 > [links_one.html 关于一对一映射]
+          * `注解详细描述请参看 > `[entity_annotations.html Nutz.Dao 实体注解] 关于*@One*这一节
+          * `关于使用的详细描述请参看 > `[links_one.html 关于一对一映射]
 ----
 ===@Many 的例子：demo.dao.pojo.Master ===
 {{{
@@ -122,8 +122,8 @@ public class Master extends Pojo {
           * *field* 是是映射目标 POJO 类的关联字段名，这个字段用来存储本 [primary_key.html POJO 类的主键]值。
 *更多详情请参考：* 
 
-          * 注解详细描述请参看 > [entity_annotations.html Nutz.Dao 实体注解] 关于*@Many*这一节
-          * 关于使用的详细描述请参看 > [links_many.html 关于一对多映射]
+          * `注解详细描述请参看 > `[entity_annotations.html Nutz.Dao 实体注解] 关于*@Many*这一节
+          * `关于使用的详细描述请参看 > `[links_many.html 关于一对多映射]
 ----
 ===@ManyMany 的例子：demo.dao.pojo.Food ===
 {{{
@@ -151,8 +151,8 @@ public class Food extends Pojo {
           * *to* 关联表（<font color="#999999">或者说：中间表</font>）的表字段名，它用来映射目标 [primary_key.html POJO 类的主键]值
 *更多详情请参考：* 
 
-          * 注解详细描述请参看 > [entity_annotations.html Nutz.Dao 实体注解] 关于*@ManyMany*这一节
-          * 关于使用的详细描述请参看 > [links_many_many.html 关于多对多映射]
+          * `注解详细描述请参看 > `[entity_annotations.html Nutz.Dao 实体注解] 关于*@ManyMany*这一节
+          * `关于使用的详细描述请参看 > `[links_many_many.html 关于多对多映射]
 ----
 ==步骤二：通过 Dao 接口调用 ==
 设置完了 POJO 对象，下面我们就可以随意的使用它们啦。请看下面的例子： 

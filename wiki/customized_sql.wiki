@@ -23,7 +23,7 @@ Sql sql = Sqls.create("DELETE FROM $table WHERE name=@name");
 sql.vars().set("table","t_abc");
 sql.params().set("name","Peter");
 }}}
-          * $table 将会被替换成 <font color="#FF00FF">t_abc</font>
+          * $table 将会被替换成 <font color="#FF00FF">`t_abc`</font>
           * @name 将会被替换成 <font color="#FF00FF">?</font>，用来创建 PreparedStatement
       # 用户可以将所有的 SQL 语句存放在一个或者多个文件中，语句的间隔可以通过注释，比如：
 {{{
@@ -132,7 +132,7 @@ Nutz.Dao SQL 文件的格式
 
       # SQL 语句
       # SQL 语句的名称 <font color="#777777">(或者说是键值)</font>。你的程序可以通过语句的名称获取到某一条或几条 SQL 语句
-      # 注释  (通常包括在 /* 与 */ 之间)
+      # `注释  (通常包括在 /* 与 */ 之间)`
 <font color="#FF0000">*请注意：*</font> 你的 SQL 文件必须为 "<font color="#FF00FF">*UTF-8*</font>" 编码。 
 
 下面是一个例子 
@@ -267,9 +267,9 @@ void demoCondition2(Dao dao){
 }}}
 ----
 ==使用 Entity<?> ==
-Nutz.Dao 会将你的 POJO 预先处理，处理的结果就是 Entity<?>。你可以通过 Dao 接口的 getEntity() 方法 获取。你通过[entity_annotations.html 实体注解]配置的信息，尤其是 @Column 中配置的数据库字段的名字 （当数据库字段名同 Java 字段名不同时）尤其有用。Condition 接口的 toString(Entity<?>) 方法是你唯一 要实现的方法，如果你将一个 Condition 赋个了 Sql 对象，在生成真正 SQL 语句的时候，这个 Entity<?> 又要从那里来呢？答案是，(*你要预先设置}。 
+`Nutz.Dao 会将你的 POJO 预先处理，处理的结果就是 Entity<?>。你可以通过 Dao 接口的 getEntity() 方法 获取。你通过`[entity_annotations.html 实体注解]`配置的信息，尤其是 @Column 中配置的数据库字段的名字 （当数据库字段名同 Java 字段名不同时）尤其有用。Condition 接口的 toString(Entity<?>) 方法是你唯一 要实现的方法，如果你将一个 Condition 赋个了 Sql 对象，在生成真正 SQL 语句的时候，这个 Entity<?> 又要从那里来呢？答案是，(*你要预先设置}。 `
 
-如果你不设置 Entity<?>，那么你的 Condition 的 toString(Entity<?>) 参数就是 null。你可以通过 Dao 接口随时获取任何一个 POJO 的Entity<?>，但是如何设置给你的 Condition 呢，答案是，通过 Sql 对象。 
+`如果你不设置 Entity<?>，那么你的 Condition 的 toString(Entity<?>) 参数就是 null。你可以通过 Dao 接口随时获取任何一个 POJO 的Entity<?>，但是如何设置给你的 Condition 呢，答案是，通过 Sql 对象。 `
 
 {{{
 void demoEntityCondition(Dao dao) {
@@ -283,7 +283,7 @@ void demoEntityCondition(Dao dao) {
 	dao.execute(sql);
 }
 }}}
-很多时候，大量的 SQL 语句就是为了能够查出一些 POJO 对象，因此，我给你内置了两个回调，这两个回调都需要你 为你的 Sql 设置一个正确的 Entity<?> 
+`很多时候，大量的 SQL 语句就是为了能够查出一些 POJO 对象，因此，我给你内置了两个回调，这两个回调都需要你 为你的 Sql 设置一个正确的 Entity<?> `
 
 ===获取实体的回调 ===
 {{{

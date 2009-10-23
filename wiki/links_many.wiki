@@ -3,7 +3,7 @@
 =关于一对多映射的概述 =
 http://www.zzh.com/nutz/imgs/links_many.png 
 
-如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。 
+`如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。 `
 
 ----
 =关于在 POJO 的配置 : @Many =
@@ -90,5 +90,5 @@ SELECT * FROM t_pet;
 
 ----
 =你可能还需要参考 =
-      * 关于注解 *@Many* 详细描述请参看 > [entity_annotations.html Nutz.Dao 实体注解] 关于*@Many*这一节
+      * 关于注解 *@Many*` 详细描述请参看 > `[entity_annotations.html Nutz.Dao 实体注解] 关于*@Many*这一节
       * 关于通过 Dao 接口调用，请参看 [links_dao_operations.html Nutz.Dao 为映射提供的操作]。

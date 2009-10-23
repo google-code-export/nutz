@@ -91,10 +91,10 @@ SELECT * FROM table WHERE name='...';
 
 这里需要说明的是， 两个对象的关联是通过 Id 或者 Name 来关联的，关联的优先级为 
 
-      # @Id <-> @Id
-      # @Id <-> @Name
-      # @Name <-> @Id
-      # @Name <-> @Name
+      # `@Id <-> @Id`
+      # `@Id <-> @Name`
+      # `@Name <-> @Id`
+      # `@Name <-> @Name`
 就是说，如果主对象有 @Id 优先通过 @Id 来代表主对象，那么关联表代表主对象的字段必须为整数。 
 
 ----

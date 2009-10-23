@@ -41,7 +41,7 @@ dao.insertLinks(pet,"master");
 }}}
 说明： 
 
-        * t_pet 将不会被改动，所以，如果你的映射对象是 *一对一映射* <font color="#999999">@One</font>，那么你可能还需要自己再 update 一下
+        * `t_pet 将不会被改动，所以，如果你的映射对象是 `*一对一映射* <font color="#999999">@One</font>，那么你可能还需要自己再 update 一下
         * 参数 <font color="#FF00FF">"master"</font> 是个正则表达式，上例中它只匹配了一个字段
             * 如果匹配了多个字段，所有字段对应的对象，无论数组，集合还是 Map，都会被插入
         * 甚至 pet 不存在在数据库中，也能插入成功

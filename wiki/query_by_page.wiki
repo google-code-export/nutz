@@ -75,7 +75,7 @@ public static <T extends Pager> Pager create(Class<T> type, int pageNumber, int 
 
 ----
 ==自定义你自己的 Pager ==
-如果你想使用其他的数据库的 Pager，你需要自己实现 Pager 类的子类。在这个子类中，要求你实现一个 getLimitString() 方法。它要求你返回 一个字符串 Pattern， 这个字符串 Pattern 里面需要包含一个 %s 的占位符，在真正执行以前 Nutz.Dao 会使用 String.format() 方法， 用 "SELECT * FROM ... WHERE ... ORDER BY ..." 样式的字符串替换这个占位符。 
+`如果你想使用其他的数据库的 Pager，你需要自己实现 Pager 类的子类。在这个子类中，要求你实现一个 getLimitString() 方法。它要求你返回 一个字符串 Pattern， 这个字符串 Pattern 里面需要包含一个 %s 的占位符，在真正执行以前 Nutz.Dao 会使用 String.format() 方法， 用 "SELECT * FROM ... WHERE ... ORDER BY ..." 样式的字符串替换这个占位符。 `
 
 有关更详细如何创建 Pager 的方法，感兴趣的朋友可以看看相关的源代码，它们并不复杂。我可以在这里给你提供一条线索： 结合 
 

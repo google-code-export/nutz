@@ -3,7 +3,7 @@
 =关于多对多映射的概述 =
 http://www.zzh.com/nutz/imgs/links_manymany.png 
 
-如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。 
+`如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。 `
 
 ----
 =关于在 POJO 的配置 : @ManyMany =
@@ -28,12 +28,12 @@ public class Food extends Pojo {
 }}}
 因此： 
 
-      * 数据库中*必须*存在一个中间表 t_pet_food
+      * 数据库中*必须*`存在一个中间表 t_pet_food`
           * 该表有一个字段 foodid 对应到 Food 对象的主键
           * 该表有一个字段 petid 对应到 Pet 对象的主键
       * Nutz.Dao 通过 @ManyMany 这四个属性了解到：
           * 目标的 POJO 类 ： Pet
-          * 关联表（<font color="#999999">或者说：中间表</font>）：t_pet_food
+          * 关联表（<font color="#999999">或者说：中间表</font>`）：t_pet_food`
           * 关联表的 foodid 字段对应到是本 POJO （<font color="#999999">Food</font>）主键
           * 关联表的 petid 字段对应到是目标 POJO （<font color="#999999">Pet</font>） 主键
 ----
@@ -96,5 +96,5 @@ SELECT * FROM t_pet WHERE id IN (SELECT petid FROM t_pet_food WHERE foodid=${foo
 
 ----
 =你可能还需要参考 =
-      * 关于注解 *@ManyMany* 详细描述请参看 > [entity_annotations.html Nutz.Dao 实体注解] 关于*@ManyMany*这一节
+      * 关于注解 *@ManyMany*` 详细描述请参看 > `[entity_annotations.html Nutz.Dao 实体注解] 关于*@ManyMany*这一节
       * 关于通过 Dao 接口调用，请参看 [links_dao_operations.html Nutz.Dao 为映射提供的操作]。

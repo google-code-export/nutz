@@ -23,9 +23,9 @@
 =index.xml 语法 =
 该文件的语法简单的令人发指 
 
-      * 它只有一个元素 <doc>，
-      * <doc> 只有两个常用属性和两个不常用属性
-      * <doc> 可以嵌套
+      * `它只有一个元素 <doc>，`
+      * `<doc> 只有两个常用属性和两个不常用属性`
+      * `<doc> 可以嵌套`
 index.xml 的格式如下: 
 
 {{{
@@ -53,7 +53,7 @@ http://www.zzh.com/nutz/imgs/ex01.png
 	</doc>
 </doc>
 }}}
-      * 根元素 <doc> 对应到根目录 docroot，即，*index.xml 所在的目录*。
+      * `根元素 <doc> 对应到根目录 docroot，即，`*index.xml 所在的目录*。
       * 在跟元素你可以用 @author 属性声明这篇文档的默认作者，。如果目录下的 zDoc 文档没有声明 #author，那么便被认为是默认作者所写。
       * 属性 @index 的值符合 [zdoc_syntax.html zDoc语法] 中的 <font color="#00AAAA">*目录索引*</font> 中的定义
       * @path 属性表示当前对应的目录或者文件
