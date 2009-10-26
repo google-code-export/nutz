@@ -1,5 +1,5 @@
 #summary zDoc 目录转换细则
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <p align="center"><font size=6>* zDoc 目录转换细则 *</font></p>
 ----
 <wiki:toc max_depth="2"/>

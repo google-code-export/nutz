@@ -1,5 +1,5 @@
 #summary  使用视图
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <p align="center"><font size=6>*  使用视图 *</font></p>
 ----
 <wiki:toc max_depth="2"/>

@@ -1,5 +1,5 @@
 #summary  写在前面的话
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p><p align="right"> <font color="#AAA" size="1"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
+<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p><p align="left"> <font color="#AAA" size="1"> * Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
 <p align="center"><font size=6>*  写在前面的话 *</font></p>
 ----
  http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png 

@@ -1,5 +1,5 @@
 #summary 一些有用的类
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <p align="center"><font size=6>* 一些有用的类 *</font></p>
 ----
  coming soon 
