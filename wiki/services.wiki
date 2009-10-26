@@ -24,7 +24,7 @@ Pet pet = pets.fetch("XiaoBai");
 =Nutz 内置的服务类 =
 在包 [http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/service Service] 中，提供了一些实现： 
 
-http://119.161.167.227/web/_temp/1026/wiki_imgs/hierarchy_services.png 
+http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/hierarchy_services.png 
 
 请重新温习一下[services.html Nutz.Dao 实体注解(Entity Annotation)]中的注解 <font color="#AA6644">*@Id*</font> 和 <font color="#AA6644">*@Name*</font> 这两个注解， 这里我称一个 POJO 对象为一个 <font color="#0000AA">*实体*</font> （<font color="#008800">Entity</font>）： 
 

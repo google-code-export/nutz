@@ -78,7 +78,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 将显示成: 
 
-图片：http://119.161.167.227/web/_temp/1026/wiki_imgs/logo.png 
+图片：http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png 
 
 当然，我们可以控制图片的大小 
 
@@ -88,7 +88,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 将显示成: 
 
-图片：http://119.161.167.227/web/_temp/1026/wiki_imgs/logo.png 
+图片：http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png 
 
 <font color="#FF0000">*注意*</font>，你必须同时写出图片的宽度和高度。 
 
