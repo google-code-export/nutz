@@ -1,4 +1,4 @@
-#summary  在 web.xml 的配置
+#summary 在 web.xml 的配置
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <p align="center"><font size=6>*  在 web.xml 的配置 *</font></p>
 ----
@@ -9,7 +9,7 @@
 {{{
 <servlet>
 	<servlet-name>NutzMvc</servlet-name>
-	<servlet-class>org.nutz.mvc2.NutzServlet</servlet-class>
+	<servlet-class>org.nutz.mvc.NutzServlet</servlet-class>
 	<!--==============================================================================================
 	声明 Ioc
 	-->
@@ -45,7 +45,7 @@
 	</init-param>
 	<!--==============================================================================================
 	服务器生命周期
-	需要你提供一个 org.nutz.mvc2.Setup 接口的实现
+	需要你提供一个 org.nutz.mvc.Setup 接口的实现
 	-->
 	<init-param>
 		<param-name>setup</param-name>
@@ -62,4 +62,3 @@
 	<url-pattern>/*</url-pattern>
 </servlet-mapping>
 }}}
-
