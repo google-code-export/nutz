@@ -1,5 +1,5 @@
 #summary 使用 Castors
-<p align="center"><font size=6><b>使用 Castors</b></font></p>
+<p align="center"><font size=6>* 使用 Castors *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
  coming soon 

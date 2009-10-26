@@ -1,5 +1,5 @@
 #summary Nutz.Json 简要说明
-<p align="center"><font size=6><b>Nutz.Json 简要说明</b></font></p>
+<p align="center"><font size=6>* Nutz.Json 简要说明 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
  coming soon 

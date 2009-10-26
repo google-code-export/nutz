@@ -1,5 +1,5 @@
 #summary Nutz.Lang.Mirror -- 增强反射
-<p align="center"><font size=6><b>Nutz.Lang.Mirror -- 增强反射</b></font></p>
+<p align="center"><font size=6>* Nutz.Lang.Mirror -- 增强反射 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
  coming soon 

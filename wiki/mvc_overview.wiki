@@ -1,5 +1,5 @@
 #summary Nutz.Mvc 概述
-<p align="center"><font size=6><b>Nutz.Mvc 概述</b></font></p>
+<p align="center"><font size=6>* Nutz.Mvc 概述 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 = 核心概念 =

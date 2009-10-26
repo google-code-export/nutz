@@ -1,5 +1,5 @@
 #summary  使用 index.xml 作为索引文件
-<p align="center"><font size=6><b> 使用 index.xml 作为索引文件</b></font></p>
+<p align="center"><font size=6>*  使用 index.xml 作为索引文件 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>

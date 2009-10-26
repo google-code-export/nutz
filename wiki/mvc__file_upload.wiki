@@ -1,4 +1,4 @@
 #summary 文件的上传
-<p align="center"><font size=6><b>文件的上传</b></font></p>
+<p align="center"><font size=6>* 文件的上传 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>

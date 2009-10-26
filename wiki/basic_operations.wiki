@@ -1,5 +1,5 @@
 #summary  Dao 接口的基本操作
-<p align="center"><font size=6><b> Dao 接口的基本操作</b></font></p>
+<p align="center"><font size=6>*  Dao 接口的基本操作 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>

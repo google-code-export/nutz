@@ -1,5 +1,5 @@
 #summary 分页查询
-<p align="center"><font size=6><b>分页查询</b></font></p>
+<p align="center"><font size=6>* 分页查询 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
