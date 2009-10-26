@@ -32,7 +32,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 ----
 ==步骤一：在 POJO 中设置 ==
- 通过 Nutz.Dao 的提供的这三个  [entity_annotations.html  实体注解 ]   
+ 通过 Nutz.Dao 的提供的这三个  [entity_annotations  实体注解 ]   
 
         * * @One *  :  <font color="#994400"> 一对一映射 </font>
         * * @Many *  :  <font color="#994400"> 一对多映射 </font>
@@ -98,11 +98,11 @@ public class Pet extends Pojo {
  其中：  
 
           * * target *  是目标 POJO 类 （   通过此项，Nutz.Dao 能知道目标的表名  ） 
-          * * field *  是本 POJO 类的关联字段名，这个字段用来存储目标  [primary_key.html  POJO 类的主键 ] 值。 
+          * * field *  是本 POJO 类的关联字段名，这个字段用来存储目标  [primary_key  POJO 类的主键 ] 值。 
 * 更多详情请参考： *   
 
-          * ` 注解详细描述请参看 >  `[entity_annotations.html  Nutz.Dao 实体注解 ]  关于 * @One * 这一节 
-          * ` 关于使用的详细描述请参看 >  `[links_one.html  关于一对一映射 ]
+          * ` 注解详细描述请参看 >  `[entity_annotations  Nutz.Dao 实体注解 ]  关于 * @One * 这一节 
+          * ` 关于使用的详细描述请参看 >  `[links_one  关于一对一映射 ]
 ----
 ===@Many 的例子：demo.dao.pojo.Master ===
 {{{
@@ -126,11 +126,11 @@ public class Master extends Pojo {
  其中：  
 
           * * target *  是目标 POJO 类 （   通过此项，Nutz.Dao 能知道目标的表名  ） 
-          * * field *  是是映射目标 POJO 类的关联字段名，这个字段用来存储本  [primary_key.html  POJO 类的主键 ] 值。 
+          * * field *  是是映射目标 POJO 类的关联字段名，这个字段用来存储本  [primary_key  POJO 类的主键 ] 值。 
 * 更多详情请参考： *   
 
-          * ` 注解详细描述请参看 >  `[entity_annotations.html  Nutz.Dao 实体注解 ]  关于 * @Many * 这一节 
-          * ` 关于使用的详细描述请参看 >  `[links_many.html  关于一对多映射 ]
+          * ` 注解详细描述请参看 >  `[entity_annotations  Nutz.Dao 实体注解 ]  关于 * @Many * 这一节 
+          * ` 关于使用的详细描述请参看 >  `[links_many  关于一对多映射 ]
 ----
 ===@ManyMany 的例子：demo.dao.pojo.Food ===
 {{{
@@ -155,12 +155,12 @@ public class Food extends Pojo {
 
           * * target *  是目标 POJO 类 （   通过此项，Nutz.Dao 能知道目标的表名  ） 
           * * relation *  关联表（ <font color="#999999"> 或者说：中间表 </font> ）的表名 
-          * * from *  关联表（ <font color="#999999"> 或者说：中间表 </font> ）的表字段名，它用来映射本  [primary_key.html  POJO 类的主键 ] 值 
-          * * to *  关联表（ <font color="#999999"> 或者说：中间表 </font> ）的表字段名，它用来映射目标  [primary_key.html  POJO 类的主键 ] 值 
+          * * from *  关联表（ <font color="#999999"> 或者说：中间表 </font> ）的表字段名，它用来映射本  [primary_key  POJO 类的主键 ] 值 
+          * * to *  关联表（ <font color="#999999"> 或者说：中间表 </font> ）的表字段名，它用来映射目标  [primary_key  POJO 类的主键 ] 值 
 * 更多详情请参考： *   
 
-          * ` 注解详细描述请参看 >  `[entity_annotations.html  Nutz.Dao 实体注解 ]  关于 * @ManyMany * 这一节 
-          * ` 关于使用的详细描述请参看 >  `[links_many_many.html  关于多对多映射 ]
+          * ` 注解详细描述请参看 >  `[entity_annotations  Nutz.Dao 实体注解 ]  关于 * @ManyMany * 这一节 
+          * ` 关于使用的详细描述请参看 >  `[links_many_many  关于多对多映射 ]
 ----
 ==步骤二：通过 Dao 接口调用 ==
  设置完了 POJO 对象，下面我们就可以随意的使用它们啦。请看下面的例子：  
@@ -211,7 +211,7 @@ for(Food food : pet.foods)
  上例中，正则表达式  “ <font color="#AA0000"> master|foods </font> ” 匹配了 Pet 对象两个字段 --  <font color="#999999"> master, foods </font> ，因此 这两个字段会被  * fetchLinks *  函数填充  
 
 ===Nut.Dao 对于 Dao 可允许的操作 ===
- 更多详情，请参看  [links_dao_operations.html  Nutz.Dao 为映射提供的操作 ]   
+ 更多详情，请参看  [links_dao_operations  Nutz.Dao 为映射提供的操作 ]   
 
 ----
 =关于 Nutz.Dao 映射以及相关的一些总结 =
