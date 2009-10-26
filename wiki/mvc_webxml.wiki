@@ -4,7 +4,7 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 = 声明 Servlet =
-例子代码: 
+ 例子代码:  
 
 {{{
 <servlet>
