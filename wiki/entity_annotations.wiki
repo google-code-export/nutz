@@ -1,7 +1,7 @@
 #summary Nutz.Dao 实体注解(Entity Annotation)
-<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<p align="center"><font size=6>* Nutz.Dao 实体注解(Entity Annotation) *</font></p>
+<p align="center"><font size=6><b>Nutz.Dao 实体注解(Entity Annotation)</b></font></p>
 ----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =@Table =

@@ -1,7 +1,7 @@
 #summary  如何读取依赖关系
-<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<p align="center"><font size=6>*  如何读取依赖关系 *</font></p>
+<p align="center"><font size=6><b> 如何读取依赖关系</b></font></p>
 ----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
  coming soon 
 

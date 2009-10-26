@@ -1,7 +1,7 @@
 #summary  动态表名
-<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh*</p>
-<p align="center"><font size=6>*  动态表名 *</font></p>
+<p align="center"><font size=6><b> 动态表名</b></font></p>
 ----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh*</p>
 <wiki:toc max_depth="3"/>
 ----
 =为什么需要动态表明 =

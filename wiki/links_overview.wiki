@@ -1,7 +1,7 @@
 #summary  多表查询与字段映射
-<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<p align="center"><font size=6>*  多表查询与字段映射 *</font></p>
+<p align="center"><font size=6><b> 多表查询与字段映射</b></font></p>
 ----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="3"/>
 ----
 =Nutz.Dao 支持的映射 =

@@ -1,7 +1,7 @@
 #summary  成为代码提交者
-<p align="left"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<p align="center"><font size=6>*  成为代码提交者 *</font></p>
+<p align="center"><font size=6><b> 成为代码提交者</b></font></p>
 ----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 = 如果你已经是代码提交者 =
 ==你需要知道 ==
