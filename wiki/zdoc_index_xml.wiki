@@ -44,7 +44,7 @@ index.xml 的格式如下:
 
 举一个更详细的例子，比如你有一个如下的目录结构 
 
-http://www.zzh.com/nutz/imgs/ex01.png 
+http://119.161.167.227/web/_temp/1026/wiki_imgs/ex01.png 
 
 那么在 index.xml 的内容应该为 
 

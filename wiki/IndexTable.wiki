@@ -1,6 +1,7 @@
  * [overview  写在前面的话]
  * [packages Nutz 的包结构]
  * [version_naming_rule  Nutz 的版本命名规范]
+ * [for_committer  ��Ϊ�����ύ��]
  * Nutz.Dao 开发者手册
    * [dao_get_start Nutz.Dao 入门]
    * [entity_annotations Nutz.Dao 实体注解(Entity Annotation)]
