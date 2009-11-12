@@ -1,10 +1,9 @@
- * [overview 写在前面的话]
+ * [preface 写在前面的话]
  * [packages Nutz 的包结构]
  * [version_naming_rule Nutz 的版本命名规范]
  * [for_committer 成为代码提交者]
  * Nutz.Dao 开发者手册
    * [dao_get_start Nutz.Dao 入门]
-   * [entity_annotations Nutz.Dao 实体注解(Entity Annotation)]
    * [basic_operations Dao 接口的基本操作]
    * [primary_key 主键生成策略]
    * [condition 复杂的SQL条件]
