@@ -78,7 +78,7 @@
 
  将显示成:  
 
- 图片： http://www.zzh.com/nutz/imgs/logo.png   
+ 图片： http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png   
 
  当然，我们可以控制图片的大小  
 
@@ -88,7 +88,7 @@
 
  将显示成:  
 
- 图片： http://www.zzh.com/nutz/imgs/logo.png   
+ 图片： http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png   
 
 <font color="#FF0000">* 注意 *</font> ，你必须同时写出图片的宽度和高度。  
 

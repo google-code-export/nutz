@@ -27,11 +27,11 @@ FieldFilter.create(Pet.class, "id|name").run(new Atom() {
 =关于 FieldFilter=
  类 org.nutz.dao.FieldFilter  提供了静态创建函数 create。 对于 FieldFilter 类的实例，也提供了 set 方法，可以设置什么字段可以被过滤。又提供 run 函数，接受一个 org.nutz.trans.Atom 类型的参数。  
 
-http://www.zzh.com/nutz/imgs/funcs_field_filter.png   
+http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/funcs_field_filter.png   
 
 ` 在调用 run 函数之前，你需要通过 set 方法（或者直接 FilterFilter.create 传入的参数）你可以设定一组名值对，其中以 POJO 的 Class<?> 为键，以 一个 FieldMatcher 对象为值。 FieldMatcher 对象有三个字段：  `
 
-http://www.zzh.com/nutz/imgs/funcs_field_matcher.png   
+http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/funcs_field_matcher.png   
 
  实际上，FieldFilter 记录了一组配置的信息，对于每个 POJO 对象，都有三个值  
 

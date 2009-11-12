@@ -5,7 +5,7 @@
 <wiki:toc max_depth="3"/>
 ----
 =关于多对多映射的概述=
-http://www.zzh.com/nutz/imgs/links_manymany.png   
+http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png   
 
 ` 如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。  `
 

@@ -5,7 +5,7 @@
 <wiki:toc max_depth="3"/>
 ----
 =关于一对多映射的概述=
-http://www.zzh.com/nutz/imgs/links_many.png   
+http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_many.png   
 
 ` 如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。  `
 
