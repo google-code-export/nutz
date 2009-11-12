@@ -1,10 +1,10 @@
-#summary  对象的创建过程
-<p align="center"><font size=6>*  对象的创建过程 *</font></p>
+#summary 对象的创建过程
+<p align="center"><font size=6>* 对象的创建过程 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
   coming soon  
 
-=注入信息的优先级 =
+=注入信息的优先级=
  setter field  
 

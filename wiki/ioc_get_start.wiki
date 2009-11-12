@@ -1,9 +1,9 @@
-#summary  Nutz.Ioc 入门
-<p align="center"><font size=6>*  Nutz.Ioc 入门 *</font></p>
+#summary Nutz.Ioc 入门
+<p align="center"><font size=6>* Nutz.Ioc 入门 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
-= 所谓 Ioc =
+=所谓 Ioc=
  在我个人看来，Ioc 的概念很是简单：将一部分关于对象的依赖关系单独存储在某中介质里，并且 提供一个接口以及实现帮助使用者获得这些对象。做到这点便是一个合格的 Ioc 框架了。  
 
  但是将依赖关系存储在什么地方呢？ Spring 选的是 XML， Guice 选的 Java （硬编码）  
@@ -31,7 +31,7 @@
               *  更新数据后，只要重新启动各个服务器即可 
               *  便于开发一些内部管理工具，统计系统中的对象以及依赖关系 
                   *  这样的系统通常功能会比较复杂 
-=Nutz.Ioc 的主要特点 =
+=Nutz.Ioc 的主要特点=
  同 Spring 和 Guice 一样，Nutz.Ioc 是一个轻便灵活的注入框架。它主要的特点是：  
 
       *  它的核心代码并没有假定注入信息的存储形式 
@@ -47,7 +47,7 @@
           *  如果你要写自己的实现，请了解  [ioc_obj_loader.html  ObjLoader 接口说明 ]
  下面，我先以 JSON 文件为例，给大家一个 Hello World  
 
-=一个简单的例子 =
+=一个简单的例子=
  在这个例子中，你需要一个普通的 Java 对象（ <font color="#008800"> 将被 Ioc 的对象 </font> ），以及一个 JSON 配置文件。  
 
  普通Java对象 Json 配置文件 调用代码  

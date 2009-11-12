@@ -1,10 +1,10 @@
-#summary  写在前面的话
-<p align="center"><font size=6>*  写在前面的话 *</font></p>
+#summary 写在前面的话
+<p align="center"><font size=6>* 写在前面的话 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
-   http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png   
+   http://www.zzh.com/nutz/imgs/logo.png   
 
-=提高程序员的生产力是 Nutz 框架的唯一使命 =
+=提高程序员的生产力是 Nutz 框架的唯一使命=
  Java 是一门优美的编程语言，经过10多年的发展，它几乎已经被应用到了任何地方，在高端的企业服务器上， 手持设备的芯片里，车载设备，智能家电甚至火星车上。在功能上，它广泛的涉足到了软件应用的各个领域，现在， 它开始向桌面和图像处理方面频频发力。 从历史上看它是一门成熟的语言，从现在来看，它是世界上使用最广泛的 语言，从将来看，它是最有前途的语言（现在它依然充满了活力和创新）。  
 
  但是，在越来越流行的 Web 开发领域， Java 似乎逐渐露出了疲态。是的，脚本语言们卷起了一场热潮，似乎已经 快可以用“革命”两个字来形容了。而Java，被“  脚本小子们  ”诟病最多的便是  <font color="#FF0000">* 低下的开发效率 *</font> 。  
@@ -17,7 +17,7 @@
 
  是的，提高生产力是这个框架唯一的目标和使命。 就像 Java 设计之初，考虑最多的是程序员的易用性和运行时效率 的权衡， Nutz 也是这样。希望通过 Nutz， Java 的开发人员可以获得更快的开发速度，更少的代码量，并且这些 以不损害运行时效率为前提。  
 
-=Nutz 的原则性目标 =
+=Nutz 的原则性目标=
  为最大限度的提高 Web 程序员的生产力，Nutz 必须具备如下特性：  
 
       #  提供 SSH 大部分功能 

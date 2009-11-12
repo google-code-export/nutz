@@ -1,13 +1,11 @@
-#summary  自定义 SQL
-<p align="center"><font size=6>*  自定义 SQL *</font></p>
+#summary 自定义 SQL
+<p align="center"><font size=6>* 自定义 SQL *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
- Nutz.Dao 自定义 SQL 的概述  
-
-=Nutz.Dao 提供了大多数简单的操作，在80%以上的情况下，你并不需要编写 SQL，因为 Nutz.Dao 会自动替你 =
- 生成可以使用的 SQL。但是，在某些特殊的情况下，尤其是考虑到效率等问题，直接写作 SQL 仍然是程序员们 的一个杀手锏，有了这个杀手锏，程序员们永远可以针对任何数据库做他们想要的任何操作。  
+=Nutz.Dao 自定义 SQL 的概述=
+ Nutz.Dao 提供了大多数简单的操作，在80%以上的情况下，你并不需要编写 SQL，因为 Nutz.Dao 会自动替你 生成可以使用的 SQL。但是，在某些特殊的情况下，尤其是考虑到效率等问题，直接写作 SQL 仍然是程序员们 的一个杀手锏，有了这个杀手锏，程序员们永远可以针对任何数据库做他们想要的任何操作。  
 
  在之前的时代，很多程序员将 SQL 代码同 Java 代码混杂在一起，即所谓的 <font color="#0000AA">* 硬编码 *</font> 。硬编码通常是不 好的，所以很多程序员都采用了各种办法将 SQL 提炼出来存放在一个独立的文件中。其中比较著名的一个框架 就是 iBatis。这个小巧的 SQL 映射框架（Nutz.Dao 比它还小）在这个领域里干的不错。缺省的它将 SQL 存 放在 XML 文件中，现在最新的 iBatis3 也提供了JAVA注解的写法。但是我并不认为 XML 文件或者是 JAVA 注解是存放我的 SQL 语句好地方，我认为 SQL 存放的地方，应该是可以用 Eclipse 的 SQL 编辑器打开并且 能够被正确语法高亮的一种文本文件。  
 
@@ -49,12 +47,10 @@ Sql sql = dao.sqls().create("delete.data");
  下面我们就由 org.nutz.dao.sql.Sql 接口入手，详细讲解一下 Nutz.Dao 的自定义 SQL 解决方案  
 
 ----
- Sql 对象 -- org.nutz.dao.sql.Sql  
+=Sql 对象 -- org.nutz.dao.sql.Sql=
+ 我几乎是不加思索的将 SQL 的实现封装在一个接口后面。现在想想这到也没什么坏处。接口的默认实现是 org.nutz.dao.sql.SqlImpl。你可以直接 new 这个对象，但是我不建议你这么做，因为它的构造函数不那么 友好 -- 你需要传入一个 SqlLiteral 对象以及一个 StatementAdapter 对象。当然，我提供了非常方便的 构造 Sql 对象的方法 ...  
 
-=我几乎是不加思索的将 SQL 的实现封装在一个接口后面。现在想想这到也没什么坏处。接口的默认实现是 =
- org.nutz.dao.sql.SqlImpl。你可以直接 new 这个对象，但是我不建议你这么做，因为它的构造函数不那么 友好 -- 你需要传入一个 SqlLiteral 对象以及一个 StatementAdapter 对象。当然，我提供了非常方便的 构造 Sql 对象的方法 ...  
-
-==如何创建 Sql 对象 ==
+==如何创建 Sql 对象==
  通过 org.nutz.dao.Sqls 类提供的静态方法 create，你可以很方便的构建你的 Sql 对象  
 
 {{{
@@ -88,7 +84,7 @@ sql.params().set("name","Peter").set("age",18).set("weight",60);
 
  通过上例，我们可以看出，变量占位符和参数占位符的确可以重名且不相互干扰的。  
 
-==如何执行 Sql 对象 ==
+==如何执行 Sql 对象==
  当你顺利的创建了一个 Sql 对象，执行它就相当简单了，比如：  
 
 {{{
@@ -101,7 +97,7 @@ void demoSql(Dao dao){
 
  这就完了吗？我怎么取得查询的结果呢。是的，同 UPDATE, DELETE, INSERT 不同， SELECT 是需要返回 结果的，但是 Nutz.Dao 也不太清楚怎样为你自定义的 SELECT 语句返回结果，于是，就需要你设置回调。  
 
-==回调的用处 ==
+==回调的用处==
  接上例，你需要这么改造一下你的函数：  
 
 {{{
@@ -137,10 +133,8 @@ List<String> demoSql(Dao dao) {
             *  字符 
             *  布尔类型 
 ----
- Nutz.Dao SQL 文件的格式  
-
-=我们了解了如何构建 Sql 对象，但是一个应用通常由很多 SQL 语句构成，如何管理这些语句呢？前面我说过，我希望： =
- "  <font color="#0000AA"> 用户可以将所有的 SQL 语句存放在一个或者多个文件中，语句的间隔可以通过注释 </font>  "。 是的这是一种非常简单的纯文本文件，文件里只包含三种信息：  
+=Nutz.Dao SQL 文件的格式=
+ 我们了解了如何构建 Sql 对象，但是一个应用通常由很多 SQL 语句构成，如何管理这些语句呢？前面我说过，我希望： "  <font color="#0000AA"> 用户可以将所有的 SQL 语句存放在一个或者多个文件中，语句的间隔可以通过注释 </font>  "。 是的这是一种非常简单的纯文本文件，文件里只包含三种信息：  
 
       #  SQL 语句 
       #  SQL 语句的名称  <font color="#777777"> (或者说是键值) </font> 。你的程序可以通过语句的名称获取到某一条或几条 SQL 语句 
@@ -165,14 +159,12 @@ SELECT * FROM t_pet $condition
    
 
 ----
- 加载 SQL 文件  
-
-=如何使用上述的 SQL 文件呢，可以将数个 SQL 文件加载到 Dao 对象中。在之后，只要得到 Dao 的对象，可以使用 dao.sqls() 方法获得 =
- org.nutz.dao.SqlManager 接口，从这个接口中你就可以获得你预先定义好的 Sql 对象了。  
+=加载 SQL 文件=
+ 如何使用上述的 SQL 文件呢，可以将数个 SQL 文件加载到 Dao 对象中。在之后，只要得到 Dao 的对象，可以使用 dao.sqls() 方法获得 org.nutz.dao.SqlManager 接口，从这个接口中你就可以获得你预先定义好的 Sql 对象了。  
 
  对于 Dao 接口的默认实现， org.nutz.dao.impl.NutDao，提供两个方法，一个是通过构造函数，另一个是 setter 函数。  
 
-==在构造时加载 ==
+==在构造时加载==
 {{{
 Dao dao = new NutDao(datasource,new FileSqlManager("demo/sqls/all.sqls"));
 System.out.println(dao.sqls().count());
@@ -183,7 +175,7 @@ System.out.println(dao.sqls().count());
         *  FileSqlManager 的构造函数接受数目可变的字符串对象，每个对象就是 SQL 文件的路径。 
         *  如不是存在在 CLASSPATH 中的文件，则需要写上绝对路径。 
         *  如果你给出的 path 是一个目录，那么该目录下所有后缀为 * .sqls *  的文件都会被加载 
-==在构造之后的任何时加载 ==
+==在构造之后的任何时加载==
 {{{
 Dao dao = new NutDao(datasource);
 ((NutDao)dao).setSqlManager(new FileSqlManager("demo/sqls/all.sqls"));
@@ -191,7 +183,7 @@ System.out.println(dao.sqls().count());
 }}}
 
 ----
-=ComboSql （组合SQL） 的用处 =
+=ComboSql （组合SQL） 的用处=
  通过 Dao 接口的 execute 接口，可以传入数目可变的 SQL 对象。 SQL 对象可以从 Dao.sqls().create() 方法获得。 但是有些时候，你有可能需要批量的为多个 SQL 对象统一设定占位符的值。比如你有这么两个 SQL，需要同时执行。  
 
 {{{
@@ -235,7 +227,7 @@ void demoCombo(Dao dao) {
       #  一个 ComboSql 被执行的顺序同你给定的 key 的顺序相同。 
       #  函数 createCombo 如果没有接受到参数，那么将会包括所有你文件中所有的 SQL 。 
 ----
-=条件变量占位符 =
+=条件变量占位符=
  我认为 Nutz.Dao 比较吸引人的一个函数就是 Dao.query，它允许你用多种方法传入一个条件 关于复杂的条件，请参看  [condition.html  复杂的SQL条件 ]   
 
  在 Sql 对象中，我在接口里也设计了一个方法 :  
@@ -247,7 +239,7 @@ Sql setCondition(Condition condition);
  是的，你的 Sql 对象也可以使用 Condition，但是这个 Condition 要如何同你自定义的 SQL 拼装在一起呢， 这里，我提供了一个特殊的变量占位符 -- 条件变量占位符 $condition  
 
 ----
-==特殊的占位符 -- $condition ==
+==特殊的占位符 -- $condition==
  唯一需要说明的是，在你写作的 SQL 中，需要声明一个特殊的占位符，比如下面的代码输出所有 id 大 于 35 的 Pet 对象的名称  
 
 {{{
@@ -277,7 +269,7 @@ sql.setCondition(Cnd.where("id", ">", 35));
  同样的，针对 FetchSql 和 ExecutableSql 也是同样，例如：  
 
 ----
-==另外一个例子 - 将所有的 id 大于 35 的 Pet 对象的 masterId 设置为 45 ==
+==另外一个例子 - 将所有的 id 大于 35 的 Pet 对象的 masterId 设置为 45==
 {{{
 void demoCondition2(Dao dao){
 	Sql sql = Sqls.create("UPDATE t_pet SET masterid=@masterId $condition");
@@ -288,7 +280,7 @@ void demoCondition2(Dao dao){
 }}}
 
 ----
-==使用 Entity<?> ==
+==使用 Entity<?>==
 ` Nutz.Dao 会将你的 POJO 预先处理，处理的结果就是 Entity<?>。你可以通过 Dao 接口的 getEntity() 方法 获取。你通过 `[entity_annotations.html  实体注解 ]` 配置的信息，尤其是 @Column 中配置的数据库字段的名字 （当数据库字段名同 Java 字段名不同时）尤其有用。Condition 接口的 toString(Entity<?>) 方法是你唯一 要实现的方法，如果你将一个 Condition 赋个了 Sql 对象，在生成真正 SQL 语句的时候，这个 Entity<?> 又要从那里来呢？答案是，(*你要预先设置}。  `
 
 ` 如果你不设置 Entity<?>，那么你的 Condition 的 toString(Entity<?>) 参数就是 null。你可以通过 Dao 接口随时获取任何一个 POJO 的Entity<?>，但是如何设置给你的 Condition 呢，答案是，通过 Sql 对象。  `
@@ -308,7 +300,7 @@ void demoEntityCondition(Dao dao) {
 
 ` 很多时候，大量的 SQL 语句就是为了能够查出一些 POJO 对象，因此，我给你内置了两个回调，这两个回调都需要你 为你的 Sql 设置一个正确的 Entity<?>  `
 
-===获取实体的回调 ===
+===获取实体的回调===
 {{{
 Pet demoEntityQuery(Dao dao) {
 	Sql sql = Sqls.create("SELECT * FROM t_pet $condition");
@@ -334,7 +326,7 @@ Pet demoEntityQuery(Dao dao) {
 
    
 
-===查询实体的回调 ===
+===查询实体的回调===
 {{{
 List<Pet> demoEntityQuery(Dao dao) {
 	Sql sql = Sqls.create("SELECT * FROM t_pet $condition");

@@ -4,7 +4,7 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-=概述 =
+=概述=
  使用数据库的应用程序，多数情况下都需要使用  <font color="#0000AA"> “分页” </font>  这个功能。尤其是在 Web 应用程序中，后端的分页查询尤其的普遍。 在以往的使用经验中，一个分页查询，除了能获取到一个列表外，我们通常需要如下几个信息才能在客户端显示出一个完整的翻页条。  
 
       *  当前页数 -- 第几页 
@@ -16,7 +16,7 @@
  Nutz.Dao 的查询接口天然就支持翻页查询。并且每次会提供给你所有以上的信息。  
 
 ----
-=Dao 接口的第三个参数 =
+=Dao 接口的第三个参数=
  让我们先看看 Nutz.Dao 接口查询函数的声明：  
 
 {{{
@@ -32,8 +32,8 @@
           *  获取总页数:  pager.getPageCount() 
           *  获取总记录数:  pager.getRecordCount() 
 ----
-=如何创建 Pager =
-==Pager 的类型 ==
+=如何创建 Pager=
+==Pager 的类型==
  org.nutz.dao.Pager 是个抽象类，在第一版，它有如下实现:  
 
         #  OraclePager 
@@ -48,7 +48,7 @@
 <font color="#FF0000">* 需要指出的是 *</font> ，如果你声明了一个特殊的数据库类型的 Pager （即，不是默认的 Pager），那么就是说明你很关心你这次查询的速 度，所以Nutz.Dao 不会为你计算 Pager 中的 pageCount 和 recordCount。当然，如果你需要它们，你需要手工的通过 Dao 接口的 count() 方法计算结果，然后使用 Pager 里面的 setRecordCount() 方法将计算的结果传入 Pager 会自动为你计算 pageCount (在你调用了 setRecordCount() 方法后，直接调用 getPageCount() 函数即可)。  
 
 ----
-==自动判断类型 Pager ==
+==自动判断类型 Pager==
  在 Dao 接口中，提供了一个 Pager 的创建方法：  
 
 {{{
@@ -62,7 +62,7 @@ Dao.createPager(int pageNumber, int pageSize);
  Nutz.Dao 会根据你设置的 DataSource，返回给你一个该数据库特殊的 Pager 的实例。如果你的 DataSource 不是上面提到那五个数据库， 则会返回给你一个默认的 Pager 实例。  
 
 ----
-==使用指定的 Pager 类型 ==
+==使用指定的 Pager 类型==
  Pager 还提供了一个静态方法，  
 
 {{{
@@ -82,7 +82,7 @@ public static <T extends Pager> Pager create(Class<T> type, int pageNumber, int 
  当然这个设计或许不是那么必要，因为用户完全可以写自己的静态函数，或者干脆在自己的 Pager 类提供一个类似的构造函数。但是这样调用 会让你的程序更加显得统一一些，不是吗?  
 
 ----
-==自定义你自己的 Pager ==
+==自定义你自己的 Pager==
 ` 如果你想使用其他的数据库的 Pager，你需要自己实现 Pager 类的子类。在这个子类中，要求你实现一个 getLimitString() 方法。它要求你返回 一个字符串 Pattern， 这个字符串 Pattern 里面需要包含一个 %s 的占位符，在真正执行以前 Nutz.Dao 会使用 String.format() 方法， 用 "SELECT * FROM ... WHERE ... ORDER BY ..." 样式的字符串替换这个占位符。  `
 
  有关更详细如何创建 Pager 的方法，感兴趣的朋友可以看看相关的源代码，它们并不复杂。我可以在这里给你提供一条线索： 结合  
