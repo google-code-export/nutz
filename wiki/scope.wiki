@@ -1,6 +1,4 @@
-#summary 视图
-<p align="center"><font size=6>* 视图 *</font></p>
+#summary 对象生命范围
+<p align="center"><font size=6>* 对象生命范围 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-  coming soon  
-

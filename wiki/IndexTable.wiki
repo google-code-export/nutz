@@ -1,9 +1,11 @@
  * [preface 写在前面的话]
- * [packages Nutz 的包结构]
- * [version_naming_rule Nutz 的版本命名规范]
- * [for_committer 成为代码提交者]
- * Nutz.Dao 开发者手册
-   * [dao_get_start Nutz.Dao 入门]
+ * [make_developing_env 如何编译 (for Eclipse)]
+ * 了解的更多一些
+   * [packages Nutz 的包结构]
+   * [version_naming_rule Nutz 的版本命名规范]
+   * [for_committer 成为代码提交者]
+ * Dao 手册
+   * [dao_get_start Hello world]
    * [basic_operations Dao 接口的基本操作]
    * [primary_key 主键生成策略]
    * [condition 复杂的SQL条件]
@@ -15,29 +17,23 @@
    * [transaction 事务模板]
    * [services 内置的服务类]
    * [pojo_creating 更快的构建你的POJO]
-   * [links_overview 多表查询与字段映射]
+   * [links_overview 字段的映射]
      * [links_one 关于一对一映射]
      * [links_many 关于一对多映射]
      * [links_many_many 关于多对多映射]
      * [links_dao_operations 接口为映射提供的操作]
- * Nutz.Ioc 开发者手册
-   * [ioc_get_start Nutz.Ioc 入门]
-   * [ioc_obj_creating 对象的创建过程]
-   * [ioc_obj_loader 如何读取依赖关系]
-   * [ioc_in_json JSON文件中的对象映射]
-   * [ioc_in_db 数据库中的对象映射]
-   * [aop 声明式拦截器]
-   * [aop_logging 基于拦截器的日志打印功能]
- * Nutz.Mvc 开发者手册
+ * Ioc 手册
+   * [ioc_get_start Hello world]
+   * [inner_object 匿名对象]
+   * [events 事件监听]
+   * [what_to_inject 你都可以注入什么]
+   * [ioc_loader 定义自己的配置文件格式]
+   * [aop AOP -- 声明式切片]
+   * [scope 对象生命范围]
+ * Mvc
    * [mvc_overview Nutz.Mvc 概述]
-   * [mvc__helloworld ]
-   * [mvc_webxml 在 web.xml 的配置]
-   * [mvc_c 控制器]
-   * [mvc_v 视图]
-   * [mvc_m ]
-   * [mvc__entity_support ]
-   * [mvc__file_upload 文件的上传]
- * Nutz.Json 使用手册
+   * [file_upload 文件上传]
+ * Json 手册
    * [nutz_json Nutz.Json 简要说明]
    * [json_format 控制输出的格式]
    * [json_with_castors 利用 Castors 按类型控制字段输出]
