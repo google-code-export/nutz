@@ -2,7 +2,7 @@
 <p align="center"><font size=6>* 你都可以注入什么 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<wiki:toc max_depth="2"/>
+<wiki:toc max_depth="3"/>
 =从哪里注入？=
  你可以向对象注入值的位置有两个  
 
