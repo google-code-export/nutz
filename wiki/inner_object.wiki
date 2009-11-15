@@ -10,11 +10,13 @@
 
  如果一个 Map 仅包括如下的键，则被认为是一个注入对象：  
 
-      *  type 
-      *  singleton 
-      *  events 
-      *  args 
-      *  fields 
+||   * type *         	 ||   <font color="#008800">  对象类型 </font>   ||
+||   * singleton *    	 ||   <font color="#008800">  是否单例 </font>   ||
+||   * scope *        	 ||   <font color="#008800">  生命周期范围 </font>   ||
+||   * events * 		 ||   <font color="#008800">  监听事件 </font>   ||
+||   * args * 			 ||   <font color="#008800">  构造函数参数 </font>   ||
+||   * fields * 		 ||   <font color="#008800">  字段设定 </font>   ||
+
  否则，这个 Map 被认为，是在声明对象的每个字段。  
 
 =匿名对象=

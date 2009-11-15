@@ -3,6 +3,7 @@
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="3"/>
+----
 =从哪里注入？=
  你可以向对象注入值的位置有两个  
 
@@ -44,9 +45,8 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-   
-
-=值不仅可以是字符串=
+----
+=值可以不仅是字符串=
  是的，它还可以是  
 
 ==布尔==
@@ -136,8 +136,9 @@ xb : { name: 'XiaoBai'	}
 ==数组或容器==
  如果你对象某个字段是数组，集合，或者 Map， 用 JSON 可以很自然为其设置值，不是吗？  
 
+----
 ==Java 调用==
- 这是个极度灵活的对象，它几乎可以让你  * 做任何事情 *   
+ 这是个极度灵活的注入方式，它几乎可以让你  * 做任何事情 * 。 因为它允许你直接调用一个 JAVA 函数。  
 
  更详细的说明，请参看  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/ioc/val/JavaValue.java  org.nutz.ioc.val.JavaValue ]  的 JDoc  
 
@@ -200,6 +201,7 @@ xb : { name: 'XiaoBai'	}
 
  参数可以是任何种类的值  
 
+----
 =你可以增加自己的特殊类型=
  从上面你可以看到 JSON 语法的好处，非常轻巧  
 
