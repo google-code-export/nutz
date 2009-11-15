@@ -2,7 +2,7 @@
 <p align="center"><font size=6>* Nutz.Mvc 概述 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-=核心概念=
+=`核心概念`=
  从 Nutz.Mvc 的观点来看，所谓 Mvc：  
 
       *  M 是处理数据的方式 
@@ -15,7 +15,7 @@
       *  C 是某一个 POJO 对象的函数 -- 即一个Java函数 
  Nutz.Mvc 的核心就是通过注解的方式，将这三者联系起来，完成中间流程的跳转以及必要的数据处理  
 
-=如何映射 URL=
+=`如何映射 URL`=
  用最直接的方法将一个 URL 映射到某一个 Java 函数上 比如：  
 
 {{{
@@ -83,7 +83,7 @@ public class UserActions{
               *  如果没有声明该值，则用调用默认构造函数来创建视图 
               *  NutzServlet 提供参数来设置默认 ok 视图，以及默认 error 视图 
               *  你可以将 @View 声明在类上，则作为整个类的默认 ok | error 视图 
-=如何让框架找到这些函数=
+=`如何让框架找到这些函数`=
  将这个类配置在 NutzServlet 的参数中，用逗号分隔。NutzServlet 在启动的时候会初始化这些类  
 
 {{{

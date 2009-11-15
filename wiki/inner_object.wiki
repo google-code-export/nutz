@@ -3,7 +3,7 @@
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
-=鸭子法则=
+=`鸭子法则`=
 * 如果它走路像鸭子，说话像鸭子，样子像鸭子，叫声也像鸭子，那它就是一只鸭子。 *   
 
  对于 Nutz Ioc 来说，它面对的配置文件就是层层嵌套的 "名值对集合"，或者说是 Map 集合。 事实上，它是先把整个配置文件解析成 Map 再做判断的。  
@@ -19,12 +19,12 @@
 
  否则，这个 Map 被认为，是在声明对象的每个字段。  
 
-=匿名对象=
+=`匿名对象`=
  如果，一个字段的值就是这样一个 “鸭子 Map” 呢？ 那么，自然会被认为是另外一个对象。这个 对象没有名字，你不能通过 Ioc 接口直接获得，它隐藏在某个对象的某个字段里面。所以我们 称这个对象为  * 匿名对象 *   
 
  匿名对象，没有所谓的单例，你声明了 singleton: true 也没有用。如果它的宿主是单例，它自 然也只会被创建一次。否则，每次宿主被创建的时候，它都会被创建。  
 
-==JSON 配置文件：==
+==`JSON 配置文件：`==
 {{{
 var ioc = {
 	xb : {
@@ -42,7 +42,7 @@ var ioc = {
 
    
 
-==调用代码==
+==`调用代码`==
 {{{
 Ioc ioc = new NutIoc(new JsonLoader("nutz/demo/ioc/book/inner.js"));
 Pet pet = ioc.get(Pet.class, "xb");
@@ -51,7 +51,7 @@ System.out.println(pet.getFriend().getName());
 
    
 
-==控制台输出==
+==`控制台输出`==
 {{{
 XiaoHei
 }}}

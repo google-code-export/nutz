@@ -3,7 +3,7 @@
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="3"/>
-=我为什么要建立 zDoc 项目?=
+=`我为什么要建立 zDoc 项目?`=
  开源项目最需要的（同时也是最缺乏的）就是丰富全面的文档。在建立开源项目  [http://nutz.googlecode.com  Nutz ]  的时候，我深刻的体会到了这一点。 为此，经过思考，我认为只要做到下面两件事：  
 
       #  让每篇文档很容易写 
@@ -27,7 +27,7 @@
 
    
 
-=zDoc 要达到的目标=
+=`zDoc 要达到的目标`=
       *  我将使用任何一款我喜欢的 * 纯文本编辑器 * 来编辑我的文档 
           *  所以我可以利用 SVN 等工具来管理版本，协作编写文档 
       *  我的文档将包含文字，以及 B/I/S 等格式信息 
@@ -44,8 +44,8 @@
           *  HTML (browser from web) 
           *  Google Wikie 
       *  文档可以 include 另外一个文档 
-=如何使用 zDoc=
-==设置运行环境==
+=`如何使用 zDoc`=
+==`设置运行环境`==
  zDoc 提供了命令行程序，使用它之前你需要做如下设定  
 
         #  在发布包里面找到 run 目录 
@@ -62,7 +62,7 @@
 chmod +x ./zdoc
 }}}
 
-==将 zDoc 转换成 HTML==
+==`将 zDoc 转换成 HTML`==
 * 命令格式 *   
 
 {{{
@@ -86,7 +86,7 @@ zdoc /folder/abc /output/abc .html
 
  会将目录 /folder/abc 所有的 zdoc 文档转换成 HTML 文档，并输出到 /output/abc 目录下  
 
-==将 zDoc 转换成 Goolge wiki==
+==`将 zDoc 转换成 Goolge wiki`==
  Google code  是很多开源项目理想的开发平台。 它提供了 wiki 功能。 如果你建立一个 wiki 页面，在它的版本控制服务的目录内，会出现 一个 wiki 的目录，通常，是在 /trunk/wiki 下。  
 
  Google code 的 wiki 格式非常简单，易于理解，Google 为其提供了较强大的页面渲染支持。所以将 zDoc 直接渲染成 Google wiki 对大多数 在 Google code 上的开源项目是很有用的，你需要执行如下格式的命令  
@@ -121,7 +121,7 @@ zdoc /folder/abc /output/abc wiki_index_page http://www.my.com/wiki/img
 
 ` 会将目录 /folder/abc 所有的 zdoc 文档转换成 Google wiki 文档，并输出到 /output/abc 目录下。并会根据 index.xml （如果没有，根据文件） 生成一个索引 wiki 页，文件名为 wiki_index_page.wiki。所有的本地图片都会被打入压缩包 /output/abc/wiki_images.zip，并且所有的本地图片 地址都将变成 http://www.my.com/wiki/img/xxxx.xxx  `
 
-=其他=
+=`其他`=
       *  关于 zdoc 文件详细的语法，请参看  [zdoc_syntax.html  zDoc 的语法说明 ]
       *  关于目录转换的细则，请参看  [zdoc_dir_convert.html  目录转换细则 ]  以及  [zdoc_index_xml.html  使用 index.xml 作为索引文件 ]
       *  zDoc 已经被我应用到具体的工作中，比如写作界面设计文档，以后如果我打算写小说，也会使用 zDoc。 

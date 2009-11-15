@@ -4,7 +4,7 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Peter.Tung* (<font color="#080"> mastung@gmail.com </font>)  *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-=检查运行环境=
+=`检查运行环境`=
       #  首先，你必须安装 JDK1.5 或者以上版本： 
           # ` 如果你直接使用编译好的 jar 包，请保证你的 JDK是1.6 的，因为 Nutz 的jar包是在  1.6.0_11 上编译的。 `
           #  JDK1.5 的需要重新从源码编译。 
@@ -18,7 +18,7 @@
           #  你要将数据库的 JDBC Driver 和你喜欢的连接池加入项目的 classpath。 
       # ` 在数据库里建立一张你自己的数据表， 这里我们用 t_person 来举例： `
 ----
-=创建数据库=
+=`创建数据库`=
  此处代码适用于PostgreSQL，如果你使用了不同的数据库，请自行修改相应建库语句：  
 
 {{{
@@ -32,7 +32,7 @@ age INT
    
 
 ----
-=创建 POJO=
+=`创建 POJO`=
  在 Java 项目中建立一个POJO，比如 com.zzh.demo.Person :  
 
 {{{
@@ -80,7 +80,7 @@ public class Person {
 }}}
 
 ----
-=创建 main 函数=
+=`创建 main 函数`=
  随便建立一个有 main 函数的类，在 main 函数里这么写：  
 
 {{{
@@ -94,7 +94,7 @@ dao.insert(p);
   执行完毕后，在数据表中会多出一条记录。  
 
 ----
-=补充说明=
+=`补充说明`=
       *  请注意， dataSource 变量应该是你预先设置好的，只要是一个 javax.sql.DataSource 对象就成。 
       *  各种较常用的连接池都提供了 DataSource 的实现，你可以随便选一个你喜欢的连接池。 
       *  上面这段代码会向数据库里插入一条记录。 
@@ -102,7 +102,7 @@ dao.insert(p);
       *  不用 IDE 的朋友，可以看看  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java  Nutz.Dao 接口的源代码 ] ，接口函数很容易理解。 
       *  这个例子足够作为 Hello World 了， 祝你玩的开心  :) 
 ----
-=如何进阶=
+=`如何进阶`=
  在你看完上述这个例子以后，你可以看看  [basic_operations  Nutz.Dao 的基本操作 ] ，这篇短短的文章会让你很快对 Nutz.Dao 建立一个大体 上的印象。但是实际上，你的 POJO 在真正的项目中可能不会这么简单，你需要操作也不会只是增删改查。下面有三个建议：  
 
       *  Nutz.Dao 全部的文档并不很多，花上1-2个晚上，你就可以看完。 

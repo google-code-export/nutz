@@ -3,7 +3,7 @@
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
-=概述=
+=`概述`=
  传统关系型数据库定义了四中数据操作：  
 
       #  插入 Insert 
@@ -24,12 +24,12 @@
  因此，我们发现在 Nutz.Dao 的数据操作概念中，并不支持一次更新多条记录。 如果需要一次更新多条记录，你需要自己定义 SQL。 关于如何定义和管理自己的 SQL，请参看  [customized_sql.html  自定义SQL ]   
 
 ----
-=示例的前提条件=
+=`示例的前提条件`=
       *  我们假设已经创建了实体类  * com.zzh.demo.Person *  和实体表  *` t_person `*
       *  在文档  [dao_get_start.html  Nutz.Dao 入门 ]  中，我们已经声明了这个实体 
       *  下述所有的操作都是假设已经有了 dao 变量，并且它指向一个 Dao 的实例。文档  [dao_get_start.html  Nutz.Dao 入门 ]  中，我们给出了如何创建 Dao 实例，以及如何搭建运行环境 
 ----
-=插入 Insert=
+=`插入 Insert`=
 {{{
 Person p = new Person();
 p.setName("Peter");
@@ -42,7 +42,7 @@ System.out.println(p.getId());
 
       *  如果你想手工维护你的实体 ID，在声明 @Id 的时候，可以声明成静态的，详情请看  [entity_annotations.html  实体声明 ]  关于 @Id 的描述 
 ----
-=取得 Fetch=
+=`取得 Fetch`=
  根据名称获取 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -58,7 +58,7 @@ System.out.println(p.getName());
 }}}
 
 ----
-=更新 Update=
+=`更新 Update`=
 {{{
 Person p = dao.fetch(Person.class,2);
 p.setAge(32);
@@ -66,7 +66,7 @@ dao.update(p)
 }}}
 
 ----
-=删除 Delete=
+=`删除 Delete`=
  根据名称删除 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -82,13 +82,13 @@ dao.delete(Person.class,2);
    
 
 ----
-=查询 Query=
-==查询全部记录==
+=`查询 Query`=
+==`查询全部记录`==
 {{{
 List<Person> = dao.query(Person.class,null,null);
 }}}
 
-==按条件查询==
+==`按条件查询`==
 {{{
 List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
 }}}
@@ -100,7 +100,7 @@ List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), n
             *  提供了一个 wrap 函数，你可以直接写 SQL 的条件 
         *  如果你愿意，你完全可以自己实现一个 Condition，来做更复杂灵活的判断 
         *  关于更多的查询条件的说明，请参看  [condition.html  复杂条件 ]
-==分页查询==
+==`分页查询`==
 {{{
 List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
 }}}
@@ -108,13 +108,13 @@ List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
         *  dao.createPager 第一个参数是第几页，第二参数是一页有多少条记录 
         *  关于分页更多的说明，请参看  [query_by_page.html  分页查询 ]
 ----
-=清除 Clear=
-==清除所有记录==
+=`清除 Clear`=
+==`清除所有记录`==
 {{{
 dao.clear(Person.class);
 }}}
 
-==按条件清除==
+==`按条件清除`==
 {{{
 dao.clear(Person.class,Cnd.where("id", ">", 35));
 }}}
