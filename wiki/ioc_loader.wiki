@@ -84,7 +84,7 @@ public class IocObject {
 
  这里需要说一下：  
 
-==IocEventSet==
+==事件集合 IocEventSet==
  描述了一个对象可以监听的时间。三个属性分别表示：  
 
         *  create: 对象创建时触发 
@@ -95,7 +95,7 @@ public class IocObject {
         *  可以是一个函数名，也可以是一个 org.nutz.ioc.IocEventTrigger 的实现类全名 
         *  如果 是函数，那么这个函数就是对象内的一个非静态 public 的函数，而且不能有参数 
         *  如果是 IocEventTrigger 的实现类，你的实现类必须有一个 public 的默认构造函数 
-==IocValue==
+==值 IocValue==
  描述了对象的一个值，这个值可以是构造函数的参数，也可以是一个字段的值。 它由两个属性，一个是值的类型，另外一个是 value。  
 
 _* 赋值约定: *_   
@@ -109,7 +109,7 @@ _* 赋值约定: *_
         *  如果 value 是字符串，表示一个文件路径，type 必须是 "file" 
         *  如果 value 是字符串，表示一个 Java 调用，type 必须是 "java"，具体值的语法，请参看 JavaValue 类的 JDoc，当然 Ioc 容器来解析执行它，不需要 IocLoader 操心 说明 
         *  你的 ValueProxyMaker 可以扩展这个约定 
-==IocField==
+==字段 IocField==
  描述了一个对象的字段，两个属性分别表示字段名，和字段值  
 
    
