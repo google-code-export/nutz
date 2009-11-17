@@ -32,6 +32,11 @@
    * [scope 对象生命范围]
  * Mvc
    * [mvc_overview Nutz.Mvc 概述]
+   * [mvc_http_adaptor 关于适配器]
+   * [mvc_view 关于视图]
+   * [mvc_localization 本地化字符串]
+   * [mvc_ioc 同 Ioc 容器一起工作]
+   * [mvc_action_filter 使用过滤器]
    * [file_upload 文件上传]
  * Json 手册
    * [nutz_json Nutz.Json 简要说明]
