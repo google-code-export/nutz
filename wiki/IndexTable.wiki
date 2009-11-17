@@ -30,7 +30,7 @@
    * [ioc_loader 定义自己的配置文件格式]
    * [aop AOP -- 声明式切片]
    * [scope 对象生命范围]
- * Mvc
+ * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
    * [mvc_http_adaptor 关于适配器]
    * [mvc_view 关于视图]
