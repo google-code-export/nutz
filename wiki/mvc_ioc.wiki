@@ -6,9 +6,9 @@
 =`内置的 Ioc 容器`=
  一个 Mvc 框架可以通过 Ioc 接口同一个 Ioc 容器挂接，挂接的方法很简单： 在主模块上声明 @IocBy  
 
-    {{{
-    @IocBy(type=JsonIocProvider.class, args={"/conf/core.js", "/conf/pet.js"})
-    }}}
+{{{
+@IocBy(type=JsonIocProvider.class, args={"/conf/core.js", "/conf/pet.js"})
+}}}
 
  Nutz.Mvc  内置了 JsonIocProvider 类，帮助你同标准 NutIoc 容器挂接。下面是这个类的全部源代码：  
 
@@ -54,3 +54,4 @@ public class PetModule {
       *  request 
 =`自定 Ioc 容器`=
  你很喜欢 Spring，或者你很喜欢 Guice。不管怎么说，你不想用 Nutz.Ioc，那么没关系，你可以自己实现一个 IocProvider。 并用 @IocBy 声明到整个应用中即可。通过 Spring 或者 Guice 实习 Ioc 接口想必不是什么难事。  
+
