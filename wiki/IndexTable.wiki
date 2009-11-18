@@ -34,12 +34,12 @@
    * [mvc_overview Nutz.Mvc 概述]
    * [mvc_http_adaptor 关于适配器]
    * [mvc_view 关于视图]
-   * [mvc_localization 本地化字符串]
    * [mvc_ioc 同 Ioc 容器一起工作]
+   * [mvc_localization 本地化字符串]
    * [mvc_action_filter 使用过滤器]
    * [file_upload 文件上传]
  * Json 手册
-   * [nutz_json Nutz.Json 简要说明]
+   * [json_overview Nutz.Json 简要说明]
    * [json_format 控制输出的格式]
    * [json_with_castors 利用 Castors 按类型控制字段输出]
  * Nutz.Lang -- 让 Java 变得有点甜
