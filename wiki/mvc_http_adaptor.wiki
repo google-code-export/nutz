@@ -1,5 +1,5 @@
-#summary 关于适配器
-<p align="center"><font size=6>* 关于适配器 *</font></p>
+#summary 适配器
+<p align="center"><font size=6>* 适配器 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
@@ -10,9 +10,10 @@
  在每一个入口函数上，你都可以通过注解  <font color="#888888"> @AdaptBy </font>  来声明如何适配 HTTP 参数。当然，你 没必要在每一个入口函数上都声明，在子模块类上声明，或者在整个应用的主模块上声明均可。  
 
 ----
-=`如何应用适配器？`=
+=`如何使用适配器？`=
  默认的，如果你什么也不写，Nutz.Mvc 会采用  * org.nutz.mvc.adaptor.PairAdaptor *  （ _ 也就是名值对的方式 _ ） 来适配你的 HTTP 参数。  
 
+==`通过构造函数获得适配器`==
  你可以可以通过 @AdaptBy 注解来改变任何一个入口函数的适配方式。比如  
 
 {{{
@@ -21,6 +22,7 @@
 
   某些时候，你需要对一个适配器做一些复杂的设置，@AdaptBy 注解还支持一个属性 args，你可以通过这个属性 为你的适配器设置构造函数参数  
 
+==`通过 Ioc 容器获得适配器`==
  更复杂的情况是，如果你希望你的适配器是交由 Ioc 容器管理的，你可以：  
 
 {{{
