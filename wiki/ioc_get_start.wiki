@@ -4,20 +4,20 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
 =`Ioc 的概念`=
- Nutz.Ioc 从概念上是很简单：将一部分关于对象的依赖关系单独存储在某种介质里，并且 提供一个接口帮助使用者获得这些对象。  
+Nutz.Ioc 从概念上是很简单：将一部分关于对象的依赖关系单独存储在某种介质里，并且 提供一个接口帮助使用者获得这些对象。  
 
- 但是将依赖关系存储在什么地方呢？ Spring 选的是 XML， Guice 选的 Java （硬编码）  
+但是将依赖关系存储在什么地方呢？ Spring 选的是 XML， Guice 选的 Java （硬编码）  
 
- Nutz.Ioc 核心逻辑并没有限定配置信息的存储方式，但它还是提供了一个默认的配置文件 编写方式 -- JSON。因为  
+Nutz.Ioc 核心逻辑并没有限定配置信息的存储方式，但它还是提供了一个默认的配置文件 编写方式 -- JSON。因为  
 
-      *  省却了 XML 书写的烦恼 
-      *  避免了硬编码 -- 修改配置，不需要重新编译工程 
- 当然，你可以扩展它，提供自己的配置文件加载方式， Nutz.Ioc 不反对你这样，它甚至 有点鼓励你这样，虽然 JSON 方式的配置文件书写方式已经工作的很好了。  
+      * 省却了 XML 书写的烦恼 
+      * 避免了硬编码 -- 修改配置，不需要重新编译工程 
+当然，你可以扩展它，提供自己的配置文件加载方式， Nutz.Ioc 不反对你这样，它甚至 有点鼓励你这样，虽然 JSON 方式的配置文件书写方式已经工作的很好了。  
 
- 下面，我先以 JSON 文件为例，给大家一个 Hello World  
+下面，我先以 JSON 文件为例，给大家一个 Hello World  
 
 =`一个简单的例子`=
- 在这个例子中，你需要一 POJO，以及一个 JSON 配置文件。 例子的源代码，你可以访问  [http://nutzdemo.googlecode.com  nutzdemo.googlecode.com ]   获取  
+在这个例子中，你需要一 POJO，以及一个 JSON 配置文件。 例子的源代码，你可以访问  [http://nutzdemo.googlecode.com nutzdemo.googlecode.com ]  获取  
 
 ==`POJO 源代码`==
 {{{
@@ -65,10 +65,10 @@ public class Pet {
 }
 }}}
 
- 这个对象有两个构造函数  
+这个对象有两个构造函数  
 
 ==`Json 配置文件`==
- 与 POJO 在同一包路径下  
+与 POJO 在同一包路径下  
 
 {{{
 /*
@@ -97,7 +97,7 @@ var ioc = {
 }}
 }}}
 
-   
+  
 
 ==`调用代码`==
 {{{
@@ -123,7 +123,7 @@ public class HelloPet {
 XiaoBai - [Asia/Shanghai]
 }}}
 
-   
+  
 
 ==`如果配置文件中声明了类型，则可不传入类型`==
 {{{
@@ -131,13 +131,13 @@ Pet xh = ioc.get(null, "xiaohei");
 System.out.printf("%s's friend is %s\n", xh.getName(), xh.getFriend().getName());
 }}}
 
- 控制台输出：  
+控制台输出：  
 
 {{{
 XiaoHei's friend is XiaoBai
 }}}
 
-   
+  
 
 ==`声明了 singleton: false，那么它每次获取，都会生成一个新的实例`==
 {{{
@@ -146,21 +146,21 @@ Pet p2 = ioc.get(null, "xiaohei");
 System.out.println(p1==p2);
 }}}
 
- 控制台输出：  
+控制台输出：  
 
 {{{
 false
 }}}
 
-   
+  
 
 =`关于进阶`=
- 我可以负责任的告诉你：你已经掌握了 Nutz.Ioc 在你开发的时候 80% 情况下所需要的知识。 当然，它还提供了更多的功能，有些功能是其他 Ioc 容器所不具备的，你可以根据自己需要来阅读，他们包括：  
+我可以负责任的告诉你：你已经掌握了 Nutz.Ioc 在你开发的时候 80% 情况下所需要的知识。 当然，它还提供了更多的功能，有些功能是其他 Ioc 容器所不具备的，你可以根据自己需要来阅读，他们包括：  
 
-      * [inner_object  匿名对象 ]
-      * [events  事件监听 ]
-      * [what_to_inject  你都可以注入什么 ]
-      * [events  事件的监听 ]
-      * [ioc_loader  定义自己的配置文件格式 ]
-      * [aop  AOP ]  -- 声明式切片 
-      * [scope  对象生命范围 ]  -- 级联的上下文环境 
+      * [inner_object 匿名对象 ]
+      * [events 事件监听 ]
+      * [what_to_inject 你都可以注入什么 ]
+      * [events 事件的监听 ]
+      * [ioc_loader 定义自己的配置文件格式 ]
+      * [aop AOP ] -- 声明式切片 
+      * [scope 对象生命范围 ] -- 级联的上下文环境 
