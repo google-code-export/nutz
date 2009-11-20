@@ -1,5 +1,5 @@
  * [preface 写在前面的话]
- * [make_developing_env 如何编译 (for Eclipse)]
+ * [make_developing_env 如何编译&运行测试 (for Eclipse)]
  * 了解的更多一些
    * [packages Nutz 的包结构]
    * [version_naming_rule Nutz 的版本命名规范]
