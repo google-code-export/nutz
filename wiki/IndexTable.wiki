@@ -7,9 +7,10 @@
  * Dao 手册
    * [dao_get_start Hello world]
    * [basic_operations Dao 接口的基本操作]
-   * [primary_key 主键生成策略]
+   * [primary_key 关于主键]
    * [condition 复杂的SQL条件]
    * [query_by_page 分页查询]
+   * [dao_next_prev 在插入前后的为字段设值]
    * [use_view 使用视图]
    * [field_filter 过滤字段]
    * [dynamic_table_name 动态表名]
