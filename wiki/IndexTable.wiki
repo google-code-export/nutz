@@ -47,7 +47,7 @@
    * [lang Java 的函数糖]
    * [castors 让 Java 类型不那么强]
    * [mirror 增强反射 -- Mirror]
-   * [segment ]
+   * [segment 代码模板]
  * zMole - 快速代码生成工具
    * [zmole_get_start zMole 快速入门]
  * zDoc 手册
