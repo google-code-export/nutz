@@ -89,10 +89,9 @@ Lang.each(obj, new Each<Object>(){
 Pet[] pets = new Pet[3];
 ... // 为数组赋值
 
+// 将把 Pet 对象的 name 字段的值作为 Key， 创建一个 Map
 Map<String,Pet> petMap = Lang.array2map(HashMap.class, pets, "name");
 }}}
-
-将把 Pet 对象的 name 字段的值作为 Key， 创建一个 Map  
 
         * 数组 to 数组 
 {{{
@@ -122,10 +121,9 @@ List<Pet> list = Lang.collection2list(pets);
 Queue<Pet> pets = new ArrayDeque<Pet>();
 ... // 为队列赋值
 
+// 将把 Pet 对象的 name 字段的值作为 Key， 创建一个 Map
 Map<String,Pet> petMap = Lang.collection2map(HashMap.class, pets, "name");
 }}}
-
-将把 Pet 对象的 name 字段的值作为 Key， 创建一个 Map  
 
         * Map to 对象 
 {{{
