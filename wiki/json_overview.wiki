@@ -2,5 +2,5 @@
 <p align="center"><font size=6>* Nutz.Json 简要说明 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
- coming soon  
+ 请参看：  [http://code.google.com/p/nutz/downloads/detail?name=Nutz_Json_Book.pdf `code.google.com/p/nutz/downloads/detail?name=Nutz_Json_Book.pdf `]  
 
