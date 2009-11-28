@@ -43,13 +43,11 @@
    * [json_overview Nutz.Json 简要说明]
    * [json_format 控制输出的格式]
    * [json_with_castors 利用 Castors 按类型控制字段输出]
- * Nutz.Lang -- 让 Java 变得有点甜
-   * [lang 一些有用的类]
-   * [lang_mirror Nutz.Lang.Mirror -- 增强反射]
- * Nutz.Castors - 让 Java 的类型不那么强
-   * [what_is_castors 什么是 Castors]
-   * [use_castors 使用 Castors]
-   * [customize_your_castors 定制你自己的 Castors]
+ * 甜 Java
+   * [lang Java 的函数糖]
+   * [castors 让 Java 类型不那么强]
+   * [mirror 增强反射 -- Mirror]
+   * [segment ]
  * zMole - 快速代码生成工具
    * [zmole_get_start zMole 快速入门]
  * zDoc 手册
