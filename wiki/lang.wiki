@@ -71,9 +71,19 @@ return Dumps.obj(pojo);
 return Lang.contains(myArray, ele);
 }}}
 
+        * 遍历 
+{{{
+Lang.each(obj, new Each<Object>(){
+	public void invoke(int i, T ele, int length){
+		obj 可以是集合，数组，Map，普通对象.
+		普通对象的话，则会传给本匿名类的 ele
+	}
+});
+}}}
+
   
 
-==`集合转换`==
+==`容器转换`==
         * Lang.array2map 
         * Lang.array2array 
         * Lang.collection2array 
@@ -266,7 +276,76 @@ Files.clearDir(new File("D:/demo/abc"));
 Files.cleanAllFolderInSubFolderes(new File("D:/demo"), ".svn");
 }}}
 
-==`读取 直接在磁盘修改文件属性`==
+==`读取-写入`==
+        * 读取文件全部内容 - UTF-8 
+{{{
+String txt = Files.read("D:/abc.txt");
+}}}
+
+或者  
+
+{{{
+String txt = Lang.readAll(Streams.fileInr("D:/abc.txt"));
+}}}
+
+        * 重写文件全部内容 - UTF-8 
+{{{
+// 如果 D:/abc.txt 不存在，则创建它
+String txt = Files.write("D:/abc.txt", "some text");
+}}}
+
+或者  
+
+{{{
+// 如果 D:/abc.txt 不存在，则什么都不做
+String txt = Lang.writeAll(Streams.fileOutw("D:/abc.txt"), content.toString());
+}}}
+
+        * 获取 Reader - UTF-8 
+{{{
+Reander reader =  Streams.fileInr("D:/abc.txt");
+}}}
+
+或者  
+
+{{{
+Reander reader =  Streams.fileInr(new File("D:/abc.txt"));
+}}}
+
+        * 获取 Writer - UTF-8 
+{{{
+Writer writer = Streams.fileOutw("D:/abc.txt");
+}}}
+
+或者  
+
+{{{
+Writer writer = Streams.fileOutw(new File("D:/abc.txt"));
+}}}
+
+        * 获取 InputStream 
+{{{
+InputStream ins =  Streams.fileIn("D:/abc.txt");
+}}}
+
+或者  
+
+{{{
+InputStream ins =  Streams.fileIn(new File("D:/abc.txt"));
+}}}
+
+        * 获取 OutputStream 
+{{{
+OutputStream ops =  Streams.fileOut("D:/abc.txt");
+}}}
+
+或者  
+
+{{{
+OutputStream ops =  Streams.fileOut(new File("D:/abc.txt"));
+}}}
+
+==`直接在磁盘修改文件属性`==
         * 将文件移动到新的位置 
 {{{
 Files.move(new File("D:/demo/abc.txt"), new File("D:/demo/def.txt"));
