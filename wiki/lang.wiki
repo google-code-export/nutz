@@ -248,8 +248,7 @@ assertEquals(3, Strings.splitIgnoreBlank(",A,B,,C,");
 
   
 
-==`创建`==
-        * 重复 
+==`创建重复`==
 {{{
 // 重复字符
 assertEquals("---", Strings.dup('-', 3));
