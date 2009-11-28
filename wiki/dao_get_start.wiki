@@ -89,15 +89,8 @@ p.setAge(20);
 dao.insert(p);
 }}}
 
- 执行完毕后，在数据表中会多出一条记录。  
-
-----
-=`补充说明`=
-      * 请注意， dataSource 变量应该是你预先设置好的，只要是一个 javax.sql.DataSource 对象就成。 
-      * 各种较常用的连接池都提供了 DataSource 的实现，你可以随便选一个你喜欢的连接池。 
-      * 上面这段代码会向数据库里插入一条记录。 
-      * 至于如何获取，如何删除，如何查询， 你可以通过 IDE 的自动提示工具看一看Dao的接口。 
-      * 不用 IDE 的朋友，可以看看  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java Nutz.Dao 接口的源代码 ]，接口函数很容易理解。 
+      * 执行完毕后，在数据表中会多出一条记录。 
+      * 如果你 <font color="#FF0000">*不知道如何创建 Datasource *</font>，请参看 附录： [create_datasource 如何创建 Datasource ]
       * 这个例子足够作为 Hello World 了， 祝你玩的开心  :) 
 ----
 =`如何进阶`=
