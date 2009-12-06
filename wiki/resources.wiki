@@ -1,0 +1,10 @@
+#summary 推荐文章
+<p align="center"><font size=6>* 推荐文章 *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
+----
+=`Nutz 的设计哲学`=
+      * [http://zozoh.javaeye.com/blog/526494 《Nutz 的设计以及提高程序员生产力》 ] by  [http://zozoh.javaeye.com zozoh ]
+=`Mvc 的文章`=
+      * [http://axhack.javaeye.com/blog/542441 《给 nutz 添加 freemarker 视图》 ] by  [http://axhack.javaeye.com axhack ]

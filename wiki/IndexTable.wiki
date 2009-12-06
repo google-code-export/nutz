@@ -1,6 +1,6 @@
  * [preface 写在前面的话]
- * [make_developing_env 如何编译&运行测试 (for Eclipse)]
- * 了解的更多一些
+ * 成为代码提交者
+   * [make_developing_env 如何编译&运行测试 (for Eclipse)]
    * [packages Nutz 的包结构]
    * [version_naming_rule Nutz 的版本命名规范]
    * [for_committer 成为代码提交者]
@@ -56,3 +56,4 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
  * 附录
    * [create_datasource 如何创建 DataSource]
+   * [resources 推荐文章]
