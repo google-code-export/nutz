@@ -59,12 +59,13 @@
 || sunonfire								 ||  -	 ||  -	 ||  X	 ||  -	 ||  X	 ||  X	 ||
 ||  [http://wendal.javaeye.com wendal ]		 ||  X	 ||  X	 ||  X	 ||  -	 ||  -	 ||  X	 ||
 || wsc0918									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| yuansicau								 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
 ||  [http://zozoh.javaeye.com zozoh ]			 ||  X	 ||  X	 ||  X	 ||  X	 ||  X	 ||  X	 ||
 || 密林仙踪									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
 
 另外，非常感谢  [http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ] 以及  [https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ] 的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架  *产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都可以让大家获得更好的编码体验。  
 
-另，由于众所周知的原因，建议大家通过 [https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ]  
+另，由于众所周知的原因，建议大家通过 [https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ] 有时候是可以上的。但是能跳墙还是跳墙的比较好。  
 
 ==`下一版目标`==
 将主要集中在  
