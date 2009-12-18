@@ -25,7 +25,7 @@ public class Pet{
 
           * 参数: @XXX， 直接参考对象自身的属性值 
               * 比如上例，将会参考对象自身的 name  字段的值 
-      * @SQL 更详细的语法规范请参看  [customized_sql 自定义 SQL ]
+      * @SQL 更详细的语法规范请参看  [dao_customized_sql 自定义 SQL ]
 ----
 =`插入之后 - @Next`=
 在插入之后，你想通过一段 SQL 为你的 POJO 某一个字段设值。你可以通过 @Next 属性  

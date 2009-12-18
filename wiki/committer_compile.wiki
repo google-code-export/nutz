@@ -171,7 +171,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/23.png
       * 你还可以增加 JUnit 测试，来看看 Nutz 的代码品质到底如何 
       * 当然，如果你写的 JUnit 测出了 Nutz  的 bug，或者修正了Nutz代码的缺陷， 请发信到这个地址  nutzam@googlegroups.com  ,并附上你的代码。 
       * 我们会非常感谢你的付出。如果你提出的修改超过 5 次（包含）被接受，你会收到一封邀请信，邀请你成为 Nutz 的 Commiter 
-      * 关于如何成为 Nutz 的 Commiter，请  [for_committer 参看这里 ]
+      * 关于如何成为 Nutz 的 Commiter，请  [committer_coding 参看这里 ]
 还有：  
 
       * 在 build 目录下，有 build.xml， 你可以用 Ant 编译 

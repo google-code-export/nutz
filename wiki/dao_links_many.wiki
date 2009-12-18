@@ -33,8 +33,8 @@ public class Master extends Pojo {
 
 因此：  
 
-      * 目标 POJO 类 （ <font color="#AA0000">Pet </font>）中 *必须 *存在一个字段，本 POJO 将通过该字段同目标  [primary_key POJO 类的主键 ]关联 
-      * 该字段必须同本  [primary_key POJO 类的主键 ]类型相同 
+      * 目标 POJO 类 （ <font color="#AA0000">Pet </font>）中 *必须 *存在一个字段，本 POJO 将通过该字段同目标  [dao_primary_key POJO 类的主键 ]关联 
+      * 该字段必须同本  [dao_primary_key POJO 类的主键 ]类型相同 
       * Nutz.Dao 通过 @Many.field 获得该字段的名称 
           * <font color="#FF0000">*注意 *</font>，这里是大小写敏感的。 
           * <font color="#FF0000">*还要注意 *</font>，这里的名称是 目标 POJO 的  *JAVA * 字段的名称。 
@@ -100,4 +100,4 @@ SELECT * FROM t_pet;
 ----
 =`你可能还需要参考`=
       * 关于注解  *@Many *` 详细描述请参看 >  `[entity_annotations.man Nutz.Dao 实体注解 ] 关于 *@Many *这一节 
-      * 关于通过 Dao 接口调用，请参看  [links_dao_operations Nutz.Dao 为映射提供的操作 ]。 
+      * 关于通过 Dao 接口调用，请参看  [dao_links_dao_operations Nutz.Dao 为映射提供的操作 ]。 

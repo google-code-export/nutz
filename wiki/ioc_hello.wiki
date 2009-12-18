@@ -94,7 +94,7 @@ var ioc = {
 			friend : {refer : 'xiaobai'}	// 指向容器里另外一个对象
 		}
 	}
-}}
+}
 }}}
 
   
@@ -157,10 +157,10 @@ false
 =`关于进阶`=
 我可以负责任的告诉你：你已经掌握了 Nutz.Ioc 在你开发的时候 80% 情况下所需要的知识。 当然，它还提供了更多的功能，有些功能是其他 Ioc 容器所不具备的，你可以根据自己需要来阅读，他们包括：  
 
-      * [inner_object 匿名对象 ]
-      * [events 事件监听 ]
-      * [what_to_inject 你都可以注入什么 ]
-      * [events 事件的监听 ]
-      * [ioc_loader 定义自己的配置文件格式 ]
-      * [aop AOP ] -- 声明式切片 
-      * [scope 对象生命范围 ] -- 级联的上下文环境 
+      * [ioc_inner_object 匿名对象 ]
+      * [ioc_events 事件监听 ]
+      * [what_to_inject.man 你都可以注入什么 ]
+      * [ioc_events 事件的监听 ]
+      * [ioc_ioc_loader 定义自己的配置文件格式 ]
+      * [ioc_aop AOP ] -- 声明式切片 
+      * [ioc_scope 对象生命范围 ] -- 级联的上下文环境 

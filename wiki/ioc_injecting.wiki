@@ -77,7 +77,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-关于内部对象  [inner_object 请看这里 ]  
+关于内部对象  [ioc_inner_object 请看这里 ]  
 
 ==`引用`==
 {{{

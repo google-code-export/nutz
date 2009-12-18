@@ -32,7 +32,7 @@ System.out.println(seg.toString());
   
 
       * 无需重复设置占位符 
-      * 自动通过  [castors Castors ] 将你的对象转成字符串 
+      * 自动通过  [lang_castors Castors ] 将你的对象转成字符串 
       * 不设值的占位符，输出时会被空串 （ <font color="#FF00FF">"" </font>）填充 
 ----
 =`什么时候使用 Nutz 的代码模板`=

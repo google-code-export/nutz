@@ -19,7 +19,7 @@
           * UploadInfo 字段 current 是当前会话已经上传了多少字节 
 ----
 =`如何使用`=
-如果你读过  [mvc_http_adaptor 适配器 ] 一节，我想你已经知道怎么使用文件上传了，这里还需要多一点说明  
+如果你读过  [mvc_http_adaptor.man 适配器 ] 一节，我想你已经知道怎么使用文件上传了，这里还需要多一点说明  
 
 ----
 ==`通过 @AdaptBy 声明`==
@@ -34,7 +34,7 @@ public void uploadPhoto(@Param("id") int id, @Param("photo") File f){
 
         * 临时文件目录 
         * 临时文件总个数 
-如果你想进行更细腻的控制，请把这个适配器放到 Ioc 容器里。  [mvc_http_adaptor 适配器 ]一节有相关的描述  
+如果你想进行更细腻的控制，请把这个适配器放到 Ioc 容器里。  [mvc_http_adaptor.man 适配器 ]一节有相关的描述  
 
 ----
 ==`这个适配器支持更多的参数类型`==

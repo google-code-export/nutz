@@ -30,7 +30,7 @@
 @AdaptBy(type=JsonAdaptor.class, args={"ioc:objName"})
 }}}
 
-即，如果你的参数数组长度为一，并且，由 "ioc:" 开始，那么这个适配器会交付 Ioc 容器管理，你可以在容器的 配置文件中详细规定这个适配器的各个属性。当然，你需要在整个应用启用 Ioc 容器，详情，请参看  [mvc_ioc 同 Ioc 容器一起工作 ]  
+即，如果你的参数数组长度为一，并且，由 "ioc:" 开始，那么这个适配器会交付 Ioc 容器管理，你可以在容器的 配置文件中详细规定这个适配器的各个属性。当然，你需要在整个应用启用 Ioc 容器，详情，请参看  [mvc_ioc.man 同 Ioc 容器一起工作 ]  
 
 ----
 =`内置的适配器`=
@@ -157,7 +157,7 @@ VoidAdaptor 什么都不会干，不会碰 HTTP 请求对象的输入流。
 
 ----
 ==`上传文件`==
-NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细的说明，请参看：  [file_upload 文件上传 ]  
+NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细的说明，请参看：  [mvc_file_upload 文件上传 ]  
 
 ----
 =`特殊参数`=
@@ -243,4 +243,4 @@ public interface HttpAdaptor {
       * 你的适配器，对每个入口函数，只会有一份实例 -- Nutz.Mvc 只会创建一遍 
           * 如果你的适配器是从 Ioc 容器中取得的，那么也只会被取出一次 
       * init 函数是 Nutz.Mvc 在创建你的适配器以后，马上就要调用的一个方法，你可以在这个方法里初始化一些逻辑 
-      * adapt 方法的第三个参数，是 Nutz.Mvc 为你准备好的路径参数，它有可能为 null。 你的适配器 将决定是不是应用这个路径参数 
+      * adapt 方法的第三个参数，是 Nutz.Mvc 为你准备好的路径参数，它有可能为 null。 你的适配器  将决定是不是应用这个路径参数 

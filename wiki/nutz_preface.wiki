@@ -62,11 +62,11 @@ Nutz 是一个新兴的开源项目
 
 ----
 =`你完全可以让这个项目变得更加美好`=
-      * [http://www.yeeyan.com/articles/view/matinal/58990 不编写代码，你可以能为这个项目做很多事情 ]  _by 晓风 _
+      * [http://xiaofeng.javaeye.com/blog/549410 不编写代码，你可以能为这个项目做很多事情 ] @ [http://xiaofeng.javaeye.com hilliate ]
       * 你可以随时  [http://code.google.com/p/nutz/issues/entry 提交你发现的问题 ]
       * 在  [http://groups.google.com/group/nutzam?hl=zh-CN 讨论组 ] 分享你的使用心得 
       * `任何人 用 任何方式 => 指出 Nutz 的缺陷，都是被欢迎的 `
-      * 如果你想成为 Nutz Committers 中的一员，请  [for_committer 阅读这里 ]
+      * 如果你想成为 Nutz Committers 中的一员，请  [committer_coding 阅读这里 ]
 ----
 =`我使用的时候如果出现问题怎么办？`=
 发信到  *nutzam@googlegroups.com * ，我们会第一时间 ( 通常几小时以内，但也许是马上 ) 给你回应。  
