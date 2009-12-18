@@ -4,7 +4,7 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-=`1.a.24 (Hatching...)`=
+=`1.a.24`=
 <font color="#FF0000">*这是个里程碑式的版本 *</font>，从这个版本开始， Nutz 将不再依赖 Javassist，而依赖 ASM(内嵌Asm 3.2 ,无需额外jar包) 所以，编译时，你将不再需要 Javassist.jar （在此，特地感谢	 [http://wendal.javaeye.com 无敌的 Wendal ]）。  
 
 同时，为了更好的输出日志，Nutz 在编译时依赖了 Log4j， 但是运行时，没有 Log4j 它会选用 Java 的 Logging 或者是控制台输出。  
@@ -12,12 +12,12 @@
 由于已经有小部分人开始试验性的在自己的项目里应用 Nutz，从本版开始，所有的接口和使用方式 *变动会非常慎重 *， 没有重大理由和经过社区充分讨论，它将保持不变。  
 
 ==`问题修复`==
-        * [http://code.google.com/p/nutz/issues/detail?id=12 Issue 12: Should support one config file can import other config files function. ]   <font color="#AAAAAA">by </font>  *satellite168 *
-        * [http://code.google.com/p/nutz/issues/detail?id=70 Issue 70: 简化json配置(在ioc配置的是时候能把包名用变量代替？) ]   <font color="#AAAAAA">by </font>  *sj *
-        * [http://code.google.com/p/nutz/issues/detail?id=71 Issue 71: aop: 修改拦截器接口,改为使用asm实现 ]   <font color="#AAAAAA">by </font>  *wendal *
-        * [http://code.google.com/p/nutz/issues/detail?id=72 Issue 72: 客户端提交表单服务器端自动绑定pojo的建议 ]   <font color="#AAAAAA">by </font>  *sj *
-        * [http://code.google.com/p/nutz/issues/detail?id=78 Issue 78: 出现@Id或者@name时 还需要@column ]   <font color="#AAAAAA">by </font>  *amosleaf *
-        * [http://code.google.com/p/nutz/issues/detail?id=80 Issue 80: mvc: 支持 @Attr 注解，可以从 request, session, ServletContext 获取属性 ]   <font color="#AAAAAA">by </font>  *zozoh *
+        * Issue 12: Should support one config file can import other config files function.  <font color="#AAAAAA">by </font>  *satellite168 *
+        * Issue 70: 简化json配置(在ioc配置的是时候能把包名用变量代替？)  <font color="#AAAAAA">by </font>  *sj *
+        * Issue 71: aop: 修改拦截器接口,改为使用asm实现  <font color="#AAAAAA">by </font>  *wendal *
+        * Issue 72: 客户端提交表单服务器端自动绑定pojo的建议  <font color="#AAAAAA">by </font>  *sj *
+        * Issue 78: 出现@Id或者@name时 还需要@column  <font color="#AAAAAA">by </font>  *amosleaf *
+        * Issue 80: mvc: 支持 @Attr 注解，可以从 request, session, ServletContext 获取属性  <font color="#AAAAAA">by </font>  *zozoh *
 ==`质量`==
         # 可以 GAE SDK 1.3.0 上工作正常 （除了 Dao 部分） 
         # Nutz.Dao 经测试在如下数据库上可以工作正常 
@@ -70,7 +70,10 @@
 ==`下一版目标`==
 将主要集中在  
 
-        * Issue 37, 68, 76, 83 
+        * Issue 37 
+        * Issue 68 
+        * Issue 76 
+        * Issue 83 
         * 重新实现一个更友好的字节码工具 
 ----
 =`1.a.22`=
