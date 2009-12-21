@@ -4,6 +4,11 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`如果你已经是代码提交者`=
+==`一定要注意`==
+        * 请确保你修改的类上的 JDoc, 有你的大名，比如 "@author zozoh(zozohtnt@gmail.com)" 
+            * 否则，出了问题，不知道由谁主要负责 
+        * 请尽量用统一的 code formatter， 导入 /trunk/doc/eclipse/nutz-eclipse-java-code-format-1.0.xml，否则我们同步代码是很难比较 
+        * 去掉的代码不要注释掉，直接删掉。我们会用文件比较工具比较两个版本的不同 
 ==`你需要知道`==
         * Nutz 特点是代码短 （ <font color="#AAAAAA">以不影响阅读为前提 </font>） 
             * 无论任何时候，同样的功能，一段更短的代码，总比更长的代码要好 
