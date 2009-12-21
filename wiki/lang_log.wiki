@@ -1,7 +1,7 @@
 #summary 日志
 <p align="center"><font size=6>* 日志 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *sunonfire* (<font color="#080"> sunonfire@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *sunonfire* (<font color="#080"> sunonfire@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`为什么要自己写一个 Log？`=
@@ -74,12 +74,11 @@ public class MyClass {
 =`让 Nutz 输出日志`=
 以 log4j 为例 （因为我就对这个熟），你需要：  
 
-      * 在你的项目里部署某一个 Log4j 的 jar 包，推荐 1.2.15 或更新版本 
-          * 1.2.11及之前的版本不支持 Trace 
+      * 在你的项目里部署某一个 Log4j 的 jar 包，推荐 Log4j 1.2.12 或更新版本 
+          * Log4j 1.2.11及之前的版本不支持 Trace,自动转为使用Debug级别来记录. 
       * 在项目的 CLASSPATH 根目录部署 log4j.properties 
       * 将 log4j.category.org.nutz 基本设成 DEBUG，你就能看到 Nutz 框架详细的 Log 
 {{{
-log4j.rootLogger=WARN, A1
 log4j.category.org.nutz=DEBUG, A1
 
 log4j.appender.A1=org.apache.log4j.ConsoleAppender
@@ -91,3 +90,8 @@ log4j.appender.A1.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
           * category.org.nutz.dao=DEBUG 
           * category.org.nutz.ioc=DEBUG 
           * category.org.nutz.mvc=DEBUG 
+----
+什么都不配置呢? Nutz在你没有配置任何Log时,一样工作得很好. 下面是默认行为:  
+
+    * 输出到System.err/out 
+    * 默认日志等级为INFO 

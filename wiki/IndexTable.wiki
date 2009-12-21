@@ -1,7 +1,8 @@
  * [nutz_preface 写在前面的话]
  * [nutz_release_notes 版本历史]
- * 成为代码提交者
-   * [committer_compile 如何编译&运行测试 (for Eclipse)]
+ * 关于源码
+   * [committer_svn_project 从 SVN 编译 - Eclipse]
+   * [committer_compile 运行 JUnit 测试 - Eclipse]
    * [committer_packages Nutz 的包结构]
    * [committer_version_naming Nutz 的版本命名规范]
    * [committer_coding 成为代码提交者]

@@ -46,23 +46,23 @@
         * 《 [http://amosleaf.javaeye.com/blog/548337 Nutz的 数据库事务 ]》 @ [http://amosleaf.javaeye.com amosleaf ]
         * 《 [http://xiaofeng.javaeye.com/blog/549410 不用写代码 你也能为开源作出贡献 ]》 @ [http://xiaofeng.javaeye.com hilliate ]
 ==`主要贡献者名单`==
-|| 贡献者 									 || 问题  || 博客  || 代码  || Demo  || 文档  || 白盒  ||
-||  [http://amosleaf.javaeye.com amosleaf ]	 ||  X	 ||  X	 ||  -	 ||  X	 ||  -	 ||  X	 ||
-||  [http://www.ai-java.com axhack ]			 ||  -	 ||  X	 ||  -	 ||  -	 ||  -	 ||  X	 ||
-|| bird.wyatt								 ||  X	 ||  -	 ||  -	 ||  X	 ||  -	 ||  X	 ||
-||` blue_rain								 `||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  X	 ||
-||  [http://bonyfish.cn bonyfish ]			 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://xiaofeng.javaeye.com hilliate ]	 ||  -	 ||  X	 ||  -	 ||  -	 ||  X	 ||  -	 ||
-||  [http://hi.baidu.com/lifecube mastung ]	 ||  -	 ||  -	 ||  -	 ||  -	 ||  X	 ||  X	 ||
-|| ming300									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  X	 ||
-|| satellite168								 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  X	 ||
-|| sj										 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-|| sunonfire								 ||  -	 ||  -	 ||  X	 ||  -	 ||  X	 ||  X	 ||
-||  [http://wendal.javaeye.com wendal ]		 ||  X	 ||  X	 ||  X	 ||  -	 ||  -	 ||  X	 ||
-|| wsc0918									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-|| yuansicau								 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://zozoh.javaeye.com zozoh ]			 ||  X	 ||  X	 ||  X	 ||  X	 ||  X	 ||  X	 ||
-|| 密林仙踪									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| 贡献者 									 || 问题  || 博客  || 代码  || Demo  || 文档  ||
+||  [http://amosleaf.javaeye.com amosleaf ]	 ||  X	 ||  X	 ||  -	 ||  X	 ||  -	 ||
+||  [http://www.ai-java.com axhack ]			 ||  -	 ||  X	 ||  -	 ||  -	 ||  -	 ||
+|| bird.wyatt								 ||  X	 ||  -	 ||  -	 ||  X	 ||  -	 ||
+||` blue_rain								 `||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+||  [http://bonyfish.cn bonyfish ]			 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+||  [http://xiaofeng.javaeye.com hilliate ]	 ||  -	 ||  X	 ||  -	 ||  -	 ||  X	 ||
+||  [http://hi.baidu.com/lifecube mastung ]	 ||  -	 ||  -	 ||  -	 ||  -	 ||  X	 ||
+|| ming300									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| satellite168								 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| sj										 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| sunonfire								 ||  -	 ||  -	 ||  X	 ||  -	 ||  X	 ||
+||  [http://wendal.javaeye.com wendal ]		 ||  X	 ||  X	 ||  X	 ||  -	 ||  -	 ||
+|| wsc0918									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+|| yuansicau								 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+||  [http://zozoh.javaeye.com zozoh ]			 ||  X	 ||  X	 ||  X	 ||  X	 ||  X	 ||
+|| 密林仙踪									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
 
 另外，非常感谢  [http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ] 以及  [https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ] 的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架  *产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都可以让大家获得更好的编码体验。  
 
@@ -71,11 +71,11 @@
 ==`下一版目标`==
 将主要集中在  
 
-        * Issue 37 
-        * Issue 68 
-        * Issue 76 
-        * Issue 83 
-        * 重新实现一个更友好的字节码工具 
+        * Issue 37  ioc: 自动甄别对象的 Ioc 字段 
+        * Issue 68      通过配置文件添加AOP 
+        * Issue 76  Ioc中增加类似Spring的Autoweave的特性 
+        * Issue 83  castor: 用 Method 替换实现类 
+        * Issue 87      重新实现一个更友好的字节码工具 
 ----
 =`1.a.22`=
 请参看  [http://www.javaeye.com JavaEye ] 的  [http://www.javaeye.com/news 新闻 ]: 《 [http://www.javaeye.com/news/11774-nutz Nutz1.a.22 发布-Mvc,Ioc 文档完成 ]》  
