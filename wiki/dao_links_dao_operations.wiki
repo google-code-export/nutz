@@ -5,7 +5,6 @@
 <wiki:toc max_depth="2"/>
 ----
 =`关于映射操作的概述`=
-[#Top]
 对于映射对象，Nutz.Dao 提供了一整套的标准  [basic_operations.html Dao 操作 ]。任何一个操作，都需要两个参数  
 
 {{{
@@ -32,12 +31,13 @@ dao.fetchLinks(obj,"field1|field2").updateLinks(obj,"field3|field4");
       * <font color="#FF0000">*注意： *</font> 这里的映射操作并不支持  *级联 *，我经过反复权衡，决定还是暂时不支持级联操作 
           * 无论 insert / update / delete / fetch / clear 都不支持级联 
 ----
-=`操作清单`=
+
+
 [#Top]
+=`操作清单`=
 <wiki:toc max_depth="3"/>
 ----
 ==`插入映射对象：insertLinks`==
-[#Top]
 如果我们有两个对象：  
 
 {{{
@@ -58,8 +58,10 @@ dao.insertLinks(pet,"master");
             * 如果匹配了多个字段，所有字段对应的对象，无论数组，集合还是 Map，都会被插入 
         * 甚至 pet 不存在在数据库中，也能插入成功 
 ----
-==`与映射对象一起插入：insertWith`==
+
+
 [#Top]
+==`与映射对象一起插入：insertWith`==
 如果我们有两个对象：  
 
 {{{
@@ -79,8 +81,10 @@ dao.insertWith(pet,"master");
         * 新的 pet 对象和 master 对象会同时被插入到数据库中 
         * 如果有任何一个失败，操作都将回滚 
 ----
-==`获取映射对象：fetchLinks`==
+
+
 [#Top]
+==`获取映射对象：fetchLinks`==
 例如：  
 
 {{{
@@ -93,8 +97,10 @@ Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master");
             * 因此，我也就没有设计  *fetchWith * 操作 
         * 修改正则表达式  <font color="#FF00FF">"master" </font> 你可以一次获取更多的映射字段，如果你有的话 
 ----
-==`清除映射关系：clearLinks`==
+
+
 [#Top]
+==`清除映射关系：clearLinks`==
 例如：  
 
 {{{
@@ -107,8 +113,10 @@ dao.clearLinks(pet,"master|foods");
         * 上面的例句会一次删除  *master * 以及  *foods * 字段所对应的所有记录 
         * 如果映射字段为  <font color="#999999">@ManyMany </font>， 那么仅仅清空关联表内的记录 
 ----
-==`与映射对象一起更新：updateWith`==
+
+
 [#Top]
+==`与映射对象一起更新：updateWith`==
 例如：  
 
 {{{
@@ -127,8 +135,10 @@ dao.updateWith(pet,"master");
             * 如果你增加了几个元素 
                 * 本操作并不会在数据库中增加记录，它只更新已经在数据库中存在的元素 
 ----
-==`更新映射对象：updateLinks`==
+
+
 [#Top]
+==`更新映射对象：updateLinks`==
 同上例，不过：  
 
 {{{
@@ -138,8 +148,10 @@ dao.updateLinks(pet,"master");
         * 仅仅有 master 字段对应的 Master 对象被更新 
         * pet 对象不会被更新 
 ----
-==`与映射对象一起删除deleteWith`==
+
+
 [#Top]
+==`与映射对象一起删除deleteWith`==
 {{{
 Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
 dao.deleteWith(pet, "master|foods");
@@ -152,8 +164,10 @@ dao.deleteWith(pet, "master|foods");
         * foods 记录会被删除，并且由于该字段是  <font color="#999999">@ManyMany </font>， 关联表中相应的字段也会被清除 
         * 总之， deleteWith 操作删除的会很彻底 
 ----
-==`删除映射对象deleteLinks`==
+
+
 [#Top]
+==`删除映射对象deleteLinks`==
 同上例，不过:  
 
 {{{
@@ -164,3 +178,9 @@ dao.deleteLinks(pet, "master|foods");
 
         * 与  *deleteWith * 操作唯一不同的是，pet 对应的记录不会被删除 
         * 总之， deleteLinks 会将关联映射删除的很彻底 
+
+
+[#Top]
+
+
+[#Top]

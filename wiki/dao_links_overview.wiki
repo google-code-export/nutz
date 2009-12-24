@@ -5,30 +5,37 @@
 <wiki:toc max_depth="3"/>
 ----
 =`Nutz.Dao 支持的映射`=
-[#Top]
 在结构化数据库设计中，很多应用都会用到数据与数据的关联。关联有三种形式  
 
 ==`一对一映射`==
-[#Top]
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_one.png  
 
 一个对象中有一个字段指向另外一个对象的主键。如上图， Pet 中就可以有一个字段 master，通过自身的 masterId 指向一个 Master 对象，那么我们说 Pet.master 就是 Pet 对 Master 的一对一映射。  
 
-==`一对多映射`==
+
+
 [#Top]
+==`一对多映射`==
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_many.png  
 
 `如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。  `
 
-==`多对多映射`==
+
+
 [#Top]
+==`多对多映射`==
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png  
 
 `如上图，通过一个中间数据表的两个字段，分别指向两个对象的主键，可以实现多对多映射。所以，Pet.foods（一个 List<Food>） 或者 Food.pets（一个List<Pet>）就是多对多映射。  `
 
 ----
-=`Nutz.Dao 如何支持映射`=
+
+
 [#Top]
+
+
+[#Top]
+=`Nutz.Dao 如何支持映射`=
 在 Nutz.Dao 中支持映射需要有如下两个步骤：  
 
       # 在 POJO 对象中声明映射字段 
@@ -37,7 +44,6 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 ----
 ==`步骤一：在 POJO 中设置`==
-[#Top]
 通过 Nutz.Dao 的提供的这三个  [entity_annotations.man 实体注解 ]  
 
         * *@One * :  <font color="#994400">一对一映射 </font>
@@ -47,7 +53,6 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 ----
 ===`我将如何为你演示`===
-[#Top]
 按照前面的示例图，我将创建三个类  
 
           * demo.dao.pojo.Pet 
@@ -88,8 +93,10 @@ public class Pojo {
 接下来，我会通过这三个对象 (  Pet, Master, Food  ) 分别为你演示如何设置映射关系 (  @One, @Many, @ManyMany  )  
 
 ----
-===`@One 的例子：demo.dao.pojo.Pet`===
+
+
 [#Top]
+===`@One 的例子：demo.dao.pojo.Pet`===
 {{{
 @Table("t_pet")
 public class Pet extends Pojo {
@@ -109,8 +116,10 @@ public class Pet extends Pojo {
           * *field * 是本 POJO 类的关联字段名，这个字段用来存储目标  [dao_primary_key POJO 类的主键 ]值。 
           * 更多详情请参考： [dao_links_one 关于一对一映射 ]
 ----
-===`@Many 的例子：demo.dao.pojo.Master`===
+
+
 [#Top]
+===`@Many 的例子：demo.dao.pojo.Master`===
 {{{
 @Table("t_master")
 public class Master extends Pojo {
@@ -135,8 +144,10 @@ public class Master extends Pojo {
           * *field * 是是映射目标 POJO 类的关联字段名，这个字段用来存储本  [dao_primary_key POJO 类的主键 ]值。 
           * 更多详情请参考：  [dao_links_many 关于一对多映射 ]
 ----
-===`@ManyMany 的例子：demo.dao.pojo.Food`===
+
+
 [#Top]
+===`@ManyMany 的例子：demo.dao.pojo.Food`===
 {{{
 @Table("t_food")
 public class Food extends Pojo {
@@ -163,20 +174,26 @@ public class Food extends Pojo {
           * *to * 关联表（ <font color="#999999">或者说：中间表 </font>）的表字段名，它用来映射目标  [dao_primary_key POJO 类的主键 ]值 
           * 更多详情请参考： [dao_links_many_many 关于多对多映射 ]
 ----
-==`步骤二：通过 Dao 接口调用`==
+
+
 [#Top]
+
+
+[#Top]
+==`步骤二：通过 Dao 接口调用`==
 设置完了 POJO 对象，下面我们就可以随意的使用它们啦。请看下面的例子：  
 
 ===`获取一对一映射`===
-[#Top]
 {{{
 Pet pet = dao.fetch(Pet.class, "XiaoBai");
 dao.fetchLinks(pet, "master");
 System.out.println(pet.master.getName());
 }}}
 
-===`获取一对多映射`===
+
+
 [#Top]
+===`获取一对多映射`===
 {{{
 Master master = dao.fetch(Master.class, 23);
 dao.fetchLinks(master, "pets");
@@ -184,8 +201,10 @@ for (Pet pet : master.getPets())
 	System.out.println(pet.master.getName());
 }}}
 
-===`获取多对多映射`===
+
+
 [#Top]
+===`获取多对多映射`===
 {{{
 Food food = dao.fetch(Food.class, "Fish");
 dao.fetchLinks(food, "pets");
@@ -193,8 +212,10 @@ for (Pet pet : food.getPets())
 	System.out.println(pet.getName());
 }}}
 
-===`一次获取一对一，以及多对多映射字段`===
+
+
 [#Top]
+===`一次获取一对一，以及多对多映射字段`===
 如果为 Pet 增加一个字段：  
 
 {{{
@@ -216,13 +237,23 @@ for(Food food : pet.foods)
 
 上例中，正则表达式  “ <font color="#AA0000">master|foods </font>” 匹配了 Pet 对象两个字段 --  <font color="#999999">master, foods </font>，因此 这两个字段会被  *fetchLinks * 函数填充  
 
-===`Nut.Dao 对于 Dao 可允许的操作`===
+
+
 [#Top]
+===`Nut.Dao 对于 Dao 可允许的操作`===
 更多详情，请参看  [dao_links_dao_operations Nutz.Dao 为映射提供的操作 ]  
 
 ----
-=`关于 Nutz.Dao 映射以及相关的一些总结`=
+
+
 [#Top]
+
+
+[#Top]
+
+
+[#Top]
+=`关于 Nutz.Dao 映射以及相关的一些总结`=
       * POJO 类可以继承，子类的 @Table 和 @View 优先级最高 
       * POJO 类的字段可以是 public，或者通过 getter/setter 
       * Dao 接口可以操作映射字段的方法有 
@@ -238,3 +269,6 @@ for(Food food : pet.foods)
           # *T obj * : POJO 对象实例 
           # *String regex * : 一个正则表达式字符串，所有被该表达式匹配上的映射字段均会被该方法执行 
               * 如果该字符串为 null，不会有字段被匹配上。 
+
+
+[#Top]

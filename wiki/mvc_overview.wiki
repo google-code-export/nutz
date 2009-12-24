@@ -5,7 +5,6 @@
 <wiki:toc max_depth="2"/>
 ----
 =`几句话的介绍`=
-[#Top]
 Nutz.Mvc 是要和一个 Web 服务器 （比如 Tomcat）一起工作的，它存在的意义 *就是要把一个标准的 HTTP 请求，转发到某一个 Java 函数中 *。  
 
 它的特点是：  
@@ -19,20 +18,23 @@ Nutz.Mvc 是要和一个 Web 服务器 （比如 Tomcat）一起工作的，它�
 你如果想快速开始，来一个 Hellow World， 那么请访问  [http://nutzdemo.googlecode.com nutzdemo.googlecode.com ]，上面的 Hello Mvc 是完全可以运行的  
 
 ----
-=`图解 Nutz.Mvc`=
+
+
 [#Top]
+=`图解 Nutz.Mvc`=
 为了能让你更快速直观的了解 Nutz.Mvc 的工作方式，我提供下面两张图：  
 
 ==`每一次请求，都经过如下流程`==
-[#Top]
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_overview.png  
 
 Nutz.Mvc 根据 @At 注解，将一个 HTTP 请求映射到了一个函数，函数只有一个参数，会被路径参数 （1045） 填充。  
 
         * Nutz.Mvc 最基本的想法，就是通过注解 @At 将一个HTTP请求路径同一个 Java 函数关联起来。 
         * 并且，@At 支持你写多个路径 
-==`更详细的流程`==
+
+
 [#Top]
+==`更详细的流程`==
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png  
 
         * 声明了 @At 的函数被称为  *入口函数 *
@@ -50,10 +52,14 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png
                 * 否则用函数的 @Ok 注解声明的 View 来渲染 *入口函数 *的返回对象 
                 * 如果你的函数处理过程中抛出了异常，用 @Error 注解声明的 View 来渲染异常对象 
 ----
+
+
+[#Top]
+
+
+[#Top]
 =`你还需要知道`=
-[#Top]
 ==`关于 @At`==
-[#Top]
         * 声明了这个注解的函数就是 *入口函数 *
         * 可以一次声明多个 URL，比如： 
 {{{
@@ -69,8 +75,10 @@ public Pet fetch(int petId){
             * 如果在模块上声明 @At，如果不写值，那么值是模块的类名的小写形式 
             * 如果在入口函数上声明@At，如果不写值，那么值是函数名的小写形式 
 ----
-==`通过 web.xml 挂接在 Jsp/Servlet 容器中`==
+
+
 [#Top]
+==`通过 web.xml 挂接在 Jsp/Servlet 容器中`==
 同大多数单纯的 Mvc 框架一样， Nutz.Mvc 也提供了一个 Servlet 作为同 JSP/Servlet 容器的挂载点。  
 
 {{{
@@ -108,16 +116,20 @@ NutServlet 只需要一个参数 --  _一个类的全名 _。这个类被认为�
         * 绿色的注解表示只能应用在主模块上 
         * 灰色的注解表示还可以应用在 *子模块 *以及 *入口函数 *上 
 ----
-==`如何将函数参数和 HTTP 参数对应起来？`==
+
+
 [#Top]
+==`如何将函数参数和 HTTP 参数对应起来？`==
         * 这个过程被称为适配，执行这个过程的类需要实现 org.nutz.mvc.HttpAdaptor 接口 
         * 通过 @AdaptBy 注解，可以为每个 *子模块 *声明默认的适配方式 
             * 这个注解也可是直接声明在 *入口函数 *上 
         * [mvc_http_adaptor.man 关于适配器 ] 一节有更多的描述 
         * 默认的，Nutz.Mvc 将为你的 *入口函数 *应用 org.nutz.mvc.adaptor.PairAdaptor 
 ----
-==`在入口函数上可以声明什么注解？`==
+
+
 [#Top]
+==`在入口函数上可以声明什么注解？`==
 ||  <font color="#888888">@At </font>			 || 函数对应的 URL  ||
 ||  <font color="#888888">@Ok </font>			 || 成功视图  ||
 ||  <font color="#888888">@Fail </font>			 || 失败视图  ||
@@ -126,8 +138,10 @@ NutServlet 只需要一个参数 --  _一个类的全名 _。这个类被认为�
 ||  <font color="#888888">@Encoding </font>		 || HTTP 请求的输入输出字符编码  ||
 
 ----
-==`在子模块可以声明什么注解？`==
+
+
 [#Top]
+==`在子模块可以声明什么注解？`==
 ||  <font color="#008800">@InjectName </font>	 || Ioc 容器中，本模块对应的名称，如果不指明，表示这个模块是通过默认构造函数创建的  ||
 ||  <font color="#888888">@At </font>			 || 模块所有 *入口函数 *的 URL 前缀  ||
 ||  <font color="#888888">@Ok </font>			 || 模块默认成功视图  ||
@@ -138,3 +152,9 @@ NutServlet 只需要一个参数 --  _一个类的全名 _。这个类被认为�
 
         * 绿色的注解表示只能应用在子模块上 
         * 灰色的注解表示还可以应用在 *子模块 *以及 *入口函数 *上 
+
+
+[#Top]
+
+
+[#Top]
