@@ -1,27 +1,27 @@
 #summary 推荐文章
-<a name="top"></a><p align="center"><font size=6>* 推荐文章 *</font></p>
+=Top=<p align="center"><font size=6>* 推荐文章 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="1"/>
 ----
 =`关于这个项目`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 《 [http://xiaofeng.javaeye.com/blog/549410 不编写代码，你可以能为这个项目做很多事情 ]》  @ [http://xiaofeng.javaeye.com hilliate ]
       * 《 [http://zozoh.javaeye.com/blog/526494 Nutz 的设计以及提高程序员生产力 ]》  @ [http://zozoh.javaeye.com zozoh ]
 ----
 =`关于 Dao`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 《 [http://amosleaf.javaeye.com/blog/548337 Nutz的 数据库事务 ]》 @ [http://amosleaf.javaeye.com amosleaf ]
 ----
 =`关于 Mvc`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 《 [http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @ [http://axhack.javaeye.com axhack ]
 ----
 =`关于 Aop`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 《 [http://wendal.javaeye.com/blog/543681 基于ASM的Nut.Aop实现 ]》 @ [http://wendal.javaeye.com wendal ]
       * 《 [http://wendal.javaeye.com/blog/543936 自己动手,用字节码工具做一个Aop拦截器 ]》 @ [http://wendal.javaeye.com wendal ]
 ----
 =`其他文章`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 《 [http://xiaofeng.javaeye.com/blog/552986 nutz项目读取properties文件时发现的两端空格问题 ]》 @ [http://xiaofeng.javaeye.com hilliate ]

@@ -1,18 +1,18 @@
 #summary 关于一对一映射
-<a name="top"></a><p align="center"><font size=6>* 关于一对一映射 *</font></p>
+=Top=<p align="center"><font size=6>* 关于一对一映射 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`关于一对一映射的概述`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_one.png  
 
 一个对象中有一个字段指向另外一个对象的主键。如上图， Pet 中就可以有一个字段 master，通过自身的 masterId 指向一个 Master 对象，那么我们说 Pet.master 就是 Pet 对 Master 的一对一映射。  
 
 ----
 =`关于在 POJO 的配置 : @One`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 在 POJO 类中字段中增加注解  *@One *：  
 
 {{{
@@ -37,6 +37,6 @@ public class Pet extends Pojo {
           * <font color="#FF0000">*还要注意 *</font>，这里的名称是 目标 POJO 的  *JAVA * 字段的名称。 
 ----
 =`你可能还需要参考`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 关于注解  *@One *` 详细描述请参看 >  `[entity_annotations.man Nutz.Dao 实体注解 ] 关于 *@One *这一节 
       * 关于通过 Dao 接口调用，请参看  [dao_links_dao_operations Nutz.Dao 为映射提供的操作 ]。 

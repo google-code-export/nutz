@@ -1,10 +1,10 @@
 #summary Dao 接口的基本操作
-<a name="top"></a><p align="center"><font size=6>* Dao 接口的基本操作 *</font></p>
+=Top=<p align="center"><font size=6>* Dao 接口的基本操作 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`概述`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 传统关系型数据库定义了四中数据操作：  
 
       # 插入 Insert 
@@ -26,7 +26,7 @@
 
 ----
 =`示例的前提条件`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 我们假设已经创建了实体类  *com.zzh.demo.Person * 和实体表  *`t_person `*
       * 在文档  [dao_get_start.man Nutz.Dao 入门 ] 中，我们已经声明了这个实体 
       * 下述所有的操作都是假设已经有了 dao 变量，并且它指向一个 Dao 的实例。文档  [dao_get_start.man Nutz.Dao 入门 ] 中， 
@@ -34,7 +34,7 @@
 
 ----
 =`插入 Insert`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 Person p = new Person();
 p.setName("Peter");
@@ -48,7 +48,7 @@ Person 对象的 Id 被自动更新了。
       * 更多的关于 @Id 注解的描述，请参看  [dao_primary_key 关于主键 ] 以及  [dao_next_prev.man 在插入前后的为字段设值 ]
 ----
 =`取得 Fetch`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 根据名称获取 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -65,7 +65,7 @@ System.out.println(p.getName());
 
 ----
 =`更新 Update`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 Person p = dao.fetch(Person.class,2);
 p.setAge(32);
@@ -74,7 +74,7 @@ dao.update(p)
 
 ----
 =`删除 Delete`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 根据名称删除 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -91,15 +91,15 @@ dao.delete(Person.class,2);
 
 ----
 =`查询 Query`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 ==`查询全部记录`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 List<Person> = dao.query(Person.class,null,null);
 }}}
 
 ==`按条件查询`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
 }}}
@@ -112,7 +112,7 @@ List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), n
         * 如果你愿意，你完全可以自己实现一个 Condition，来做更复杂灵活的判断 
         * 关于更多的查询条件的说明，请参看  [dao_condition 复杂条件 ]
 ==`分页查询`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
 }}}
@@ -121,15 +121,15 @@ List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
         * 关于分页更多的说明，请参看  [query_by_page.man 分页查询 ]
 ----
 =`清除 Clear`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 ==`清除所有记录`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 dao.clear(Person.class);
 }}}
 
 ==`按条件清除`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 dao.clear(Person.class,Cnd.where("id", ">", 35));
 }}}
@@ -137,7 +137,7 @@ dao.clear(Person.class,Cnd.where("id", ">", 35));
         * 关于更多的清除条件的说明，请参看  [dao_condition 复杂条件 ]
 ----
 =`插入和更新集合`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 无论是插入 (Insert) 还是更新 (Update)，你传入的对象都可以不仅仅是一个 POJO，你可以传入：  
 
       * `集合 ( Collection<?> ) `

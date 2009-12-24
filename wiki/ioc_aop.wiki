@@ -1,14 +1,14 @@
 #summary AOP -- 声明式切片
-<a name="top"></a><p align="center"><font size=6>* AOP -- 声明式切片 *</font></p>
+=Top=<p align="center"><font size=6>* AOP -- 声明式切片 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`声明拦截器`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 你需要有一个拦截器对象，如果你愿意，你当然可以有不止一个拦截器对象。 
       * 将这个对象声明在你的配置文件里，就像一个普通的对象一样 
 =`在对象的函数中声明切片`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 在你要拦截的方法上，声明 @Aop 注解 
       * 方法所在的对象必须是容器中的对象 
       * @Aop 注解接受数目可变的字符串，每个字符串都是一个拦截器的名称 

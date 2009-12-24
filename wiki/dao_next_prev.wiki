@@ -1,11 +1,11 @@
 #summary 如何在插入之前或之后为字段设值
-<a name="top"></a><p align="center"><font size=6>* 如何在插入之前或之后为字段设值 *</font></p>
+=Top=<p align="center"><font size=6>* 如何在插入之前或之后为字段设值 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`插入之前 - @Prev`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 在插入之前，你想通过一段 SQL 为你的 POJO 某一个字段设值。你可以通过 @Prev 属性  
 
 {{{
@@ -29,7 +29,7 @@ public class Pet{
       * @SQL 更详细的语法规范请参看  [dao_customized_sql 自定义 SQL ]
 ----
 =`插入之后 - @Next`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 在插入之后，你想通过一段 SQL 为你的 POJO 某一个字段设值。你可以通过 @Next 属性  
 
 {{{
@@ -46,7 +46,7 @@ public class Pet{
 
 ----
 =`数据库方言`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 无论是 @Prev 还是 @Next，你都是通过 @SQL 声明的数据库方言。但是，假设你并不确定你的 POJO 将会工作在哪一个数据 库上，比如你的项目有两个数据源，一个是 Oracle 一个是 Postgresql，那么你的 POJO 改如何写方言呢？  
 
 {{{

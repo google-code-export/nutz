@@ -1,5 +1,5 @@
 #summary 控制输出的格式
-<a name="top"></a><p align="center"><font size=6>* 控制输出的格式 *</font></p>
+=Top=<p align="center"><font size=6>* 控制输出的格式 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
  coming soon  

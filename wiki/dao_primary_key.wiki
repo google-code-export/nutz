@@ -1,11 +1,11 @@
 #summary 关于主键
-<a name="top"></a><p align="center"><font size=6>* 关于主键 *</font></p>
+=Top=<p align="center"><font size=6>* 关于主键 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="4"/>
 ----
 =`简要介绍`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 `为使用 Dao 接口的 fetch(Class<?>, long) 以及 fetch(Class<?>, String)，需要为一个 POJO 指明它的主键。 主键可以是整数型的，也可以是字符型的。同时它也可以支持复合主键。  `
 
 || 整数型主键	 || 注解 @Id		 || 声明在字段上  ||
@@ -16,7 +16,7 @@
 
 ----
 =`整数型主键`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 @Table("t_pet")
 public class Pet{
@@ -33,7 +33,7 @@ Pet pet = dao.fetch(Pet.class,23);
 }}}
 
 ==`默认自增`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 默认的，Nutz.Dao 认为一个整数型主键默认就是自增的。所以他会在：  
 
 {{{
@@ -49,7 +49,7 @@ SELECT MAX(id) FROM t_pet;
 并设置到 pet 对象中。当然，不同的数据库，获得自增值的方式是不一样的，请参看  [dao_next_prev.man 在插入前后的为字段设值 ] 里面描述了，通过 @Next 注解，声明数据库本地方言，来获取自增值。  
 
 ==`手工设值`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 由于默认的，@Id 字段被认为是自增的，所以在插入时，Nutz.Dao 会忽略这个字段。但是，有些时候，你的整数主键不是自增的， 你希望手工为其设值，怎么办呢？ 你可以给 @Id 设一个属性: auto=false  
 
 {{{
@@ -64,7 +64,7 @@ public class Pet{
 Nutz.Dao 在插入对象是，就不会忽略你这个主键的值了，并且在插入完毕后，它也不会执行 SELECT MAX(id)。  
 
 ==`快速插入`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 无论你是不是 @Id(auto=false)，通过 Dao.fastInsert ，都不会执行 SELECT MAX(id)  
 
 {{{
@@ -75,7 +75,7 @@ dao.fastInsert(pet)
 
 ----
 =`字符型主键`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 @Table("t_pet")
 public class Pet{
@@ -92,7 +92,7 @@ Pet pet = dao.fetch(Pet.class,"XiaoBai");
 }}}
 
 ==`忽略大小写`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 @Table("t_pet")
 	public class Pet{
@@ -113,7 +113,7 @@ Pet pet = dao.fetch(Pet.class,"xiaobai");
 
 ----
 =`复合主键`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 @Table("t_pet")
 @PK( {"masterId", "petId"} )
@@ -129,7 +129,7 @@ public class Pet{
 通过 @PK 声明了复合主键，你就可以:  
 
 ==`通过变参获取和删除`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 *获取 *  
 
 {{{
@@ -147,6 +147,6 @@ Pet pet = dao.deletex(Pet.class, 23, 12);
         * 这里你给的变参的顺序必须按照你 @PK 里声明的顺序。 
         * 是 fetch *X * 和 delete *X *
 ==`其他操作`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 至于 update, clear, insert 则和平常的对象一样。 不过 Update 的时候，你的 POJO 所有的复合主键字段需要被设上值， 才能正确被更新。  
 

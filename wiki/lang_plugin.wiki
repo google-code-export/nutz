@@ -1,11 +1,11 @@
 #summary 插件
-<a name="top"></a><p align="center"><font size=6>* 插件 *</font></p>
+=Top=<p align="center"><font size=6>* 插件 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是插件`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/plugin_motivation.png  
 
 如果我们的项目依赖了一个接口，但是我们在开发时，真的没办法确定，部署的时候，到底采用哪个实现。  
@@ -18,7 +18,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/plugin_motivation.png
 
 ----
 =`简单使用插件`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 比如有一个接口：  
 
 {{{
@@ -110,7 +110,7 @@ System.out.println(said.say());
       * 构造函数参数的顺序，就是插件的优先级，第一个最优先 
 ----
 =`与 Ioc 容器一起工作`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 有些时候，你的 Plugin 实现类需要一些配置信息，某些配置信息可能相当复杂。 我们可以将插件同  [../ioc/ioc_get_start.man Ioc 容器 ]` 联用（通过 IocPlugManager<T>）。  `
 
 比如我们修改一下上面的两个插件，让它们都需要被配置一个字段:  
@@ -188,7 +188,7 @@ System.out.println(said.say());
 
 ----
 =`最后一点说明`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 我曾一度怀疑这个插件功能很无聊，因为它真的可以用“简陋”二字来形容（我们实现这个插件用的时间还没有我 写这篇文档所用时间的一半），但是它毕竟给了你一条很简明的途径， 让你的程序可以做到：  
 
 <font color="#FF0000">*部署时才决定某一个接口的实现 *</font>  

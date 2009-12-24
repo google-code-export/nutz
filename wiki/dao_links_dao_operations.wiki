@@ -1,11 +1,11 @@
 #summary 接口为映射提供的操作
-<a name="top"></a><p align="center"><font size=6>* 接口为映射提供的操作 *</font></p>
+=Top=<p align="center"><font size=6>* 接口为映射提供的操作 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`关于映射操作的概述`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 对于映射对象，Nutz.Dao 提供了一整套的标准  [basic_operations.html Dao 操作 ]。任何一个操作，都需要两个参数  
 
 {{{
@@ -33,11 +33,11 @@ dao.fetchLinks(obj,"field1|field2").updateLinks(obj,"field3|field4");
           * 无论 insert / update / delete / fetch / clear 都不支持级联 
 ----
 =`操作清单`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 <wiki:toc max_depth="3"/>
 ----
 ==`插入映射对象：insertLinks`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 如果我们有两个对象：  
 
 {{{
@@ -59,7 +59,7 @@ dao.insertLinks(pet,"master");
         * 甚至 pet 不存在在数据库中，也能插入成功 
 ----
 ==`与映射对象一起插入：insertWith`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 如果我们有两个对象：  
 
 {{{
@@ -80,7 +80,7 @@ dao.insertWith(pet,"master");
         * 如果有任何一个失败，操作都将回滚 
 ----
 ==`获取映射对象：fetchLinks`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 例如：  
 
 {{{
@@ -94,7 +94,7 @@ Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master");
         * 修改正则表达式  <font color="#FF00FF">"master" </font> 你可以一次获取更多的映射字段，如果你有的话 
 ----
 ==`清除映射关系：clearLinks`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 例如：  
 
 {{{
@@ -108,7 +108,7 @@ dao.clearLinks(pet,"master|foods");
         * 如果映射字段为  <font color="#999999">@ManyMany </font>， 那么仅仅清空关联表内的记录 
 ----
 ==`与映射对象一起更新：updateWith`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 例如：  
 
 {{{
@@ -128,7 +128,7 @@ dao.updateWith(pet,"master");
                 * 本操作并不会在数据库中增加记录，它只更新已经在数据库中存在的元素 
 ----
 ==`更新映射对象：updateLinks`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 同上例，不过：  
 
 {{{
@@ -139,7 +139,7 @@ dao.updateLinks(pet,"master");
         * pet 对象不会被更新 
 ----
 ==`与映射对象一起删除deleteWith`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 Pet pet = dao.fetchLinks(dao.fetch(Pet.class,"XiaoBai"),"master|foods");
 dao.deleteWith(pet, "master|foods");
@@ -153,7 +153,7 @@ dao.deleteWith(pet, "master|foods");
         * 总之， deleteWith 操作删除的会很彻底 
 ----
 ==`删除映射对象deleteLinks`==
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 同上例，不过:  
 
 {{{

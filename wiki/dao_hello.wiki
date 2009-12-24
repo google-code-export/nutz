@@ -1,11 +1,11 @@
 #summary Hello world
-<a name="top"></a><p align="center"><font size=6>* Hello world *</font></p>
+=Top=<p align="center"><font size=6>* Hello world *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Peter.Tung* (<font color="#080"> mastung@gmail.com </font>)  *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`检查运行环境`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       # 首先，你必须安装 JDK1.5 或者以上版本： 
           # `如果你直接使用编译好的 jar 包，请保证你的 JDK是1.6 的，因为 Nutz 的jar包是在  1.6.0_11 上编译的。 `
           # JDK1.5 的需要重新从源码编译。 
@@ -18,7 +18,7 @@
       # `在数据库里建立一张你自己的数据表， 这里我们用 t_person 来举例： `
 ----
 =`创建数据库`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 此处代码适用于PostgreSQL，如果你使用了不同的数据库，请自行修改相应建库语句：  
 
 {{{
@@ -33,7 +33,7 @@ age INT
 
 ----
 =`创建 POJO`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 在 Java 项目中建立一个POJO，比如 com.zzh.demo.Person :  
 
 {{{
@@ -82,7 +82,7 @@ public class Person {
 
 ----
 =`创建 main 函数`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 随便建立一个有 main 函数的类，在 main 函数里这么写：  
 
 {{{
@@ -98,7 +98,7 @@ dao.insert(p);
       * 这个例子足够作为 Hello World 了， 祝你玩的开心  :) 
 ----
 =`如何进阶`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 在你看完上述这个例子以后，你可以看看  [dao_basic_operations Nutz.Dao 的基本操作 ]，这篇短短的文章会让你很快对 Nutz.Dao 建立一个大体 上的印象。但是实际上，你的 POJO 在真正的项目中可能不会这么简单，你需要操作也不会只是增删改查。下面有三个建议：  
 
       * Nutz.Dao 全部的文档并不很多，花上1-2个晚上，你就可以看完。 

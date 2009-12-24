@@ -1,11 +1,11 @@
 #summary 代码模板
-<a name="top"></a><p align="center"><font size=6>* 代码模板 *</font></p>
+=Top=<p align="center"><font size=6>* 代码模板 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是代码模板`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 通过 Java 提供的 String.format() 方法，可以很方便的声明字符串模板，以及占位符。 但是，它不方便的是，如果我的字符串模板两个占位符希望的是同一个值：  
 
 {{{
@@ -22,7 +22,7 @@ String.format("XXXXXXXX %s  XXXXXX %s  XXXXXX %s XXXXX", "TxtA","TxtB","TxtA");
 
 ----
 =`Nutz 的代码模板`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 接上例，你可以这么写：  
 
 {{{
@@ -38,7 +38,7 @@ System.out.println(seg.toString());
       * 不设值的占位符，输出时会被空串 （ <font color="#FF00FF">"" </font>）填充 
 ----
 =`什么时候使用 Nutz 的代码模板`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 如果你的代码模板比较简单，还是推荐使用 String.format 
       * 如果你的代码模板比较复杂，有重复的占位符，或者可能有重复的占位符，推荐使用 CharSegment 
       * 你需要知道 

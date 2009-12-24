@@ -1,11 +1,11 @@
 #summary 使用视图
-<a name="top"></a><p align="center"><font size=6>* 使用视图 *</font></p>
+=Top=<p align="center"><font size=6>* 使用视图 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`为什么需要视图`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 数据库将数据存储在数据表中，有些时候，为了展现某些数据，还需要跨越多个表进行计算。比如你有两个数据表  
 
       # `雇员表 t_employee `
@@ -24,7 +24,7 @@ SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FR
 
 ----
 =`在 POJO 对象上使用视图`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 我们直接来表述一下 Employee 这个 POJO，这里仅仅是个示意  
 
 {{{

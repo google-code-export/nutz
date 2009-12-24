@@ -1,17 +1,17 @@
 #summary zDoc语法
-<a name="top"></a><p align="center"><font size=6>* zDoc语法 *</font></p>
+=Top=<p align="center"><font size=6>* zDoc语法 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是zDoc文档`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * zDoc 是纯文本的文档 
       * zDoc 必须是 UTF-8 编码的 
       * 它以"行"为单位进行文档解析 
 ----
 =`标题与段落`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 {{{
 这里是标题
 	这里是内容
@@ -29,7 +29,7 @@
       * zDoc 理论上拥有无限层次的标题行 
 ----
 =`超链接`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * `在行内 被方括弧[和]包裹起来的就是超链接 `
       * `[http://www.google.com] 将显示成  `[http://www.google.com www.google.com ]
       * `[http://www.google.com Google] 将显示成  `[http://www.google.com Google ]
@@ -39,12 +39,12 @@
 
 ----
 =`逃逸字符`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 被字符  包括起来的内容将不做格式转换 
       * 连续两个   将表示一个  
 ----
 =`文字及样式`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色  
 
 ||  *名称 *		 ||  *zDoc 语法 *			 ||  *文本 *				 ||
@@ -61,7 +61,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 ----
 =`图片`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 格式为  
 
 {{{
@@ -100,7 +100,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 ----
 =`分隔线`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 任何行内内容全部为减号 - ，并且数量不少于5个，将被认为是分隔线 
       * 比如如果一行內容为 
 {{{
@@ -115,7 +115,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 ----
 =`代码`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * `以 {{{ 开始的行，下面所有的行都被认为是代码，一直到 }}} 开始的行为止 `
       * `{{{<java> 表示代码的类型为java源代码 `
           * 你可以随便输入你的代码类型，比如 C#, Python, SQL, HTML 等等 
@@ -141,7 +141,7 @@ function abc(msg){
 
 ----
 =`表格`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * `以 || 开始，并以 || 结束的行，被认为是表格行 `
       * 连续的表格行被认为是一个表格 
       * `符号 || 之间的内容被认为是一个单元格 `
@@ -159,14 +159,14 @@ function abc(msg){
 
 ----
 =`目录索引`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
       * 在文档任何行写 #index:3 将会在该位置生成目录 
           * 其中 3 表示目录级别到第3层 
       * <font color="#AA0000">*层数是以 0 开始的 *</font>
       * 声明 #index:0,3 表示目录级别为第0层到第3层 
 ----
 =`文档属性`=
-<div style=float:right><a href=#top>Back to top</a></div>
+[#Top]
 ||  *zDoc 语法 *			 ||  *说明 *															 ||
 || #title:文档标题	 || 声明文档标题，如  #title:今天是个好日子														 ||
 || #author:文档作者	 || 声明文档作者，格式为： <font color="#00AAAA">作者名(电子邮件) </font>  其中  <font color="#00AAAA">*(电子邮件) *</font>` 可选，如 #author:zozoh<zozoh@mail.com>	 `||
