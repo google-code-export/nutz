@@ -1,10 +1,11 @@
 #summary 日志
-<p align="center"><font size=6>* 日志 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 日志 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *sunonfire* (<font color="#080"> sunonfire@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`为什么要自己写一个 Log？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 首先，我们没有从头实现一个日志，我们不过是  *适配 * 日志。我们适配了 log4j 和 java.util.logging。但是为什么呢？ 为什么不直接依赖 slf4j 呢？  
 
 我必须要在这里重申一下  [../preface.man Nutz 框架的目标 ]：  
@@ -38,6 +39,7 @@
 
 ----
 =`如何使用日志`=
+<div style=float:right><a href=#top>Back to top</a></div>
 Nutz Log的基本用法和常见的log4j、JDK Logger等工具没什么不同。比如：  
 
 {{{
@@ -72,6 +74,7 @@ public class MyClass {
           * 否则不可用 
 ----
 =`让 Nutz 输出日志`=
+<div style=float:right><a href=#top>Back to top</a></div>
 以 log4j 为例 （因为我就对这个熟），你需要：  
 
       * 在你的项目里部署某一个 Log4j 的 jar 包，推荐 Log4j 1.2.12 或更新版本 

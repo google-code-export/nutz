@@ -1,14 +1,16 @@
 #summary 动态表名
-<p align="center"><font size=6>* 动态表名 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 动态表名 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh*</p>
 <wiki:toc max_depth="3"/>
 ----
 =`为什么需要动态表名`=
+<div style=float:right><a href=#top>Back to top</a></div>
 当数据量比较大的时候，为了提高数据库操作的效率，尤其是查询的效率，其中一种解决方案就是将数据表拆分。 拆分的数据表，结构完全一致，只不过是表的名字，按照某种规律，而成为一组。  
 
 ----
 =`动态表名的常用形式`=
+<div style=float:right><a href=#top>Back to top</a></div>
 `通常情况下动态表名都是通过一个后缀来表示的。比如我们要记录全中国所有的公司已经其雇员，通常的设计是建立 两张数据表， t_company 记录公司，t_employee 记录雇员。由于考虑到 t_employee 的数量可能太过庞大，我们可 以将 t_employee 进行拆分，为每个公司建立一张雇员表。 比如 t_employee_1 记录 ID 为 1 的公司所有雇员， t_employee_19 记录 ID 为 19 的公司所有雇员。  `
 
 `当然，我们也不能排除动态表名的其他形式，比如，如果公司也是动态表名： t_company_3 表示在 ID 为 3 的国家 的公司。那么雇员表有可能呗设计成 t_employee_3_10， 在 ID 为 3 的国家且 ID 为 10 的公司所有的雇员记录  `
@@ -17,7 +19,9 @@
 
 ----
 =`Nutz对于动态表名的支持`=
+<div style=float:right><a href=#top>Back to top</a></div>
 ==`在 POJO 中声明动态表名`==
+<div style=float:right><a href=#top>Back to top</a></div>
 毫无疑问，首先，需要配置你的 POJO。 Nutz.Dao 提供的 @Table 注解本身就支持动态表名，比如：  
 
 {{{
@@ -33,6 +37,7 @@ public class Employee{
 
 ----
 ==`在调用时应用动态表名`==
+<div style=float:right><a href=#top>Back to top</a></div>
 Nutz.Dao 提供了一个小巧的类: org.nutz.dao.TableName。 通过这个类你可以随意设置你的动态表名：  
 
 {{{
@@ -58,6 +63,7 @@ public static void run(Object refer, Runnable atom);
 
 ----
 ==`动态表名赋值规则`==
+<div style=float:right><a href=#top>Back to top</a></div>
         * 当传入参数为数字或字符串 
             * 所有的动态表名变量将被其替换 
         * 当传入参数为 Map 
@@ -72,6 +78,7 @@ public static void run(Object refer, Runnable atom);
             * 所有变量将被空串替换 
 ----
 ==`更灵活的应用动态表名`==
+<div style=float:right><a href=#top>Back to top</a></div>
 使用 TableName.run 提供的动态表名模板的方式设置动态表名是很好的做法，也很安全。因为不会在 ThreadLocal 里面留下垃圾动态表名变量值。但是通过模板的写法另外一方面也限制了一定线程灵活性。所以上述例子还有另外 一个写法:  
 
 {{{
@@ -168,10 +175,12 @@ public void demoTableName_multi_temp(final Dao dao) {
 
 ----
 ==`在映射中的动态表名`==
+<div style=float:right><a href=#top>Back to top</a></div>
 `通过Java注解 @One, @Many, @ManyMany，Nutz.Dao 支持对象间的映射。很自然的，对象间的映射自动的会支持动态 表名。比如，如果 Company 对象有个成员变量 private List<Employee> employees; 由于 Employee 是动态表名的 所以当获取 employee 的时候，同样也能支持动态表名。  `
 
 ----
 ===`一对一映射`===
+<div style=float:right><a href=#top>Back to top</a></div>
 比如，我们的 Company 对象需要一个新的字段存储 CEO 的 ID，以及另外一个字段存储 CEO 对象本身。按照 Nutz.Dao 对于一对一映射的定义：  
 
 <font color="#008800">当对象A有字段f1指向对象B的主键，且在对象A上有字段b类型为B，且声明了@One(target=B.class,field="f1"，则称A.b为对于B的一对一映射 </font>  
@@ -247,6 +256,7 @@ public void demoTableName_links_one(final Dao dao) {
 
 ----
 ===`一对多映射`===
+<div style=float:right><a href=#top>Back to top</a></div>
 下面我们来增加一对多映射，是的，一个公司有很多雇员，不是吗？那么我们就为 Company 类增加一个新的字段  
 
 {{{
@@ -333,6 +343,7 @@ public void demoTableName_links_many(final Dao dao) {
 
 ----
 ===`多对多映射`===
+<div style=float:right><a href=#top>Back to top</a></div>
 多对多映射是通过一个中间表进行的数据关联，比如数据库中有数据表 A,B， 可以在建立一张表 C，描 述 A 表和 B 表的数据关联。一般的关联表至少有两个字段，一个是 A 表的主键，另一个记录 B 表的主 键。如果是复合主键或者要记录关联的权重，关联表的设计将会更加复杂。  
 
 Nutz.Dao 提供了 @ManyMany 注解帮助你的 POJO 来声明多对多关联，比如在 Employee 类中可以增加一个新 的字段，表示某个雇员的下属。  
@@ -367,6 +378,7 @@ public void demoTableName_links_manymany(final Dao dao) {
 
 ----
 =`总结一下`=
+<div style=float:right><a href=#top>Back to top</a></div>
 关于动态表名的这一节写的比较长，因为我认为动态表名的支持，Nutz.Dao 是比较独特的。它基本做到了这两个效果  
 
       # 如果你不希望使用动态表名，你根本不会看到 Nutz.Dao 关于动态表名的设计 

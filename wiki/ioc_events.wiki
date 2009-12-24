@@ -1,9 +1,10 @@
 #summary 事件监听
-<p align="center"><font size=6>* 事件监听 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 事件监听 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`都有哪些事件`=
+<div style=float:right><a href=#top>Back to top</a></div>
 Nutz.Ioc 容器有三种事件：  
 
       * 对象被创建 
@@ -12,6 +13,7 @@ Nutz.Ioc 容器有三种事件：
 在这三种时刻，你如果想做一些特殊的操作，比如，当一个数据源被销毁时，你希望能够关闭所有的连接， 你可以在 JSON 配置文件中，声明一下，你想监听什么事件，以及怎么监听。  
 
 =`怎么监听`=
+<div style=float:right><a href=#top>Back to top</a></div>
 我们为 Pet 对象增加一个新的属性:  
 
 {{{
@@ -23,7 +25,9 @@ public class Pet {
 }}}
 
 ==`通过实现一个触发器`==
+<div style=float:right><a href=#top>Back to top</a></div>
 ===`触发器`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 package nutz.demo.ioc.book;
 
@@ -41,6 +45,7 @@ public class OnFetchPet implements IocEventTrigger<Pet> {
  IocEventTrigger 接口只有一个方法，当它被调用的时候，就表示某个事件发生了。 具体什么事件呢？完全看你在 JSON 配置文件中把这个触发器，声明在那种事件下面  
 
 ===`在 JSON 配置文件中声明监听的事件`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 var ioc = {
 	xb : {
@@ -57,6 +62,7 @@ var ioc = {
   
 
 ===`调用代码`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 Ioc ioc = new NutIoc(new JsonLoader("nutz/demo/ioc/book/events.js"));
 Pet pet = ioc.get(Pet.class, "xb");
@@ -66,6 +72,7 @@ System.out.printf("%s be fetch %d times", pet.getName(), pet.getFetchCount());
 }}}
 
 ===`控制台输出`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 XiaoBai be fetch 3 times
 }}}
@@ -73,9 +80,11 @@ XiaoBai be fetch 3 times
   
 
 ==`通过对象自身的一个函数`==
+<div style=float:right><a href=#top>Back to top</a></div>
 这个函数必须为  public，并且不能有参数  
 
 ===`为 Pet 对象增加一个函数：`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 public void onFetch() {
 	this.fetchCount++;
@@ -85,6 +94,7 @@ public void onFetch() {
   
 
 ===`在 JSON 配置文件中增加新的对象`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 xh : {
 	events : {
@@ -97,6 +107,7 @@ xh : {
 }}}
 
 ===`调用代码`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 Pet xh = ioc.get(Pet.class, "xh");
 ioc.get(Pet.class, "xh");
@@ -104,11 +115,13 @@ System.out.printf("%s be fetch %d times\n", xh.getName(), xh.getFetchCount());
 }}}
 
 ===`控制台输出`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 XiaoHei be fetch 2 times
 }}}
 
 =`监听其他事件`=
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 events : {
 	fetch  : ... ,

@@ -1,16 +1,18 @@
 #summary 关于一对多映射
-<p align="center"><font size=6>* 关于一对多映射 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 关于一对多映射 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="3"/>
 ----
 =`关于一对多映射的概述`=
+<div style=float:right><a href=#top>Back to top</a></div>
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_many.png  
 
 `如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。  `
 
 ----
 =`关于在 POJO 的配置 : @Many`=
+<div style=float:right><a href=#top>Back to top</a></div>
 在 POJO 类中字段中增加注解  *@Many *：  
 
 {{{
@@ -40,10 +42,12 @@ public class Master extends Pojo {
           * <font color="#FF0000">*还要注意 *</font>，这里的名称是 目标 POJO 的  *JAVA * 字段的名称。 
 ----
 ==`@Many 映射字段的类型`==
+<div style=float:right><a href=#top>Back to top</a></div>
 本 POJO 类的 @Many 映射，可以不止声明在 List 对象上，它还可以声明在如下类型里。  
 
 ----
 ===`数组`===
+<div style=float:right><a href=#top>Back to top</a></div>
 例如：  
 
 {{{
@@ -59,6 +63,7 @@ public class Master extends Pojo {
 
 ----
 ===`Map`===
+<div style=float:right><a href=#top>Back to top</a></div>
 如果采用 Map 类型， 我们还需要你为 @Many 注解多添加一个参数，通过这个参数, Nutz.Dao 才能知道采用目标 POJO 对象 的哪一个字段来作为 Map　的键。  
 
 {{{
@@ -78,6 +83,7 @@ public class Master extends Pojo {
           * 请注意，将 Map 的第一个泛型参数设置正确，同 key  所指向的字段类型相同即可。 
 ----
 ===`单独对象`===
+<div style=float:right><a href=#top>Back to top</a></div>
 例如：  
 
 {{{
@@ -99,5 +105,6 @@ SELECT * FROM t_pet;
 
 ----
 =`你可能还需要参考`=
+<div style=float:right><a href=#top>Back to top</a></div>
       * 关于注解  *@Many *` 详细描述请参看 >  `[entity_annotations.man Nutz.Dao 实体注解 ] 关于 *@Many *这一节 
       * 关于通过 Dao 接口调用，请参看  [dao_links_dao_operations Nutz.Dao 为映射提供的操作 ]。 

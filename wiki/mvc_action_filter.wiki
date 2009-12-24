@@ -1,10 +1,11 @@
 #summary 过滤器
-<p align="center"><font size=6>* 过滤器 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 过滤器 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是过滤器?`=
+<div style=float:right><a href=#top>Back to top</a></div>
 请你再一次回顾这张图：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png  
@@ -13,6 +14,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png
 
 ----
 =`如何使用过滤器？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 通过 @Filters 注解。  
 
 注解 '@Filters' 的值是一个 '@By' 注解的数组，它可以声明在这三个地方  
@@ -43,6 +45,7 @@ public String myFunction(){
 那么，这个入口函数将不会应用任何过滤器。  
 
 ==`使用内置过滤器`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 @Filters(@By(type=CheckSession.class, args={"user", "/login.jsp"}))
 }}}
@@ -53,6 +56,7 @@ CheckSession 是 Nutz.Mvc 为你内置的一个唯一的过滤去，它的构造
         * 如果不存在，重定向到哪里？ 
 ----
 =`定制你自己的过滤器`=
+<div style=float:right><a href=#top>Back to top</a></div>
 你当然可以定制你自己的过滤器，请注意过滤器接口代码：  
 
 {{{

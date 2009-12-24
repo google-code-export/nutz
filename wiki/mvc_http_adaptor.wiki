@@ -1,19 +1,22 @@
 #summary 适配器
-<p align="center"><font size=6>* 适配器 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 适配器 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是适配器？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 将 HTTP 参数转换成一个函数参数的过程是一个典型适配过程，执行这个过程的对象被称为适配器了。 Nutz.Mvc 提供了  *org.nutz.mvc.HttpAdaptor * 接口，隔离了这种行为。  
 
 在每一个入口函数上，你都可以通过注解  <font color="#888888">@AdaptBy </font> 来声明如何适配 HTTP 参数。当然，你 没必要在每一个入口函数上都声明，在子模块类上声明，或者在整个应用的主模块上声明均可。  
 
 ----
 =`如何使用适配器？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 默认的，如果你什么也不写，Nutz.Mvc 会采用  *org.nutz.mvc.adaptor.PairAdaptor * （ _也就是名值对的方式 _） 来适配你的 HTTP 参数。  
 
 ==`通过构造函数获得适配器`==
+<div style=float:right><a href=#top>Back to top</a></div>
 你可以可以通过 @AdaptBy 注解来改变任何一个入口函数的适配方式。比如  
 
 {{{
@@ -24,6 +27,7 @@
 
 ----
 ==`通过 Ioc 容器获得适配器`==
+<div style=float:right><a href=#top>Back to top</a></div>
 更复杂的情况是，如果你希望你的适配器是交由 Ioc 容器管理的，你可以：  
 
 {{{
@@ -34,10 +38,13 @@
 
 ----
 =`内置的适配器`=
+<div style=float:right><a href=#top>Back to top</a></div>
 Nutz.Mvc 为你内置了 4 个最常用的适配器，可以让支持用如下四种方式适配 HTTP 参数：  
 
 ==`名值对 (默认)`==
+<div style=float:right><a href=#top>Back to top</a></div>
 ===`一般方式`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 @AdaptBy(type=PairAdaptor.class)
 }}}
@@ -53,6 +60,7 @@ public String someFunc(	@Param("pid") int petId,
 通过这个注解，为每个参数声明 HTTP 参数名。  
 
 ===`表单方式`===
+<div style=float:right><a href=#top>Back to top</a></div>
 有些时候，你需要入口函数接受一个对象，比如一个表单对象  
 
 {{{
@@ -63,6 +71,7 @@ public String someFunc(	@Param("..") Pet pet){
 值 ".." 有特殊含义，表示当前的这个对象，需要对应整个的 HTTP 参数表。 所以， Nutz.Mvc 会将 HTTP 参数表中的 参数一个个的按照名字设置到 Pet 对象的字段里。 但是如果 Pet 对象的字段名同 HTTP 参数不符怎么办？ 你可以在 Pet 字段上声明 @Param。  
 
 ===`混合方式`===
+<div style=float:right><a href=#top>Back to top</a></div>
 值得一说的是，按照这个约定，实际上，一个入口函数，是可以支持多个  POJO 的，也可以写成这样  
 
 {{{
@@ -75,6 +84,7 @@ public String someFunc(	@Param("pid") int petId,
   
 
 ===`JSON 的支持`===
+<div style=float:right><a href=#top>Back to top</a></div>
 你的 HTTP 参数也可以是一个 JSON 字符串  
 
 {{{
@@ -97,6 +107,7 @@ HTTP 参数的值都是字符串，比如上例的第二个参数，Nutz.Mvc 会
           * Map 
 ----
 ==`JSON 输入流`==
+<div style=float:right><a href=#top>Back to top</a></div>
 如果你要通过 HTTP 传给服务器一个比较复杂的对象，通过名值对的方式可能有点不方便。因为它很难同时传两个对象。 并且一个对象如果还嵌入了另外一个对象，也很难传入，你必须要自己定义一些奇奇怪怪的格式，在 JS 里组织字符串， 在服务器端，手工解析这些字符串。  
 
 针对这个问题， JSON 流是一个比 XML 流更好的解决方案，它足够用，并且它更短小。  
@@ -145,6 +156,7 @@ public String someFunc(	@Param("fox") Pet pet,
 
 ----
 ==`什么都不干`==
+<div style=float:right><a href=#top>Back to top</a></div>
 某些特殊的情况，你需要彻底控制输入流的解析，同时你又不想使用任何适配器，你可以  
 
 {{{
@@ -157,10 +169,12 @@ VoidAdaptor 什么都不会干，不会碰 HTTP 请求对象的输入流。
 
 ----
 ==`上传文件`==
+<div style=float:right><a href=#top>Back to top</a></div>
 NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细的说明，请参看：  [mvc_file_upload 文件上传 ]  
 
 ----
 =`特殊参数`=
+<div style=float:right><a href=#top>Back to top</a></div>
 某些时候，你可能需要得到 HttpSession，或者你需要得到 Ioc 容器的一个引用。因为你想做点更高级的 事情，你想出了一些奇技淫巧。Nutz.Mvc 完全支持你这样做。  
 
 你只要在你的入口函数里声明你希望得到的对象类型即可，比如：  
@@ -177,6 +191,7 @@ public String someFunc(	@Param("pid") int petId,
 那么 Nutz.Mvc 到底支持多少类似这样的特殊参数类型呢？  
 
 ==`Nutz.Mvc 支持的特殊参数类型`==
+<div style=float:right><a href=#top>Back to top</a></div>
         * ServletRequest & HttpServletRequest 
         * `ServletResponse * HttpServletResponse `
         * HttpSession 
@@ -185,6 +200,7 @@ public String someFunc(	@Param("pid") int petId,
 如果你还想支持更多的类型，那么你就需要定制你自己的适配器了，稍后会有详细描述。  
 
 ==`路径参数`==
+<div style=float:right><a href=#top>Back to top</a></div>
 某些时候，你可能觉得这样的 URL 很酷  
 
 {{{
@@ -229,6 +245,7 @@ public String getArticle(String author, int articleId){
 
 ----
 =`定制自己的适配器`=
+<div style=float:right><a href=#top>Back to top</a></div>
 先来看看适配器的接口：  
 
 {{{

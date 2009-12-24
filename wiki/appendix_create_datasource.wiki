@@ -1,11 +1,13 @@
 #summary 如何创建 DataSource
-<p align="center"><font size=6>* 如何创建 DataSource *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 如何创建 DataSource *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`Apache DBCP`=
+<div style=float:right><a href=#top>Back to top</a></div>
 ==`直接书写 Java 代码`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -20,6 +22,7 @@ ds.setPassword("123456");
 }}}
 
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 {
 	dataSource : {
@@ -36,7 +39,9 @@ ds.setPassword("123456");
 
 ----
 =`C3P0`=
+<div style=float:right><a href=#top>Back to top</a></div>
 ==`直接书写 Java 代码`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -51,6 +56,7 @@ ds.setPassword("123456");
 }}}
 
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 {
 	dataSource : {
@@ -67,7 +73,9 @@ ds.setPassword("123456");
 
 ----
 =`Proxool`=
+<div style=float:right><a href=#top>Back to top</a></div>
 ==`直接书写 Java 代码`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
@@ -82,6 +90,7 @@ ds.setPassword("123456");
 }}}
 
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 {
 	dataSource : {

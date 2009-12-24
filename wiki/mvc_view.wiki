@@ -1,14 +1,16 @@
 #summary 视图
-<p align="center"><font size=6>* 视图 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 视图 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 =`什么是视图？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 视图就是一种渲染 HTTP 输出流的一种方式。 Nutz.Mvc 提供了 org.nutz.mvc.View 接口，隔离了这个行为。  
 
 ----
 =`怎样使用视图？`=
+<div style=float:right><a href=#top>Back to top</a></div>
 执行一个业务逻辑可能有两种结果  
 
       # 成功 
@@ -31,10 +33,12 @@
 
 ----
 =`内置的视图`=
+<div style=float:right><a href=#top>Back to top</a></div>
 默认的， @Ok 和 @Fail 注解可以支持如下视图类型：  
 
 ----
 ==`JSP 视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 视图的实现类为：  *org.nutz.mvc.view.NamePathJspView *  
 
 一般的使用形式：  
@@ -67,6 +71,7 @@
         * 你需要知道，JSP 视图，会将要渲染的对象存入 request 对象的一个属性里，属性名为 "obj" 
 ----
 ==`JSON 视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 视图的实现类为：  *org.nutz.mvc.view.UTF8JsonView *  
 
 一般的使用形式：  
@@ -87,6 +92,7 @@
 
 ----
 ==`重定向视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 视图的实现类为：  *org.nutz.mvc.view.ServerRedirectView *  
 
 一般的使用形式：  
@@ -115,6 +121,7 @@
 下面举几个例子：  
 
 ===`用返回对象的字段填充：`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 @Ok("redirect:/pet/detail.nut?pid=${obj.id}")
 入口函数返回： Pet 对象
@@ -124,6 +131,7 @@
   
 
 ===`用 HTTP 参数填充`===
+<div style=float:right><a href=#top>Back to top</a></div>
 {{{
 @Ok("redirect:/pet/detail.nut?pid=${id}")
 从 HTTP 参数表取 "id"，填充
@@ -133,6 +141,7 @@
 
 ----
 ==`HTTP 返回码视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 视图的实现类为：  *org.nutz.mvc.view.HttpStatusView *  
 
 使用形式  
@@ -145,6 +154,7 @@
 
 ----
 ==`空白视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 视图的实现类为：  *org.nutz.mvc.view.VoidView *  
 
 使用形式  
@@ -157,6 +167,7 @@
 
 ----
 ==`从 Ioc 容器中获取的视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 使用形式  
 
 使用形式  
@@ -169,6 +180,7 @@
 
 ----
 =`定制自己的视图`=
+<div style=float:right><a href=#top>Back to top</a></div>
 通过 @Ok("xxx:xxxx") 这种形式声明的视图非常简洁，易于理解。某些时候，你可能觉得 Nutz.Mvc 支持的视图 类型不够，你喜欢其他的视图模板引擎，比如  [http://freemarker.org/ FreeMarker ]。因此你希望你的 @Ok 能 写成这样：  
 
 {{{
@@ -185,6 +197,7 @@
 
 ----
 ==`实现自己的视图`==
+<div style=float:right><a href=#top>Back to top</a></div>
 实现 org.nutz.mvc.View 接口，比如：  
 
 {{{
@@ -199,6 +212,7 @@ public class PdfView implements View{
 
 ----
 ==`实现自己的视图工厂`==
+<div style=float:right><a href=#top>Back to top</a></div>
 实现 org.nutz.mvc.ViewMaker 接口，比如：  
 
 {{{
@@ -216,6 +230,7 @@ public class PdfViewMaker implements ViewMaker{
 
 ----
 ==`将视图工厂整合进应用中`==
+<div style=float:right><a href=#top>Back to top</a></div>
 在主模块上，通过注解 @Views 将你的工厂声明进整个应用即可。  
 
         * 你可以声明多个 ViewMaker 

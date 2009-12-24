@@ -1,10 +1,12 @@
 #summary 使用 index.xml 作为索引文件
-<p align="center"><font size=6>* 使用 index.xml 作为索引文件 *</font></p>
+<a name="top"></a><p align="center"><font size=6>* 使用 index.xml 作为索引文件 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`关于 index.xml`=
+<div style=float:right><a href=#top>Back to top</a></div>
 ==`为什么需要索引文件`==
+<div style=float:right><a href=#top>Back to top</a></div>
 通常，你会将你的很多 zDoc 文件分门别类的放在某个目录下。然后你有可能：  
 
         # 将这个目录全部输出到另外一个目录下 
@@ -13,18 +15,21 @@
             * 可以是个大的 HTML 
             * 更多的是个大的 PDF 
 ===`那么在 zDoc 转换程序组织这些文件时会碰到类似如下的问题：`===
+<div style=float:right><a href=#top>Back to top</a></div>
           * 哪些文件需要转换？ 
           * 如果是 HTML 格式的目录转换，索引是什么？ 
           * 如果是合并成一个大文件，大文件都有哪些章节，顺序如何？ 
 所以在根目录放置一个  *index.xml *，zDoc 转换程序就有办法获得充足的信息.  
 
 ==`为什么要用 XML 格式`==
+<div style=float:right><a href=#top>Back to top</a></div>
         * 我不假定使用 zDoc 的人都是程序员 
         * `即使是程序员也不一定喜欢 JSON，非程序肯定不喜欢 JSON，因为他们不喜欢很多的 { 和 } `
         * XML 有足够的灵活性和扩展空间 
         * XML 的结构化表现力很强 
         * 索引文件只有一份，XML 虽然麻烦一点，但是也不会很累 
 =`index.xml 语法`=
+<div style=float:right><a href=#top>Back to top</a></div>
 该文件的语法简单的令人发指  
 
       * `它只有一个元素 <doc>， `
