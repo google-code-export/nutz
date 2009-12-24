@@ -5,6 +5,8 @@
 <wiki:toc max_depth="2"/>
 ----
 =`什么是代码模板`=
+<p align="right">[#Top]</p>
+
 通过 Java 提供的 String.format() 方法，可以很方便的声明字符串模板，以及占位符。 但是，它不方便的是，如果我的字符串模板两个占位符希望的是同一个值：  
 
 {{{
@@ -20,10 +22,9 @@ String.format("XXXXXXXX %s  XXXXXX %s  XXXXXX %s XXXXX", "TxtA","TxtB","TxtA");
 并且你不设值，会被无情抛错。  
 
 ----
-
-
-[#Top]
 =`Nutz 的代码模板`=
+<p align="right">[#Top]</p>
+
 接上例，你可以这么写：  
 
 {{{
@@ -38,10 +39,9 @@ System.out.println(seg.toString());
       * 自动通过  [lang_castors Castors ] 将你的对象转成字符串 
       * 不设值的占位符，输出时会被空串 （ <font color="#FF00FF">"" </font>）填充 
 ----
-
-
-[#Top]
 =`什么时候使用 Nutz 的代码模板`=
+<p align="right">[#Top]</p>
+
       * 如果你的代码模板比较简单，还是推荐使用 String.format 
       * 如果你的代码模板比较复杂，有重复的占位符，或者可能有重复的占位符，推荐使用 CharSegment 
       * 你需要知道 
@@ -58,6 +58,3 @@ newSeg.set("A",XXX").set("B",XXX") ....
 Segment newSeg = seg.clone();
 }}}
 
-
-
-[#Top]

@@ -5,11 +5,15 @@
 <wiki:toc max_depth="3"/>
 ----
 =`从哪里注入？`=
+<p align="right">[#Top]</p>
+
 你可以向对象注入值的位置有两个  
 
       # 构造函数参数 
       # 属性 
 ==`向构造函数里注入参数`==
+<p align="right">[#Top]</p>
+
 你的 JSON 配置文件会是这样  
 
 {{{
@@ -23,10 +27,9 @@ xb : {
 
 args 的值时一个数组，里面每一个元素都将对应构造函数的一个参数。当然，你 必须确保你得有这样的构造函数。每个参数按照 JSON 的规定，是用半角逗号分隔的。  
 
-
-
-[#Top]
 ==`向属性注入参数`==
+<p align="right">[#Top]</p>
+
 你的 JSON 配置文件会是这样  
 
 {{{
@@ -49,16 +52,14 @@ xb : { name: 'XiaoBai'	}
 }}}
 
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`值可以不仅是字符串`=
+<p align="right">[#Top]</p>
+
 是的，它还可以是  
 
 ==`布尔`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { dead: true }
@@ -67,10 +68,9 @@ xb : { name: 'XiaoBai'	}
 
   
 
-
-
-[#Top]
 ==`数字`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { age: 24 }
@@ -79,10 +79,9 @@ xb : { name: 'XiaoBai'	}
 
   
 
-
-
-[#Top]
 ==`内部对象`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { friend: {
@@ -94,10 +93,9 @@ xb : { name: 'XiaoBai'	}
 
 关于内部对象  [ioc_inner_object 请看这里 ]  
 
-
-
-[#Top]
 ==`引用`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { friend: {refer: 'XiaoBai' } }
@@ -106,10 +104,9 @@ xb : { name: 'XiaoBai'	}
 
 ` {refer : '另外一个对象在容器中的名称'} 将会得到容器中另外一个对象  `
 
-
-
-[#Top]
 ==`容器自身`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { myIoc : {refer: '$Ioc'} }
@@ -118,10 +115,9 @@ xb : { name: 'XiaoBai'	}
 
 一种特殊的引用，大小写不敏感，值就是 Ioc 容器本身  
 
-
-
-[#Top]
 ==`对象的名称`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { myIoc : {refer: '$Name'} }
@@ -130,10 +126,9 @@ xb : { name: 'XiaoBai'	}
 
 一种特殊的引用，大小写不敏感，值就是对象的名称，即 "xb"  
 
-
-
-[#Top]
 ==`容器上下文`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { myIoc : {refer: '$Context'} }
@@ -142,10 +137,9 @@ xb : { name: 'XiaoBai'	}
 
 一种特殊的引用，大小写不敏感，值就是当前容器的上下文环境接口 org.nutz.ioc.IocContext  
 
-
-
-[#Top]
 ==`环境变量`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { name : {env : "JAVA_HOME"} }
@@ -154,10 +148,9 @@ xb : { name: 'XiaoBai'	}
 
 `{refer : '环境变量名'} 将会得到系统中环境变量的值  `
 
-
-
-[#Top]
 ==`文件`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { profile : {file : "/home/zozoh/tmp/name.txt"} }
@@ -166,17 +159,15 @@ xb : { name: 'XiaoBai'	}
 
 `{file : '文件路径'} 可以是绝对路径，也可以是 CLASSPATH 中的路径  `
 
-
-
-[#Top]
 ==`数组或容器`==
+<p align="right">[#Top]</p>
+
 如果你对象某个字段是数组，集合，或者 Map， 用 JSON 可以很自然为其设置值，不是吗？  
 
 ----
-
-
-[#Top]
 ==`Java 调用`==
+<p align="right">[#Top]</p>
+
 这是个极度灵活的注入方式，它几乎可以让你  *做任何事情 *。 因为它允许你直接调用一个 JAVA 函数。  
 
 更详细的说明，请参看  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/ioc/val/JavaValue.java org.nutz.ioc.val.JavaValue ] 的 JDoc  
@@ -184,26 +175,26 @@ xb : { name: 'XiaoBai'	}
 下面只是列出主要的几种应用方式  
 
 ===`静态属性`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: 'com.my.SomeClass.staticPropertyName'} }
 }
 }}}
 
-
-
-[#Top]
 ===`静态函数`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: 'com.my.SomeClass.someFunc'} }
 }
 }}}
 
-
-
-[#Top]
 ===`带参数的静态函数`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: 'com.my.SomeClass.someFunc("p1",true)'} }
@@ -212,10 +203,9 @@ xb : { name: 'XiaoBai'	}
 
 参数可以是任何种类的值  
 
-
-
-[#Top]
 ===`容器中的对象`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: '$xh'} } ,
@@ -223,10 +213,9 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-
-
-[#Top]
 ===`容器对象某个属性`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: '$xh.name'} } ,
@@ -234,10 +223,9 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-
-
-[#Top]
 ===`容器对象某个方法的返回值`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: '$xh.getXXX()'} } ,
@@ -245,10 +233,9 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-
-
-[#Top]
 ===`容器对象某个方法的返回值，带参数`===
+<p align="right">[#Top]</p>
+
 {{{
 {
 	xb : { oneField : {java: '$xh.getXXX("some string", true, 34)'} } ,
@@ -259,16 +246,9 @@ xb : { name: 'XiaoBai'	}
 参数可以是任何种类的值  
 
 ----
-
-
-[#Top]
-
-
-[#Top]
-
-
-[#Top]
 =`你可以增加自己的特殊类型`=
+<p align="right">[#Top]</p>
+
 从上面你可以看到 JSON 语法的好处，非常轻巧  
 
       * `文件  -- {file: '路径'} `
@@ -286,6 +266,8 @@ oneField : {scan : '扫描仪地址'}
 如何支持这种新的值的类型呢？  
 
 ==`实现一个扩展接口`==
+<p align="right">[#Top]</p>
+
 实现  org.nutz.ioc.ValueProxyMaker 接口：  
 
 {{{
@@ -318,10 +300,9 @@ public class ScanValueProxyMaker implements ValueProxyMaker {
 }
 }}}
 
-
-
-[#Top]
 ==`添加到 Ioc 容器中`==
+<p align="right">[#Top]</p>
+
 {{{
 Ioc2 ioc = new NutIoc(new JsonLoader("path/path/name.js"));
 ioc.addValueProxyMaker(new ScanValueProxyMaker());
@@ -331,9 +312,3 @@ ioc.addValueProxyMaker(new ScanValueProxyMaker());
 
 <font color="#FF0000">*注意 *</font>，这里使用的是 Ioc2 接口，它继承自 Ioc 接口，提供了更高级的方法  
 
-
-
-[#Top]
-
-
-[#Top]

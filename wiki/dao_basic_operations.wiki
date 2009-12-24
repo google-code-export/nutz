@@ -4,6 +4,8 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`概述`=
+<p align="right">[#Top]</p>
+
 传统关系型数据库定义了四中数据操作：  
 
       # 插入 Insert 
@@ -24,20 +26,18 @@
 因此，我们发现在 Nutz.Dao 的数据操作概念中，并不支持一次更新多条记录。 如果需要一次更新多条记录，你需要自己定义 SQL。 关于如何定义和管理自己的 SQL，请参看  [dao_customized_sql 自定义SQL ]  
 
 ----
-
-
-[#Top]
 =`示例的前提条件`=
+<p align="right">[#Top]</p>
+
       * 我们假设已经创建了实体类  *com.zzh.demo.Person * 和实体表  *`t_person `*
       * 在文档  [dao_get_start.man Nutz.Dao 入门 ] 中，我们已经声明了这个实体 
       * 下述所有的操作都是假设已经有了 dao 变量，并且它指向一个 Dao 的实例。文档  [dao_get_start.man Nutz.Dao 入门 ] 中， 
 我们给出了如何创建 Dao 实例，以及如何搭建运行环境  
 
 ----
-
-
-[#Top]
 =`插入 Insert`=
+<p align="right">[#Top]</p>
+
 {{{
 Person p = new Person();
 p.setName("Peter");
@@ -50,10 +50,9 @@ Person 对象的 Id 被自动更新了。
 
       * 更多的关于 @Id 注解的描述，请参看  [dao_primary_key 关于主键 ] 以及  [dao_next_prev.man 在插入前后的为字段设值 ]
 ----
-
-
-[#Top]
 =`取得 Fetch`=
+<p align="right">[#Top]</p>
+
 根据名称获取 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -69,10 +68,9 @@ System.out.println(p.getName());
 }}}
 
 ----
-
-
-[#Top]
 =`更新 Update`=
+<p align="right">[#Top]</p>
+
 {{{
 Person p = dao.fetch(Person.class,2);
 p.setAge(32);
@@ -80,10 +78,9 @@ dao.update(p)
 }}}
 
 ----
-
-
-[#Top]
 =`删除 Delete`=
+<p align="right">[#Top]</p>
+
 根据名称删除 （如果你的实体声明了 @Name 字段）  
 
 {{{
@@ -99,19 +96,19 @@ dao.delete(Person.class,2);
   
 
 ----
-
-
-[#Top]
 =`查询 Query`=
+<p align="right">[#Top]</p>
+
 ==`查询全部记录`==
+<p align="right">[#Top]</p>
+
 {{{
 List<Person> = dao.query(Person.class,null,null);
 }}}
 
-
-
-[#Top]
 ==`按条件查询`==
+<p align="right">[#Top]</p>
+
 {{{
 List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), null);
 }}}
@@ -123,10 +120,9 @@ List<Person> people = dao.query(Person.class, Cnd.where("name", "like", "P%"), n
             * 提供了一个 wrap 函数，你可以直接写 SQL 的条件 
         * 如果你愿意，你完全可以自己实现一个 Condition，来做更复杂灵活的判断 
         * 关于更多的查询条件的说明，请参看  [dao_condition 复杂条件 ]
-
-
-[#Top]
 ==`分页查询`==
+<p align="right">[#Top]</p>
+
 {{{
 List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
 }}}
@@ -134,35 +130,28 @@ List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
         * dao.createPager 第一个参数是第几页，第二参数是一页有多少条记录 
         * 关于分页更多的说明，请参看  [query_by_page.man 分页查询 ]
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`清除 Clear`=
+<p align="right">[#Top]</p>
+
 ==`清除所有记录`==
+<p align="right">[#Top]</p>
+
 {{{
 dao.clear(Person.class);
 }}}
 
-
-
-[#Top]
 ==`按条件清除`==
+<p align="right">[#Top]</p>
+
 {{{
 dao.clear(Person.class,Cnd.where("id", ">", 35));
 }}}
 
         * 关于更多的清除条件的说明，请参看  [dao_condition 复杂条件 ]
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`插入和更新集合`=
+<p align="right">[#Top]</p>
+
 无论是插入 (Insert) 还是更新 (Update)，你传入的对象都可以不仅仅是一个 POJO，你可以传入：  
 
       * `集合 ( Collection<?> ) `
@@ -170,6 +159,3 @@ dao.clear(Person.class,Cnd.where("id", ">", 35));
       * `数组 ( T[] ) `
 Nutz.Dao 会自动替你拆包，对集合成员依次执行相应操作  
 
-
-
-[#Top]

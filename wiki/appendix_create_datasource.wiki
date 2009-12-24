@@ -5,7 +5,11 @@
 <wiki:toc max_depth="2"/>
 ----
 =`Apache DBCP`=
+<p align="right">[#Top]</p>
+
 ==`直接书写 Java 代码`==
+<p align="right">[#Top]</p>
+
 {{{
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -19,10 +23,9 @@ ds.setPassword("123456");
 ...
 }}}
 
-
-
-[#Top]
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	dataSource : {
@@ -38,14 +41,12 @@ ds.setPassword("123456");
 }}}
 
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`C3P0`=
+<p align="right">[#Top]</p>
+
 ==`直接书写 Java 代码`==
+<p align="right">[#Top]</p>
+
 {{{
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -59,10 +60,9 @@ ds.setPassword("123456");
 ...
 }}}
 
-
-
-[#Top]
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	dataSource : {
@@ -78,14 +78,12 @@ ds.setPassword("123456");
 }}}
 
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`Proxool`=
+<p align="right">[#Top]</p>
+
 ==`直接书写 Java 代码`==
+<p align="right">[#Top]</p>
+
 {{{
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
@@ -99,10 +97,9 @@ ds.setPassword("123456");
 ...
 }}}
 
-
-
-[#Top]
 ==`通过 Nutz.Ioc 的 JSON 配置文件`==
+<p align="right">[#Top]</p>
+
 {{{
 {
 	dataSource : {
@@ -117,9 +114,3 @@ ds.setPassword("123456");
 }
 }}}
 
-
-
-[#Top]
-
-
-[#Top]

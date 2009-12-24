@@ -4,6 +4,8 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 =`什么是服务类，为什么需要它`=
+<p align="right">[#Top]</p>
+
 [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/dao/Dao.java Nutz.Dao 接口 ]可以针对任何 POJO 的进行操作。因为 是通用的 Dao 操作，所以多数接口函数都需要一个参数类说明 POJO 的类型，比如：  
 
 {{{
@@ -21,10 +23,9 @@ Pet pet = pets.fetch("XiaoBai");
 
 当然服务类并不是强制你使用的，只不过多数时候，采用 Nutz 提供的服务类会比较方便。你可以从 org.nutz.service.Service 继承自己的服务 类，或者你干脆重新建立自己的服务类（提供更多的数据操作方法，进行 Crud 操作）， 因为  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/service/Service.java org.nutz.service.Service ]并不复杂，所以 你是否从中继承你自己的类对你的代码影响不大。你可以参考它的源代码。  
 
-
-
-[#Top]
 =`Nutz 内置的服务类`=
+<p align="right">[#Top]</p>
+
 在包  [http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/service Service ] 中，提供了一些实现：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/hierarchy_services.png  
@@ -35,13 +36,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/hierarchy_services.png
       * 如果 POJO 仅声明了  <font color="#AA6644">*@Id *</font>，那么适合采用 IdEntityService 
       * 如果 POJO 仅声明了  <font color="#AA6644">*@Name *</font>，那么适合采用 NameEntityService 
       * 如果 POJO 即没声明了  <font color="#AA6644">*@Id *</font> 又没声明了  <font color="#AA6644">*@Name *</font>，那么适合采用 EntityService 
-
-
-[#Top]
 =`关于服务类的总结`=
+<p align="right">[#Top]</p>
+
       * 这四个内置的服务类，仅仅提供了一些基本的操作。 
       * 这些服务类都是支持泛型。 
       * 你可以直接使用，或者你可以从这四个服务类继承你自己的实现。 
-
-
-[#Top]

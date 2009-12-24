@@ -5,6 +5,8 @@
 <wiki:toc max_depth="2"/>
 ----
 =`插入之前 - @Prev`=
+<p align="right">[#Top]</p>
+
 在插入之前，你想通过一段 SQL 为你的 POJO 某一个字段设值。你可以通过 @Prev 属性  
 
 {{{
@@ -27,10 +29,9 @@ public class Pet{
               * 比如上例，将会参考对象自身的 name  字段的值 
       * @SQL 更详细的语法规范请参看  [dao_customized_sql 自定义 SQL ]
 ----
-
-
-[#Top]
 =`插入之后 - @Next`=
+<p align="right">[#Top]</p>
+
 在插入之后，你想通过一段 SQL 为你的 POJO 某一个字段设值。你可以通过 @Next 属性  
 
 {{{
@@ -46,10 +47,9 @@ public class Pet{
 如上例，执行插入后，你的 Pet 对象的 id 会被数据库中新的值更新。  
 
 ----
-
-
-[#Top]
 =`数据库方言`=
+<p align="right">[#Top]</p>
+
 无论是 @Prev 还是 @Next，你都是通过 @SQL 声明的数据库方言。但是，假设你并不确定你的 POJO 将会工作在哪一个数据 库上，比如你的项目有两个数据源，一个是 Oracle 一个是 Postgresql，那么你的 POJO 改如何写方言呢？  
 
 {{{
@@ -74,6 +74,3 @@ public enum DB {
 }
 }}}
 
-
-
-[#Top]

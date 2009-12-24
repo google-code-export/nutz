@@ -5,13 +5,14 @@
 <wiki:toc max_depth="2"/>
 ----
 =`什么是视图？`=
+<p align="right">[#Top]</p>
+
 视图就是一种渲染 HTTP 输出流的一种方式。 Nutz.Mvc 提供了 org.nutz.mvc.View 接口，隔离了这个行为。  
 
 ----
-
-
-[#Top]
 =`怎样使用视图？`=
+<p align="right">[#Top]</p>
+
 执行一个业务逻辑可能有两种结果  
 
       # 成功 
@@ -33,14 +34,15 @@
 通过  *org.nutz.mvc.view.DefaultViewMaker *， Nutz.Mvc 提供了一些默认视图 ...  
 
 ----
-
-
-[#Top]
 =`内置的视图`=
+<p align="right">[#Top]</p>
+
 默认的， @Ok 和 @Fail 注解可以支持如下视图类型：  
 
 ----
 ==`JSP 视图`==
+<p align="right">[#Top]</p>
+
 视图的实现类为：  *org.nutz.mvc.view.NamePathJspView *  
 
 一般的使用形式：  
@@ -72,10 +74,9 @@
         * `通过 ${obj.xxx} 输出要渲染对象的某个属性值 `
         * 你需要知道，JSP 视图，会将要渲染的对象存入 request 对象的一个属性里，属性名为 "obj" 
 ----
-
-
-[#Top]
 ==`JSON 视图`==
+<p align="right">[#Top]</p>
+
 视图的实现类为：  *org.nutz.mvc.view.UTF8JsonView *  
 
 一般的使用形式：  
@@ -95,10 +96,9 @@
 视图的值就是：  *`"{quoteName:true, ignoreNull:true}" `*，这个字符串会被转换成 JsonFormat 对象。 如果你想了解更多的 Json 转换的介绍哦，请参看  [json_overview.man Json 手册 ]  
 
 ----
-
-
-[#Top]
 ==`重定向视图`==
+<p align="right">[#Top]</p>
+
 视图的实现类为：  *org.nutz.mvc.view.ServerRedirectView *  
 
 一般的使用形式：  
@@ -127,6 +127,8 @@
 下面举几个例子：  
 
 ===`用返回对象的字段填充：`===
+<p align="right">[#Top]</p>
+
 {{{
 @Ok("redirect:/pet/detail.nut?pid=${obj.id}")
 入口函数返回： Pet 对象
@@ -135,10 +137,9 @@
 
   
 
-
-
-[#Top]
 ===`用 HTTP 参数填充`===
+<p align="right">[#Top]</p>
+
 {{{
 @Ok("redirect:/pet/detail.nut?pid=${id}")
 从 HTTP 参数表取 "id"，填充
@@ -147,13 +148,9 @@
 }}}
 
 ----
-
-
-[#Top]
-
-
-[#Top]
 ==`HTTP 返回码视图`==
+<p align="right">[#Top]</p>
+
 视图的实现类为：  *org.nutz.mvc.view.HttpStatusView *  
 
 使用形式  
@@ -165,10 +162,9 @@
 返回 HTTP 404 错误码  
 
 ----
-
-
-[#Top]
 ==`空白视图`==
+<p align="right">[#Top]</p>
+
 视图的实现类为：  *org.nutz.mvc.view.VoidView *  
 
 使用形式  
@@ -180,10 +176,9 @@
 对 HTTP 输出流不做任何处理  
 
 ----
-
-
-[#Top]
 ==`从 Ioc 容器中获取的视图`==
+<p align="right">[#Top]</p>
+
 使用形式  
 
 使用形式  
@@ -195,13 +190,9 @@
 将从 Ioc 容器中获取 myView 对象。 它必须是一个 View，否则会发生转型错误。 通过这种形式，可以支持你可以在 Ioc 容器中定义自己的视图对象。  
 
 ----
-
-
-[#Top]
-
-
-[#Top]
 =`定制自己的视图`=
+<p align="right">[#Top]</p>
+
 通过 @Ok("xxx:xxxx") 这种形式声明的视图非常简洁，易于理解。某些时候，你可能觉得 Nutz.Mvc 支持的视图 类型不够，你喜欢其他的视图模板引擎，比如  [http://freemarker.org/ FreeMarker ]。因此你希望你的 @Ok 能 写成这样：  
 
 {{{
@@ -218,6 +209,8 @@
 
 ----
 ==`实现自己的视图`==
+<p align="right">[#Top]</p>
+
 实现 org.nutz.mvc.View 接口，比如：  
 
 {{{
@@ -231,10 +224,9 @@ public class PdfView implements View{
 实现 Render 函数即可，第三个参数就是你的入口函数的返回  
 
 ----
-
-
-[#Top]
 ==`实现自己的视图工厂`==
+<p align="right">[#Top]</p>
+
 实现 org.nutz.mvc.ViewMaker 接口，比如：  
 
 {{{
@@ -251,17 +243,10 @@ public class PdfViewMaker implements ViewMaker{
 函数 make 如果返回 null，则表示你的这个视图工厂不知道如何构建这种视图。 Nutz.Mvc 会看看其他的工厂 能不能创建这个视图。如果所有的工厂都不能创建这个视图，则会导致异常。  
 
 ----
-
-
-[#Top]
 ==`将视图工厂整合进应用中`==
+<p align="right">[#Top]</p>
+
 在主模块上，通过注解 @Views 将你的工厂声明进整个应用即可。  
 
         * 你可以声明多个 ViewMaker 
         * 所有的视图工厂，必须有一个 public 的默认构造函数。 
-
-
-[#Top]
-
-
-[#Top]
