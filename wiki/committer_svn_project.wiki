@@ -4,15 +4,15 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-=`准备目录`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`准备目录`=
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/01.png  
 
 ----
-=`使用 SVN 工具`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`使用 SVN 工具`=
       * Windows 用户： 这里用的是  [http://tortoisesvn.net 龟版 SVN ]
       * Linux 用户： 你肯定用不到我废话了 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/02.png  
@@ -20,28 +20,28 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/02.png
 连接 http://nutz.googlecode.com/svn  
 
 ----
+
+<p align="right">[#Top]</p>
 =`Check out`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
 ==`连接`==
-<p align="right">[#Top]</p>
-
 SVN 的 http 连接比较慢，需要等待几十秒至1分钟。连接上后，选择 trunk 目录，并 checkout  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/03.png  
 
-==`选择本地目录`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`选择本地目录`==
 选择 Checkout 的目标地址，点确定  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/04.png  
 
 这个例子，我们的目标地址就是 D:\nutz\svn\trunk  
 
-==`检出`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`检出`==
 点击  OK 后，会开始下载 Nutz 全部的文件  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/05.png  
@@ -52,15 +52,15 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/05_2.png
 
 下载之后，你的目录结构应该是：  
 
-==`查看结果`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`查看结果`==
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/05_3.png  
 
 ----
-=`准备依赖的 jar 包`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`准备依赖的 jar 包`=
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/06.png  
 
 Nutz 不是不依赖其他 jar 吗？ 是的，但是在编译时它依赖 Log4j。在运行时如果 Log4j 的 jar 不存在，它会采用 java.util.logging 详情请参看  [committer_.._lang_log Nutz 的日志模块 ]  
@@ -72,9 +72,9 @@ Nutz.Dao 的测试时在 Mysql/Psql/Oracle/SqlServer2000/SqlServer2005 这几个
 我们，先把 jar 文件在 D:/nutz/deps 里面放好，后面会用得到  
 
 ----
-=`准备Eclipse工作区`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`准备Eclipse工作区`=
 打开 Eclipse, 工作区路径为 D:/nutz/workspace  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/07.png  
@@ -86,9 +86,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/08.png
 当然，你要在你已经存在的工作区里进行下面的操作也可以。  
 
 ----
-=`建立 Tomcat 运行环境`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`建立 Tomcat 运行环境`=
 增加 Tomcat 服务器 (你必选先装了 Tomcat)  
 
 这里主要是为了编译，而需要 tomcat 带的 Servlet 相关的类选择  *`Window > Preferences > Server > Runtime Environment > Add `* 在弹出的对话框选择  *`Apache > Apache Tomcat v6.0 `* （ _因为我装的就是 Tomcat6.0 _） 点击 next ，填写 Tomcat 的安装路径  
@@ -98,9 +98,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/09.png
 然后点击 finish ， OK 之类的，确认所有的对话框  
 
 ----
-=`建立 Java 项目`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`建立 Java 项目`=
 `选择 File > New，在弹出的对话框中选择 建立普通的 Java 项目（Java Project），并点 Next  `
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/10.png  
@@ -113,9 +113,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/10_2.png
 请确保你的项目，文本的编码是 UTF-8 格式的。因为我大部分源代码的注释用的是中文，而且 doc 目录下的文本文件用的都是 UTF-8 编码  
 
 ----
-=`链接源文件`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`链接源文件`=
 新建立的项目包括一个默认的 src 文件夹，以及默认的 JRE System Library，选中 src，按 delete 键删除，我们不需要它  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/11.png  
@@ -139,9 +139,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/14.png
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/14_2.png  
 
 ----
-=`配置 Build Path`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`配置 Build Path`=
 下面配置项目的 build path  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/15.png  
@@ -159,17 +159,17 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/16_2.png
 过滤的表达式是：   <font color="#0000AA">*` **/.svn/**  `*</font>  
 
 ----
-=`检查一下`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`检查一下`=
 最后，检查一下，设置完毕后，是不是这个样子，注意下图红圈部分：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/17.png  
 
 ----
-=`设置 jar 包的依赖关系`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`设置 jar 包的依赖关系`=
 最后，让我们设置依赖关系包，增加依赖的 Jar 包  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/18.png  
@@ -185,9 +185,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/18_2.png
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/18_3.png  
 
 ----
-=`完成`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`完成`=
 至此，你的项目全部都建立起来了，并且在 Eclipse 应该都会被自动编译通过  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/19.png  

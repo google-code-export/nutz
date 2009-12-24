@@ -4,9 +4,9 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-=`什么是过滤器?`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`什么是过滤器?`=
 请你再一次回顾这张图：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png  
@@ -14,9 +14,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png
 一个 HTTP 请求，过滤器是第一组被执行的对象。同适配器不同的是，一个请求中，可以执行多个过滤器。  
 
 ----
-=`如何使用过滤器？`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`如何使用过滤器？`=
 通过 @Filters 注解。  
 
 注解 '@Filters' 的值是一个 '@By' 注解的数组，它可以声明在这三个地方  
@@ -46,9 +46,9 @@ public String myFunction(){
 
 那么，这个入口函数将不会应用任何过滤器。  
 
-==`使用内置过滤器`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`使用内置过滤器`==
 {{{
 @Filters(@By(type=CheckSession.class, args={"user", "/login.jsp"}))
 }}}
@@ -58,9 +58,9 @@ CheckSession 是 Nutz.Mvc 为你内置的一个唯一的过滤去，它的构造
         * 检查 session 的什么属性？ 
         * 如果不存在，重定向到哪里？ 
 ----
-=`定制你自己的过滤器`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`定制你自己的过滤器`=
 你当然可以定制你自己的过滤器，请注意过滤器接口代码：  
 
 {{{

@@ -4,9 +4,9 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="1"/>
 ----
-=`搭建 Eclipse 编译环境`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`搭建 Eclipse 编译环境`=
 如果你对于 Eclipse 以及 SVN 不是特别熟悉，请参看  [committer_svn_project 从 SVN 编译 ]。如果你认为自己有足够的经验，你需要知道一下几点就 能顺利编译：  
 
       # SVN 的 check out 信息在 http://code.google.com/p/nutz/source/checkout 
@@ -21,14 +21,14 @@
 你可以参看  [committer_svn_project 从 SVN 编译 ]，这是我们推荐的项目构建和编译方式。  
 
 ----
-=`如何运行 JUnit 测试`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`如何运行 JUnit 测试`=
 那么如何运行 JUnit 测试呢？  
 
-==`1. 创建测试数据库`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`1. 创建测试数据库`==
 首先你需要建立一个测试数据库，比如，我们叫 zzhtest.  
 
 {{{
@@ -37,9 +37,9 @@ mysql:> create database zzhtest;
 
   
 
-==`2. 创建连接配置文件`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`2. 创建连接配置文件`==
 `在 Eclipse 项目里，增加一个新的 source folder ：右击项目 > New > Source Folder  `
 
         # 随便给这个 Folder 起个名字，比如  *properties *
@@ -60,9 +60,9 @@ password=123456
 
 我之所以这样做而不直接把 nutz-test.properties 文件放到 src 或者 test 下面，是因为，这个文件通常在不同的机器上时不 一样的，我家，公司，以及笔记本上的 nutz-properties 都不一样。所以，不宜将这个文件放到 svn 上。  
 
-==`3. 增加 log4j.properties`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`3. 增加 log4j.properties`==
 这步，是为了能让你在控制台上打印 Nutz 内部的运行信息：  
 
 在刚才创建的 Source Folder 下创建一个 log4j.properties 文件，正文为：  
@@ -80,31 +80,31 @@ log4j.appender.NUTZ.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
 
   
 
-==`4. 检查`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`4. 检查`==
 你的项目应该看起来是这个样子：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/21.png  
 
-==`5. 运行`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`5. 运行`==
 之后，打开 test/org/nutz/TestAll.java ，然后用 JUnit 运行  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/22.png  
 
-==`6. 查看结果`==
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+==`6. 查看结果`==
 如果上述操作没出什么岔子，那么你会看到正确的运行结果：  
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/23.png  
 
 ----
-=`最后 ...`=
-<p align="right">[#Top]</p>
 
+<p align="right">[#Top]</p>
+=`最后 ...`=
       * Nutz 是开源项目，你可以修改源代码，并运行JUnit 测试，来验证你的修改会不会导致错误 
       * 你还可以增加 JUnit 测试，来看看 Nutz 的代码品质到底如何 
       * 当然，如果你写的 JUnit 测出了 Nutz  的 bug，或者修正了Nutz代码的缺陷， 请发信到这个地址  nutzam@googlegroups.com  ,并附上你的代码。 
