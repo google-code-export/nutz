@@ -3,22 +3,22 @@
 <p align="center"><font size=6>* 复杂的SQL条件 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<wiki:toc max_depth="3"/>
+<wiki:toc max_depth="2"/>
   
 
 ----
 
 <p align="right">[#Top]</p>
-==`概述`==
+=`概述`=
 
 <p align="right">[#Top]</p>
-===`什么是 Nutz.Dao 中的复杂SQL条件`===
+==`什么是 Nutz.Dao 中的复杂SQL条件`==
         * 对于 Nutz.Dao 来说，它本质上就是将你的 Java 对象转化成 SQL，然后交给 JDBC 去执行。 
         * 而 SQL 中，当执行数据删除和查询操作时，最常用的就是 WHERE 关键字。 
         * WHERE 关键字后面的就是所谓的复杂查询条件 
 
 <p align="right">[#Top]</p>
-===`Nutz.Dao 将如何如何使用这个条件`===
+==`Nutz.Dao 将如何如何使用这个条件`==
         * Dao 接口的 clear 方法和 query 方法的第二个参数，就是为了生成 WHERE 后面那段字符串设计的 
         * 这个参数是一个 org.nutz.dao.Condition 接口的实现类 
         * 通过该接口的 toString(org.nutz.dao.entity.Entity) 方法， Nutz.Dao 将获得 WHERE 后面那段字符串 
@@ -26,7 +26,7 @@
 ----
 
 <p align="right">[#Top]</p>
-==`Condition 接口`==
+=`Condition 接口`=
       * 这个接口只有一个方法 toString() 
           * 这个方法带一个参数 org.nutz.dao.entity.Entity 
           * 通过这个参数，实现者可以获得当前需要操作的实体的配置信息 
@@ -37,12 +37,12 @@
 ----
 
 <p align="right">[#Top]</p>
-==`Nutz 给你的快速实现`==
+=`Nutz 给你的快速实现`=
       * 如果你的数据库字段被假设不会发生变化，用直接硬编码是个很好的选择 
       * 如果在开发期，你的数据库字段变化非常频繁，用 Cnd 工具类则是更好的选择 
 
 <p align="right">[#Top]</p>
-===`直接硬编码`===
+==`直接硬编码`==
 最简单直接的方法就是直接输出 WHERE 关键字后面的 SQL 代码了。比如查询一个 Person 对象  
 
 {{{
@@ -65,7 +65,7 @@ Cnd.wrap("name LIKE 'J%' AND age>20 ORDER BY name ASC");
 
 
 <p align="right">[#Top]</p>
-===`一个友好一些的工具类 -- Cnd`===
+==`一个友好一些的工具类 -- Cnd`==
 有些情况，数据库中的字段同 Java 对象中的字段并不同名，所以就需要给 Java 字段上的数据库字段注解加上参数 @Column( <font color="#FF00FF">"数据库字段明" </font>) 如果你通过 Cnd.wrap() 硬编码某个字段，那么当这个字段数据库字段名发生改变时，你就需要改动很多。 因此你希望仅仅将对于数据库的变动限制在 Java 对象的源文件里 所以 Nutz 提供了 Cnd.where() 方法  
 
 {{{
