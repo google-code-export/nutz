@@ -90,7 +90,7 @@ import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 ...
 
-ComboPooledDataSource ds = new ComboPooledDataSource();
+ProxoolDataSource ds = new ProxoolDataSource();
 ds.setDriver("org.postgresql.Driver");
 ds.setDriverUrl("jdbc:postgresql://localhost:5432/mydatabase");
 ds.setUser("demo");
