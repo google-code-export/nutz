@@ -60,7 +60,7 @@
    * [zdoc_index_xml 使用 index.xml 作为索引文件]
    * [zdoc_dir_convert zDoc 目录转换细则]
  * 版本历史
-   * [history_1.a.25 1.a.25 及 更早版本]
+   * [history_1_a_25 1.a.25 及 更早版本]
  * 附录
    * [appendix_create_datasource 如何创建 DataSource]
    * [appendix_resources 推荐文章]
