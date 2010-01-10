@@ -56,18 +56,26 @@ myModule : {
         * 请注意  <font color="#FF0000">* scope : 'request' *</font> 以及 fields 里 request 字段的属性  <font color="#FF0000">* refer: '$request' *</font>
         * scope 指明了这个对象存在的上下文环境，如果你不指明，默认是 ' *app *' 
             * 更多关于 scope，请参看  
-关键就是这个  <font color="#FF0000">* refer: '$request' *</font>，很抱歉，你得自己设置它的值  
+关键就是这个  <font color="#FF0000">* refer: '$request' *</font>，很抱歉，你得自己设置它的值。怎样设置呢？ 通过 web.xml 的 HttpFilter  
 
 
 <p align="right">[#Top]</p>
 ==`添加 HttpFilter`==
-web.xml 增加一个 HttpFilter，然后每次请求的时候都  
+增加一个 HttpFilter  
 
 {{{
-req.setAttribute("$request", req);
+public class MyFilter implements Filter {
+	public void destroy() {}
+	public void init(FilterConfig arg0) throws ServletException {}
+	
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+		throws IOException, ServletException {
+		req.setAttribute("$request", req);
+	}
+}
 }}}
 
-  
+ 将它配置在 web.xml 里，具体怎么配置我想就不用我废话了吧  
 
 
 <p align="right">[#Top]</p>
