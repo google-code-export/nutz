@@ -41,6 +41,7 @@
    * [mvc_localization 本地化字符串]
    * [mvc_action_filter 过滤器]
    * [mvc_file_upload 文件上传]
+   * [mvc_module_of_request ]
  * Json 手册
    * [json_hello Nutz.Json 简要说明]
    * [json_formater 控制输出的格式]

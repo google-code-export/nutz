@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* Nutz 的版本命名规范 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
 
 <p align="right">[#Top]</p>
 =`Nutz 每个版本 jar 包的命名遵照如下格式`=
@@ -31,3 +31,22 @@ nutz[.模块名]-主版本号.质量级别.[发布序号].jar
       * 1.a.20 比较新，因为它的发布序号更新 
       * 1.b.18 更稳定，它可以兼容之前所有的 beta 版本 
       * 1.b.19 之后的 beta 版本，将兼容到 1.b.18 （不包括），因为期间的 alpha 版将兼容序列破坏了 
+每月快照版的命名规则  
+
+{{{
+nutz-主版本号.质量级别.[发布序号]-snapshot-r[SVN仓库版本]-[日期]-[编译等级].jar
+}}}
+
+    # [发布序号 主版本号.质量级别. ] 仅代表可能的下一版本的信息. 
+    # *SVN仓库版本 * : 对应的SVN仓库特定的版本 
+    # *日期 * : 编译日期 
+    # *编译等级 * : jdk1.5 或者 jdk1.6 
+每月快照版的发布规则  
+
+    # 每月1/15前后发布,必须通过全部测试用例 
+    # 发布格式为zip文件,含jdk1.5和jdk1.6的jar及source 
+    # 发布文件的命名方法: nutz-主版本号.质量级别. [发布序号 发布序号 ]-snapshot-r [SVN仓库版本 SVN仓库版本 ]- [日期 日期 ].zip 
+对于每月快照版的提示  
+
+    # 不应使用于生产环境 
+    # 任何快照版之间,任何标准版与快照版之间,不做任何兼容性方面的保证 

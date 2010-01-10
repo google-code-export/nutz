@@ -15,6 +15,7 @@
 <p align="right">[#Top]</p>
 =`关于 Dao`=
       * 《 [http://amosleaf.javaeye.com/blog/548337 Nutz的 数据库事务 ]》 @ [http://amosleaf.javaeye.com amosleaf ]
+      * 《 [http://amosleaf.javaeye.com/blog/562141 Nutz的 使用注解做ORM ]》 @ [http://amosleaf.javaeye.com amosleaf ]
 ----
 
 <p align="right">[#Top]</p>
