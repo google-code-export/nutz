@@ -1,11 +1,9 @@
-#summary 
+#summary 请求范围的模块
 =Top=
-<p align="center"><font size=6>*  *</font></p>
+<p align="center"><font size=6>* 请求范围的模块 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
-﻿#title:请求范围的模块  
-
 ----
 
 <p align="right">[#Top]</p>
