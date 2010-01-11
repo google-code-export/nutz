@@ -102,9 +102,7 @@ public class Function {
 ----
 
 <p align="right">[#Top]</p>
-=`调用以及输出`=
-上面的例子，如果我们这么调用：  
-
+=`调用代码`=
 {{{
 Button btn = new Button();
 Function func = new Function("alert('I am button');");
@@ -115,8 +113,10 @@ btn.setHandler(func);
 System.out.println(Json.toJson(btn));
 }}}
 
- 那么控制台会输出：  
+----
 
+<p align="right">[#Top]</p>
+=`控制台输出：`=
 {{{
 {
 text :"Click me!",
@@ -124,5 +124,6 @@ handler :function(){alert('I am button');}
 }
 }}}
 
- 只要你高兴，通过 @ToJson 注解，你可以随意控制对象的输出内容。  
+----
+只要你高兴，通过 @ToJson 注解，你可以随意控制对象的输出内容。  
 
