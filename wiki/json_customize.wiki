@@ -116,7 +116,7 @@ System.out.println(Json.toJson(btn));
 ----
 
 <p align="right">[#Top]</p>
-=`控制台输出：`=
+=`控制台输出`=
 {{{
 {
 text :"Click me!",
