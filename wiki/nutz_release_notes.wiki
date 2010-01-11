@@ -12,9 +12,9 @@
 <p align="right">[#Top]</p>
 =`问题修复`=
       * Issue 100: MVC手册在jsp视图处描述有误  <font color="#AAAAAA">by </font>  *ToFishes *
-      * Isseu 102: 在update时，如果http参数有Date类型为null，会出错    <font color="#AAAAAA">by </font>  *会跑的蜗牛 *
-      * Isseu 103: 移除JsonIocLoader中对$import,$vars的支持    <font color="#AAAAAA">by </font>  *Wendal *
-      * Isseu 104: 当server启动后,死一次访问界面无法显示国际化的message    <font color="#AAAAAA">by </font>  *Bird.Wyatt *
+      * Issue 102: 在update时，如果http参数有Date类型为null，会出错    <font color="#AAAAAA">by </font>  *会跑的蜗牛 *
+      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持    <font color="#AAAAAA">by </font>  *Wendal *
+      * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message    <font color="#AAAAAA">by </font>  *Bird.Wyatt *
 ----
 
 <p align="right">[#Top]</p>
@@ -71,4 +71,3 @@
 <p align="right">[#Top]</p>
 =`下一版目标`=
 ...  
-
