@@ -8,18 +8,17 @@
 相对于  [../history/1_a_25.man 1.a.25 ] 来说， <font color="#FF0000">*这是个小幅改进版本 *</font>，使用方式没有太大的变化  
 
 ----
+问题修复  
 
-<p align="right">[#Top]</p>
-=`问题修复`=
-      * Issue 100: MVC手册在jsp视图处描述有误  <font color="#AAAAAA">by </font>  *ToFishes *
-      * Issue 102: 在update时，如果http参数有Date类型为null，会出错    <font color="#AAAAAA">by </font>  *会跑的蜗牛 *
-      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持    <font color="#AAAAAA">by </font>  *Wendal *
-      * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message    <font color="#AAAAAA">by </font>  *Bird.Wyatt *
+    * Issue 95 : Ioc - 没有检测循环依赖,且不支持多次继承 
+        * Issue 100: MVC手册在jsp视图处描述有误  <font color="#AAAAAA">by </font>  *ToFishes *
+        * Issue 102: 在update时，如果http参数有Date类型为null，会出错    <font color="#AAAAAA">by </font>  *会跑的蜗牛 *
+        * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message    <font color="#AAAAAA">by </font>  *Bird.Wyatt *
 ----
 
 <p align="right">[#Top]</p>
 =`质量`=
-      # 共通过了  <font color="#FF00FF">*399 *</font> 个单元测试用例 
+      # 共通过了  <font color="#FF00FF">*401 *</font> 个单元测试用例 
       # Nutz.Dao 经测试在如下数据库上可以工作正常 
           * H2 
           * MySql 
@@ -32,6 +31,8 @@
 <p align="right">[#Top]</p>
 =`改进`=
       # 小幅修正了一些 Bug 和文档错误 
+      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持    <font color="#AAAAAA">by </font>  *Wendal *
+      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject 
 ----
 
 <p align="right">[#Top]</p>
@@ -71,3 +72,4 @@
 <p align="right">[#Top]</p>
 =`下一版目标`=
 ...  
+
