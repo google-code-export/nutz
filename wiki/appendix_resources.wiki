@@ -21,6 +21,7 @@
 <p align="right">[#Top]</p>
 =`关于 Mvc`=
       * 《 [http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @ [http://axhack.javaeye.com axhack ]
+      * 《 [http://www.3km.com.cn/?p=96 借于Nutz快速实现对表的增删改操作 ]》 @ [http://www.3km.com.cn 会跑的蜗牛 ]
 ----
 
 <p align="right">[#Top]</p>
