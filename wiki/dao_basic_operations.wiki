@@ -127,7 +127,7 @@ List<Person>people = dao.query(Person.class, null, dao.createPager(1, 4));
 }}}
 
         * dao.createPager 第一个参数是第几页，第二参数是一页有多少条记录 
-        * 关于分页更多的说明，请参看  [query_by_page.man 分页查询 ]
+        * 关于分页更多的说明，请参看  [dao_pager 分页查询 ]
 ----
 
 <p align="right">[#Top]</p>
