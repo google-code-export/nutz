@@ -8,14 +8,14 @@
 
 <p align="right">[#Top]</p>
 =`从哪里注入？`=
-你可以向对象注入值的位置有两个  
+你可以向对象注入值的位置有两个
 
-      # 构造函数参数 
-      # 属性 
+      # 构造函数参数
+      # 属性
 
 <p align="right">[#Top]</p>
 ==`向构造函数里注入参数`==
-你的 JSON 配置文件会是这样  
+你的 JSON 配置文件会是这样
 
 {{{
 {
@@ -26,12 +26,12 @@ xb : {
 }
 }}}
 
-args 的值时一个数组，里面每一个元素都将对应构造函数的一个参数。当然，你 必须确保你得有这样的构造函数。每个参数按照 JSON 的规定，是用半角逗号分隔的。  
+args 的值时一个数组，里面每一个元素都将对应构造函数的一个参数。当然，你 必须确保你得有这样的构造函数。每个参数按照 JSON 的规定，是用半角逗号分隔的。
 
 
 <p align="right">[#Top]</p>
 ==`向属性注入参数`==
-你的 JSON 配置文件会是这样  
+你的 JSON 配置文件会是这样
 
 {{{
 {
@@ -44,7 +44,7 @@ xb : {
 }
 }}}
 
-如果你不需要写 type，那么你可以用简写模式:  
+如果你不需要写 type，那么你可以用简写模式:
 
 {{{
 {
@@ -56,7 +56,7 @@ xb : { name: 'XiaoBai'	}
 
 <p align="right">[#Top]</p>
 =`值可以不仅是字符串`=
-是的，它还可以是  
+是的，它还可以是
 
 
 <p align="right">[#Top]</p>
@@ -67,7 +67,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
@@ -78,7 +78,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
@@ -92,7 +92,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-关于内部对象  [ioc_inner_object 请看这里 ]  
+关于内部对象[ioc_inner_object 请看这里 ]
 
 
 <p align="right">[#Top]</p>
@@ -114,7 +114,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-一种特殊的引用，大小写不敏感，值就是 Ioc 容器本身  
+一种特殊的引用，大小写不敏感，值就是 Ioc 容器本身
 
 
 <p align="right">[#Top]</p>
@@ -125,7 +125,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-一种特殊的引用，大小写不敏感，值就是对象的名称，即 "xb"  
+一种特殊的引用，大小写不敏感，值就是对象的名称，即 "xb"
 
 
 <p align="right">[#Top]</p>
@@ -136,7 +136,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-一种特殊的引用，大小写不敏感，值就是当前容器的上下文环境接口 org.nutz.ioc.IocContext  
+一种特殊的引用，大小写不敏感，值就是当前容器的上下文环境接口 org.nutz.ioc.IocContext
 
 
 <p align="right">[#Top]</p>
@@ -163,17 +163,17 @@ xb : { name: 'XiaoBai'	}
 
 <p align="right">[#Top]</p>
 ==`数组或容器`==
-如果你对象某个字段是数组，集合，或者 Map， 用 JSON 可以很自然为其设置值，不是吗？  
+如果你对象某个字段是数组，集合，或者 Map， 用 JSON 可以很自然为其设置值，不是吗？
 
 ----
 
 <p align="right">[#Top]</p>
 ==`Java 调用`==
-这是个极度灵活的注入方式，它几乎可以让你  *做任何事情 *。 因为它允许你直接调用一个 JAVA 函数。  
+这是个极度灵活的注入方式，它几乎可以让你*做任何事情 *。 因为它允许你直接调用一个 JAVA 函数。
 
-更详细的说明，请参看  [http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/ioc/val/JavaValue.java org.nutz.ioc.val.JavaValue ] 的 JDoc  
+更详细的说明，请参看[http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/ioc/val/JavaValue.java org.nutz.ioc.val.JavaValue ]的 JDoc
 
-下面只是列出主要的几种应用方式  
+下面只是列出主要的几种应用方式
 
 
 <p align="right">[#Top]</p>
@@ -202,7 +202,7 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-参数可以是任何种类的值  
+参数可以是任何种类的值
 
 
 <p align="right">[#Top]</p>
@@ -244,32 +244,32 @@ xb : { name: 'XiaoBai'	}
 }
 }}}
 
-参数可以是任何种类的值  
+参数可以是任何种类的值
 
 ----
 
 <p align="right">[#Top]</p>
 =`你可以增加自己的特殊类型`=
-从上面你可以看到 JSON 语法的好处，非常轻巧  
+从上面你可以看到 JSON 语法的好处，非常轻巧
 
       * `文件  -- {file: '路径'} `
       * `环境变量  -- {env: '环境变量名'} `
       * `引用  -- {refer: '对象名'} `
       * `JAVA   -- {java: '$对象名.方法名(参数1, 参数2)'} `
-还可以更多吗？  
+还可以更多吗？
 
-是的，你完全可以扩展，比如你如果想支持一种新的类型：  
+是的，你完全可以扩展，比如你如果想支持一种新的类型：
 
 {{{
 oneField : {scan : '扫描仪地址'}
 }}}
 
-如何支持这种新的值的类型呢？  
+如何支持这种新的值的类型呢？
 
 
 <p align="right">[#Top]</p>
 ==`实现一个扩展接口`==
-实现  org.nutz.ioc.ValueProxyMaker 接口：  
+实现  org.nutz.ioc.ValueProxyMaker 接口：
 
 {{{
 package nutz.demo.ioc.book;
@@ -311,5 +311,5 @@ ioc.addValueProxyMaker(new ScanValueProxyMaker());
 // 下面，你就可以正常使用 Ioc 接口了
 }}}
 
-<font color="#FF0000">*注意 *</font>，这里使用的是 Ioc2 接口，它继承自 Ioc 接口，提供了更高级的方法  
+<font color="#FF0000">*注意 *</font>，这里使用的是 Ioc2 接口，它继承自 Ioc 接口，提供了更高级的方法
 

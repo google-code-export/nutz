@@ -8,9 +8,9 @@
 
 <p align="right">[#Top]</p>
 =`动机`=
-Json 天然的同 Javascript 融为一体，做 WEB 应用，服务器同浏览器的通信，通过 JSON 是最方便高效的选择。 同时，有一个事实： *服务器比浏览器聪明 *， 因为我们可以在服务器写更复杂的逻辑。  
+Json 天然的同 Javascript 融为一体，做 WEB 应用，服务器同浏览器的通信，通过 JSON 是最方便高效的选择。 同时，有一个事实：*服务器比浏览器聪明 *， 因为我们可以在服务器写更复杂的逻辑。
 
-这里有一个需求，程序员希望自己的 JSON 返回是这个样子的：  
+这里有一个需求，程序员希望自己的 JSON 返回是这个样子的：
 
 {{{
 {
@@ -21,9 +21,9 @@ Json 天然的同 Javascript 融为一体，做 WEB 应用，服务器同浏览�
 }
 }}}
 
-这样的返回不符合 JSON 的语法，但是它符合 JavaScript 的语法。 默认的，Nutz.Json 并不支持这样的输出。 但是它的确为类似这样的要求做了考虑:  
+这样的返回不符合 JSON 的语法，但是它符合 JavaScript 的语法。 默认的，Nutz.Json 并不支持这样的输出。 但是它的确为类似这样的要求做了考虑:
 
-简单的说，就是通过 @ToJson 注解，你可以控制你的对象在 JSON 字符串中的表现形式  
+简单的说，就是通过 @ToJson 注解，你可以控制你的对象在 JSON 字符串中的表现形式
 
 ----
 
@@ -56,7 +56,7 @@ public class Button {
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
@@ -87,18 +87,18 @@ public class Function {
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
 ==`一点说明`==
-上面的例子，我想你已经能基本明白了，这里再着重做几点说明：  
+上面的例子，我想你已经能基本明白了，这里再着重做几点说明：
 
-        * 将 Function 对象序列化成 JSON 字符串时，会调用 toJson 函数 
-            * 这个函数必须有一个参数，类型为 JsonFormat 
-        * @ToJson 注解默认值为 "toJson" 
-            * 即，如果你不喜欢 "toJson" 这个名字，你可以在你的 POJO 中 @ToJson("任何你喜欢的名字") 
-            * 你的函数也必须有一个参数，类型为 JsonFormat 
+        * 将 Function 对象序列化成 JSON 字符串时，会调用 toJson 函数
+            * 这个函数必须有一个参数，类型为 JsonFormat
+        * @ToJson 注解默认值为 "toJson"
+            * 即，如果你不喜欢 "toJson" 这个名字，你可以在你的 POJO 中 @ToJson("任何你喜欢的名字")
+            * 你的函数也必须有一个参数，类型为 JsonFormat
 ----
 
 <p align="right">[#Top]</p>
@@ -125,5 +125,5 @@ handler :function(){alert('I am button');}
 }}}
 
 ----
-只要你高兴，通过 @ToJson 注解，你可以随意控制对象的输出内容。  
+只要你高兴，通过 @ToJson 注解，你可以随意控制对象的输出内容。
 

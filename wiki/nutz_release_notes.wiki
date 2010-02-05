@@ -5,71 +5,71 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-相对于  [../history/1_a_25.man 1.a.25 ] 来说， <font color="#FF0000">*这是个小幅改进版本 *</font>，使用方式没有太大的变化  
+相对于[../history/1_a_25.man 1.a.25 ]来说，<font color="#FF0000">*这是个小幅改进版本 *</font>，使用方式没有太大的变化
 
 ----
-问题修复  
+问题修复
 
-    * Issue 95 : Ioc - 没有检测循环依赖,且不支持多次继承 
-        * Issue 100: MVC手册在jsp视图处描述有误  <font color="#AAAAAA">by </font>  *ToFishes *
-        * Issue 102: 在update时，如果http参数有Date类型为null，会出错    <font color="#AAAAAA">by </font>  *会跑的蜗牛 *
-        * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message    <font color="#AAAAAA">by </font>  *Bird.Wyatt *
+    * Issue 95 : Ioc - 没有检测循环依赖,且不支持多次继承
+        * Issue 100: MVC手册在jsp视图处描述有误<font color="#AAAAAA">by </font>*ToFishes *
+        * Issue 102: 在update时，如果http参数有Date类型为null，会出错<font color="#AAAAAA">by </font>*会跑的蜗牛 *
+        * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message<font color="#AAAAAA">by </font>*Bird.Wyatt *
 ----
 
 <p align="right">[#Top]</p>
 =`质量`=
-      # 共通过了  <font color="#FF00FF">*401 *</font> 个单元测试用例 
-      # Nutz.Dao 经测试在如下数据库上可以工作正常 
-          * H2 
-          * MySql 
-          * Oracle 
-          * Postgresql 
-          * SqlServer2005 
-          * SqlServer2000 
+      # 共通过了<font color="#FF00FF">*401 *</font>个单元测试用例
+      # Nutz.Dao 经测试在如下数据库上可以工作正常
+          * H2
+          * MySql
+          * Oracle
+          * Postgresql
+          * SqlServer2005
+          * SqlServer2000
 ----
 
 <p align="right">[#Top]</p>
 =`改进`=
-      # 小幅修正了一些 Bug 和文档错误 
-      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持    <font color="#AAAAAA">by </font>  *Wendal *
-      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject 
+      # 小幅修正了一些 Bug 和文档错误
+      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font>*Wendal *
+      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject
 ----
 
 <p align="right">[#Top]</p>
 =`文档`=
-      # 修改了  [../mvc/view.man Mvc 视图部分 ]
+      # 修改了[../mvc/view.man Mvc 视图部分 ]
 ----
 
 <p align="right">[#Top]</p>
 =`博客`=
-      * 《 [http://amosleaf.javaeye.com/blog/562141 Nutz的 使用注解做ORM ]》 @ [http://amosleaf.javaeye.com amosleaf ]
+      * 《[http://amosleaf.javaeye.com/blog/562141 Nutz的 使用注解做ORM ]》 @[http://amosleaf.javaeye.com amosleaf ]
 ----
 
 <p align="right">[#Top]</p>
 =`主要贡献者名单`=
-|| 贡献者 									 || 问题  || 博客  || 讨论  || 代码  || Demo  || 文档  || 测试  ||
-||  [http://amosleaf.javaeye.com amosleaf ]	 ||  X	 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://www.ai-java.com axhack ]			 ||  -	 ||  -	 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://birdwindy.javaeye.com bird.wyatt ]||  X	 ||  -	 ||  X	 ||  -	 ||  X	 ||  -	 ||  -	 ||
-||` blue_rain								 `||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://bonyfish.cn bonyfish ]			 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://xiaofeng.javaeye.com hilliate ]	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://hi.baidu.com/lifecube mastung ]	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-|| mawm										 ||  -	 ||  -	 ||  -	 ||  X	 ||  -	 ||  -	 ||  -	 ||
-|| ToFishes									 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://wendal.javaeye.com wendal ]		 ||  -	 ||  -	 ||  -	 ||  X	 ||  -	 ||  -	 ||  -	 ||
-|| wsc0918									 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-|| yuansicau								 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
-||  [http://zozoh.javaeye.com zozoh ]			 ||  -	 ||  -	 ||  X	 ||  X	 ||  -	 ||  -	 ||  -	 ||
-||  [http://www.3km.com.cn 会跑的蜗牛 ]		 ||  X	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||  -	 ||
+||贡献者||问题||博客||讨论||代码||Demo||文档||测试||
+||[http://amosleaf.javaeye.com amosleaf ]||X||X||-||-||-||-||-||
+||[http://www.ai-java.com axhack ]||-||-||X||-||-||-||-||
+||[http://birdwindy.javaeye.com bird.wyatt ]||X||-||X||-||X||-||-||
+||` blue_rain								 `||-||-||-||-||-||-||-||
+||[http://bonyfish.cn bonyfish ]||-||-||-||-||-||-||-||
+||[http://xiaofeng.javaeye.com hilliate ]||-||-||-||-||-||-||-||
+||[http://hi.baidu.com/lifecube mastung ]||-||-||-||-||-||-||-||
+||mawm||-||-||-||X||-||-||-||
+||ToFishes||X||-||-||-||-||-||-||
+||[http://wendal.javaeye.com wendal ]||-||-||-||X||-||-||-||
+||wsc0918||-||-||-||-||-||-||-||
+||yuansicau||-||-||-||-||-||-||-||
+||[http://zozoh.javaeye.com zozoh ]||-||-||X||X||-||-||-||
+||[http://www.3km.com.cn 会跑的蜗牛 ]||X||-||-||-||-||-||-||
 
-另外，非常感谢  [http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ] 以及  [https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ] 的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架  *产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。  
+另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架*产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
 
-另，由于众所周知的原因，建议大家通过 [https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ] 有时候是可以上的。但是能跳墙还是跳墙的比较好。  
+另，由于众所周知的原因，建议大家通过[https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ]有时候是可以上的。但是能跳墙还是跳墙的比较好。
 
 ----
 
 <p align="right">[#Top]</p>
 =`下一版目标`=
-...  
+...
 

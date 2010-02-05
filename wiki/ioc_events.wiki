@@ -7,17 +7,17 @@
 
 <p align="right">[#Top]</p>
 =`都有哪些事件`=
-Nutz.Ioc 容器有三种事件：  
+Nutz.Ioc 容器有三种事件：
 
-      * 对象被创建 
-      * 对象被从容器中取出 
-      * 对象被销毁 
-在这三种时刻，你如果想做一些特殊的操作，比如，当一个数据源被销毁时，你希望能够关闭所有的连接， 你可以在 JSON 配置文件中，声明一下，你想监听什么事件，以及怎么监听。  
+      * 对象被创建
+      * 对象被从容器中取出
+      * 对象被销毁
+在这三种时刻，你如果想做一些特殊的操作，比如，当一个数据源被销毁时，你希望能够关闭所有的连接， 你可以在 JSON 配置文件中，声明一下，你想监听什么事件，以及怎么监听。
 
 
 <p align="right">[#Top]</p>
 =`怎么监听`=
-我们为 Pet 对象增加一个新的属性:  
+我们为 Pet 对象增加一个新的属性:
 
 {{{
 public class Pet {
@@ -47,7 +47,7 @@ public class OnFetchPet implements IocEventTrigger<Pet> {
 }
 }}}
 
- IocEventTrigger 接口只有一个方法，当它被调用的时候，就表示某个事件发生了。 具体什么事件呢？完全看你在 JSON 配置文件中把这个触发器，声明在那种事件下面  
+IocEventTrigger 接口只有一个方法，当它被调用的时候，就表示某个事件发生了。 具体什么事件呢？完全看你在 JSON 配置文件中把这个触发器，声明在那种事件下面
 
 
 <p align="right">[#Top]</p>
@@ -65,7 +65,7 @@ var ioc = {
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
@@ -85,12 +85,12 @@ System.out.printf("%s be fetch %d times", pet.getName(), pet.getFetchCount());
 XiaoBai be fetch 3 times
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
 ==`通过对象自身的一个函数`==
-这个函数必须为  public，并且不能有参数  
+这个函数必须为  public，并且不能有参数
 
 
 <p align="right">[#Top]</p>
@@ -101,7 +101,7 @@ public void onFetch() {
 }
 }}}
 
-  
+
 
 
 <p align="right">[#Top]</p>
@@ -144,5 +144,5 @@ events : {
 }
 }}}
 
-根据需要，你可以选择上述三个事件，为其声明触发器，或者触发函数。  
+根据需要，你可以选择上述三个事件，为其声明触发器，或者触发函数。
 

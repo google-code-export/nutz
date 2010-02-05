@@ -5,24 +5,24 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-以下的列表，是 Nutz.Dao 支持的全部注解，如果你想深入了解每个注解的意义，你可以  
+以下的列表，是 Nutz.Dao 支持的全部注解，如果你想深入了解每个注解的意义，你可以
 
-    * 请参看相关的 JDoc 
-    * 直接浏览源代码:  [http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation ]
-    * 用 SVN 工具检出源代码:  [http://code.google.com/p/nutz/source/checkout code.google.com/p/nutz/source/checkout ]
-    * 下载源代码:  [http://code.google.com/p/nutz/downloads/list code.google.com/p/nutz/downloads/list ]
-||  <font color="#888888">@Column </font>	 || 字段			 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Column </font>  ||
-||  <font color="#888888">@Default </font>	 || 默认值		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Default </font>  ||
-||  <font color="#888888">@Id </font>		 || 数字主键		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Id </font>  ||
-||  <font color="#888888">@Name </font>		 || 字符主键		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Name </font>  ||
-||  <font color="#888888">@PK </font>		 || 复合主键		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.PK </font>  ||
-||  <font color="#888888">@Many </font>		 || 一对多映射	 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Many </font>  ||
-||  <font color="#888888">@ManyMany </font>	 || 多对多映射	 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.ManyMany </font>  ||
-||  <font color="#888888">@One </font>		 || 一对一映射	 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.One </font>  ||
-||  <font color="#888888">@Prev </font>		 || 自动设置		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Prev </font>  ||
-||  <font color="#888888">@Next </font>		 || 自动获取		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Next </font>  ||
-||  <font color="#888888">@Readonly </font>	 || 只读声明		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Readonly </font>  ||
-||  <font color="#888888">@SQL </font>		 || 自定义SQL	 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.SQL </font>  ||
-||  <font color="#888888">@Table </font>	 || 表名			 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.Table </font>  ||
-||  <font color="#888888">@View </font>		 || 视图名		 || @see JDoc:  <font color="#5566FF">org.nutz.dao.entity.annotation.View </font>  ||
+    * 请参看相关的 JDoc
+    * 直接浏览源代码:[http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation ]
+    * 用 SVN 工具检出源代码:[http://code.google.com/p/nutz/source/checkout code.google.com/p/nutz/source/checkout ]
+    * 下载源代码:[http://code.google.com/p/nutz/downloads/list code.google.com/p/nutz/downloads/list ]
+||<font color="#888888">@Column </font>||字段||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Column </font>||
+||<font color="#888888">@Default </font>||默认值||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Default </font>||
+||<font color="#888888">@Id </font>||数字主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Id </font>||
+||<font color="#888888">@Name </font>||字符主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Name </font>||
+||<font color="#888888">@PK </font>||复合主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.PK </font>||
+||<font color="#888888">@Many </font>||一对多映射||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Many </font>||
+||<font color="#888888">@ManyMany </font>||多对多映射||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.ManyMany </font>||
+||<font color="#888888">@One </font>||一对一映射||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.One </font>||
+||<font color="#888888">@Prev </font>||自动设置||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Prev </font>||
+||<font color="#888888">@Next </font>||自动获取||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Next </font>||
+||<font color="#888888">@Readonly </font>||只读声明||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Readonly </font>||
+||<font color="#888888">@SQL </font>||自定义SQL||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.SQL </font>||
+||<font color="#888888">@Table </font>||表名||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Table </font>||
+||<font color="#888888">@View </font>||视图名||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.View </font>||
 
