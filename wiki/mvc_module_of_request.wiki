@@ -26,13 +26,13 @@
 {{{
 @InjectName("myModule")
 public class MyModule{
+
 	private HttpServletRequest request;
 	
 	@At("/abc")
 	public String tryIt(){
 		return request.getParameter("abc");
 	}
-
 }
 }}}
 
@@ -69,7 +69,7 @@ public class MyFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {}
 	
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-		throws IOException, ServletException {
+			throws IOException, ServletException {
 		req.setAttribute("$request", req);
 	}
 }

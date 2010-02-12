@@ -48,7 +48,7 @@ Nutz Log的基本用法和常见的log4j、JDK Logger等工具没什么不同。
 {{{
 public class MyClass {
 	private static final Log log = Logs.getLog(MyClass.class);
-	
+
 	public void myFuncion() {
 		if (log.isDebugEnabled())
 			log.debug("I am debug message");
@@ -87,7 +87,7 @@ Nutz.Log 使用了[lang_plugin 插件技术 ]，其中优先级依次为：
       * 将 log4j.category.org.nutz 基本设成 DEBUG，你就能看到 Nutz 框架详细的 Log
 {{{
 log4j.category.org.nutz=DEBUG, A1
-
+ 
 log4j.appender.A1=org.apache.log4j.ConsoleAppender
 log4j.appender.A1.layout=org.apache.log4j.PatternLayout
 log4j.appender.A1.layout.ConversionPattern=%d [%t] %-5p %c - %m%n

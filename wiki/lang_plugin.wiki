@@ -97,8 +97,8 @@ public class PeterSaidPlugin implements Plugin, Said{
 
 {{{
 PluginManager<Said> plugins = new SimplePluginManager<Said>(
-	"com.you.app.PeterSaidPlugin",
-	"com.you.app.TomSaidPlugin");
+		"com.you.app.PeterSaidPlugin",
+	    "com.you.app.TomSaidPlugin");
 Said said = plugins.get();
 System.out.println(said.say());
 }}}
@@ -124,7 +124,7 @@ public class PeterSaidPlugin implements Plugin, Said {
 	private String prefix;
 	
 	private Said said;
-	
+
 	public boolean canWork() {
 		try {
 			said = (Said) (Class.forName("com.you.app.PeterSaid").newInstance());
@@ -132,7 +132,7 @@ public class PeterSaidPlugin implements Plugin, Said {
 		} catch (Exception e) {}
 		return false;
 	}
-	
+
 	public String say() {
 		return prefix + said.say();
 	}
@@ -144,9 +144,9 @@ public class PeterSaidPlugin implements Plugin, Said {
 {{{
 public class TomSaidPlugin implements Plugin, Said {
 	private String prefix;
-	
+
 	private Said said;
-	
+
 	public boolean canWork() {
 		try {
 			said = (Said) (Class.forName("com.you.app.TomSaid").newInstance());
@@ -154,7 +154,7 @@ public class TomSaidPlugin implements Plugin, Said {
 		} catch (Exception e) {}
 		return false;
 	}
-	
+
 	public String say() {
 		return prefix + said.say();
 	}

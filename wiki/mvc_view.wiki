@@ -50,10 +50,10 @@
 public View myFunction(@Param("type") type){
 	if(type==0)
 		return new ViewWrapper(new UTF8JsonView(), "It is zero!");
-		
+	
 	if(type<10)
 		return new ViewWrapper(new UTF8JsonView(), "It less than 10!");
-		
+	
 	return new ViewWrapper(new JspView("mypage.showNumber"), type);
 }
 ...
@@ -296,7 +296,7 @@ public class PdfViewMaker implements ViewMaker{
 		}
 		return null;
 	}
-}
+}	
 }}}
 
 函数 make 如果返回 null，则表示你的这个视图工厂不知道如何构建这种视图。 Nutz.Mvc 会看看其他的工厂 能不能创建这个视图。如果所有的工厂都不能创建这个视图，则会导致异常。

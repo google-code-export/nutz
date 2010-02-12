@@ -21,17 +21,17 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 {{{
 @Table("t_food")
 public class Food extends Pojo {
+
 	@ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid")
 	private List<Pet> pets;
-	
+
 	public List<Pet> getPets() {
 		return pets;
 	}
-	
+
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
 	}
-	
 
 }
 }}}
@@ -61,11 +61,11 @@ public class Food extends Pojo {
 {{{
 @Table("t_food")
 public class Food extends Pojo {
+
 	@ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid")
 	private Pet[] pets;
 	
 	// ... 省略其余代码
-
 }}}
 
 当采用 fetchLinks 获取值的时候，会自动填充此数组
@@ -79,11 +79,11 @@ public class Food extends Pojo {
 {{{
 @Table("t_food")
 public class Food extends Pojo {
+
 	@ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid", key="name")
 	private Map<String,Pet> pets;
 	
 	// ... 省略其余代码
-
 }}}
 
 其中：
@@ -101,11 +101,11 @@ public class Food extends Pojo {
 {{{
 @Table("t_food")
 public class Food extends Pojo {
+
 	@ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid")
 	private Pet pet;
 	
 	// ... 省略其余代码
-
 }}}
 
 Nutz.Dao 则会执行如下 SQL 语句：

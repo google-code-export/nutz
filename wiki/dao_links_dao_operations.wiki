@@ -168,7 +168,7 @@ dao.deleteWith(pet, "master|foods");
 同上例，不过:
 
 {{{
-dao.deleteLinks(pet, "master|foods");
+dao.deleteLinks(pet, "master|foods"); 
 }}}
 
 说明：

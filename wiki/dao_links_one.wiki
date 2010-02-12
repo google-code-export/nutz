@@ -21,13 +21,13 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_one.png
 {{{
 @Table("t_pet")
 public class Pet extends Pojo {
+
 	@Column
 	public int masterId;
 	
 	@One(target = Master.class, field = "masterId")
 	public Master master;
 	
-
 }
 }}}
 

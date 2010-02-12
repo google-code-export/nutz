@@ -65,7 +65,7 @@ public class Pet{
 	@Next({
 		@SQL(db = DB.PSQL,   "SELECT currval('t_pet_id_seq')"),
 		@SQL(db = DB.ORACLE, "SELECT t_pet_id_seq.currval FROM dual')"),
-		@SQL(db = DB.OTHER,  "SELECT MAX(id) FROM t_pet")
+		@SQL(db = DB.OTHER,  "SELECT MAX(id) FROM t_pet") 
 	})
 	private int id;
 ...

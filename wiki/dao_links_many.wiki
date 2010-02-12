@@ -21,17 +21,17 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_many.png
 {{{
 @Table("t_master")
 public class Master extends Pojo {
+
 	@Many(target = Pet.class, field = "masterId")
 	private List<Pet> pets;
-	
+
 	public List<Pet> getPets() {
 		return pets;
 	}
-	
+
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
 	}
-	
 
 }
 }}}

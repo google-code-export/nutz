@@ -48,7 +48,7 @@ final Pet pet2 = dao.fetch(Pet.class,"XiaoHei");
 
 pet1.setNickname("BaiBai");
 pet2.setNickname("HeiHei");
-// Begin transaction
+// Begin transaction		
 Trans.exec(new Atom(){
 	public void run() {
 		dao.update(pet1);

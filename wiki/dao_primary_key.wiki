@@ -129,7 +129,7 @@ Pet pet = dao.fetch(Pet.class,"xiaobai");
 public class Pet{
 	@Column
 	private int masterId
-	
+
 	@Column
 	private int petId;
 ...

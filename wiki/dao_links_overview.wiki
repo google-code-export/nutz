@@ -65,30 +65,30 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 {{{
 public class Pojo {
+
 	@Column
 	@Id
 	private int id;
-	
+
 	@Column
 	@Name
 	private String name;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
 }
 }}}
@@ -102,13 +102,13 @@ public class Pojo {
 {{{
 @Table("t_pet")
 public class Pet extends Pojo {
+
 	@Column
 	public int masterId;
-	
+
 	@One(target = Master.class, field = "masterId")
 	public Master master;
 	
-
 }
 }}}
 
@@ -124,17 +124,17 @@ public class Pet extends Pojo {
 {{{
 @Table("t_master")
 public class Master extends Pojo {
+
 	@Many(target = Pet.class, field = "masterId")
 	private List<Pet> pets;
-	
+
 	public List<Pet> getPets() {
 		return pets;
 	}
-	
+
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
 	}
-	
 
 }
 }}}
@@ -151,17 +151,17 @@ public class Master extends Pojo {
 {{{
 @Table("t_food")
 public class Food extends Pojo {
+
 	@ManyMany(target = Pet.class, relation = "t_pet_food", from = "foodid", to = "petid")
 	private List<Pet> pets;
-	
+
 	public List<Pet> getPets() {
 		return pets;
 	}
-	
+
 	public void setPets(List<Pet> pets) {
 		this.pets = pets;
 	}
-	
 
 }
 }}}

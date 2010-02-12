@@ -26,9 +26,9 @@
 
 {{{
 CREATE TABLE t_person (
-id  SERIAL PRIMARY KEY,
-name  VARCHAR(50) NOT NULL UNIQUE,
-age INT
+  id  SERIAL PRIMARY KEY,
+  name  VARCHAR(50) NOT NULL UNIQUE,
+  age INT
 );
 }}}
 
@@ -45,6 +45,7 @@ import org.nutz.dao.entity.annotation.*;
 
 @Table("t_person")   // 声明了Person对象的数据表
 public class Person {
+
 	@Column	  // 表示该对象属性可以映射到数据库里作为一个字段
 	@Id       // 表示该字段为一个自增长的Id
 	private int id;
@@ -52,34 +53,33 @@ public class Person {
 	@Column
 	@Name    // 表示该字段可以用来标识此对象，或者是字符型主键，或者是唯一性约束
 	private String name;
-	
+
 	@Column
 	private int age;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getAge() {
 		return age;
 	}
-	
+
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
 
 }
 }}}
@@ -99,7 +99,7 @@ dao.insert(p);
 }}}
 
       * 执行完毕后，在数据表中会多出一条记录。
-      * 如果你<font color="#FF0000">*不知道如何创建 Datasource *</font>，请参看 附录：[dao_.._appendix_create_datasource 如何创建 Datasource ]
+      * 如果你<font color="#FF0000">*不知道如何创建 Datasource *</font>，请参看 附录：[appendix_create_datasource 如何创建 Datasource ]
       * 这个例子足够作为 Hello World 了， 祝你玩的开心  :)
 ----
 

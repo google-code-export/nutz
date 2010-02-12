@@ -92,7 +92,7 @@ public Pet fetch(int petId){
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>nutz</servlet-name>
 		<url-pattern>*.nut</url-pattern>

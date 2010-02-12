@@ -64,7 +64,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/05_3.png
 =`准备依赖的 jar 包`=
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/06.png
 
-Nutz 不是不依赖其他 jar 吗？ 是的，但是在编译时它依赖 Log4j。在运行时如果 Log4j 的 jar 不存在，它会采用 java.util.logging 详情请参看[committer_.._lang_log Nutz 的日志模块 ]
+Nutz 不是不依赖其他 jar 吗？ 是的，但是在编译时它依赖 Log4j。在运行时如果 Log4j 的 jar 不存在，它会采用 java.util.logging 详情请参看[lang_log Nutz 的日志模块 ]
 
 Nutz.Dao 的测试时在 Mysql/Psql/Oracle/SqlServer2000/SqlServer2005 这几个个数据库上作的，所以我需要它们的 JDBC 实现。 你可以根据需要选择一个你喜欢的数据库。我最喜欢 PSQL，但是当然，大多数人都爱用 Mysql。
 

@@ -14,7 +14,7 @@
           * 如果你只想阅读最新代码，从这里检出：http://nutz.googlecode.com/svn/trunk
           * 如果你想提交代码，从这里检出： https://nutz.googlecode.com/svn/trunk （当然你得有提交权限）
       # 项目编译依赖
-          * log4j 用来编译 Nutz.log，在运行时，则不是必须的。关于 Nutz.log 更多介绍，请[committer_.._lang_log 参看这里 ]
+          * log4j 用来编译 Nutz.log，在运行时，则不是必须的。关于 Nutz.log 更多介绍，请[lang_log 参看这里 ]
           * commons-dbcp 和 commons-pool 是运行 Junit 测试所必须的。并且你还需要一个 JDBC 驱动
           * Servlet API 的支持
           * JUnit 4

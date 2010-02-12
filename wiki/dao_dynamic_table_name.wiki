@@ -125,12 +125,12 @@ public void demoTableName_multi(final Dao dao) {
 	TableName.set(10);
 	Employee john = dao.fetch(Employee.class, "john");
 	System.out.println(john);
-	
+
 	TableName.set(3);
 	Employee peter = dao.fetch(Employee.class, "peter");
 	System.out.println(peter);
 	TableName.clear();
-	
+
 	Employee mary = dao.fetch(Employee.class, "Mary");
 	System.out.println(mary);
 	TableName.clear();
@@ -200,52 +200,52 @@ public void demoTableName_multi_temp(final Dao dao) {
 {{{
 @Table("t_company")
 public class Company {
+
 	@Column
 	@Id
 	private int id;
-	
+
 	@Column
 	@Name
 	private String name;
-	
+
 	@Column
 	private int ceoId;
-	
+
 	@One(target = Employee.class, field = "ceoId")
 	private Employee CEO;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getCeoId() {
 		return ceoId;
 	}
-	
+
 	public void setCeoId(int ceoId) {
 		this.ceoId = ceoId;
 	}
-	
+
 	public Employee getCEO() {
 		return CEO;
 	}
-	
+
 	public void setCEO(Employee ceo) {
 		CEO = ceo;
 	}
-	
 
 }
 }}}
@@ -273,21 +273,21 @@ public void demoTableName_links_one(final Dao dao) {
 {{{
 @Table("t_company")
 public class Company {
+
 	// ... another fields ...
-	
+
 	@Many(target = Employee.class, field = "companyId")
 	private List<Employee> employees;
-	
+
 	public List<Employee> getEmployees() {
 		return employees;
 	}
-	
+
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
-	
+
 	// ... another methods ...
-	
 
 }
 }}}
@@ -297,41 +297,41 @@ public class Company {
 {{{
 @Table("t_employee_${cid}")
 public class Employee {
+
 	@Column
 	@Id
 	private int id;
-	
+
 	@Column
 	@Name
 	private String name;
-	
+
 	@Column("comid")
 	private int companyId;
-	
+
 	public int getCompanyId() {
 		return companyId;
 	}
-	
+
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }
 }}}
 

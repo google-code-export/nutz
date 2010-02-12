@@ -72,7 +72,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
             * 以字符 $ 开头，名称为英文字母，数字，下划线，减号和句点。
             * 正则表达式为：
 {{{
-[$][a-zA-Z0-9_-.]
+ [$][a-zA-Z0-9_-.]
 }}}
 
             * 在执行 SQL 前，该占位符会被用户设置的值替换
@@ -91,7 +91,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
 {{{
 Sql sql = Sqls.create("INSERT INTO $table ($name,$age,$weight) VALUES(@name,@age,@weight)");
 // 为变量占位符设值
-sql.vars().set("table","t_person");
+sql.vars().set("table","t_person");	
 sql.vars().set("name","f_name").set("age","f_age").set("weight","f_weight");
 // 为参数占位符设值
 sql.params().set("name","Peter").set("age",18).set("weight",60);
@@ -144,7 +144,7 @@ List<String> demoSql(Dao dao) {
         # 你的回调函数的返回值会存放在 Sql 对象中
         # 调用 sql.getResult() 可以直接返回这个对象
         # sql.getList() 以及 sql.getObject() 方法会泛型安全的替你转型
-            * 如果你的对象类型符合要求，则直接返回，否则会通过[dao_.._lang_castors Nutz.Castors ]替你转换。
+            * 如果你的对象类型符合要求，则直接返回，否则会通过[lang_castors Nutz.Castors ]替你转换。
             * 对于 getList()，泛型参数用来描述集合内部元素的类型
         # sql.getInt() 会安全的替你将结果转成 int，如果它可以被转成 int 的话，以下是我能想到的列表：
             * 字符串
@@ -229,10 +229,10 @@ UPDATE t_pet SET masterid=@masterId WHERE id=@petId;
 void demoCombo(Dao dao) {
 	Sql uMaster = dao.sqls().create("master.update");
 	Sql uPet = dao.sqls().create("pet.update");
-	
+
 	uMaster.params().set("petId", 20).set("masterId", 16);
 	uPet.params().set("petId", 20).set("masterId", 16);
-	
+
 	dao.execute(uMaster, uPet);
 }
 }}}

@@ -23,6 +23,7 @@
 
 {{{
 public class Pet {
+
 	public static Pet getInstance(ResultSet rs) throws SQLException{
 		Pet pet = new Pet();
 		pet.id = rs.getInt("id");
@@ -30,9 +31,8 @@ public class Pet {
 		pet.nickname = rs.getString("nick");
 		return pet;
 	}
-	
-	// ... 省略后面代码，包括字段声明以及 getter 和 setter
 
+	// ... 省略后面代码，包括字段声明以及 getter 和 setter
 }}}
 
 只要你声明了一个可访问的，带有一个参数其类型为ResultSet，且返回值为 Pet 的静态函数，名称无所谓， 那么 Nutz.Dao 在 构建 Pet 对象时，就会优先使用这个函数。 因为 Nutz.Dao 认为你打算亲自来做 ResultSet 到 POJO 字段的映射工作。你可以 将这个过程写的很快，因为如果交由 Nutz.Dao 来做的话，它不得不做一些字段类型的判断以及转换的工作。
@@ -48,8 +48,9 @@ public class Pet {
 
 {{{
 public class Pet {
-	public Pet(){}
 	
+	public Pet(){}
+
 	public Pet(ResultSet rs) throws SQLException{
 		id = rs.getInt("id");
 		name = rs.getString("name");
@@ -57,7 +58,6 @@ public class Pet {
 	}
 	
 	// ... 省略后面代码，包括字段声明以及 getter 和 setter
-
 }}}
 
 只要你声明了构造函数 Pet(ResultSet rs)， 那么 Nutz.Dao 在构建的时候，就不会使用默认构造函数，无论你是否 声明它。
@@ -71,6 +71,7 @@ public class Pet {
 
 {{{
 public class Pet {
+
 	public static Pet getInstance(){
 		return new Pet();
 	}
@@ -78,7 +79,6 @@ public class Pet {
 	private Pet(){}
 	
 	// ... 省略后面代码，包括字段声明以及 getter 和 setter
-
 }}}
 
 你的静态函数名称是无所谓的，只要它的返回类型是当前的类，并且无参数。 如果出现多个符合改条件的 函数，Nutz.Dao 会挑取任意一个。
@@ -95,6 +95,7 @@ public class Pet {
 ===`编译器自己为你增加默认构造函数`===
 {{{
 public class Pet {
+
 	@Column
 	@Id
 	private int id;
@@ -105,9 +106,8 @@ public class Pet {
 	
 	@Column
 	private String nickname;
-	
-	// ... 这里是 getter 和 setter
 
+	// ... 这里是 getter 和 setter
 }
 }}}
 
@@ -116,10 +116,11 @@ public class Pet {
 ===`自己定制的默认构造函数`===
 {{{
 public class Pet {
+	
 	public Pet(){
 		this.nickname = "Unknown";
 	}
-	
+
 	@Column
 	@Id
 	private int id;
@@ -130,9 +131,8 @@ public class Pet {
 	
 	@Column
 	private String nickname;
-	
-	// ... 这里是 getter 和 setter
 
+	// ... 这里是 getter 和 setter
 }
 }}}
 

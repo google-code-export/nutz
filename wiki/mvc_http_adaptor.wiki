@@ -61,7 +61,7 @@ Nutz.Mvc 为你内置了 4 个最常用的适配器，可以让支持用如下�
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-	@Param("pnm") String petName){
+						@Param("pnm") String petName){
 	...
 }}}
 
@@ -86,8 +86,8 @@ public String someFunc(	@Param("..") Pet pet){
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-	@Param("..") Pet pet,
-		@Param("..") Food food){
+						@Param("..") Pet pet,
+						@Param("..") Food food){
 	...
 }}}
 
@@ -100,8 +100,8 @@ public String someFunc(	@Param("pid") int petId,
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-	@Param("pet") Pet pet,
-		@Param("foods") Food[] food){
+						@Param("pet") Pet pet,
+						@Param("foods") Food[] food){
 	...
 }}}
 
@@ -160,7 +160,7 @@ public String someFunc( Pet[] pet ){
 {{{
 @AdaptBy(type=JsonAdaptor.class)
 public String someFunc(	@Param("fox") Pet pet,
-	@Param("fox_food") Food food){
+						@Param("fox_food") Food food){
 	...
 }}}
 
@@ -196,8 +196,8 @@ NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细�
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-	Ioc ioc,
-		HttpServletRequest req){
+						Ioc ioc,
+						HttpServletRequest req){
 	...
 }}}
 

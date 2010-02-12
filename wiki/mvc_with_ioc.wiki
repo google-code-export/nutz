@@ -35,7 +35,7 @@ public class JsonIocProvider implements IocProvider {
 {{{
 @InjectName("petM")
 public class PetModule {
-...
+   ...
 }}}
 
 如果你声明了这个注解， Nutz.Mvc 构造你的这个模块的时候，会通过 Ioc 容器获取，而不直接调用默认构造函数了。

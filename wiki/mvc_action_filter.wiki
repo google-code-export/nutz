@@ -87,7 +87,7 @@ public interface ActionFilter {
 @Filters(@By(type=MyFilter.class, args={"ioc:myFilter"}))
 }}}
 
-其中 "myFilter" 就是你这个过滤器在 Ioc 容器中的名字。关于 Ioc 容器更多的知识，请参看[mvc_.._ioc_hello Ioc 手册 ]。
+其中 "myFilter" 就是你这个过滤器在 Ioc 容器中的名字。关于 Ioc 容器更多的知识，请参看[ioc_hello Ioc 手册 ]。
 
 <font color="#FF0000">*请注意 *</font>如果你要让 Ioc 容器管理你的过滤器，你的应用必须已经声明了一个 Ioc 容器。 如何在 Mvc 框架中声明 Ioc 容器，请参看[mvc_with_ioc 同 Ioc 容器一起工作 ]
 

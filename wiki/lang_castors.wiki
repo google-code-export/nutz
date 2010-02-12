@@ -116,7 +116,7 @@ com.you.red
 	C2A
 	B2C
 	C2B
-	
+
 com.you.blue
 	X2Y
 	Y2X

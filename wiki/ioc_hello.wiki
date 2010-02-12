@@ -33,42 +33,42 @@ package nutz.demo.ioc.book;
 import java.util.Calendar;
 
 public class Pet {
+
 	private String name;
-	
+
 	private Calendar birthday;
-	
+
 	private Pet friend;
-	
+
 	public Pet() {}
-	
+
 	public Pet(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Calendar getBirthday() {
 		return birthday;
 	}
-	
+
 	public void setBirthday(Calendar birthday) {
 		this.birthday = birthday;
 	}
-	
+
 	public Pet getFriend() {
 		return friend;
 	}
-	
+
 	public void setFriend(Pet friend) {
 		this.friend = friend;
 	}
-
 }
 }}}
 
@@ -81,19 +81,19 @@ public class Pet {
 
 {{{
 /*
-* 开始写上 var ioc = { ， 是为了利用 eclipse 的  javascript 编辑器的自动格式化功能
-*/
+ * 开始写上 var ioc = { ， 是为了利用 eclipse 的  javascript 编辑器的自动格式化功能
+ */
 var ioc = {
 	/*
-	* 默认的，你仅仅需要直接声明每个字段的值即可，Nutz.Ioc 会为你转型
-	*/
+	 * 默认的，你仅仅需要直接声明每个字段的值即可，Nutz.Ioc 会为你转型
+	 */
 	xiaobai : {
 		name : 'XiaoBai',
 		birthday : '2009-10-25 15:23:40'
 	},
 	/*
-	* 你当然也可以做更细致的设置
-	*/
+	 * 你当然也可以做更细致的设置
+	 */
 	xiaohei : {
 		type : 'nutz.demo.ioc.book.Pet', // 类型
 		singleton : false, // 是否为单件
@@ -119,12 +119,12 @@ import org.nutz.ioc.impl.NutIoc;
 import org.nutz.ioc.loader.json.JsonLoader;
 
 public class HelloPet {
+
 	public static void main(String[] args) {
 		Ioc ioc = new NutIoc(new JsonLoader("nutz/demo/ioc/pet/pets.js"));
 		Pet pet = ioc.get(Pet.class, "xiaobai");
 		System.out.printf("%s - [%s]\n", pet.getName(), pet.getBirthday().getTimeZone().getID());
 	}
-	
 
 }
 }}}

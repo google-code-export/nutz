@@ -21,10 +21,10 @@ Nutz.Ioc 容器有三种事件：
 
 {{{
 public class Pet {
+
 	private int fetchCount;
 	
 	... // 省略其他属性以及 getter 和 setter
-
 }}}
 
 
@@ -39,10 +39,10 @@ package nutz.demo.ioc.book;
 import org.nutz.ioc.IocEventTrigger;
 
 public class OnFetchPet implements IocEventTrigger<Pet> {
+
 	public void trigger(Pet pet) {
 		pet.setFetchCount(pet.getFetchCount() + 1);
 	}
-	
 
 }
 }}}

@@ -34,18 +34,18 @@ SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FR
 @Table("t_employee")
 @View("v_employee")		// <- 这里声明了视图
 public class Employee{
+	
 	@Column
 	@Id
 	private int id;
-	
+
 	...
-	
+
 	@Column("taskcount")	// 其实可以不用声明数据库字段名 "taskcount"，因为多数数据库忽略大小写
 	@Readonly		// <- 这里声明了只读字段，即视图里增加的字段
 	private int taskCount;
-	
+
 	...
-	
 
 }
 }}}

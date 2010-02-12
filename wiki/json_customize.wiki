@@ -35,21 +35,21 @@ Json 天然的同 Javascript 融为一体，做 WEB 应用，服务器同浏览�
 {{{
 public class Button {
 	private String text;
-	
+
 	private Function handler;
-	
+
 	public String getText() {
 		return text;
 	}
-	
+
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	public Function getHandler() {
 		return handler;
 	}
-	
+
 	public void setHandler(Function handler) {
 		this.handler = handler;
 	}
@@ -65,19 +65,19 @@ public class Button {
 @ToJson
 public class Function {
 	private String body;
-	
+
 	public Function(String body) {
 		this.body = body;
 	}
-	
+
 	public String getBody() {
 		return body;
 	}
-	
+
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
+
 	public String toJson(JsonFormat format) {
 		StringBuilder sb = new StringBuilder("function(){");
 		sb.append(body);
@@ -119,8 +119,8 @@ System.out.println(Json.toJson(btn));
 =`控制台输出`=
 {{{
 {
-text :"Click me!",
-handler :function(){alert('I am button');}
+   text :"Click me!",
+   handler :function(){alert('I am button');}
 }
 }}}
 
