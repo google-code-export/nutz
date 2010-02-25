@@ -19,10 +19,10 @@
 
 {{{
 {
-xb : {
-	type : 'nutz.demo.ioc.book.Pet',
-	args : ['XiaoBai']
-}
+	xb : {
+		type : 'nutz.demo.ioc.book.Pet',
+		args : ['XiaoBai']
+	}
 }
 }}}
 
@@ -35,12 +35,12 @@ args 的值时一个数组，里面每一个元素都将对应构造函数的一
 
 {{{
 {
-xb : {
-	type : 'nutz.demo.ioc.book.Pet',
-	fields : {
-		name : 'XiaoBai'
+	xb : {
+		type : 'nutz.demo.ioc.book.Pet',
+		fields : {
+			name : 'XiaoBai'
+		}
 	}
-}
 }
 }}}
 
