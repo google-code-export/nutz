@@ -85,10 +85,12 @@ xb : { name: 'XiaoBai'	}
 ==`内部对象`==
 {{{
 {
-	xb : { friend: {
-		type : 'nutz.demo.ioc.book.Pet',
-		fields : {name : 'XiaoHei'}
-	} }
+	xb : {
+		friend: {
+			type : 'nutz.demo.ioc.book.Pet',
+			fields : {name : 'XiaoHei'}
+		}
+	}
 }
 }}}
 
