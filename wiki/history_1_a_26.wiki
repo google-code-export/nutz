@@ -58,8 +58,8 @@
 
 <p align="right">[#Top]</p>
 =`文档`=
-      # 修改了[../mvc/view.man Mvc 视图部分 ]
-      # 增加了[../mvc/with_ioc.man 同 Ioc 容器一起工作.需要注意的问题 ]
+      # 修改了[mvc_view Mvc 视图部分 ]
+      # 增加了[mvc_with_ioc 同 Ioc 容器一起工作.需要注意的问题 ]
 ----
 
 <p align="right">[#Top]</p>
