@@ -1,6 +1,6 @@
-#summary 1.a.26 (Hatching...)
+#summary 1.a.26
 =Top=
-<p align="center"><font size=6>* 1.a.26 (Hatching...) *</font></p>
+<p align="center"><font size=6>* 1.a.26 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
@@ -32,7 +32,7 @@
 =`改进`=
       # 小幅修正了一些 Bug 和文档错误
       * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font>*Wendal *
-      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject
+      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject<font color="#AAAAAA">by </font>*Wendal *
 ----
 
 <p align="right">[#Top]</p>
