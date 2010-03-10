@@ -171,7 +171,7 @@ xb : { name: 'XiaoBai'	}
 
 <p align="right">[#Top]</p>
 ==`Java 调用`==
-这是个极度灵活的注入方式，它几乎可以让你*做任何事情 *。 因为它允许你直接调用一个 JAVA 函数。
+这是个极度灵活的注入方式，它几乎可以让你<b>做任何事情 </b>。 因为它允许你直接调用一个 JAVA 函数。
 
 更详细的说明，请参看[http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/ioc/val/JavaValue.java org.nutz.ioc.val.JavaValue ]的 JDoc
 
@@ -313,5 +313,5 @@ ioc.addValueProxyMaker(new ScanValueProxyMaker());
 // 下面，你就可以正常使用 Ioc 接口了
 }}}
 
-<font color="#FF0000">*注意 *</font>，这里使用的是 Ioc2 接口，它继承自 Ioc 接口，提供了更高级的方法
+<font color="#FF0000"><b>注意 </b></font>，这里使用的是 Ioc2 接口，它继承自 Ioc 接口，提供了更高级的方法
 

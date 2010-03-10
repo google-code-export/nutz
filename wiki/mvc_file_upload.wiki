@@ -8,13 +8,13 @@
 
 <p align="right">[#Top]</p>
 =`关于文件上传`=
-大多数的 Web 应用都不可避免的，会涉及到文件上传。文件上传，不过是一种适配 HTTP 输入流的方式。 为此，Nutz.Mvc 内置了一个专门处理文件上传的适配器*org.nutz.mvc.upload.UploadAdaptor *
+大多数的 Web 应用都不可避免的，会涉及到文件上传。文件上传，不过是一种适配 HTTP 输入流的方式。 为此，Nutz.Mvc 内置了一个专门处理文件上传的适配器<b>org.nutz.mvc.upload.UploadAdaptor </b>
 
 这个适配器的工作细节是这样的：
 
       * 它一次将 HTTP 输入流中所有的文件读入，保存在临时文件目录里
       * 表单项目会保存在内存里
-      * 在上传的过程中，它会向当前 Session 中设置一个对象：*org.nutz.mvc.upload.UploadInfo *
+      * 在上传的过程中，它会向当前 Session 中设置一个对象：<b>org.nutz.mvc.upload.UploadInfo </b>
           * 属性名为 "org.nutz.mvc.upload.UploadInfo"
           * 通过静态函数 Uploads.getInfo(HttpServletRequest req) 可以很方便的获取当前会话的 UploadInfo
       * 不断的读入输入流的过程，会记录在 UploadInfo 里面。
@@ -58,5 +58,5 @@ public void uploadPhoto(@Param("id") int id, @Param("photo") File f){
 
 <p align="right">[#Top]</p>
 ==`关于 Demo`==
-在[http://nutzdemo.googlecode.com nutzdemo.googlecode.com ]的*Hello Mvc *例子里，*PetModule.java *的函数 uploadPhoto 就是一个很 好的例子。
+在[http://nutzdemo.googlecode.com nutzdemo.googlecode.com ]的<b>Hello Mvc </b>例子里，<b>PetModule.java </b>的函数 uploadPhoto 就是一个很 好的例子。
 

@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`概述`=
-使用数据库的应用程序，多数情况下都需要使用<font color="#0000AA">“分页” </font>这个功能。尤其是在 Web 应用程序中，后端的分页查询尤其的普遍。 在以往的使用经验中，一个分页查询，除了能获取到一个列表外，我们通常需要如下几个信息才能在客户端显示出一个完整的翻页条。
+使用数据库的应用程序，多数情况下都需要使用<font color="#0000AA"><u>“分页” </u></font>这个功能。尤其是在 Web 应用程序中，后端的分页查询尤其的普遍。 在以往的使用经验中，一个分页查询，除了能获取到一个列表外，我们通常需要如下几个信息才能在客户端显示出一个完整的翻页条。
 
       * 当前页数 -- 第几页
       * 页大小 -- 每页有多少条记录
@@ -68,7 +68,7 @@ Dao.createPager(int pageNumber, int pageSize);
         # 每页有多大
 Nutz.Dao 会根据你设置的 DataSource，返回给你一个该数据库特殊的 Pager 的实例。如果你的 DataSource 不是Nutz.Dao 默认支持的数据库， 则会返回给你一个默认的 OtherPager 实例。当小数据量的时候，OtherPager 实现是个很好的选择，当数据量比较庞大的时候，OtherPager 的效率 可能不那么尽如人意，因为它采用了 absolute 来获取结果集的大小，以及移动游标的位置。
 
-<font color="#FF0000">*需要指出的是 *</font>，如果一个特殊的数据库类型的 Pager （即，不是 OtherPager），那么就是说明你很关心你这次查询的速 度，所以Nutz.Dao 不会为你计算 Pager 中的 pageCount 和 recordCount。当然，如果你需要它们，你需要手工的通过 Dao 接口的 count() 方法计算结果，然后使用 Pager 里面的 setRecordCount() 方法将计算的结果传入 Pager 会自动为你计算 pageCount (在你调用了 setRecordCount() 方法后，直接调用 getPageCount() 函数即可)。
+<font color="#FF0000"><b>需要指出的是 </b></font>，如果一个特殊的数据库类型的 Pager （即，不是 OtherPager），那么就是说明你很关心你这次查询的速 度，所以Nutz.Dao 不会为你计算 Pager 中的 pageCount 和 recordCount。当然，如果你需要它们，你需要手工的通过 Dao 接口的 count() 方法计算结果，然后使用 Pager 里面的 setRecordCount() 方法将计算的结果传入 Pager 会自动为你计算 pageCount (在你调用了 setRecordCount() 方法后，直接调用 getPageCount() 函数即可)。
 
 ----
 

@@ -31,12 +31,12 @@ Pet pet = pets.fetch("XiaoBai");
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/hierarchy_services.png
 
-请重新温习一下[services.html Nutz.Dao 实体注解(Entity Annotation) ]中的注解<font color="#AA6644">*@Id *</font>和<font color="#AA6644">*@Name *</font>这两个注解， 这里我称一个 POJO 对象为一个<font color="#0000AA">*实体 *</font>（<font color="#008800">Entity </font>）：
+请重新温习一下[services.html Nutz.Dao 实体注解(Entity Annotation) ]中的注解<font color="#AA6644"><b>@Id </b></font>和<font color="#AA6644"><b>@Name </b></font>这两个注解， 这里我称一个 POJO 对象为一个<font color="#0000AA"><b>实体 </b></font>（<font color="#008800"><u>Entity </u></font>）：
 
-      * 如果 POJO 即声明了<font color="#AA6644">*@Id *</font>又声明了<font color="#AA6644">*@Name *</font>，那么适合采用 IdNameEntityService
-      * 如果 POJO 仅声明了<font color="#AA6644">*@Id *</font>，那么适合采用 IdEntityService
-      * 如果 POJO 仅声明了<font color="#AA6644">*@Name *</font>，那么适合采用 NameEntityService
-      * 如果 POJO 即没声明了<font color="#AA6644">*@Id *</font>又没声明了<font color="#AA6644">*@Name *</font>，那么适合采用 EntityService
+      * 如果 POJO 即声明了<font color="#AA6644"><b>@Id </b></font>又声明了<font color="#AA6644"><b>@Name </b></font>，那么适合采用 IdNameEntityService
+      * 如果 POJO 仅声明了<font color="#AA6644"><b>@Id </b></font>，那么适合采用 IdEntityService
+      * 如果 POJO 仅声明了<font color="#AA6644"><b>@Name </b></font>，那么适合采用 NameEntityService
+      * 如果 POJO 即没声明了<font color="#AA6644"><b>@Id </b></font>又没声明了<font color="#AA6644"><b>@Name </b></font>，那么适合采用 EntityService
 
 <p align="right">[#Top]</p>
 =`关于服务类的总结`=

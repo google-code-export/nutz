@@ -14,7 +14,7 @@
 ||字符型主键||注解 @Name||声明在字段上||
 ||复合主键||注解 @PK||声明在类上||
 
-<font color="#FF0000">*注意： *</font>对于一个 POJO，你可以同时为其声明 @Id 和 @Name，它们都能正常工作。你只需要保证 @Name 对应的字段 在数据库里有唯一性约束即可。 但是通常， Nutz.Dao 并没有假设你同时在一个 POJO 里应用 @Id, @Name 和 @PK，如果你 这么做了，可能会引发一些奇怪的问题。事实上，你也不可能这么做，不是吗？
+<font color="#FF0000"><b>注意： </b></font>对于一个 POJO，你可以同时为其声明 @Id 和 @Name，它们都能正常工作。你只需要保证 @Name 对应的字段 在数据库里有唯一性约束即可。 但是通常， Nutz.Dao 并没有假设你同时在一个 POJO 里应用 @Id, @Name 和 @PK，如果你 这么做了，可能会引发一些奇怪的问题。事实上，你也不可能这么做，不是吗？
 
 ----
 
@@ -140,22 +140,22 @@ public class Pet{
 
 <p align="right">[#Top]</p>
 ==`通过变参获取和删除`==
-*获取 *
+<b>获取 </b>
 
 {{{
 Pet pet = dao.fetchx(Pet.class, 23, 12);
 }}}
 
-*删除 *
+<b>删除 </b>
 
 {{{
 Pet pet = dao.deletex(Pet.class, 23, 12);
 }}}
 
-<font color="#FF0000">* 注意 *</font>
+<font color="#FF0000"><b> 注意 </b></font>
 
         * 这里你给的变参的顺序必须按照你 @PK 里声明的顺序。
-        * 是 fetch<b>X</b>和 delete<b>X</b>
+        * 是 fetch<b>X </b>和 delete<b>X </b>
 
 <p align="right">[#Top]</p>
 ==`其他操作`==

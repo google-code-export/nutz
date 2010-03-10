@@ -63,13 +63,13 @@ public View myFunction(@Param("type") type){
 
 <p align="right">[#Top]</p>
 =`内置的视图`=
-通过*org.nutz.mvc.view.DefaultViewMaker *， Nutz.Mvc 提供了一些内置视图， 你可以通过 @Ok 和 @Fail 注解声明在你的入口函数上
+通过<b>org.nutz.mvc.view.DefaultViewMaker </b>， Nutz.Mvc 提供了一些内置视图， 你可以通过 @Ok 和 @Fail 注解声明在你的入口函数上
 
 ----
 
 <p align="right">[#Top]</p>
 ==`JSP 视图`==
-视图的实现类为：*org.nutz.mvc.view.NamePathJspView *
+视图的实现类为：<b>org.nutz.mvc.view.NamePathJspView </b>
 
 
 <p align="right">[#Top]</p>
@@ -78,7 +78,7 @@ public View myFunction(@Param("type") type){
 @Ok("jsp:pet.detail")
 }}}
 
-将会使用_*WEB-INF/pet/detail.jsp *_来渲染 HTTP 输出流
+将会使用<i><b>WEB-INF/pet/detail.jsp </b></i>来渲染 HTTP 输出流
 
 你可以不声明视图的值：
 
@@ -92,7 +92,7 @@ public View myFunction(@Param("type") type){
 /pet/detail.nut
 }}}
 
-将会使用_*WEB-INF/pet/detail.jsp *_来渲染 HTTP 输出流
+将会使用<i><b>WEB-INF/pet/detail.jsp </b></i>来渲染 HTTP 输出流
 
 
 <p align="right">[#Top]</p>
@@ -108,17 +108,17 @@ public View myFunction(@Param("type") type){
 ===`JSP 文件的位置`===
 有些人（比如我）喜欢把 JSP 文件统统放在 WEB-INF 目录里。但是更多人的习惯是将 JSP 放在 WEB-INF 外面。
 
-          * 这个将对应<font color="#0000AA">_*WEB-INF/abc/bbc.jsp *_</font>
+          * 这个将对应<font color="#0000AA"><i><b>WEB-INF/abc/bbc.jsp </b></i></font>
 {{{
 @Ok("jsp:abc.bbc")
 }}}
 
-          * 这个将对应<font color="#0000AA">_*abc/bbc.jsp *_</font>
+          * 这个将对应<font color="#0000AA"><i><b>abc/bbc.jsp </b></i></font>
 {{{
 @Ok("jsp:/abc/bbc")
 }}}
 
-          * 这个也将对应<font color="#0000AA">_*abc/bbc.jsp *_</font>
+          * 这个也将对应<font color="#0000AA"><i><b>abc/bbc.jsp </b></i></font>
 {{{
 @Ok("jsp:/abc/bbc.jsp")
 }}}
@@ -130,13 +130,13 @@ public View myFunction(@Param("type") type){
 ===`本地化字符串`===
 `在 Nutz.Mvc 入口函数里使用的 JSP 文件可以使用 ${base} 和 ${msg} 来获取应用的 URL 前缀 以及本地字符串。  `
 
-如果你希望放在 WEB-INF 外面如果还希望使用本地化字符串， 那么你需要在 web.xml 额外声明一个 Fileter， 请参考[mvc_localization 本地化字符串 ]*使用过滤器 *一节。
+如果你希望放在 WEB-INF 外面如果还希望使用本地化字符串， 那么你需要在 web.xml 额外声明一个 Fileter， 请参考[mvc_localization 本地化字符串 ]<b>使用过滤器 </b>一节。
 
 ----
 
 <p align="right">[#Top]</p>
 ==`JSON 视图`==
-视图的实现类为：*org.nutz.mvc.view.UTF8JsonView *
+视图的实现类为：<b>org.nutz.mvc.view.UTF8JsonView </b>
 
 一般的使用形式：
 
@@ -152,13 +152,13 @@ public View myFunction(@Param("type") type){
 @Ok("json:{quoteName:true, ignoreNull:true}")
 }}}
 
-视图的值就是：*`"{quoteName:true, ignoreNull:true}" `*，这个字符串会被转换成 JsonFormat 对象。 如果你想了解更多的 Json 转换的介绍哦，请参看[json_overview.man Json 手册 ]
+视图的值就是：<b>`"{quoteName:true, ignoreNull:true}" `</b>，这个字符串会被转换成 JsonFormat 对象。 如果你想了解更多的 Json 转换的介绍哦，请参看[json_overview.man Json 手册 ]
 
 ----
 
 <p align="right">[#Top]</p>
 ==`重定向视图`==
-视图的实现类为：*org.nutz.mvc.view.ServerRedirectView *
+视图的实现类为：<b>org.nutz.mvc.view.ServerRedirectView </b>
 
 一般的使用形式：
 
@@ -210,7 +210,7 @@ public View myFunction(@Param("type") type){
 
 <p align="right">[#Top]</p>
 ==`HTTP 返回码视图`==
-视图的实现类为：*org.nutz.mvc.view.HttpStatusView *
+视图的实现类为：<b>org.nutz.mvc.view.HttpStatusView </b>
 
 使用形式
 
@@ -224,7 +224,7 @@ public View myFunction(@Param("type") type){
 
 <p align="right">[#Top]</p>
 ==`空白视图`==
-视图的实现类为：*org.nutz.mvc.view.VoidView *
+视图的实现类为：<b>org.nutz.mvc.view.VoidView </b>
 
 使用形式
 

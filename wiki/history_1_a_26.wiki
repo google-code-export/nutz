@@ -15,19 +15,19 @@
 <p align="right">[#Top]</p>
 =`问题修复`=
       * Issue 95 : Ioc - 没有检测循环依赖,且不支持多次继承
-      * Issue 97: 从 Dao 里查出来的对象是一个 Map，或者是ListMap<String, Object`>  `<font color="#AAAAAA">by </font>*Gdunser *
-      * Issue 100: MVC手册在jsp视图处描述有误<font color="#AAAAAA">by </font>*ToFishes *
-      * Issue 101: Dumps.matcher NullpointerException<font color="#AAAAAA">by </font>*for5million *
-      * Issue 102: 在update时，如果http参数有Date类型为null，会出错<font color="#AAAAAA">by </font>*Gdunser *
-      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font>*Wendal *
-      * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message<font color="#AAAAAA">by </font>*Bird.Wyatt *
-      * Issue 106: 在 NutIoc 中缓存 IocObject<font color="#AAAAAA">by </font>*Wendal *
-      * Issue 108: 添加Maven支持文件-- pom.xml<font color="#AAAAAA">by </font>*Wendal *
-      * Issue 109: 继承Module类，如果是@OK("json")，会出错<font color="#AAAAAA">by </font>*Gdunser *
-      * Issue 111: IoC配置能扫描Package内的Class的注解直接获取到<font color="#AAAAAA">by </font>*nwangwei *
-      * Issue 114: context.js的正確格式是?<font color="#AAAAAA">by </font>*wsc0918 *
-      * Issue 115: JSON格式不标准<font color="#AAAAAA">by </font>*deadeye2k *
-      * Issue 120: dao: @Next 和 @Prev 变量 $view.NEXTVAL 解析失败<font color="#AAAAAA">by </font>*hzzdong *
+      * Issue 97: 从 Dao 里查出来的对象是一个 Map，或者是ListMap<String, Object`>  `<font color="#AAAAAA">by </font><b>Gdunser </b>
+      * Issue 100: MVC手册在jsp视图处描述有误<font color="#AAAAAA">by </font><b>ToFishes </b>
+      * Issue 101: Dumps.matcher NullpointerException<font color="#AAAAAA">by </font><b>for5million </b>
+      * Issue 102: 在update时，如果http参数有Date类型为null，会出错<font color="#AAAAAA">by </font><b>Gdunser </b>
+      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font><b>Wendal </b>
+      * Issue 104: 当server启动后,死一次访问界面无法显示国际化的message<font color="#AAAAAA">by </font><b>Bird.Wyatt </b>
+      * Issue 106: 在 NutIoc 中缓存 IocObject<font color="#AAAAAA">by </font><b>Wendal </b>
+      * Issue 108: 添加Maven支持文件-- pom.xml<font color="#AAAAAA">by </font><b>Wendal </b>
+      * Issue 109: 继承Module类，如果是@OK("json")，会出错<font color="#AAAAAA">by </font><b>Gdunser </b>
+      * Issue 111: IoC配置能扫描Package内的Class的注解直接获取到<font color="#AAAAAA">by </font><b>nwangwei </b>
+      * Issue 114: context.js的正確格式是?<font color="#AAAAAA">by </font><b>wsc0918 </b>
+      * Issue 115: JSON格式不标准<font color="#AAAAAA">by </font><b>deadeye2k </b>
+      * Issue 120: dao: @Next 和 @Prev 变量 $view.NEXTVAL 解析失败<font color="#AAAAAA">by </font><b>hzzdong </b>
 ----
 
 <p align="right">[#Top]</p>
@@ -52,8 +52,8 @@
 <p align="right">[#Top]</p>
 =`改进`=
       # 小幅修正了一些 Bug 和文档错误
-      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font>*Wendal *
-      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject<font color="#AAAAAA">by </font>*Wendal *
+      * Issue 103: 移除JsonIocLoader中对$import,$vars的支持<font color="#AAAAAA">by </font><b>Wendal </b>
+      * Issue 106: Ioc: 在 NutIoc 中缓存 IocObject<font color="#AAAAAA">by </font><b>Wendal </b>
 ----
 
 <p align="right">[#Top]</p>
@@ -89,7 +89,7 @@
 ||[http://www.3km.com.cn 会跑的蜗牛 ]||X||-||-||-||-||-||-||
 ||[http://www.ecplive.cn 知足常乐 ]||X||-||-||-||-||-||X||
 
-另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架*产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
+另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
 
 另，由于众所周知的原因，建议大家通过[http://groups.google.de/group/nutzam?hl=zh-CN 别的服务访问讨论区 ]因为非中文版的 Google Group 是没有被 QIAng 的。
 

@@ -12,7 +12,7 @@
 
 在 Nutz.Mvc，所谓控制器，实际上就是 Module，默认的，所有的模块都是整个应用程序唯一的， 除非你在 Ioc 配置文件里另有说明。
 
-那么 Nutz 可以做到每次请求即抛弃的控制器（<font color="#008800">_Module _</font>）吗？ 答案是肯定的，稍微有点 麻烦，但是绝对不会繁琐的让你头疼，你需要自己动手做点事情，如果你对编写 JSP/Servlet 应用程序有点基本的支持，这点事情对你不会构成负担。
+那么 Nutz 可以做到每次请求即抛弃的控制器（<font color="#008800"><i>Module </i></font>）吗？ 答案是肯定的，稍微有点 麻烦，但是绝对不会繁琐的让你头疼，你需要自己动手做点事情，如果你对编写 JSP/Servlet 应用程序有点基本的支持，这点事情对你不会构成负担。
 
 ----
 
@@ -53,10 +53,10 @@ myModule : {
 ...
 }}}
 
-        * 请注意<font color="#FF0000">* scope : 'request' *</font>以及 fields 里 request 字段的属性<font color="#FF0000">* refer: '$request' *</font>
-        * scope 指明了这个对象存在的上下文环境，如果你不指明，默认是 '*app *'
+        * 请注意<font color="#FF0000"><b> scope : 'request' </b></font>以及 fields 里 request 字段的属性<font color="#FF0000"><b> refer: '$request' </b></font>
+        * scope 指明了这个对象存在的上下文环境，如果你不指明，默认是 '<b>app </b>'
             * 更多关于 scope，请参看
-关键就是这个<font color="#FF0000">* refer: '$request' *</font>，很抱歉，你得自己设置它的值。怎样设置呢？ 通过 web.xml 的 HttpFilter
+关键就是这个<font color="#FF0000"><b> refer: '$request' </b></font>，很抱歉，你得自己设置它的值。怎样设置呢？ 通过 web.xml 的 HttpFilter
 
 
 <p align="right">[#Top]</p>

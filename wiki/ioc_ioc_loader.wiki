@@ -10,12 +10,12 @@
 =`你如果不喜欢 JSON 怎么办？`=
 我很喜欢 JSON，因为它语法轻巧。当然，我不能保证你也很喜欢 JSON，因为你可能会说：
 
-      * 没有很好的 JSON 编辑器 --<font color="#999999">_如果是这样，我推荐你试试 Eclipse 自带的 Javascript 编辑器 _</font>。
+      * 没有很好的 JSON 编辑器 --<font color="#999999"><i>如果是这样，我推荐你试试 Eclipse 自带的 Javascript 编辑器 </i></font>。
       * 我更喜欢 XML，我不喜欢大括号
       * 我就是讨厌 JSON
 那么，你想自己规定自己的配置文件格式吗？ 你可以定义一个比  JSON  更酷的配置文件语法，当然 你得多写一点点代码，解析你的配置文件。但是你就想做点很酷的事情，不是吗？
 
-Nutz.Ioc 提供了一个扩展点：*org.nutz.ioc.IocLoader *接口。实际上 JSON 的配置文件语法，不过是 我预先为这个接口写的一个实现，所以你当然也可以写一个，请注意 Nutz.Ioc 接口是如何被构建的：
+Nutz.Ioc 提供了一个扩展点：<b>org.nutz.ioc.IocLoader </b>接口。实际上 JSON 的配置文件语法，不过是 我预先为这个接口写的一个实现，所以你当然也可以写一个，请注意 Nutz.Ioc 接口是如何被构建的：
 
 {{{
 Ioc ioc = new NutIoc(new JsonLoader("文件路径"));
@@ -29,7 +29,7 @@ Ioc ioc = new NutIoc(new MyIocLoader());
 
 只要你正确的实现了 IocLoader 接口，如何持有对象，如果解释对象的语义，都由 Nutz.Ioc 的标准实现流程 负责，你完全不用操心。
 
-你可能还有一个问题：“*那么 IocLoader 接口实现起来复杂吗？ *”
+你可能还有一个问题：“<b>那么 IocLoader 接口实现起来复杂吗？ </b>”
 
 我可以负责任的告诉你，虽然那不是极其简单，但是绝对不复杂。你只要理解下面这个知识即可：
 
@@ -54,11 +54,11 @@ public class IocObject {
 
 看看这个类的属性，顾名思义：
 
-      * *type *--  对象类型
-      * *singleton *-- 声明对象是否为单例
-      * *events *-- 对象监听何种事件
-      * *args *-- 对象构造函数的参数列表
-      * *fields *-- 对象的字段
+      * <b>type </b>--  对象类型
+      * <b>singleton </b>-- 声明对象是否为单例
+      * <b>events </b>-- 对象监听何种事件
+      * <b>args </b>-- 对象构造函数的参数列表
+      * <b>fields </b>-- 对象的字段
 没有对象的名称，对吗？是的，通过 JSON （如果你了解一点 Javascript，那就更容易理解了），你通常要这么写：
 
 {{{
@@ -107,7 +107,7 @@ public class IocObject {
 ==`值 IocValue`==
 描述了对象的一个值，这个值可以是构造函数的参数，也可以是一个字段的值。 它由两个属性，一个是值的类型，另外一个是 value。
 
-_*赋值约定: *_
+<i><b>赋值约定: </b></i>
 
         * 如果 type 是 "null"，则值会被认为是 null
         * 如果 value 是 字符串，数字，布尔，那么 type 必须为 "normal"或 null

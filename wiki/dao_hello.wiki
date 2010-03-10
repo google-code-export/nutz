@@ -99,7 +99,7 @@ dao.insert(p);
 }}}
 
       * 执行完毕后，在数据表中会多出一条记录。
-      * 如果你<font color="#FF0000">*不知道如何创建 Datasource *</font>，请参看 附录：[appendix_create_datasource 如何创建 Datasource ]
+      * 如果你<font color="#FF0000"><b>不知道如何创建 Datasource </b></font>，请参看 附录：[appendix_create_datasource 如何创建 Datasource ]
       * 这个例子足够作为 Hello World 了， 祝你玩的开心  :)
 ----
 

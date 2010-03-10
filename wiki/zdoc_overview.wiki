@@ -33,7 +33,7 @@
 
 <p align="right">[#Top]</p>
 =`zDoc 要达到的目标`=
-      * 我将使用任何一款我喜欢的*纯文本编辑器 *来编辑我的文档
+      * 我将使用任何一款我喜欢的<b>纯文本编辑器 </b>来编辑我的文档
           * 所以我可以利用 SVN 等工具来管理版本，协作编写文档
       * 我的文档将包含文字，以及 B/I/S 等格式信息
       * 利用缩进来划分文档的结构
@@ -58,14 +58,14 @@
 zDoc 提供了命令行程序，使用它之前你需要做如下设定
 
         # 在发布包里面找到 run 目录
-        # 打开其中的 win 目录或者 linux 目录(依你自己的操作系统而定)
-        # 修改脚本文件 zdoc (Windows 下为 zdoc.bat) -- 你需要修改三个变量
+        # 打开其中的 win 目录或者 linux 目录(<u>依你自己的操作系统而定 </u>)
+        # 修改脚本文件 zdoc (<u>Windows 下为 zdoc.bat </u>) -- 你需要修改三个变量
             # `JAVA_HOME 指向你的 Java 安装的根目录（这个目录下有 lib 子目录，其内有 tools.jar, dt.jar 以及 rt.jar） `
-            # `NUTZ_HOME 指向 Nutz 的核心 jar 包:  ``可从此处下载=> `[http://nutz.googlecode.com nutz.googlecode.com ]
-            # `ZDOC_HOME 指向 Nutz.Doc 的运行 jar 包:  ``可从此处下载=> `[http://nutzdoc.googlecode.com nutzdoc.googlecode.com ]
+            # `NUTZ_HOME 指向 Nutz 的核心 jar 包:  `<u>`可从此处下载=> `</u>[http://nutz.googlecode.com nutz.googlecode.com ]
+            # `ZDOC_HOME 指向 Nutz.Doc 的运行 jar 包:  `<u>`可从此处下载=> `</u>[http://nutzdoc.googlecode.com nutzdoc.googlecode.com ]
         # 修改运行路径
-            * *Windows *用户可以将 run 目录加入到你的系统环境变量<font color="#0000AA">*%PATH% *</font>中去
-            * *Linux *用户，可以将 zdoc 脚本文件链接至 ~/bin 目录下。
+            * <b>Windows </b>用户可以将 run 目录加入到你的系统环境变量<font color="#0000AA"><b>%PATH% </b></font>中去
+            * <b>Linux </b>用户，可以将 zdoc 脚本文件链接至 ~/bin 目录下。
                 * 请确保此脚本文件权限为可执行
 {{{
 chmod +x ./zdoc
@@ -74,13 +74,13 @@ chmod +x ./zdoc
 
 <p align="right">[#Top]</p>
 ==`将 zDoc 转换成 HTML`==
-*命令格式 *
+<b>命令格式 </b>
 
 {{{
 zdoc [源目录] [目标目录] [.html|.htm]
 }}}
 
-*说明 *
+<b>说明 </b>
 
         * 这三个参数缺一不可
         * 第一个参数声明了zDoc源目录
@@ -89,7 +89,7 @@ zdoc [源目录] [目标目录] [.html|.htm]
         * 你的 zdoc 文件必须以 .man 或者 .zdoc 为后缀名，大小写不敏感
         * 更多的关于目录转换的细节请参看[zdoc_dir_convert.html 目录转换细则 ]
         * 最后一个参数为文件扩展名，.html 或者 .htm 都是合法的
-*比如 *
+<b>比如 </b>
 
 {{{
 zdoc /folder/abc /output/abc .html
@@ -104,13 +104,13 @@ Google code  是很多开源项目理想的开发平台。 它提供了 wiki 功
 
 Google code 的 wiki 格式非常简单，易于理解，Google 为其提供了较强大的页面渲染支持。所以将 zDoc 直接渲染成 Google wiki 对大多数 在 Google code 上的开源项目是很有用的，你需要执行如下格式的命令
 
-*命令格式 *
+<b>命令格式 </b>
 
 {{{
 zdoc [源目录] [目标目录] [索引文件名] [图片地址前缀]
 }}}
 
-*说明 *
+<b>说明 </b>
 
         * 这前三个参数缺一不可
         * 第一个参数声明了zDoc源目录
@@ -126,7 +126,7 @@ zdoc [源目录] [目标目录] [索引文件名] [图片地址前缀]
                 * 将会被打成一个 zip 包，存放在目标目录的根目录下，你可以用 ftp 工具，将图片上传至这个地址
                 * 生成后的 wiki 文件，图片地址将指向你声明的地址
                 * 如果你的图片重名，zDoc 将自动为你改名（按顺序增加数字后缀）
-*比如 *
+<b>比如 </b>
 
 {{{
 zdoc /folder/abc /output/abc wiki_index_page http://www.my.com/wiki/img

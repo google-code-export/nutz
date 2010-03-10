@@ -47,9 +47,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 ==`步骤一：在 POJO 中设置`==
 通过 Nutz.Dao 的提供的这三个[entity_annotations.man 实体注解 ]
 
-        * *@One *:<font color="#994400">一对一映射 </font>
-        * *@Many *:<font color="#994400">一对多映射 </font>
-        * *@ManyMany *:<font color="#994400">多对多映射 </font>
+        * <b>@One </b>:<font color="#994400">一对一映射 </font>
+        * <b>@Many </b>:<font color="#994400">一对多映射 </font>
+        * <b>@ManyMany </b>:<font color="#994400">多对多映射 </font>
 你可以为任意 POJO 对象设置映射。
 
 ----
@@ -93,7 +93,7 @@ public class Pojo {
 }
 }}}
 
-接下来，我会通过这三个对象 (Pet, Master, Food) 分别为你演示如何设置映射关系 (@One, @Many, @ManyMany)
+接下来，我会通过这三个对象 (<u>Pet, Master, Food </u>) 分别为你演示如何设置映射关系 (<u>@One, @Many, @ManyMany </u>)
 
 ----
 
@@ -114,8 +114,8 @@ public class Pet extends Pojo {
 
 其中：
 
-          * *target *是目标 POJO 类 （通过此项，Nutz.Dao 能知道目标的表名）
-          * *field *是本 POJO 类的关联字段名，这个字段用来存储目标[dao_primary_key POJO 类的主键 ]值。
+          * <b>target </b>是目标 POJO 类 （<u> 通过此项，Nutz.Dao 能知道目标的表名 </u>）
+          * <b>field </b>是本 POJO 类的关联字段名，这个字段用来存储目标[dao_primary_key POJO 类的主键 ]值。
           * 更多详情请参考：[dao_links_one 关于一对一映射 ]
 ----
 
@@ -141,8 +141,8 @@ public class Master extends Pojo {
 
 其中：
 
-          * *target *是目标 POJO 类 （通过此项，Nutz.Dao 能知道目标的表名）
-          * *field *是是映射目标 POJO 类的关联字段名，这个字段用来存储本[dao_primary_key POJO 类的主键 ]值。
+          * <b>target </b>是目标 POJO 类 （<u> 通过此项，Nutz.Dao 能知道目标的表名 </u>）
+          * <b>field </b>是是映射目标 POJO 类的关联字段名，这个字段用来存储本[dao_primary_key POJO 类的主键 ]值。
           * 更多详情请参考：[dao_links_many 关于一对多映射 ]
 ----
 
@@ -168,10 +168,10 @@ public class Food extends Pojo {
 
 其中：
 
-          * *target *是目标 POJO 类 （通过此项，Nutz.Dao 能知道目标的表名）
-          * *relation *关联表（<font color="#999999">或者说：中间表 </font>）的表名
-          * *from *关联表（<font color="#999999">或者说：中间表 </font>）的表字段名，它用来映射本[dao_primary_key POJO 类的主键 ]值
-          * *to *关联表（<font color="#999999">或者说：中间表 </font>）的表字段名，它用来映射目标[dao_primary_key POJO 类的主键 ]值
+          * <b>target </b>是目标 POJO 类 （<u> 通过此项，Nutz.Dao 能知道目标的表名 </u>）
+          * <b>relation </b>关联表（<font color="#999999"><u>或者说：中间表 </u></font>）的表名
+          * <b>from </b>关联表（<font color="#999999"><u>或者说：中间表 </u></font>）的表字段名，它用来映射本[dao_primary_key POJO 类的主键 ]值
+          * <b>to </b>关联表（<font color="#999999"><u>或者说：中间表 </u></font>）的表字段名，它用来映射目标[dao_primary_key POJO 类的主键 ]值
           * 更多详情请参考：[dao_links_many_many 关于多对多映射 ]
 ----
 
@@ -230,7 +230,7 @@ for(Food food : pet.foods)
 	System.out.println(food.getName());
 }}}
 
-上例中，正则表达式  “<font color="#AA0000">master|foods </font>” 匹配了 Pet 对象两个字段 --<font color="#999999">master, foods </font>，因此 这两个字段会被*fetchLinks *函数填充
+上例中，正则表达式  “<font color="#AA0000">master|foods </font>” 匹配了 Pet 对象两个字段 --<font color="#999999"><u>master, foods </u></font>，因此 这两个字段会被<b>fetchLinks </b>函数填充
 
 
 <p align="right">[#Top]</p>
@@ -253,6 +253,6 @@ for(Food food : pet.foods)
           * deleteLinks
           * deleteWith
       * 每个方法的参数都有两个
-          # *T obj *: POJO 对象实例
-          # *String regex *: 一个正则表达式字符串，所有被该表达式匹配上的映射字段均会被该方法执行
+          # <b>T obj </b>: POJO 对象实例
+          # <b>String regex </b>: 一个正则表达式字符串，所有被该表达式匹配上的映射字段均会被该方法执行
               * 如果该字符串为 null，不会有字段被匹配上。

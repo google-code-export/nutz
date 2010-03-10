@@ -33,7 +33,7 @@
 ==`所以你必须遵守这样的编码原则`==
         * 类名
             * 最好为名词
-            * 如果是运行一次就抛弃的类，以 ing 结尾，比如*Rendering *
+            * 如果是运行一次就抛弃的类，以 ing 结尾，比如<b>Rendering </b>
             * 类名尽量短，但是最好不要缩写，如果缩写，必须为特别常用的类，比如 org.nutz.dao.Cnd
                 * 因为调用者书写你的类名太长，他(她)的IDE会自动替他(她)换行，他会觉得有点不爽
             * 不要和 Java 的标准库中的类名冲突，比如 Class, Object, String 等
@@ -49,7 +49,7 @@
             * 尽量遵守 Java 的编码约定
             * 如果是 setter 类函数可以考虑遵循 jQuery 的编码原则
                 * 返回 this，以便链式赋值
-                * setXXX(String s) 可以用 xxx(String s) 替代<font color="#008800">_ 仅仅是建议，请视自己的情况和心情而定 _</font>
+                * setXXX(String s) 可以用 xxx(String s) 替代<font color="#008800"><i> 仅仅是建议，请视自己的情况和心情而定 </i></font>
             * 上述两个原则灵活掌握，总之，你要考虑到，使用的的 IDE 在 100 字自动折行的情况下，你的函数不太可能会被折行
         * 代码的格式，需要使用[http://code.google.com/p/nutz/source/browse/trunk/doc/eclipse/nutz-eclipse-java-code-format-1.0.xml  统一的 Eclipse 的代码格式 ]
             * 请从 svn 的 trunk/doc/eclipse/nutz-eclipse-java-code-format-1.0.xml 获得此文件

@@ -10,7 +10,7 @@
 =`Nutz.Dao 自定义 SQL 的概述`=
 Nutz.Dao 提供了大多数简单的操作，在80%以上的情况下，你并不需要编写 SQL，因为 Nutz.Dao 会自动替你 生成可以使用的 SQL。但是，在某些特殊的情况下，尤其是考虑到效率等问题，直接写作 SQL 仍然是程序员们 的一个杀手锏，有了这个杀手锏，程序员们永远可以针对任何数据库做他们想要的任何操作。
 
-在之前的时代，很多程序员将 SQL 代码同 Java 代码混杂在一起，即所谓的<font color="#0000AA">*硬编码 *</font>。硬编码通常是不 好的，所以很多程序员都采用了各种办法将 SQL 提炼出来存放在一个独立的文件中。其中比较著名的一个框架 就是 iBatis。这个小巧的 SQL 映射框架（Nutz.Dao 比它还小）在这个领域里干的不错。缺省的它将 SQL 存 放在 XML 文件中，现在最新的 iBatis3 也提供了JAVA注解的写法。但是我并不认为 XML 文件或者是 JAVA 注解是存放我的 SQL 语句好地方，我认为 SQL 存放的地方，应该是可以用 Eclipse 的 SQL 编辑器打开并且 能够被正确语法高亮的一种文本文件。
+在之前的时代，很多程序员将 SQL 代码同 Java 代码混杂在一起，即所谓的<font color="#0000AA"><b>硬编码 </b></font>。硬编码通常是不 好的，所以很多程序员都采用了各种办法将 SQL 提炼出来存放在一个独立的文件中。其中比较著名的一个框架 就是 iBatis。这个小巧的 SQL 映射框架（Nutz.Dao 比它还小）在这个领域里干的不错。缺省的它将 SQL 存 放在 XML 文件中，现在最新的 iBatis3 也提供了JAVA注解的写法。但是我并不认为 XML 文件或者是 JAVA 注解是存放我的 SQL 语句好地方，我认为 SQL 存放的地方，应该是可以用 Eclipse 的 SQL 编辑器打开并且 能够被正确语法高亮的一种文本文件。
 
 著名的 Hibernate 提供 HQL， 虽然语法近似于 SQL 但是它必然会有两个不可避免的缺点
 
@@ -66,7 +66,7 @@ Sql sql = Sqls.create("INSERT INTO t_abc (name,age) VALUES('Peter',18)");
 
 Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来帮助你构建 Sql 对象。 它们之间的区别在稍后会详细说明
 
-通常的情况，你需要构建某些*动态 *的 SQL，所以我也允许你为你的 SQL 设置占位符，占位符分两种：
+通常的情况，你需要构建某些<b>动态 </b>的 SQL，所以我也允许你为你的 SQL 设置占位符，占位符分两种：
 
         * 变量(var)占位符 - 形式为<font color="#008800">$名称 </font>
             * 以字符 $ 开头，名称为英文字母，数字，下划线，减号和句点。
@@ -76,7 +76,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
 }}}
 
             * 在执行 SQL 前，该占位符会被用户设置的值替换
-            * 类似 C 语言中的*宏 *
+            * 类似 C 语言中的<b>宏 </b>
         * 参数(param)占位符 - 形式为<font color="#008800">@名称 </font>
             * 以字符 @ 开头，名称为英文字母，数字，下划线，减号和句点。
             * 正则表达式为：
@@ -84,7 +84,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
 [@][a-zA-Z0-9_-.]+
 }}}
 
-            * 在执行 SQL 前，该占位符会被字符 "<font color="#FF00FF">*? *</font>" 替换，用来创建 PreparedStatement
+            * 在执行 SQL 前，该占位符会被字符 "<font color="#FF00FF"><b>? </b></font>" 替换，用来创建 PreparedStatement
             * Nutz.Dao 会自动计算 PreparedStatement的索引值
 所有的占位符可以同样的名称出现的多个地方。并且变量占位符和参数占位符的名称不互相干扰，比如:
 
@@ -158,9 +158,9 @@ List<String> demoSql(Dao dao) {
 我们了解了如何构建 Sql 对象，但是一个应用通常由很多 SQL 语句构成，如何管理这些语句呢？前面我说过，我希望： "<font color="#0000AA">用户可以将所有的 SQL 语句存放在一个或者多个文件中，语句的间隔可以通过注释 </font>"。 是的这是一种非常简单的纯文本文件，文件里只包含三种信息：
 
       # SQL 语句
-      # SQL 语句的名称<font color="#777777">(或者说是键值) </font>。你的程序可以通过语句的名称获取到某一条或几条 SQL 语句
+      # SQL 语句的名称<font color="#777777"><u>(或者说是键值) </u></font>。你的程序可以通过语句的名称获取到某一条或几条 SQL 语句
       # `注释  (通常包括在 /* 与 */ 之间) `
-<font color="#FF0000">*请注意： *</font>你的 SQL 文件必须为 "<font color="#FF00FF">*UTF-8 *</font>" 编码。
+<font color="#FF0000"><b>请注意： </b></font>你的 SQL 文件必须为 "<font color="#FF00FF"><b>UTF-8 </b></font>" 编码。
 
 下面是一个例子
 
@@ -199,7 +199,7 @@ System.out.println(dao.sqls().count());
 
         * FileSqlManager 的构造函数接受数目可变的字符串对象，每个对象就是 SQL 文件的路径。
         * 如不是存在在 CLASSPATH 中的文件，则需要写上绝对路径。
-        * 如果你给出的 path 是一个目录，那么该目录下所有后缀为*.sqls *的文件都会被加载
+        * 如果你给出的 path 是一个目录，那么该目录下所有后缀为<b>.sqls </b>的文件都会被加载
 
 <p align="right">[#Top]</p>
 ==`在构造之后的任何时加载`==

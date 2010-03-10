@@ -34,7 +34,7 @@ dao.update(pet2);
 
 <p align="right">[#Top]</p>
 =`使用事务模板`=
-Nutz.Dao 提供了简单的解决办法：*事务模板 *
+Nutz.Dao 提供了简单的解决办法：<b>事务模板 </b>
 
 ----
 
@@ -58,21 +58,21 @@ Trans.exec(new Atom(){
 // End transaction
 }}}
 
-提供一个 org.nutz.trans.Atom 接口的匿名实现，在里面执行的所有的 Dao 操作都是原子性的，因为它们在 同一个 “*原子 *(<font color="#008800">Atom </font>)” 里。
+提供一个 org.nutz.trans.Atom 接口的匿名实现，在里面执行的所有的 Dao 操作都是原子性的，因为它们在 同一个 “<b>原子 </b>(<font color="#008800">Atom </font>)” 里。
 
 ----
 
 <p align="right">[#Top]</p>
 ==`事务的关键就是原子的界定`==
-事务最核心的是原子的界定，在 Nutz.Dao中，界定原子的方法出奇的简单，借助匿名类，你可以随时将一段 代码用你的原子实现包裹住。而 Trans.exec() 方法接受*数目可变的原子 *，每个原子都是事务性的。
+事务最核心的是原子的界定，在 Nutz.Dao中，界定原子的方法出奇的简单，借助匿名类，你可以随时将一段 代码用你的原子实现包裹住。而 Trans.exec() 方法接受<b>数目可变的原子 </b>，每个原子都是事务性的。
 
-* Trans.exec 的函数声明 *
+<b> Trans.exec 的函数声明 </b>
 
 {{{
 public static void exec(Atom... atoms);
 }}}
 
-<font color="#0000AA">*被原子实现包裹住的代码就是事务安全的 *</font>，无论它同时操作了多少个 DataSource。 Nutz.Dao 提供的原子接口非常简单，实际上它就是 java.lang.Runnable 的一个别名，下面就是这个接口的 全部代码：
+<font color="#0000AA"><b>被原子实现包裹住的代码就是事务安全的 </b></font>，无论它同时操作了多少个 DataSource。 Nutz.Dao 提供的原子接口非常简单，实际上它就是 java.lang.Runnable 的一个别名，下面就是这个接口的 全部代码：
 
 {{{
 package com.zzh.trans;
@@ -89,7 +89,7 @@ public interface Atom extends Runnable {}
 ==`设置事务的级别`==
 在 JDBC 的 java.sql.Connection 接口中定义的 setTransactionIsolation 函数可以设置事务的级别 Nutz.Dao 也提供另外一个静态函数，允许你设置事务的级别:
 
-* Trans.exec 的函数声明 *
+<b> Trans.exec 的函数声明 </b>
 
 {{{
 public static void exec(int level, Atom... atoms);
@@ -103,7 +103,7 @@ public static void exec(int level, Atom... atoms);
         * `Connection.TRANSACTION_READ_COMMITTED `
         * `Connection.TRANSACTION_REPEATABLE_READ `
         * `Connection.TRANSACTION_SERIALIZABLE `
-<font color="#FF0000">*注意： *</font>` 不能使用常量 Connection.TRANSACTION_NONE，因为它的意思是“不支持事务”  `
+<font color="#FF0000"><b>注意： </b></font>` 不能使用常量 Connection.TRANSACTION_NONE，因为它的意思是“不支持事务”  `
 
 关于 level 参数的更多说明，请参看[http://java.sun.com/javase/6/docs/api/java/sql/Connection.html#setTransactionIsolation(int) java.sql.Connection 的文档 ]
 

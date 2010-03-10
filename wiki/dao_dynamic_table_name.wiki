@@ -65,7 +65,7 @@ public void demoTableName(final Dao dao) {
 public static void run(Object refer, Runnable atom);
 }}}
 
-是的，第一个参数是个 Object，也就是说，你可以传入任何对象，上面的例子我们传入的是个整数，Java编译器 会自动将其包裹成 Integer 对象。 考虑到动态表名可能存在的复杂性（在前面一节“动态表名的常用形式”提到），你还可以传入一个 Map 或者一个 POJO， Nutz.Dao 会根据你的传入为动态表名的多个变量同时赋值。下面我列出一个完整的*动态表名赋值规则 *
+是的，第一个参数是个 Object，也就是说，你可以传入任何对象，上面的例子我们传入的是个整数，Java编译器 会自动将其包裹成 Integer 对象。 考虑到动态表名可能存在的复杂性（在前面一节“动态表名的常用形式”提到），你还可以传入一个 Map 或者一个 POJO， Nutz.Dao 会根据你的传入为动态表名的多个变量同时赋值。下面我列出一个完整的<u><b>动态表名赋值规则 </b></u>
 
 ----
 
@@ -179,7 +179,7 @@ public void demoTableName_multi_temp(final Dao dao) {
 }
 }}}
 
-看，虽然行数并没有减少，但是你不会犯错了。是的，模板写法主要的目的是<font color="#AA8800">*为了让你不会出错 *</font>。 Java 语法上的局限让上述写法不可避免的有点显得臃肿，但是，层次的确清晰了一些，不是吗？在这个方面，我也 期待这 Java 能向函数式编程靠近一些，提供闭包或者匿名函数，当然，前提是不能损害现在 Java 语言结构清晰 易于调试的优点。
+看，虽然行数并没有减少，但是你不会犯错了。是的，模板写法主要的目的是<font color="#AA8800"><b>为了让你不会出错 </b></font>。 Java 语法上的局限让上述写法不可避免的有点显得臃肿，但是，层次的确清晰了一些，不是吗？在这个方面，我也 期待这 Java 能向函数式编程靠近一些，提供闭包或者匿名函数，当然，前提是不能损害现在 Java 语言结构清晰 易于调试的优点。
 
 ----
 
@@ -193,7 +193,7 @@ public void demoTableName_multi_temp(final Dao dao) {
 ===`一对一映射`===
 比如，我们的 Company 对象需要一个新的字段存储 CEO 的 ID，以及另外一个字段存储 CEO 对象本身。按照 Nutz.Dao 对于一对一映射的定义：
 
-<font color="#008800">当对象A有字段f1指向对象B的主键，且在对象A上有字段b类型为B，且声明了@One(target=B.class,field="f1"，则称A.b为对于B的一对一映射 </font>
+<font color="#008800"><u>当对象A有字段f1指向对象B的主键，且在对象A上有字段b类型为B，且声明了@One(target=B.class,field="f1"，则称A.b为对于B的一对一映射 </u></font>
 
 那么，我们的 Company 对象必然会有类似如下的代码：
 

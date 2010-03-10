@@ -23,7 +23,7 @@
           * 哪些文件需要转换？
           * 如果是 HTML 格式的目录转换，索引是什么？
           * 如果是合并成一个大文件，大文件都有哪些章节，顺序如何？
-所以在根目录放置一个*index.xml *，zDoc 转换程序就有办法获得充足的信息.
+所以在根目录放置一个<b>index.xml </b>，zDoc 转换程序就有办法获得充足的信息.
 
 
 <p align="right">[#Top]</p>
@@ -70,9 +70,9 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/ex01.png
 </doc>
 }}}
 
-      * `根元素 <doc> 对应到根目录 docroot，即， `*index.xml 所在的目录 *。
+      * `根元素 <doc> 对应到根目录 docroot，即， `<b>index.xml 所在的目录 </b>。
       * 在跟元素你可以用 @author 属性声明这篇文档的默认作者，。如果目录下的 zDoc 文档没有声明 #author，那么便被认为是默认作者所写。
-      * 属性 @index 的值符合[zdoc_syntax.html zDoc语法 ]中的<font color="#00AAAA">*目录索引 *</font>中的定义
+      * 属性 @index 的值符合[zdoc_syntax.html zDoc语法 ]中的<font color="#00AAAA"><b>目录索引 </b></font>中的定义
       * @path 属性表示当前对应的目录或者文件
-          * 如果是目录，需要有标题 (<font color="#008800"> 通过属性@title声明 </font>)，如果没有声明  @title，则使用目录名称来代替
-          * 如果是文件，如果没有 @title 属性，则采用文档的 #title，详情惨参看[zdoc_syntax.html zDoc语法 ]<font color="#00AAAA">*文档属性 *</font>这一节。
+          * 如果是目录，需要有标题 (<font color="#008800"><u> 通过属性@title声明 </u></font>)，如果没有声明  @title，则使用目录名称来代替
+          * 如果是文件，如果没有 @title 属性，则采用文档的 #title，详情惨参看[zdoc_syntax.html zDoc语法 ]<font color="#00AAAA"><b>文档属性 </b></font>这一节。

@@ -16,7 +16,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 <p align="right">[#Top]</p>
 =`关于在 POJO 的配置 : @ManyMany`=
-在 POJO 类中字段中增加注解*@ManyMany *：
+在 POJO 类中字段中增加注解<b>@ManyMany </b>：
 
 {{{
 @Table("t_food")
@@ -38,12 +38,12 @@ public class Food extends Pojo {
 
 因此：
 
-      * 数据库中*必须 *`存在一个中间表 t_pet_food `
+      * 数据库中<b>必须 </b>`存在一个中间表 t_pet_food `
           * 该表有一个字段 foodid 对应到 Food 对象的主键
           * 该表有一个字段 petid 对应到 Pet 对象的主键
       * Nutz.Dao 通过 @ManyMany 这四个属性了解到：
           * 目标的 POJO 类 ： Pet
-          * 关联表（<font color="#999999">或者说：中间表 </font>`）：t_pet_food `
+          * 关联表（<font color="#999999"><u>或者说：中间表 </u></font>`）：t_pet_food `
           * 关联表的 foodid 字段对应到是本 POJO （<font color="#999999">Food </font>）主键
           * 关联表的 petid 字段对应到是目标 POJO （<font color="#999999">Pet </font>） 主键
 ----
@@ -120,5 +120,5 @@ SELECT * FROM t_pet WHERE id IN (SELECT petid FROM t_pet_food WHERE foodid=${foo
 
 <p align="right">[#Top]</p>
 =`你可能还需要参考`=
-      * 关于注解*@ManyMany *` 详细描述请参看 >  `[entity_annotations.man Nutz.Dao 实体注解 ]关于*@ManyMany *这一节
+      * 关于注解<b>@ManyMany </b>` 详细描述请参看 >  `[entity_annotations.man Nutz.Dao 实体注解 ]关于<b>@ManyMany </b>这一节
       * 关于通过 Dao 接口调用，请参看[dao_links_dao_operations Nutz.Dao 为映射提供的操作 ]。

@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.a.26]
+ * [nutz_release_notes 1.a.27 (Hatching...)]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]

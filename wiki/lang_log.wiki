@@ -8,14 +8,14 @@
 
 <p align="right">[#Top]</p>
 =`为什么要自己写一个 Log？`=
-首先，我们没有从头实现一个日志，我们不过是*适配 *日志。我们适配了 log4j 和 java.util.logging。但是为什么呢？ 为什么不直接依赖 slf4j 呢？
+首先，我们没有从头实现一个日志，我们不过是<b>适配 </b>日志。我们适配了 log4j 和 java.util.logging。但是为什么呢？ 为什么不直接依赖 slf4j 呢？
 
 我必须要在这里重申一下[../preface.man Nutz 框架的目标 ]：
 
-      * 尽量让程序员在<font color="#0000FF">*设立开发环境 *</font>以及<font color="#0000FF">*部署应用 *</font>的时候获得最佳的体验
+      * 尽量让程序员在<font color="#0000FF"><b>设立开发环境 </b></font>以及<font color="#0000FF"><b>部署应用 </b></font>的时候获得最佳的体验
 如果你下载了 Nutz 的 jar，满心欢喜的加到你的项目里，然后，运行你的项目，你会发现从 Nutz.jar 里会迅速抛出 一个异常。经过一番查阅，你发现你不得不访问 slf4j 的网站，下载它的 jar 包，然后再加入自己的项目里...
 
-*你会因此而很高兴吗？ *
+<b>你会因此而很高兴吗？ </b>
 
 ........
 
@@ -37,7 +37,7 @@
 
 ......
 
-<font color="#CCCCCC">_好吧，我承认，我上面说的统统是狡辩，根本原因不过是因为手痒痒。而且我揭发：实际上这个模块代码都是 _</font>[http://wendal.javaeye.com wendal ]<font color="#CCCCCC">_和 Sunonfire 写的，我其实不过是出来打酱油的 ...  _</font>
+<font color="#CCCCCC"><i>好吧，我承认，我上面说的统统是狡辩，根本原因不过是因为手痒痒。而且我揭发：实际上这个模块代码都是 </i></font>[http://wendal.javaeye.com wendal ]<font color="#CCCCCC"><i>和 Sunonfire 写的，我其实不过是出来打酱油的 ...  </i></font>
 
 ----
 
@@ -64,7 +64,7 @@ Nutz.Log 使用了[lang_plugin 插件技术 ]，其中优先级依次为：
 它们可以使用的条件是：
 
       * Log4j
-          # 如果不能加载类*org.apache.log4j.Logger *，则不可用;
+          # 如果不能加载类<b>org.apache.log4j.Logger </b>，则不可用;
           # System.getProperty("log4j.defaultInitOverride") 为 null 或为 "false"，则不可用
           # System.getProperty("log4j.configuration") != null，则可用  （有一种情况是log4j.coniguration中指定的配置文件找不到。我们认为这是一个不应该被忽视的配置
 错误，所以这里将log4j设定为可用；这样在实际输出log时log4j就会抛出这个错误，由用户来修正配置）。

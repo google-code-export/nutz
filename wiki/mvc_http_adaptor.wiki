@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`什么是适配器？`=
-将 HTTP 参数转换成一个函数参数的过程是一个典型适配过程，执行这个过程的对象被称为适配器了。 Nutz.Mvc 提供了*org.nutz.mvc.HttpAdaptor *接口，隔离了这种行为。
+将 HTTP 参数转换成一个函数参数的过程是一个典型适配过程，执行这个过程的对象被称为适配器了。 Nutz.Mvc 提供了<b>org.nutz.mvc.HttpAdaptor </b>接口，隔离了这种行为。
 
 在每一个入口函数上，你都可以通过注解<font color="#888888">@AdaptBy </font>来声明如何适配 HTTP 参数。当然，你 没必要在每一个入口函数上都声明，在子模块类上声明，或者在整个应用的主模块上声明均可。
 
@@ -16,7 +16,7 @@
 
 <p align="right">[#Top]</p>
 =`如何使用适配器？`=
-默认的，如果你什么也不写，Nutz.Mvc 会采用*org.nutz.mvc.adaptor.PairAdaptor *（_也就是名值对的方式 _） 来适配你的 HTTP 参数。
+默认的，如果你什么也不写，Nutz.Mvc 会采用<b>org.nutz.mvc.adaptor.PairAdaptor </b>（<i>也就是名值对的方式 </i>） 来适配你的 HTTP 参数。
 
 
 <p align="right">[#Top]</p>
@@ -57,7 +57,7 @@ Nutz.Mvc 为你内置了 4 个最常用的适配器，可以让支持用如下�
 @AdaptBy(type=PairAdaptor.class)
 }}}
 
-这种方式，是传统的 HTTP 参数方式。关键的问题是如何将 HTTP 的参数表同入口函数的参数对应起来。 为此，它支持一个新的注解*@Param *，你可以:
+这种方式，是传统的 HTTP 参数方式。关键的问题是如何将 HTTP 的参数表同入口函数的参数对应起来。 为此，它支持一个新的注解<b>@Param </b>，你可以:
 
 {{{
 public String someFunc(	@Param("pid") int petId,
@@ -242,7 +242,7 @@ public String getArticle(int articleId){
 
 `关键就在于这个 ｛*@At("/article/*")｝。 Nutz.Mvc 在解析路径的时候，碰到了 *， 它就会将这个路径从此处截断，后面的字串按照字符 '/' 拆分成一个字符串数组。 为入口函数填充参数的时候，会优先将这个路径参数数组按照顺序填充成参数，之后，才应用 适配器的内部逻辑，填充其余的参数。  `
 
-因此，对于所有 Nutz.Mvc 提供的内置适配器，<font color="#FF0000">*路径参数是最优先的 *</font>。
+因此，对于所有 Nutz.Mvc 提供的内置适配器，<font color="#FF0000"><b>路径参数是最优先的 </b></font>。
 
 最后，给出一个两个路径参数的例子：
 

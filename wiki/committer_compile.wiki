@@ -43,10 +43,10 @@ mysql:> create database zzhtest;
 ==`2. 创建连接配置文件`==
 `在 Eclipse 项目里，增加一个新的 source folder ：右击项目 > New > Source Folder  `
 
-        # 随便给这个 Folder 起个名字，比如*properties *
+        # 随便给这个 Folder 起个名字，比如<b>properties </b>
         # 将这个目录设置成为 Source Folder
-        # 然后在里面创建一个文本文件*nutz-test.properties *
-            * <font color="#FF0000">*请注意 *</font>，一定要叫这个名字，否则运行测试一定是不过的，详细原因请看 /test/org/nutz/Nutzs.java 的源代码
+        # 然后在里面创建一个文本文件<b>nutz-test.properties </b>
+            * <font color="#FF0000"><b>请注意 </b></font>，一定要叫这个名字，否则运行测试一定是不过的，详细原因请看 /test/org/nutz/Nutzs.java 的源代码
 这个文件的正文为：
 
 {{{
@@ -58,7 +58,7 @@ password=123456
 
 一共四行。当然，不用我说，大家一定知道怎么修改吧,建立好文件的项目结构为：
 
-<font color="#FF0000">*请注意，= 前后不要有空格 *</font>
+<font color="#FF0000"><b>请注意，= 前后不要有空格 </b></font>
 
 我之所以这样做而不直接把 nutz-test.properties 文件放到 src 或者 test 下面，是因为，这个文件通常在不同的机器上时不 一样的，我家，公司，以及笔记本上的 nutz-properties 都不一样。所以，不宜将这个文件放到 svn 上。
 

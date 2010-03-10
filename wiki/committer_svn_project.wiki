@@ -92,7 +92,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/08.png
 =`建立 Tomcat 运行环境`=
 增加 Tomcat 服务器 (你必选先装了 Tomcat)
 
-这里主要是为了编译，而需要 tomcat 带的 Servlet 相关的类选择*`Window > Preferences > Server > Runtime Environment > Add `*在弹出的对话框选择*`Apache > Apache Tomcat v6.0 `*（_因为我装的就是 Tomcat6.0 _） 点击 next ，填写 Tomcat 的安装路径
+这里主要是为了编译，而需要 tomcat 带的 Servlet 相关的类选择<b>`Window > Preferences > Server > Runtime Environment > Add `</b>在弹出的对话框选择<b>`Apache > Apache Tomcat v6.0 `</b>（<i>因为我装的就是 Tomcat6.0 </i>） 点击 next ，填写 Tomcat 的安装路径
 
 http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/09.png
 
@@ -157,7 +157,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/16_2.png
 
 否则，会出编译警告，因为 svn 缓存在目录中的文件也会被 Eclipse 看到。分别为 src 和 test 增加过滤 pattern，就可以让 Eclipse 忽略所有的 .svn 工作目录
 
-过滤的表达式是：<font color="#0000AA">*` **/.svn/**  `*</font>
+过滤的表达式是：<font color="#0000AA"><b>` **/.svn/**  `</b></font>
 
 ----
 

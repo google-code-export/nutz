@@ -36,7 +36,7 @@
 
 <p align="right">[#Top]</p>
 =`使用过滤器`=
-有些是由，你想让你的 JSP 文件 (不是通过 Nutz.Mvc 入口函数访问的)也可以使用"*本地化字符串 *" 功能，那么你需要在 web.xml 这么配置:
+有些是由，你想让你的 JSP 文件 (不是通过 Nutz.Mvc 入口函数访问的)也可以使用"<b>本地化字符串 </b>" 功能，那么你需要在 web.xml 这么配置:
 
 {{{
 <!--
@@ -65,5 +65,5 @@
 
 <p align="right">[#Top]</p>
 =`定制自己的本地化字符串方式`=
-很简单是吗？ 你想将 Message 字符串存在 XML 里，或者你想换一种 Message 字符串的存储方式。 那么实现一个新的*org.nutz.mvc.MessageLoader *，并在 @Localization 注解的 type 属性中注明就是了。 不过你的实现类必须有一个接受一个 String 类型参数的构造函数，以便 Nutz.Mvc 为你传入 @Localization 里面声明 的值。
+很简单是吗？ 你想将 Message 字符串存在 XML 里，或者你想换一种 Message 字符串的存储方式。 那么实现一个新的<b>org.nutz.mvc.MessageLoader </b>，并在 @Localization 注解的 type 属性中注明就是了。 不过你的实现类必须有一个接受一个 String 类型参数的构造函数，以便 Nutz.Mvc 为你传入 @Localization 里面声明 的值。
 

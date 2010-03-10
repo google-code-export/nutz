@@ -8,25 +8,25 @@
 
 <p align="right">[#Top]</p>
 =`1.a.25`=
-<font color="#FF0000">*这是个里程碑式的版本 *</font>，从这个版本开始， Nutz 将不再依赖 Javassist，而依赖 ASM(内嵌Asm 3.2 ,无需额外jar包) 所以，编译时，你将不再需要 Javassist.jar （在此，特地感谢[http://wendal.javaeye.com 无敌的 Wendal ]）。
+<font color="#FF0000"><b>这是个里程碑式的版本 </b></font>，从这个版本开始， Nutz 将不再依赖 Javassist，而依赖 ASM(内嵌Asm 3.2 ,无需额外jar包) 所以，编译时，你将不再需要 Javassist.jar （在此，特地感谢[http://wendal.javaeye.com 无敌的 Wendal ]）。
 
 同时，为了更好的输出日志，Nutz 在编译时依赖了 Log4j， 但是运行时，没有 Log4j 它会选用 Java 的 Logging 或者是控制台输出。
 
-由于已经有小部分人开始试验性的在自己的项目里应用 Nutz，从本版开始，所有的接口和使用方式*变动会非常慎重 *， 没有重大理由和经过社区充分讨论，它将保持不变。
+由于已经有小部分人开始试验性的在自己的项目里应用 Nutz，从本版开始，所有的接口和使用方式<b>变动会非常慎重 </b>， 没有重大理由和经过社区充分讨论，它将保持不变。
 
 
 <p align="right">[#Top]</p>
 ==`问题修复`==
-        * Issue 12: Should support one config file can import other config files function.<font color="#AAAAAA">by </font>*satellite168 *
-        * Issue 70: 简化json配置(在ioc配置的是时候能把包名用变量代替？)<font color="#AAAAAA">by </font>*lhasasky *
-        * Issue 71: aop: 修改拦截器接口,改为使用asm实现<font color="#AAAAAA">by </font>*wendal *
-        * Issue 72: 客户端提交表单服务器端自动绑定pojo的建议<font color="#AAAAAA">by </font>*lhasasky *
-        * Issue 78: 出现@Id或者@name时 还需要@column<font color="#AAAAAA">by </font>*amosleaf *
-        * Issue 80: mvc: 支持 @Attr 注解，可以从 request, session, ServletContext 获取属性<font color="#AAAAAA">by </font>*zozoh *
-        * Issue 86: NameInjector不能处理一个name有多个值的情况<font color="#AAAAAA">by </font>*`blue_rain `*
-        * Issue 91: delete(Object)操作无法删除@PK对象问题<font color="#AAAAAA">by </font>*harkoo *
-        * Issue 93: dao update 接口建议<font color="#AAAAAA">by </font>*Bird.Wyatt *
-        * Issue 96: 将HttpServletRequest所接收的参数转为Map<font color="#AAAAAA">by </font>*会跑的蜗牛 *
+        * Issue 12: Should support one config file can import other config files function.<font color="#AAAAAA">by </font><b>satellite168 </b>
+        * Issue 70: 简化json配置(在ioc配置的是时候能把包名用变量代替？)<font color="#AAAAAA">by </font><b>lhasasky </b>
+        * Issue 71: aop: 修改拦截器接口,改为使用asm实现<font color="#AAAAAA">by </font><b>wendal </b>
+        * Issue 72: 客户端提交表单服务器端自动绑定pojo的建议<font color="#AAAAAA">by </font><b>lhasasky </b>
+        * Issue 78: 出现@Id或者@name时 还需要@column<font color="#AAAAAA">by </font><b>amosleaf </b>
+        * Issue 80: mvc: 支持 @Attr 注解，可以从 request, session, ServletContext 获取属性<font color="#AAAAAA">by </font><b>zozoh </b>
+        * Issue 86: NameInjector不能处理一个name有多个值的情况<font color="#AAAAAA">by </font><b>`blue_rain `</b>
+        * Issue 91: delete(Object)操作无法删除@PK对象问题<font color="#AAAAAA">by </font><b>harkoo </b>
+        * Issue 93: dao update 接口建议<font color="#AAAAAA">by </font><b>Bird.Wyatt </b>
+        * Issue 96: 将HttpServletRequest所接收的参数转为Map<font color="#AAAAAA">by </font><b>会跑的蜗牛 </b>
 
 <p align="right">[#Top]</p>
 ==`质量`==
@@ -88,7 +88,7 @@
 ||[http://www.3km.com.cn 会跑的蜗牛 ]||X||-||X||-||-||-||X||
 ||知足常乐||-||-||X||-||-||-||X||
 
-另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架*产生着潜移默化的影响 *。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
+另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
 
 另，由于众所周知的原因，建议大家通过[https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ]有时候是可以上的。但是能跳墙还是跳墙的比较好。
 
