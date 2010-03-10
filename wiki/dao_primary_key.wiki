@@ -155,7 +155,7 @@ Pet pet = dao.deletex(Pet.class, 23, 12);
 <font color="#FF0000">* 注意 *</font>
 
         * 这里你给的变参的顺序必须按照你 @PK 里声明的顺序。
-        * 是 fetch*X *和 delete*X *
+        * 是 fetch<b>X</b>和 delete<b>X</b>
 
 <p align="right">[#Top]</p>
 ==`其他操作`==
