@@ -5,7 +5,7 @@
    * [committer_compile 运行 JUnit 测试 - Eclipse]
    * [committer_packages Nutz 的包结构]
    * [committer_version_naming Nutz 的版本命名规范]
-   * [committer_coding 成为代码提交者]
+   * [committer_coding Nutz Java 编码规范 (V1.0)]
  * Dao 手册
    * [dao_hello Hello world]
    * [dao_annotations 注解列表]
