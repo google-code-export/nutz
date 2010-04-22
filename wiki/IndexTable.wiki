@@ -35,6 +35,7 @@
    * [ioc_ioc_loader 定义自己的配置文件格式]
    * [ioc_aop AOP -- 声明式切片]
    * [ioc_scope 对象生命范围]
+   * [ioc_xml_ioc_loader 使用XML作为配置文件格式]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
    * [mvc_http_adaptor 适配器]
@@ -69,3 +70,4 @@
  * 附录
    * [appendix_create_datasource 如何创建 DataSource]
    * [appendix_resources 推荐文章]
+   * [appendix_plugins 可用的插件]

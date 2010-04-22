@@ -1,0 +1,24 @@
+#summary 可用的插件
+=Top=
+<p align="center"><font size=6>* 可用的插件 *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
+----
+IocProvider[http://code.google.com/p/nutzlab/source/browse/trunk/Nutz-IoC-Spring/src/org/nutz/ioc/impl/spring/SpringIocProvider.java Spring桥 ]
+
+----
+IocLoader
+
+----
+View
+
+----
+Dao
+
+----
+Aop
+
+----
+Castor
+

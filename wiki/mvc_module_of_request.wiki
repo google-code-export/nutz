@@ -71,7 +71,7 @@ public class MyFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		req.setAttribute("$request", req);
-                chain.doFilter(req, resp);
+		chain.doFilter(req, resp);
 	}
 }
 }}}
@@ -87,3 +87,4 @@ public class MyFilter implements Filter {
 <p align="right">[#Top]</p>
 ==`最后`==
 这样，就可以做到 Request 级别的 Module 了，即，每次请求，都会重新创建你的 Module 实例
+
