@@ -1,0 +1,86 @@
+#title:分页查询
+#index:0,1
+----------------------------------------------------------------------------------------
+概述
+	使用数据库的应用程序，多数情况下都需要使用 {#00A;_“分页”} 这个功能。尤其是在 Web 应用程序中，后端的分页查询尤其的普遍。
+	在以往的使用经验中，一个分页查询，除了能获取到一个列表外，我们通常需要如下几个信息才能在客户端显示出一个完整的翻页条。
+	 * 当前页数 -- 第几页
+	 * 页大小 -- 每页有多少条记录
+	 * 总页数 -- 一共多少页
+	 * 总记录数 -- 如果不分页，一共有多少条记录
+	当我们获得了这四条信息后，对于维护一个翻页查询就足够。
+
+	Nutz.Dao 的查询接口天然就支持翻页查询。并且每次会提供给你所有以上的信息。
+----------------------------------------------------------------------------------------
+Dao 接口的第三个参数
+	让我们先看看 Nutz.Dao 接口查询函数的声明：
+	{{{<JAVA>
+	<T> List<T> query(Class<T> classOfT, Condition condition, Pager pager);
+	}}}
+	这个接口有三个参数，classOfT 告诉 Nutz.Dao 需要查询的实体类型，[condition.man condition] 告诉 Nutz.Dao 查询出的列表需要符
+	合的条件。详细请看 [condition.man 复杂条件]。最后一个参数，就是告诉 Nutz.Dao 将结果如何分页的了。
+
+	* Pager 的全名是 org.nutz.dao.Pager
+	* 如果 pager 被传入了 null，则不分页
+	* 生成 Pager 对象的时候需要传入 {#00A;“当前页数”} 和 {#00A;“页大小”}
+	* 当执行完查询后，你可以通过 Pager 类提供的方法获取你需要的信息
+		* 获取总页数:  pager.getPageCount()
+		* 获取总记录数:  pager.getRecordCount()
+	
+
+----------------------------------------------------------------------------------------
+如何创建 Pager
+	Nutz.Dao 默认支持的数据库
+		org.nutz.dao.Pager 是一个接口，在第一版，我们分别为一下数据库做了特殊优化
+		 # H2
+		 # Oracle
+		 # Mysql
+		 # Postgresql
+		 # SQLServer2000
+		 # SQLServer2005
+		 # DB2
+
+	----------------------------------------------------------------------------------------
+	自动判断类型 Pager 
+		在 Dao 接口中，提供了一个 Pager 的创建方法：
+		{{{<JAVA>
+		Dao.createPager(int pageNumber, int pageSize);
+		}}}
+		你需要提供两个信息
+		 # 第几页
+		 # 每页有多大
+		Nutz.Dao 会根据你设置的 DataSource，返回给你一个该数据库特殊的 Pager 的实例。如果你的 DataSource 不是Nutz.Dao 默认支持的数据库，
+		则会返回给你一个默认的 OtherPager 实例。当小数据量的时候，OtherPager 实现是个很好的选择，当数据量比较庞大的时候，OtherPager 的效率
+		可能不那么尽如人意，因为它采用了 absolute 来获取结果集的大小，以及移动游标的位置。
+		
+		{#F00;*需要指出的是}，如果一个特殊的数据库类型的 Pager （即，不是 OtherPager），那么就是说明你很关心你这次查询的速
+		度，所以Nutz.Dao 不会为你计算 Pager 中的 pageCount 和 recordCount。当然，如果你需要它们，你需要手工的通过 Dao 接口的 count()
+		方法计算结果，然后使用 Pager 里面的 setRecordCount() 方法将计算的结果传入
+		Pager 会自动为你计算 pageCount (在你调用了 setRecordCount() 方法后，直接调用 getPageCount() 函数即可)。
+	----------------------------------------------------------------------------------------
+	让 Dao 可以接受更多的 Pager
+		使用 Nutz.Dao， 但是我使用的数据库不在 Nutz 的支持列表里，怎么办呢？
+		
+		好办，你需要：
+		 # 为你的数据库，实现一个 Pager - 最省力的办法是继承抽象类 org.nutz.dao.pager.AbstractPager
+		 # 修改 NutDao 的 Pager 获取逻辑
+		
+		第一条很好理解，第二条，怎么修改 NutzDao 的 Pager 获取逻辑呢？ 
+		
+		答案是：修改 PagerMaker
+		
+		{{{
+		((NutDao)dao).setPagerMaker(yourPagerMaker);
+		}}}
+		
+		默认的，Nutz.Dao Pager 创建逻辑封装在 DefaultPagerMaker 类中。 你可以继承这个类，或者重新实现一个 PagerMaker 接口：
+		
+		{{{
+		public interface PagerMaker {
+			Pager make(DatabaseMeta meta, int pageNumber, int pageSize);
+		}
+		}}}
+		
+		通过 DatabaseMeta 的 getProductName() 和 getVersion() 方法，你能了解当前数据库的类型，剩下的，就看你的了
+		
+		

@@ -1,0 +1,104 @@
+#title:Hello world
+#index:1
+#verifier:Peter.Tung(mastung@gmail.com)
+#verifier:Xiaofeng.Fu(hilliate@gmail.com)
+-----------------------------------------------------------------------------------------------------------------
+检查运行环境
+
+	# 首先，你必须安装 JDK1.5 或者以上版本：
+		# 如果你直接使用编译好的 jar 包，请保证你的 JDK是1.6 的，因为 Nutz 的jar包是在  1.6.0_11 上编译的。
+		# JDK1.5 的需要重新从源码编译。
+		# Nutz 的源码依赖 [http://www.csg.is.titech.ac.jp/~chiba/javassist/ Javassist]。
+	# 其次，为了运行 Nutz.Dao，你必须要有一个数据库软件：
+		# Mysql,Postgresql, SQLServer, Oracle, DB2 都可以。
+	# 建立一个普通的 Java 项目：
+		# 你可以采用任何自己觉得舒适的 IDE 环境，或者编辑器。
+		# 你要将数据库的 JDBC Driver 和你喜欢的连接池加入项目的 classpath。
+	# 在数据库里建立一张你自己的数据表， 这里我们用 t_person 来举例：
+-----------------------------------------------------------------------------------------------------------------
+创建数据库
+
+	此处代码适用于PostgreSQL，如果你使用了不同的数据库，请自行修改相应建库语句：
+
+	{{{<sql>
+	CREATE TABLE t_person (
+	  id  SERIAL PRIMARY KEY,
+	  name  VARCHAR(50) NOT NULL UNIQUE,
+	  age INT
+	);
+	}}}
+
+-----------------------------------------------------------------------------------------------------------------
+创建 POJO
+
+	在 Java 项目中建立一个POJO，比如 com.zzh.demo.Person :
+
+	{{{<java>
+	import org.nutz.dao.entity.annotation.*;
+
+	@Table("t_person")   // 声明了Person对象的数据表
+	public class Person {
+
+		@Column	  // 表示该对象属性可以映射到数据库里作为一个字段
+		@Id       // 表示该字段为一个自增长的Id
+		private int id;
+		
+		@Column
+		@Name    // 表示该字段可以用来标识此对象，或者是字符型主键，或者是唯一性约束
+		private String name;
+
+		@Column
+		private int age;
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public int getAge() {
+			return age;
+		}
+
+		public void setAge(int age) {
+			this.age = age;
+		}
+
+	}
+	}}}
+-----------------------------------------------------------------------------------------------------------------
+创建 main 函数
+
+	随便建立一个有 main 函数的类，在 main 函数里这么写：
+
+	{{{<java>
+	Dao dao = new NutDao(dataSource);
+	Person p = new Person();
+	p.setName("ABC");
+	p.setAge(20);
+	dao.insert(p);
+	}}}
+	 * 执行完毕后，在数据表中会多出一条记录。
+	 * 如果你{#F00;*不知道如何创建 Datasource}，请参看 附录：[../appendix/create_datasource.man 如何创建 Datasource]
+	 * 这个例子足够作为 Hello World 了， 祝你玩的开心  :) 
+-----------------------------------------------------------------------------------------------------------------
+如何进阶
+	在你看完上述这个例子以后，你可以看看 [basic_operations.man Nutz.Dao 的基本操作]，这篇短短的文章会让你很快对 Nutz.Dao 建立一个大体
+	上的印象。但是实际上，你的 POJO 在真正的项目中可能不会这么简单，你需要操作也不会只是增删改查。下面有三个建议：
+	
+	 * Nutz.Dao 全部的文档并不很多，花上1-2个晚上，你就可以看完。
+	 * 你如果想快速了解 Nutz.Dao 到底支持多少注解，[annotations.man 请看这里]
+	 * 在 [http://nutzdemo.googlecode.com Nutz 的 Demo Site] 上，我们也会不断增加有针对性的演示，你可以 \
+	   [http://nutzdemo.googlecode.com 访问它的首页]，看看里面有没有你需要的例子代码
+
+
