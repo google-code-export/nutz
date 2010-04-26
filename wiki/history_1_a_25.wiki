@@ -51,8 +51,8 @@
 
 <p align="right">[#Top]</p>
 ==`文档`==
-        # 添加了 Nutz.Lang （Wiki 《[lang/lang.man 甜Java ]》）下全部文档
-        # 完成了[lang/mirror.man Mirror ]类的所有 Java Doc
+        # 添加了 Nutz.Lang （Wiki 《[lang_lang 甜Java ]》）下全部文档
+        # 完成了[lang_mirror Mirror ]类的所有 Java Doc
 
 <p align="right">[#Top]</p>
 ==`博客`==

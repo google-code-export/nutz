@@ -45,7 +45,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/links_manymany.png
 
 <p align="right">[#Top]</p>
 ==`步骤一：在 POJO 中设置`==
-通过 Nutz.Dao 的提供的这三个[entity_annotations.man 实体注解 ]
+通过 Nutz.Dao 的提供的这三个[dao_annotations 实体注解 ]
 
         * <b>@One </b>:<font color="#994400">一对一映射 </font>
         * <b>@Many </b>:<font color="#994400">一对多映射 </font>

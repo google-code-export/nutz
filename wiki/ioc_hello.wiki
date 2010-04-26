@@ -178,7 +178,7 @@ false
 
       * [ioc_inner_object 匿名对象 ]
       * [ioc_events 事件监听 ]
-      * [what_to_inject.man 你都可以注入什么 ]
+      * [ioc_injecting 你都可以注入什么 ]
       * [ioc_events 事件的监听 ]
       * [ioc_ioc_loader 定义自己的配置文件格式 ]
       * [ioc_aop AOP ]-- 声明式切片
