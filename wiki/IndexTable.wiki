@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.a.27 发行注记]
+ * [nutz_release_notes 1.a.28 (Hatching...)]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -65,6 +65,7 @@
    * [zdoc_index_xml 使用 index.xml 作为索引文件]
    * [zdoc_dir_convert zDoc 目录转换细则]
  * 版本历史
+   * [history_1_a_27 1.a.27 发行注记]
    * [history_1_a_26 1.a.26]
    * [history_1_a_25 1.a.25 及 更早版本]
  * 附录
