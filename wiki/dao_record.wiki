@@ -1,0 +1,134 @@
+#summary ������ POJO ������ݿ�
+=Top=
+<p align="center"><font size=6>* ������ POJO ������ݿ� *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<wiki:toc max_depth="2"/>
+----
+
+<p align="right">[#Top]</p>
+=`POJO ֮��`=
+�ܶ�ʱ�򣬳���Ա�ڷ�����ݿ�ʱ��Ԥ�ȹ���һ�� POJO ���󣬻�Ϊ֮��ı�̴����ܴ�ı��� ������Щʱ�򣬹��� POJO �ǲ����ܵģ������Ǻ��鷳�ģ����磺
+
+      * �ֶο��Զ�̬��ɾ�ı�
+      * ���Ǳ���̬����������
+      * �ǳ����õ��ı?Ϊ��ά��һ�� POJO �ܲ�����
+��Ȼ����������ⶼ����ͨ��[dao_customized_sql �Զ��� SQL ]��ʵ�֣�������Ͼ���һ��㸴�ӡ� ��������Ķ�̬��������ô���İɡ�����Ϊÿ����ݿ��¼ֱ�ӷ���һ����ֵ�ԡ��ܼ򵥲�����
+
+��ֵ�ԣ��ǳ��� JDBC �е� ResourceSet ���󣬵��ǲ��ҵ��ǣ��㲻�ܰ���浽����ĵط�����Ϊ һ�� Connection �ر��ˣ���� Over �ˡ�Ϊ�ˣ�����ܶ��˶����뵽�� ResultSet ��ȡһ�� Map�� Nutz.Dao Ҳ�ṩ��һ�������� Map ����һ�� Map �İ���� -- Record����� Map �ṩ�˸��� һЩ����������ȡֵ��
+
+���� Update, Insert �����������ʹ�� Chain ��ֵ������ ������Ǻ�������ټ������ӣ�һ����֪��
+
+���� Delete ������ ͨ�� Dao.clear ������������� Condition������Ժ�����ɾ�����
+
+��������ӣ����Ƕ�����������һ����ݱ?
+
+{{{
+t_pet {
+	id INT PK,
+	name VARCHAR(20) UNIQUE,
+	birthday TIMESTAMP
+}
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`��ȡһ����¼`=
+{{{
+// ��������ȡ
+Record re = dao.fetch("t_pet", Cnd.where("id","=",2);
+
+// ������ֻ�ȡ
+re = dao.fetch("t_pet", Cnd.where("name","=","XiaoBai");
+
+// ��ӡ����
+System.out.println(re.getString("name"));
+
+// ��ӡ����
+System.out.println(re.getTimestamp("birthday"));
+
+// ��ӡ�ֶ�����
+System.out.println(re.getColumnCount());
+
+// ת���� Pet �࣬������� Pet ��Ļ�
+Pet pet = re.toPojo(Pet.class);
+
+// ת���� Json �ַ�
+String json = re.toJson(JsonFormat.nice());
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`��ѯ������¼`=
+{{{
+// ��ѯ������ A ��ͷ�� Pet
+List<Record> list = dao.query("t_pet", Cnd.where("name","LIKE","A%"), null);
+
+// ��ѯ������ A ��ͷ�� Pet������ǰ10��
+List<Record> list = dao.query("t_pet", Cnd.where("name","LIKE","A%"), dao.createPager(1,10));
+}}}
+
+----
+
+<p align="right">[#Top]</p>
+=`����`=
+{{{
+dao.insert("t_pet", Chain.make("name","XiaoBai").add("birthday", new Timestampe(System.currentTimeMillis()));
+}}}
+
+���ִ�� SQL
+
+{{{
+INSERT INTO t_pet (name,birthday) VALUES ('XiaoBai', '2010-4-28 14:27:12')
+}}}
+
+ֵ��ʵ�ʾ���ͨ����ʽ��ֵ�ķ�ʽ��������һ����ֵ�ԣ���Ȼ���ֵ���ϳ�����ԣ�
+
+{{{
+Chain ch = Chain.make("�ֶ���",�ֶ�ֵ);
+ch.add("�ֶ���", �ֶ�ֵ);
+ch.add("�ֶ���", �ֶ�ֵ);
+ch.add("�ֶ���", �ֶ�ֵ);
+...
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`����`=
+{{{
+dao.update("t_pet",
+			Chain.make("name","XiaoBai").add("birthday", new Timestampe(System.currentTimeMillis())),
+			Cnd.where("id","=",2));
+}}}
+
+���ִ�� SQL
+
+{{{
+UPDATE t_pet SET name='XiaoBai', birthday='2010-4-28 14:27:12' WHERE id=2;
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`ɾ��`=
+{{{
+dao.clear("t_pet", Cnd.where("id", "=" ,2);
+}}}
+
+���ִ�� SQL
+
+{{{
+DELETE t_pet WHERE id=2;
+}}}
+
