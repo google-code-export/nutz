@@ -22,7 +22,7 @@
    * [dao_transaction 事务模板]
    * [dao_services 内置的服务类]
    * [dao_pojo 更快的构建你的POJO]
-   * [dao_record ������ POJO ������ݿ�]
+   * [dao_record 不构建 POJO 访问数据库]
    * [dao_links_overview 字段的映射]
      * [dao_links_one 关于一对一映射]
      * [dao_links_many 关于一对多映射]
