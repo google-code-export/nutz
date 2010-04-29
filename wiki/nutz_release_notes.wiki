@@ -20,8 +20,8 @@
 
 <p align="right">[#Top]</p>
 =`问题修复`=
-暂无
-
+      * [http://code.google.com/p/nutz/issues/detail?id=166 Issue166 ]dao: EntityField中的如下方法是不是有点重复啊？<font color="#AAAAAA">by </font><b>zozohtnt </b>
+      * [http://code.google.com/p/nutz/issues/detail?id=168 Issue168 ]无法在Mvc中使用xml作为ioc的配置文件<font color="#AAAAAA">by </font><b>Wendal </b>
 ----
 
 <p align="right">[#Top]</p>

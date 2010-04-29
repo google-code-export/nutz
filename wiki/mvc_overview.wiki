@@ -29,7 +29,7 @@ Nutz.Mvc 是要和一个 Web 服务器 （比如 Tomcat）一起工作的，它�
 
 <p align="right">[#Top]</p>
 ==`每一次请求，都经过如下流程`==
-http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_overview.png
+http://www.nutzam.com/img/wiki/nutz_mvc_workflow_overview.png
 
 Nutz.Mvc 根据 @At 注解，将一个 HTTP 请求映射到了一个函数，函数只有一个参数，会被路径参数 （1045） 填充。
 
@@ -38,7 +38,7 @@ Nutz.Mvc 根据 @At 注解，将一个 HTTP 请求映射到了一个函数，函
 
 <p align="right">[#Top]</p>
 ==`更详细的流程`==
-http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/nutz_mvc_workflow_detail.png
+http://www.nutzam.com/img/wiki/nutz_mvc_workflow_detail.png
 
         * 声明了 @At 的函数被称为<b>入口函数 </b>
         * 任何一个请求，都会经过四道工序

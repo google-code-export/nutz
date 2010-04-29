@@ -3,7 +3,7 @@
 <p align="center"><font size=6>* 写在前面的话 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>) <font color="#AAA" size="1"> * <br/>Verify By * </font>    *Xiaofeng.Fu* (<font color="#080"> hilliate@gmail.com </font>)</p>
-http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png
+http://www.nutzam.com/img/wiki/logo.png
 
 ----
 
@@ -15,7 +15,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/logo.png
 
 比如：
 
-http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/diff_lang.jpg
+http://www.nutzam.com/img/wiki/diff_lang.jpg
 
 <font color="#0000AA"><b>但是，真的是这样的吗？ </b></font>
 
@@ -59,7 +59,7 @@ http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/diff_lang.jpg
 =`Nutz 的质量`=
 截至到现在为止，Nutz 的 JUnit 用例覆盖率大概是这样的
 
-http://www.dtresearch.cn/web/_temp/1026/wiki_imgs/emma.png
+http://www.nutzam.com/img/wiki/emma.png
 
 并且这个数字还在不断增加。
 
