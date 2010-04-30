@@ -20,7 +20,7 @@
    * [dao_dynamic_table_name 动态表名]
    * [dao_customized_sql 自定义 SQL]
    * [dao_transaction 事务模板]
-   * [dao_runner �����Լ�������ģ��]
+   * [dao_runner 定制自己的事务模板]
    * [dao_services 内置的服务类]
    * [dao_pojo 更快的构建你的POJO]
    * [dao_record 不构建 POJO 访问数据库]

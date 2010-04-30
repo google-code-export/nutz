@@ -1,14 +1,14 @@
-#summary �����Լ�������ģ��
+#summary 定制自己的事务模板
 =Top=
-<p align="center"><font size=6>* �����Լ�������ģ�� *</font></p>
+<p align="center"><font size=6>* 定制自己的事务模板 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
 <p align="right">[#Top]</p>
-=`�ռ���չ�� - DaoRunner`=
-�����ʹ�õ��� Dao �ӿڵ�Ĭ��ʵ���� (org.nutz.dao.impl.NutDao)��������κ����鶼�����⣬ ���Ǿ��ǵ��������ⲿ����ܲ�ϲ�����㲻ϲ��[dao_transaction ����ģ�� ]��д����
+=`终极扩展点 - DaoRunner`=
+如果你使用的是 Dao 接口的默认实现类 (org.nutz.dao.impl.NutDao)，你觉得任何事情都很满意， 但是就是单单事务这部分你很不喜欢。你不喜欢[dao_transaction 事务模板 ]的写法：
 
 {{{
 public void doSomething(final Pet pet){
@@ -21,9 +21,9 @@ public void doSomething(final Pet pet){
 }
 }}}
 
-��Ϊ������д����̫���ˡ���������ʼ���� Spring���������ʽ������?��������Ĵ�����ȫ������ô ��������ô���أ�
+因为，这样写代码太多了。你甚至开始怀念 Spring，它的声明式事务管理，可以让你的代码完全不用这么 繁琐。怎么办呢？
 
-�����ṩ��һ����չ�㡣ͨ���޸�����ӿڣ������Ϊ Dao ��Ĭ��ʵ���� NutDao ���׶���������Ϊ ����� DaoRunner����ֻ��һ��������
+我们提供了一个扩展点。通过修改这个接口，你可以为 Dao 的默认实现类 NutDao 彻底定制事务行为 它就是 DaoRunner，它只有一个方法：
 
 {{{
 public interface DaoRunner {
@@ -38,10 +38,10 @@ public interface DaoRunner {
 ----
 
 <p align="right">[#Top]</p>
-=`ͬ Spring ������ϵ�����`=
-����������� 1.a.27 ֮����[http://hzzdong.javaeye.com ֪�㳣��(hzzdong) ]�ڲ��� ��[http://hzzdong.javaeye.com/blog/656948 Nutz DAO��spring�������� ]������ģ�������˵õ��� Issue 162��
+=`同 Spring 事务整合的例子`=
+这个特性是在 1.a.27 之后，由[http://hzzdong.javaeye.com 知足常乐(hzzdong) ]在博客 《[http://hzzdong.javaeye.com/blog/656948 Nutz DAO与spring集成讨论 ]》提出的，我们因此得到了 Issue 162。
 
-������һ���޸ĺ�����(1.a.28)��ֻҪ���ṩһ������� DaoRunner
+在做了一点修改后，现在(1.a.28)，只要你提供一个这样的 DaoRunner
 
 {{{
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -65,5 +65,5 @@ public class DefaultDaoRunner implements DaoRunner {
 }
 }}}
 
-������ע�뵽 NutDao ��ȥ����Ϳ��Ժܺõ�ʹ�� Spring ������
+并把它注入到 NutDao 中去，你就可以很好的使用 Spring 的事务。
 
