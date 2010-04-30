@@ -1,0 +1,69 @@
+#summary �����Լ�������ģ��
+=Top=
+<p align="center"><font size=6>* �����Լ�������ģ�� *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<wiki:toc max_depth="2"/>
+----
+
+<p align="right">[#Top]</p>
+=`�ռ���չ�� - DaoRunner`=
+�����ʹ�õ��� Dao �ӿڵ�Ĭ��ʵ���� (org.nutz.dao.impl.NutDao)��������κ����鶼�����⣬ ���Ǿ��ǵ��������ⲿ����ܲ�ϲ�����㲻ϲ��[dao_transaction ����ģ�� ]��д����
+
+{{{
+public void doSomething(final Pet pet){
+	Trans.exec(new Atom(){
+		public void runt(){
+			dao.update(pet);	
+			dao.update(pet.getMaster());
+		}
+	});
+}
+}}}
+
+��Ϊ������д����̫���ˡ���������ʼ���� Spring���������ʽ������?��������Ĵ�����ȫ������ô ��������ô���أ�
+
+�����ṩ��һ����չ�㡣ͨ���޸�����ӿڣ������Ϊ Dao ��Ĭ��ʵ���� NutDao ���׶���������Ϊ ����� DaoRunner����ֻ��һ��������
+
+{{{
+public interface DaoRunner {
+
+	public void run(DataSource dataSource, ConnCallback callback);
+
+}
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`ͬ Spring ������ϵ�����`=
+����������� 1.a.27 ֮����[http://hzzdong.javaeye.com ֪�㳣��(hzzdong) ]�ڲ��� ��[http://hzzdong.javaeye.com/blog/656948 Nutz DAO��spring�������� ]������ģ�������˵õ��� Issue 162��
+
+������һ���޸ĺ�����(1.a.28)��ֻҪ���ṩһ������� DaoRunner
+
+{{{
+import org.springframework.jdbc.datasource.DataSourceUtils;
+
+public class DefaultDaoRunner implements DaoRunner {
+
+	public void run(DataSource dataSource, ConnCallback callback) {
+		Connection con = DataSourceUtils.getConnection(getDataSource());  
+		try {  
+			callback.invoke(con);  
+		}
+		catch (Exception e) {  
+			if (e instanceof RuntimeException)  
+				throw (RuntimeException) e;  
+			else  
+				throw new RuntimeException(e);  
+		} finally {  
+			DataSourceUtils.releaseConnection(con, getDataSource());  
+		}  
+	}
+}
+}}}
+
+������ע�뵽 NutDao ��ȥ����Ϳ��Ժܺõ�ʹ�� Spring ������
+
