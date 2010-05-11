@@ -91,7 +91,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 将显示成:
 
-图片：http://www.nutzam.com/img/wiki/logo.png
+图片：http://www.nutzam.com/wiki/img//logo.png
 
 当然，我们可以控制图片的大小
 
@@ -101,7 +101,7 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
 
 将显示成:
 
-图片：http://www.nutzam.com/img/wiki/logo.png
+图片：http://www.nutzam.com/wiki/img//logo.png
 
 <font color="#FF0000"><b>注意 </b></font>，你必须同时写出图片的宽度和高度。
 

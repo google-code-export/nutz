@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`关于一对一映射的概述`=
-http://www.nutzam.com/img/wiki/links_one.png
+http://www.nutzam.com/wiki/img//links_one.png
 
 一个对象中有一个字段指向另外一个对象的主键。如上图， Pet 中就可以有一个字段 master，通过自身的 masterId 指向一个 Master 对象，那么我们说 Pet.master 就是 Pet 对 Master 的一对一映射。
 

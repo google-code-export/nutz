@@ -10,7 +10,7 @@
 =`什么是过滤器?`=
 请你再一次回顾这张图：
 
-http://www.nutzam.com/img/wiki/nutz_mvc_workflow_detail.png
+http://www.nutzam.com/wiki/img//nutz_mvc_workflow_detail.png
 
 一个 HTTP 请求，过滤器是第一组被执行的对象。同适配器不同的是，一个请求中，可以执行多个过滤器。
 

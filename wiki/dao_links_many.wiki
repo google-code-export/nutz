@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`关于一对多映射的概述`=
-http://www.nutzam.com/img/wiki/links_many.png
+http://www.nutzam.com/wiki/img//links_many.png
 
 `如上图，同理，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。  `
 
