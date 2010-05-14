@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* AOP -- 声明式切片 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 
 <p align="right">[#Top]</p>
@@ -27,5 +27,5 @@
          }
 }}}
 
-已经为你准备好的拦截器 org.nutz.aop.interceptor.LoggingMethodOnterceptor 为Aop方法添加日志记录
+已经为你准备好的拦截器 org.nutz.aop.interceptor.LoggingMethodOnterceptor 添加日志记录 org.nutz.aop.interceptor.TransactionInterceptor 添加事务
 

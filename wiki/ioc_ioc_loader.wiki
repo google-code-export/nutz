@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* 定义自己的配置文件格式 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
@@ -162,3 +162,12 @@ public interface IocLoader {
 =`最后`=
 没什么要说的了，充分发挥你的想象力吧，如果你愿意，将配置信息放在 PDF 里，放在 excel 表格里都是可以的 如果你完成了一个IocLoader,不妨分享出来,我们将收录到 http://code.google.com/p/nutz-ioc-loaders/
 
+----
+
+<p align="right">[#Top]</p>
+=`附:已经可用的IocLoader`=
+      * 使用Json作为配置文件 org.nutz.ioc.loader.json.JsonLoader
+      * 使用XML作为配置文件 org.nutz.ioc.loader.xml.XmlIocLoader
+      * 使用注解作为配置文件 org.nutz.ioc.loader.annotation.AnnotationIocLoader
+      * 使用Map作为配置文件 org.nutz.ioc.loader.map.MapLoader
+      * 混合使用多种配置?一样可以! org.nutz.ioc.loader.combo.ComboIocLoader

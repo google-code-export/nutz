@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* 如何创建 DataSource *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
@@ -43,6 +43,23 @@ ds.close();  // 关闭池内所有连接
 		}
 	}
 }
+}}}
+
+
+<p align="right">[#Top]</p>
+==`通过 Nutz.Ioc 的 XML 配置文件`==
+{{{
+	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
+		<obj name="dataSource" type="org.apache.commons.dbcp.BasicDataSource">
+			<events>
+				<depose>close</depose>
+			</events>
+			<field name="driverClassName"><str>org.postgresql.Driver</str></field>
+			<field name="url"><str>jdbc:postgresql://localhost:5432/mydatabase</str></field>
+			<field name="username"><str>demo</str></field>
+			<field name="password"><str>123456</str></field>
+		</obj>
+	</ioc>
 }}}
 
         * 注册了 depose 事件，当整个 Ioc 容器注销时，将<b>真正  </b>关闭所有池内连接
@@ -88,6 +105,23 @@ ds.close();  // 关闭池内所有连接
 }
 }}}
 
+
+<p align="right">[#Top]</p>
+==`通过 Nutz.Ioc 的 XML 配置文件`==
+{{{
+	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
+		<obj name="dataSource" type="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<events>
+				<depose>close</depose>
+			</events>
+			<field name="driverClass"><str>org.postgresql.Driver</str></field>
+			<field name="jdbcUrl"><str>jdbc:postgresql://localhost:5432/mydatabase</str></field>
+			<field name="user"><str>demo</str></field>
+			<field name="password"><str>123456</str></field>
+		</obj>
+	</ioc>
+}}}
+
         * 注册了 depose 事件，当整个 Ioc 容器注销时，将<b>真正  </b>关闭所有池内连接
 ----
 
@@ -126,5 +160,78 @@ ds.setPassword("123456");
 }
 }}}
 
+
+<p align="right">[#Top]</p>
+==`通过 Nutz.Ioc 的 XML 配置文件`==
+{{{
+	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
+		<obj name="dataSource" type="org.logicalcobwebs.proxool.ProxoolDataSource">
+			<field name="driver"><str>org.postgresql.Driver</str></field>
+			<field name="driverUrl"><str>jdbc:postgresql://localhost:5432/mydatabase</str></field>
+			<field name="user"><str>demo</str></field>
+			<field name="password"><str>123456</str></field>
+		</obj>
+	</ioc>
+}}}
+
         * Proxool 没有提供关闭所有连接的函数，不过你可以参看它的官方文档，自己写一个释放所有连接的类，配置在 Ioc 容器的 depose 事件中
         * 关于 depose 事件，更多详情请参看[ioc_events 事件监听 ]-<b>通过实现一个触发器 </b>
+----
+
+<p align="right">[#Top]</p>
+=`BoneCP`=
+
+<p align="right">[#Top]</p>
+==`直接书写 Java 代码`==
+{{{
+import com.jolbox.bonecp.BoneCPDataSource;
+
+...
+
+BoneCPDataSource ds = new BoneCPDataSource();
+ds.setDriver("org.postgresql.Driver");
+ds.setJdbcUrl("jdbc:postgresql://localhost:5432/mydatabase");
+ds.setUsername("demo");
+ds.setPassword("123456");
+...
+
+}}}
+
+
+<p align="right">[#Top]</p>
+==`通过 Nutz.Ioc 的 JSON 配置文件`==
+{{{
+{
+	dataSource : {
+		type : "com.jolbox.bonecp.BoneCPDataSource",
+		events : {
+			depose : 'close'
+		},
+		fields : {
+			driverClass : 'org.postgresql.Driver',
+			jdbcUrl : 'jdbc:postgresql://localhost:5432/mydatabase',
+			username : 'demo',
+			password : '123456'
+		}
+	}
+}
+}}}
+
+
+<p align="right">[#Top]</p>
+==`通过 Nutz.Ioc 的 XML 配置文件`==
+{{{
+	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
+		<obj name="dataSource" type="com.jolbox.bonecp.BoneCPDataSource">
+			<events>
+				<depose>close</depose>
+			</events>
+			<field name="driverClass"><str>org.postgresql.Driver</str></field>
+			<field name="url"><str>jdbc:postgresql://localhost:5432/mydatabase</str></field>
+			<field name="username"><str>demo</str></field>
+			<field name="password"><str>123456</str></field>
+		</obj>
+	</ioc>
+}}}
+
+        * 注册了 depose 事件，当整个 Ioc 容器注销时，将<b>真正  </b>关闭所有池内连接

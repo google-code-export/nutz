@@ -72,7 +72,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
             * 以字符 $ 开头，名称为英文字母，数字，下划线，减号和句点。
             * 正则表达式为：
 {{{
- [$][a-zA-Z0-9_-.]
+ [$][a-zA-Z0-9_-]
 }}}
 
             * 在执行 SQL 前，该占位符会被用户设置的值替换
@@ -81,7 +81,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
             * 以字符 @ 开头，名称为英文字母，数字，下划线，减号和句点。
             * 正则表达式为：
 {{{
-[@][a-zA-Z0-9_-.]+
+[@][a-zA-Z0-9_-]+
 }}}
 
             * 在执行 SQL 前，该占位符会被字符 "<font color="#FF00FF"><b>? </b></font>" 替换，用来创建 PreparedStatement

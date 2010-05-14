@@ -14,7 +14,7 @@
    * [dao_primary_key 关于主键]
    * [dao_condition 复杂的SQL条件]
    * [dao_pager 分页查询]
-   * [dao_next_prev 如何在插入之前或之后为字段设值]
+   * [dao_next_prev 插入前后的设置]
    * [dao_view 使用视图]
    * [dao_field_filter 过滤字段]
    * [dao_dynamic_table_name 动态表名]
