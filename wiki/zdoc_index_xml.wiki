@@ -55,7 +55,7 @@ index.xml 的格式如下:
 
 举一个更详细的例子，比如你有一个如下的目录结构
 
-http://www.nutzam.com/wiki/img//ex01.png
+http://www.nutzam.com/wiki/img/ex01.png
 
 那么在 index.xml 的内容应该为
 

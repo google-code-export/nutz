@@ -87,21 +87,21 @@ log4j.appender.NUTZ.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
 ==`4. 检查`==
 你的项目应该看起来是这个样子：
 
-http://www.nutzam.com/wiki/img//21.png
+http://www.nutzam.com/wiki/img/21.png
 
 
 <p align="right">[#Top]</p>
 ==`5. 运行`==
 之后，打开 test/org/nutz/TestAll.java ，然后用 JUnit 运行
 
-http://www.nutzam.com/wiki/img//22.png
+http://www.nutzam.com/wiki/img/22.png
 
 
 <p align="right">[#Top]</p>
 ==`6. 查看结果`==
 如果上述操作没出什么岔子，那么你会看到正确的运行结果：
 
-http://www.nutzam.com/wiki/img//23.png
+http://www.nutzam.com/wiki/img/23.png
 
 ----
 
