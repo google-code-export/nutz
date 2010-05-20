@@ -21,12 +21,20 @@
       * 《[http://www.3km.com.cn/?p=96 借于Nutz快速实现对表的增删改操作 ]》 @[http://www.3km.com.cn 会跑的蜗牛 ]
       * 《[http://bobby1222.javaeye.com/blog/585483 NUTZ与SQL SERVER2000兼容性问题 ]》 @[http://user.qzone.qq.com/104791117 Ge.PH /hl ]
       * 《[http://bonyfish.cn/logs/20100415-nutz-todo-mini-task.html 用Nutz做点小任务 ]》 @[http://bonyfish.cn 小毛 ]
+      * 《[http://blog.163.com/qqabc20082006@126/blog/static/22928525201041945032239/ 使用Nutz进行简单的增删改查操作 ]》 @[http://blog.163.com/qqabc20082006@126/ CH ]
+      * 《[http://blog.163.com/qqabc20082006@126/blog/static/2292852520104194516772/ 使用NutzDao进行复杂SQL条件查询 ]》 @[http://blog.163.com/qqabc20082006@126/ CH ]
+      * 《[http://blog.163.com/qqabc20082006@126/blog/static/2292852520104194513669/ NutzDao-自定义SQL语句进行复杂查询 ]》 @[http://blog.163.com/qqabc20082006@126/ CH ]
 ----
 
 <p align="right">[#Top]</p>
 =`关于 Mvc`=
       * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @[http://axhack.javaeye.com axhack ]<font color="#008800"><b>推荐 </b></font>
       * 《[http://birdwindy.javaeye.com/blog/582200 我的第一个Nutz程序 ]》  @[http://birdwindy.javaeye.com Bird.Wyatt ]
+----
+
+<p align="right">[#Top]</p>
+=`关于 Ioc`=
+      * 《[http://wendal.javaeye.com/blog/654658 Nutz 1.a.27 最新变化之一 -- XML配置ioc ]》 @[http://wendal.javaeye.com wendal ]
 ----
 
 <p align="right">[#Top]</p>
