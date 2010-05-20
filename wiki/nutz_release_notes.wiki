@@ -21,10 +21,11 @@
 <T> T get(Class<T> type) throws IocException;
 }}}
 
-      * 移动一个重要的接口 @InjectName
-      * 新增注解式的Ioc配置方法
 详细描述请参看[http://groups.google.at/group/nutzam/browse_thread/thread/43513b29d1b07cf3?hl=zh-CN 关于 Ioc 做了一个稍微重要的修改 ]
 
+      * 移动一个重要的接口 @InjectName
+      * 新增注解式的Ioc配置方法
+      * 新的Aop实现
 ----
 
 <p align="right">[#Top]</p>
@@ -58,7 +59,9 @@
 
 <p align="right">[#Top]</p>
 =`文档`=
-      * 暂无
+      * 添加 使用注解配置Ioc
+      * 添加 NutAop模型
+      * 更新 Aop -声明式切面
 ----
 
 <p align="right">[#Top]</p>
@@ -91,7 +94,7 @@
 ||jiongs753||O||-||-||-||-||-||-||
 ||zkgale||O||-||-||-||-||-||-||
 ||happyday0517||O||-||-||-||-||-||-||
-||wendal||O||-||O||O||-||O||O||
+||wendal||O||-||O||O||O||O||O||
 ||zozohtnt||O||-||O||O||-||O||O||
 
 另外，非常感谢

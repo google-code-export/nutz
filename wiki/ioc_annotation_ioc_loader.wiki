@@ -1,0 +1,47 @@
+#summary 使用注解配置Ioc
+=Top=
+<p align="center"><font size=6>* 使用注解配置Ioc *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
+<wiki:toc max_depth="2"/>
+----
+需要用到的注解
+
+标注类 @IocBean
+
+{{{
+      public @interface IocBean {
+			String name() default "";
+	        String [] param() default {};
+	        String scope() default "app";
+	        boolean singleton() default true;
+	        String create() default "";
+	        String depose() default "";
+	        String fetch() default ""; 
+	  }
+}}}
+
+标注方法 @Inject
+
+{{{
+      public @interface Inject {
+      		String value() default "";
+      }
+}}}
+
+加载
+
+直接用代码加载
+
+{{{
+    //现在只支持包扫描,包含sub-package
+    Ioc ioc = new NutzIoc(new AnnotationIocLoader("com.wendal.service"));
+}}}
+
+在MVC中加载
+
+{{{
+    //现在只支持包扫描,包含sub-package
+    @IocBy(AnnotationIocProvider.class,{"com.wendal.service"})
+}}}
+
