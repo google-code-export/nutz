@@ -40,6 +40,7 @@
    * [ioc_annotation_ioc_loader 使用注解配置Ioc]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
+   * [mvc_url_mapping URL 映射]
    * [mvc_http_adaptor 适配器]
    * [mvc_view 视图]
    * [mvc_with_ioc 同 Ioc 容器一起工作]
