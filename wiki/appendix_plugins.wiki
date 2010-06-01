@@ -5,16 +5,18 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-IocProvider
 
+<p align="right">[#Top]</p>
+=`IocProvider`=
 [http://code.google.com/p/nutzlab/source/browse/trunk/Nutz-IoC-Spring/src/org/nutz/ioc/impl/spring/SpringIocProvider.java Spring桥 ]
 
 ----
 IocLoader
 
 ----
-View
 
+<p align="right">[#Top]</p>
+=`View`=
 [http://axhack.javaeye.com/blog/542441 `FreeMaker_View `]
 
 ----
