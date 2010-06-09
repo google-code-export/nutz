@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.a.28 发行注记]
+ * [nutz_release_notes 1.a.29 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -38,6 +38,7 @@
    * [ioc_scope 对象生命范围]
    * [ioc_xml_ioc_loader 使用XML作为配置文件格式]
    * [ioc_annotation_ioc_loader 使用注解配置Ioc]
+   * [ioc_aop_json 用json文件声明Aop切片]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
    * [mvc_url_mapping URL 映射]

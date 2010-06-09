@@ -1,49 +1,25 @@
-#summary 1.a.28 发行注记
+#summary 1.a.29 发行注记
 =Top=
-<p align="center"><font size=6>* 1.a.28 发行注记 *</font></p>
+<p align="center"><font size=6>* 1.a.29 发行注记 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
 <p align="right">[#Top]</p>
-=`关于 1.a.28`=
-[history_1_a_27 Nutz 1.a.27 ]发布之后的近两个月，社区发布了<b>1.a.28 </b>版。它进行了较重大的改进：
+=`关于 1.a.29`=
+开发中
 
-      # 对 Ioc 接口[http://groups.google.at/group/nutzam/browse_thread/thread/43513b29d1b07cf3?hl=zh-CN 关于 Ioc 做了一个稍微重要的修改 ]--增加了一个方法
-{{{
-<T> T get(Class<T> type) throws IocException;
-}}}
-
-          * 同时将注解 @InjectName 从 mvc 包移动到 ioc 包
-      # Ioc 支持[ioc_annotation_ioc_loader 注解方式的配置 ]
-      # 重写了 AOP[ioc_aop_solution 的字节码模型 ]
-      # 文件上传适配器默认采用新写的[http://code.google.com/p/nutz/source/browse/trunk/src/org/nutz/mvc/upload/FastUploading.java FastUploading ]，上传速度提高一倍
 ----
+问题修复
 
-<p align="right">[#Top]</p>
-=`问题修复`=
-      * [http://code.google.com/p/nutz/issues/detail?id=112 Issue112 ]通过直接声明一个包来声明包中所有的类为Module<font color="#AAAAAA">by </font><b>xjf1986518 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=162 Issue162 ]Nutz DAO的事物是否能参考Spring的声明式事物管理方式比较好，不知道是否有计划?<font color="#AAAAAA">by </font><b>hzzdong </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=166 Issue166 ]dao: EntityField中的如下方法是不是有点重复啊?<font color="#AAAAAA">by </font><b>jiongs753 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=168 Issue168 ]无法在Mvc中使用xml作为ioc的配置文件<font color="#AAAAAA">by </font><b>wendal1985 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=171 Issue171 ]DAO: Cnd 生成的 in 语句不对<font color="#AAAAAA">by </font><b>jiongs753 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=172 Issue172 ]DAO: Dao.delete Dao.clear 等方法无返回值<font color="#AAAAAA">by </font><b>jiongs753 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=176 Issue176 ]考虑为Ioc提供注解式的配置<font color="#AAAAAA">by </font><b>wendal </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=177 Issue177 ]MVC默认适配器问题<font color="#AAAAAA">by </font><b>zkgale </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=178 Issue178 ]首页的字体太难看了<font color="#AAAAAA">by </font><b>nowindLee </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=182 Issue182 ]mvc: @Ok 的默认值问题<font color="#AAAAAA">by </font><b>zozohtnt </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=183 Issue183 ]json:  当 Map 的 Key 为非字符串时，渲染不出结果<font color="#AAAAAA">by </font><b>zozohtnt </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=186 Issue186 ]@Prev出错<font color="#AAAAAA">by </font><b>happyday0517 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=187 Issue187 ]demo hello Mvc中/demoredirect/byid和byobj，不能传递参数<font color="#AAAAAA">by </font><b>for5million </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=190 Issue190 ]静态方法注入时,提示不够<font color="#AAAAAA">by </font><b>zkgale </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=194 Issue194 ]事务拦截器报错<font color="#AAAAAA">by </font><b>happyday0517 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=199 Issue199 ]MVC: 为UploadAdaptor添加一个空参构造方法<font color="#AAAAAA">by </font><b>jiongs753 </b>
+
+
 ----
 
 <p align="right">[#Top]</p>
 =`质量`=
-      # 共通过了 484 个单元测试用例,代码覆盖率达到62%(按line计算)
+      # 共通过了 491 个单元测试用例,代码覆盖率达到62%(按line计算)
       # Nutz.Dao 经测试在如下数据库上可以工作正常
           * [http://www.h2database.com H2 ]
           * [http://www.mysql.com MySql ]
@@ -55,10 +31,7 @@
 
 <p align="right">[#Top]</p>
 =`文档`=
-      * 添加 使用注解配置Ioc
-      * 添加 NutAop模型
-      * 更新 Aop -声明式切面
-      * 更新了一对一、一对多、多对多映射部分
+      * 添加 用json声明Aop
 ----
 
 <p align="right">[#Top]</p>
@@ -77,13 +50,6 @@
 
 ||贡献者||问题||博客||支持||代码||Demo||文档||测试||
 ||Bird.Wyatt||-||-||O||-||O||-||-||
-||for5million||O||-||-||-||-||-||-||
-||E-Hunter||O||-||-||-||-||-||-||
-||Peter Tung||-||-||-||-||-||O||-||
-||hzzdong||O||-||-||-||-||-||-||
-||jiongs753||O||-||-||-||-||-||-||
-||zkgale||O||-||-||-||-||-||-||
-||happyday0517||O||-||-||-||-||-||-||
 ||wendal||O||-||O||O||O||O||O||
 ||zozohtnt||O||-||O||O||-||O||O||
 
