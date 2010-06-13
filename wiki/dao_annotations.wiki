@@ -8,9 +8,9 @@
 以下的列表，是 Nutz.Dao 支持的全部注解，如果你想深入了解每个注解的意义，你可以
 
     * 请参看相关的 JDoc
-    * 直接浏览源代码:[http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation ]
-    * 用 SVN 工具检出源代码:[http://code.google.com/p/nutz/source/checkout code.google.com/p/nutz/source/checkout ]
-    * 下载源代码:[http://code.google.com/p/nutz/downloads/list code.google.com/p/nutz/downloads/list ]
+    * 直接浏览源代码:[http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation http://code.google.com/p/nutz/source/browse/#svn/trunk/src/org/nutz/dao/entity/annotation ]
+    * 用 SVN 工具检出源代码:[http://code.google.com/p/nutz/source/checkout http://code.google.com/p/nutz/source/checkout ]
+    * 下载源代码:[http://code.google.com/p/nutz/downloads/list http://code.google.com/p/nutz/downloads/list ]
 ||<font color="#888888">@Column </font>||字段||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Column </font>||
 ||<font color="#888888">@Default </font>||默认值||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Default </font>||
 ||<font color="#888888">@Id </font>||数字主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Id </font>||

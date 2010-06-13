@@ -35,7 +35,7 @@
 <p align="right">[#Top]</p>
 =`超链接`=
       * `在行内 被方括弧[和]包裹起来的就是超链接 `
-      * `[http://www.google.com] 将显示成  `[http://www.google.com www.google.com ]
+      * `[http://www.google.com] 将显示成  `[http://www.google.com http://www.google.com ]
       * `[http://www.google.com Google] 将显示成  `[http://www.google.com Google ]
       * `[http://www.google.com text with whitespace] 将显示成  `[http://www.google.com text with whitespace ]
       * `[http://nutz.googlecode.com <http://code.google.com/p/nutz/logo?logo_id=1239077401>] 将显示成 `

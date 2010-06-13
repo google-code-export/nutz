@@ -61,8 +61,8 @@ zDoc 提供了命令行程序，使用它之前你需要做如下设定
         # 打开其中的 win 目录或者 linux 目录(<u>依你自己的操作系统而定 </u>)
         # 修改脚本文件 zdoc (<u>Windows 下为 zdoc.bat </u>) -- 你需要修改三个变量
             # `JAVA_HOME 指向你的 Java 安装的根目录（这个目录下有 lib 子目录，其内有 tools.jar, dt.jar 以及 rt.jar） `
-            # `NUTZ_HOME 指向 Nutz 的核心 jar 包:  `<u>`可从此处下载=> `</u>[http://nutz.googlecode.com nutz.googlecode.com ]
-            # `ZDOC_HOME 指向 Nutz.Doc 的运行 jar 包:  `<u>`可从此处下载=> `</u>[http://nutzdoc.googlecode.com nutzdoc.googlecode.com ]
+            # `NUTZ_HOME 指向 Nutz 的核心 jar 包:  `<u>`可从此处下载=> `</u>[http://nutz.googlecode.com http://nutz.googlecode.com ]
+            # `ZDOC_HOME 指向 Nutz.Doc 的运行 jar 包:  `<u>`可从此处下载=> `</u>[http://nutzdoc.googlecode.com http://nutzdoc.googlecode.com ]
         # 修改运行路径
             * <b>Windows </b>用户可以将 run 目录加入到你的系统环境变量<font color="#0000AA"><b>%PATH% </b></font>中去
             * <b>Linux </b>用户，可以将 zdoc 脚本文件链接至 ~/bin 目录下。
