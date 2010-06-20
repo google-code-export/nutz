@@ -183,7 +183,7 @@ dao.insertLinks(master,"pets");
 
 {{{
 Master master = dao.fetch(Master.class, "Peter");
-dao.fetchLinks(pet, "pets");
+dao.fetchLinks(master, "pets");
 }}}
 
 这会执行操作：
