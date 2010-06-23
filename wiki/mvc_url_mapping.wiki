@@ -46,7 +46,7 @@ Nutz.Mvc 的核心任务就是将 HTTP 请求的 URL 映射到某一个入口函
 ----
 
 <p align="right">[#Top]</p>
-==`全匹配 - /*`==
+==`web.xml 中的全匹配 - /*`==
 转发到本 Context 的任何请求都会调用这个 Servlet，比如：
 
         * <font color="#FF00FF"><b> /abc </b></font>
@@ -70,7 +70,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`目录匹配 - /abc/*`==
+==`web.xml 中的录匹配 - /abc/*`==
 转发到本 Context 的任何请求只要以<b> /abc/ </b>开头，都会调用这个 Servlet，比如：
 
         * <font color="#FF00FF"><b> /abc </b></font><font color="#0000FF"><b> /dosome </b></font>
@@ -100,7 +100,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`后缀匹配 - *.nut`==
+==`web.xml 中的后缀匹配 - *.nut`==
 转发到本 Context 的任何请求只要以<b> .nut </b>结尾，都会调用这个 Servlet，比如：
 
         * <font color="#FF00FF"><b> /abc </b></font><font color="#0000FF"><b> /dosome </b></font><b>.nut </b>
@@ -121,7 +121,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`精确匹配 - /abc/getlist.nut`==
+==`web.xml 中的精确匹配 - /abc/getlist.nut`==
 转发到本 Context 的任何请求必须为<b> /abc/getlist.nut </b>，才会调用这个 Servlet
 
 如果请求为：
@@ -223,7 +223,7 @@ public class SubModule{
 ----
 
 <p align="right">[#Top]</p>
-==`全匹配 - /*`==
+==`Nutz 中的全匹配 - /*`==
 如果请求为：
 
 {{{
@@ -236,7 +236,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`目录匹配 - /abc/*`==
+==`Nutz 中的目录匹配 - /abc/*`==
 如果请求为：
 
 {{{
@@ -261,7 +261,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`后缀匹配 - *.nut`==
+==`Nutz 中的后缀匹配 - *.nut`==
 如果请求为：
 
 {{{
@@ -274,7 +274,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`精确匹配 - /abc/getlist.nut`==
+==`Nutz 中的精确匹配 - /abc/getlist.nut`==
 如果请求为：
 
 {{{
