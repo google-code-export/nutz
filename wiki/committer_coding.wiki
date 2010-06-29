@@ -74,6 +74,28 @@
 ==`2.5 局部变量`==
         # <font color="#FF0000"><b>R </b></font>-局域变量名要尽量短，推荐用缩写，比如 StringBuilder sb
         # <font color="#FF0000"><b>R </b></font>-总的来说局部变量请随意命名，越短越好
+比如这个就不好
+
+{{{
+ public String abc(String str){
+	AbcObjectSet abcObjectSet = new AbcObjectSet();
+	abcObjectSet.setName(str);
+	return abcObjectSet.getBrief();
+ }
+}}}
+
+而这个就很容易阅读了：
+
+{{{
+ public String abc(String str){
+	AbcObjectSet aos = new AbcObjectSet();
+	aos.setName(str);
+	return aos.getBrief();
+ }
+}}}
+
+
+
 ----
 
 <p align="right">[#Top]</p>
