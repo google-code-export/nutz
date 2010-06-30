@@ -10,7 +10,7 @@
 =`Apache DBCP`=
 
 <p align="right">[#Top]</p>
-==`直接书写 Java 代码`==
+==`dbcp: 直接书写 Java 代码`==
 {{{
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -27,7 +27,7 @@ ds.close();  // 关闭池内所有连接
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 JSON 配置文件`==
+==`dbcp: 通过 Nutz.Ioc 的 JSON 配置文件`==
 {{{
 {
 	dataSource : {
@@ -47,7 +47,7 @@ ds.close();  // 关闭池内所有连接
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 XML 配置文件`==
+==`dbcp: 通过 Nutz.Ioc 的 XML 配置文件`==
 {{{
 	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
 		<obj name="dataSource" type="org.apache.commons.dbcp.BasicDataSource">
@@ -70,7 +70,7 @@ ds.close();  // 关闭池内所有连接
 =`C3P0`=
 
 <p align="right">[#Top]</p>
-==`直接书写 Java 代码`==
+==`c3p0: 直接书写 Java 代码`==
 {{{
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -87,7 +87,7 @@ ds.close();  // 关闭池内所有连接
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 JSON 配置文件`==
+==`c3p0: 通过 Nutz.Ioc 的 JSON 配置文件`==
 {{{
 {
 	dataSource : {
@@ -107,7 +107,7 @@ ds.close();  // 关闭池内所有连接
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 XML 配置文件`==
+==`c3p0: 通过 Nutz.Ioc 的 XML 配置文件`==
 {{{
 	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
 		<obj name="dataSource" type="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -129,7 +129,7 @@ ds.close();  // 关闭池内所有连接
 =`Proxool`=
 
 <p align="right">[#Top]</p>
-==`直接书写 Java 代码`==
+==`proxool: 直接书写 Java 代码`==
 {{{
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
@@ -145,7 +145,7 @@ ds.setPassword("123456");
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 JSON 配置文件`==
+==`proxool: 通过 Nutz.Ioc 的 JSON 配置文件`==
 {{{
 {
 	dataSource : {
@@ -162,7 +162,7 @@ ds.setPassword("123456");
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 XML 配置文件`==
+==`proxool: 通过 Nutz.Ioc 的 XML 配置文件`==
 {{{
 	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
 		<obj name="dataSource" type="org.logicalcobwebs.proxool.ProxoolDataSource">
@@ -182,7 +182,7 @@ ds.setPassword("123456");
 =`BoneCP`=
 
 <p align="right">[#Top]</p>
-==`直接书写 Java 代码`==
+==`bonecp: 直接书写 Java 代码`==
 {{{
 import com.jolbox.bonecp.BoneCPDataSource;
 
@@ -199,7 +199,7 @@ ds.setPassword("123456");
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 JSON 配置文件`==
+==`bonecp: 通过 Nutz.Ioc 的 JSON 配置文件`==
 {{{
 {
 	dataSource : {
@@ -219,7 +219,7 @@ ds.setPassword("123456");
 
 
 <p align="right">[#Top]</p>
-==`通过 Nutz.Ioc 的 XML 配置文件`==
+==`bonecp: 通过 Nutz.Ioc 的 XML 配置文件`==
 {{{
 	<ioc xsi:noNamespaceSchemaLocation="nutz-ioc-0.1.xsd">
 		<obj name="dataSource" type="com.jolbox.bonecp.BoneCPDataSource">
