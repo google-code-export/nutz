@@ -33,7 +33,7 @@ Nutz.Dao 的查询接口天然就支持翻页查询。并且每次会提供给�
       * classOfT 告诉 Nutz.Dao 需要查询的实体类型
       * [dao_condition condition ]告诉 Nutz.Dao 查询出的列表需要符合的条件。详细请看[dao_condition 复杂条件 ]。
       * 最后一个参数，就是告诉 Nutz.Dao 将结果如何分页的了。
-Pager 对象有如下几个注意事项：
+<font color="#FF0000"><b> Pager 对象有如下几个注意事项： </b></font>
 
       * 如果 pager 被传入了 null，则不分页
       * 生成 Pager 对象的时候需要传入<font color="#0000AA">“当前页数” </font>和<font color="#0000AA">“页大小” </font>
@@ -69,7 +69,11 @@ public QueryResult getPetList(Dao dao, int pageNumber, int pageSize){
 =`OtherPager`=
 `如果很不幸，你正在使用的数据库并不是 Nutz.Dao 所支持的数据库，那么 Nutz.Dao 会返回一个名叫 OtherPager 的实现。 这个实现会利用 JDBC 的游标进行分页。当然，如果你的 JDBC 驱动不支持 TYPE_SCROLL_INSENSITIVE 类型的 ResultSet  `<font color="#FF0000"><b>在执行查询的时候会抛出异常！ </b></font>
 
-当然，采用 JDBC 游标的方式进行分页，可能是比较低效的做法，所以 Nutz.Dao 也允许你<b>为你的数据库定制 Pager </b>。
+当然，采用 JDBC 游标的方式进行分页，可能是比较低效的做法，所以 Nutz.Dao 也允许你<b>为你的数据库定制 Pager </b>。 但是，它的好处是，你不用自己设置 recordCount，因为 Nutz 会利用游标为你计算。
+
+实际上，对于微软的 SQLServer 2000，我们现在实现的分页就是利用 OtherPager 的实现。因此你可以不用设置 recordCount 但是同样是微软的产品的<font color="#FF0000"><b>SQLServer 2005 </b></font>，同 SQLServer 2000 有非常大的差别，尤其是在分页上。
+
+<font color="#FF0000"><b> 因此，在 2005 上，一定要手工设置 recordCount ! </b></font>
 
 ----
 
