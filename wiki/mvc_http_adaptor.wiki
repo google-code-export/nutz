@@ -3,7 +3,7 @@
 <p align="center"><font size=6>* 适配器 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
-<wiki:toc max_depth="2"/>
+<wiki:toc max_depth="3"/>
 ----
 
 <p align="right">[#Top]</p>
@@ -49,7 +49,7 @@ Nutz.Mvc 为你内置了 4 个最常用的适配器，可以让支持用如下�
 
 
 <p align="right">[#Top]</p>
-==`名值对 (默认)`==
+==`名值对 (默认) - PairAdaptor`==
 
 <p align="right">[#Top]</p>
 ===`一般方式`===
@@ -61,7 +61,7 @@ Nutz.Mvc 为你内置了 4 个最常用的适配器，可以让支持用如下�
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-						@Param("pnm") String petName){
+                                @Param("pnm") String petName){
 	...
 }}}
 
@@ -69,7 +69,7 @@ public String someFunc(	@Param("pid") int petId,
 
 
 <p align="right">[#Top]</p>
-===`表单方式`===
+===`表单方式 - Form Bean`===
 有些时候，你需要入口函数接受一个对象，比如一个表单对象
 
 {{{
@@ -81,13 +81,49 @@ public String someFunc(	@Param("..") Pet pet){
 
 
 <p align="right">[#Top]</p>
+===`前缀表单方式`===
+`进行比较复杂的 HTTP 交互是，大家都比较偏爱名值对的方式提交数据，可能是因为数据组织比较方便 -- 通过<form> 即可。 但是如果在一个表单里混合上两个甚至多个表单项，那么 HTTP 的参数就会有点复杂，虽然这种情况下我更推荐采用  `[mvc Json 输入流 ]，但是并不是所有人都那么喜欢它，对吗？
+
+比如有一个表单，它希望提交两个对象的数据， User 以及 Department，这HTTP 请求的参数格式可能是这样的：
+
+{{{
+user.id = 23
+user.name = abc
+user.age = 56
+dep.id = 15
+dep.name = QA
+}}}
+
+怎样在入口函数内声明这样的表单项呢？我们可以采用前缀方式：
+
+{{{
+public String someFunc( @Param("::user.") User user,
+                        @Param("::dep.") Department dept){
+	...
+}
+}}}
+
+关键就是这个<b>@Param("::user.") </b>符号 '<font color="#FF00FF"><b>:: </b></font>' 表示这个参数是一个表单对象，并且它有统一的前缀 '<font color="#FF00FF"><b>user. </b></font>' 表示前缀，Nutz.Mvc 会查看一下 User 类所有的字段：
+
+{{{
+public class User {
+	private int id;
+	private String name;
+	private int age;
+}
+}}}
+
+那么， id 会对应到 HTTP 参数中的  'user.id'， 其他的字段同理
+
+
+<p align="right">[#Top]</p>
 ===`混合方式`===
 值得一说的是，按照这个约定，实际上，一个入口函数，是可以支持多个  POJO 的，也可以写成这样
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-						@Param("..") Pet pet,
-						@Param("..") Food food){
+                        @Param("..") Pet pet,
+                        @Param("..") Food food){
 	...
 }}}
 
@@ -100,8 +136,8 @@ public String someFunc(	@Param("pid") int petId,
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-						@Param("pet") Pet pet,
-						@Param("foods") Food[] food){
+                        @Param("pet") Pet pet,
+                        @Param("foods") Food[] food){
 	...
 }}}
 
@@ -119,7 +155,7 @@ HTTP 参数的值都是字符串，比如上例的第二个参数，Nutz.Mvc 会
 ----
 
 <p align="right">[#Top]</p>
-==`JSON 输入流`==
+==`JSON 输入流 - JsonAdaptor`==
 如果你要通过 HTTP 传给服务器一个比较复杂的对象，通过名值对的方式可能有点不方便。因为它很难同时传两个对象。 并且一个对象如果还嵌入了另外一个对象，也很难传入，你必须要自己定义一些奇奇怪怪的格式，在 JS 里组织字符串， 在服务器端，手工解析这些字符串。
 
 针对这个问题， JSON 流是一个比 XML 流更好的解决方案，它足够用，并且它更短小。
@@ -160,7 +196,7 @@ public String someFunc( Pet[] pet ){
 {{{
 @AdaptBy(type=JsonAdaptor.class)
 public String someFunc(	@Param("fox") Pet pet,
-						@Param("fox_food") Food food){
+                        @Param("fox_food") Food food){
 	...
 }}}
 
@@ -169,7 +205,7 @@ public String someFunc(	@Param("fox") Pet pet,
 ----
 
 <p align="right">[#Top]</p>
-==`什么都不干`==
+==`什么都不干 - VoidAdaptor`==
 某些特殊的情况，你需要彻底控制输入流的解析，同时你又不想使用任何适配器，你可以
 
 {{{
@@ -183,7 +219,7 @@ VoidAdaptor 什么都不会干，不会碰 HTTP 请求对象的输入流。
 ----
 
 <p align="right">[#Top]</p>
-==`上传文件`==
+==`上传文件 - UploadAdaptor`==
 NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细的说明，请参看：[mvc_file_upload 文件上传 ]
 
 ----
@@ -196,8 +232,8 @@ NutzMvc 内置了 org.nutz.mvc.upload.UploadAdaptor。关于文件上传详细�
 
 {{{
 public String someFunc(	@Param("pid") int petId,
-						Ioc ioc,
-						HttpServletRequest req){
+                        Ioc ioc,
+                        HttpServletRequest req){
 	...
 }}}
 
