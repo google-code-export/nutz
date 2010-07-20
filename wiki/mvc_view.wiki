@@ -69,7 +69,7 @@ public View myFunction(@Param("type") type){
 
 <p align="right">[#Top]</p>
 ==`JSP 视图`==
-视图的实现类为：<b>org.nutz.mvc.view.NamePathJspView </b>
+视图的实现类为：<b>org.nutz.mvc.view.JspView </b>
 
 
 <p align="right">[#Top]</p>
