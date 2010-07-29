@@ -233,6 +233,18 @@ assertEquals(3, Strings.maxLength((String[]){"A","ABC","BC"}));
 assertEquals(3, Strings.maxLength(Lang.list("['A','ABC','BC']")));
 }}}
 
+        * 如果字符为null，返回特定默认值
+{{{
+assertEquals("abc", Strings.sNull(null, "abc"));
+}}}
+
+        * 如果字符为空白，返回特定默认值
+{{{
+assertEquals("abc", Strings.sBlank(" \n\t", "abc"));
+}}}
+
+
+
 
 <p align="right">[#Top]</p>
 ==`修改`==
