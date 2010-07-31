@@ -3,6 +3,7 @@
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
+   * [committer_ant 使用 Ant 编译]
    * [committer_packages Nutz 的包结构]
    * [committer_version_naming Nutz 的版本命名规范]
    * [committer_coding Nutz Java 编码规范 (V1.0)]
