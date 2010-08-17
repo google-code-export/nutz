@@ -18,6 +18,6 @@
 ||log||轻便的 Log 打印的功能||<b>plugin </b>||
 ||mvc||Web 框架，提供了 Servlet 用来嵌入到 web.xml 中||<b>ioc </b>,<font color="#0000AA"><u><b>servlet-api.jar </b></u></font>||
 ||service||org.nutz.dao.Dao 接口的高级封装，提供了树形数据的操作能力||<b>dao </b>||
-||trans||用接口回调的方式，为 dao 提供事务性操作的支持。||<b>lang </b>||
-||plugin||轻便的插件机制。||<b>lang </b>||
+||trans||用接口回调的方式，为 dao 提供事务性操作的支持||<b>lang </b>||
+||plugin||轻便的插件机制||<b>lang </b>||
 

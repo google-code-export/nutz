@@ -3,5 +3,5 @@
 <p align="center"><font size=6>* Nutz.Json 简要说明 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *Peter.Tung* (<font color="#080"> mastung@gmail.com </font>)</p>
-请参看：[http://code.google.com/p/nutz/downloads/detail?name=Nutz_Json_Book.pdf `http://code.google.com/p/nutz/downloads/detail?name=Nutz_Json_Book.pdf `]
+请参看：[http://code.google.com/p/nutz/downloads/detail?name=Nutz_Json_Book.pdf Nutz Json Book ]
 
