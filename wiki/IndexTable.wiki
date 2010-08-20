@@ -74,6 +74,7 @@
    * [zdoc_index_xml 使用 index.xml 作为索引文件]
    * [zdoc_dir_convert zDoc 目录转换细则]
  * 版本历史
+   * [history_1_a_31 1.a.31 发行注记]
    * [history_1_a_30 1.a.30 发行注记]
    * [history_1_a_29 1.a.29 发行注记]
    * [history_1_a_28 1.a.28 发行注记]
