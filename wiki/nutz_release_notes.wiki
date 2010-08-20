@@ -1,6 +1,6 @@
-#summary 1.a.31 发行注记
+#summary 1.a.32 (Hatching..)
 =Top=
-<p align="center"><font size=6>* 1.a.31 发行注记 *</font></p>
+<p align="center"><font size=6>* 1.a.32 (Hatching..) *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
@@ -59,6 +59,7 @@
 ||wendal||O||-||O||O||-||O||O||
 ||zozohtnt||O||-||O||O||-||O||O||
 ||茶几||O||-||-||-||-||-||-||
+||水蓝||O||-||O||-||-||-||-||
 ||天行健||O||-||-||-||-||-||-||
 ||云海飞舞||-||O||O||-||-||-||-||
 
