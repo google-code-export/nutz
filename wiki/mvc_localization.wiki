@@ -47,18 +47,16 @@ public class MyMainClass {
 
 <p align="right">[#Top]</p>
 ==`在 JSP 里使用`==
+<b>直接 Scriptlet </b>
 
-<p align="right">[#Top]</p>
-===`直接 Scriptlet`===
 {{{
 ...
 <h1><%=((Map<String,String>)request.getObject("msg")).get("my.msg.key")%></h1>
 ...
 }}}
 
+<b>采用 JSTL </b>
 
-<p align="right">[#Top]</p>
-===`如果采用 JSTL`===
 {{{
 ...
 <h1>${msg['my.msg.key']}</h1>
