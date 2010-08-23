@@ -47,10 +47,9 @@ public class Master extends Pojo {
 因此：
 
       * 目标 POJO 类 （<font color="#AA0000">Pet </font>）中<b>必须 </b>存在一个字段，本 POJO 将通过该字段同目标[dao_primary_key POJO 类的主键 ]关联
-      * 该字段必须同本[dao_primary_key POJO 类的主键 ]类型相同
-      * Nutz.Dao 通过 @Many.field 获得该字段的名称
-          * <font color="#FF0000"><b>注意 </b></font>，这里是大小写敏感的。
           * <font color="#FF0000"><b>还要注意 </b></font>，这里的名称是 目标 POJO 的<b>JAVA </b>字段的名称。
+          * <font color="#FF0000"><b>注意 </b></font>，这里是大小写敏感的。
+      * 该字段必须同本[dao_primary_key POJO 类的主键 ]类型相同
 ----
 
 <p align="right">[#Top]</p>

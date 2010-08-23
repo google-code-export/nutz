@@ -41,11 +41,9 @@ public class Pet extends Pojo {
       * field 表示你打算依靠<b>本对象 </b>的哪一个字段来映射目标对象的主键
 因此：
 
-      * POJO 类中<b>必须 </b>存在一个字段，本 POJO 将通过该字段同目标 POJO 的主键关联
+      * POJO 类中<b>必须 </b>存在一个字段，本 POJO 将通过该字段同目标[dao_primary_key POJO 类的主键 ]关联
       * 该字段必须同目标 POJO （<font color="#AA0000">Master </font>）的主键类型相同
-      * Nutz.Dao 通过 @One.field 获得该字段的名称
-          * <font color="#FF0000"><b>注意 </b></font>，这里是大小写敏感的。
-          * <font color="#FF0000"><b>还要注意 </b></font>，这里的名称是 目标 POJO 的<b>JAVA </b>字段的名称。
+      * <font color="#FF0000"><b>注意 </b></font>，这里是大小写敏感的。
 ----
 
 <p align="right">[#Top]</p>
