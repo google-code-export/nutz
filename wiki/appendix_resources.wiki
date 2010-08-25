@@ -31,6 +31,7 @@
       * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @[http://axhack.javaeye.com axhack ]<font color="#008800"><b>推荐 </b></font>
       * 《[http://birdwindy.javaeye.com/blog/582200 我的第一个Nutz程序 ]》  @[http://birdwindy.javaeye.com Bird.Wyatt ]
       * 《[http://yunhaifeiwu.javaeye.com/blog/743368 nutz初使用之MVC HelloWorld (netbeans html,jquery版) ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
+      * 《[http://yunhaifeiwu.javaeye.com/blog/746886 nutz初使用之MVC HelloWorld (netbeans jsp版） ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
 ----
 
 <p align="right">[#Top]</p>
