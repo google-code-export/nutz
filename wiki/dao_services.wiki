@@ -31,7 +31,7 @@ Pet pet = pets.fetch("XiaoBai");
 
 http://www.nutzam.com/wiki/img/hierarchy_services.png
 
-请重新温习一下[services.html Nutz.Dao 实体注解(Entity Annotation) ]中的注解<font color="#AA6644"><b>@Id </b></font>和<font color="#AA6644"><b>@Name </b></font>这两个注解， 这里我称一个 POJO 对象为一个<font color="#0000AA"><b>实体 </b></font>（<font color="#008800"><u>Entity </u></font>）：
+请重新温习一下[dao_services Nutz.Dao 实体注解(Entity Annotation) ]中的注解<font color="#AA6644"><b>@Id </b></font>和<font color="#AA6644"><b>@Name </b></font>这两个注解， 这里我称一个 POJO 对象为一个<font color="#0000AA"><b>实体 </b></font>（<font color="#008800"><u>Entity </u></font>）：
 
       * 如果 POJO 即声明了<font color="#AA6644"><b>@Id </b></font>又声明了<font color="#AA6644"><b>@Name </b></font>，那么适合采用 IdNameEntityService
       * 如果 POJO 仅声明了<font color="#AA6644"><b>@Id </b></font>，那么适合采用 IdEntityService

@@ -72,7 +72,7 @@ http://www.nutzam.com/wiki/img/ex01.png
 
       * `根元素 <doc> 对应到根目录 docroot，即， `<b>index.xml 所在的目录 </b>。
       * 在跟元素你可以用 @author 属性声明这篇文档的默认作者，。如果目录下的 zDoc 文档没有声明 #author，那么便被认为是默认作者所写。
-      * 属性 @index 的值符合[syntax.html zDoc语法 ]中的<font color="#00AAAA"><b>目录索引 </b></font>中的定义
+      * 属性 @index 的值符合[zdoc_syntax zDoc语法 ]中的<font color="#00AAAA"><b>目录索引 </b></font>中的定义
       * @path 属性表示当前对应的目录或者文件
           * 如果是目录，需要有标题 (<font color="#008800"><u> 通过属性@title声明 </u></font>)，如果没有声明  @title，则使用目录名称来代替
-          * 如果是文件，如果没有 @title 属性，则采用文档的 #title，详情惨参看[syntax.html zDoc语法 ]<font color="#00AAAA"><b>文档属性 </b></font>这一节。
+          * 如果是文件，如果没有 @title 属性，则采用文档的 #title，详情惨参看[zdoc_syntax zDoc语法 ]<font color="#00AAAA"><b>文档属性 </b></font>这一节。
