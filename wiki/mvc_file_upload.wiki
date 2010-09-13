@@ -32,7 +32,7 @@
 ==`通过 @AdaptBy 声明`==
 {{{
 ...
-@AdaptBy(type = UploadAdaptor.class, args = { "D:/tmp/demo/upload", "10" })
+@AdaptBy(type = UploadAdaptor.class, args = { "D:/tmp/demo/upload", "8192" })
 public void uploadPhoto(@Param("id") int id, @Param("photo") File f){
 	...
 }}}
