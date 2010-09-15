@@ -29,6 +29,8 @@
 <p align="right">[#Top]</p>
 =`关于 Mvc`=
       * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @[http://axhack.javaeye.com axhack ]<font color="#008800"><b>推荐 </b></font>
+      * 《[http://yunhaifeiwu.javaeye.com/blog/763832 nutz 文件上传例子 ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
+      * 《[http://yunhaifeiwu.javaeye.com/blog/763637 nutz 过滤器使用例子 ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
       * 《[http://birdwindy.javaeye.com/blog/582200 我的第一个Nutz程序 ]》  @[http://birdwindy.javaeye.com Bird.Wyatt ]
       * 《[http://yunhaifeiwu.javaeye.com/blog/743368 nutz初使用之MVC HelloWorld (netbeans html,jquery版) ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
       * 《[http://yunhaifeiwu.javaeye.com/blog/746886 nutz初使用之MVC HelloWorld (netbeans jsp版） ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
@@ -43,6 +45,11 @@
 =`关于 Aop`=
       * 《[http://wendal.javaeye.com/blog/543681 基于ASM的Nut.Aop实现 ]》 @[http://wendal.javaeye.com wendal ]
       * 《[http://wendal.javaeye.com/blog/543936 自己动手,用字节码工具做一个Aop拦截器 ]》 @[http://wendal.javaeye.com wendal ]
+----
+
+<p align="right">[#Top]</p>
+=`综合实践`=
+      * 《[http://yunhaifeiwu.javaeye.com/blog/760352 nutz简单综合实例----通过html网页对数据库进行管理操作（MVC,Ioc,Dao) ]》  @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
 ----
 
 <p align="right">[#Top]</p>
