@@ -23,6 +23,7 @@
       * [http://code.google.com/p/nutz/issues/detail?id=249 Issue 249 ]mvc: UploadAdaptor 应该支持一个选项，是否记录空文件（默认应该为 "不记录"）<font color="#AAAAAA">by </font><b>zozohtnt </b>
       * [http://code.google.com/p/nutz/issues/detail?id=274 Issue 274 ]lang: Files.write 应该支持 InputStream<font color="#AAAAAA">by </font><b>zozohtnt </b>
       * [http://code.google.com/p/nutz/issues/detail?id=278 Issue 278 ]入口函数返回View时，ActionInvokerImpl处理不对<font color="#AAAAAA">by </font><b>茶几 </b>
+      * [http://code.google.com/p/nutz/issues/detail?id=290 Issue 290 ]NutDao主键类型转换错误<font color="#AAAAAA">by </font><b>yonlist </b>
 ----
 
 <p align="right">[#Top]</p>
@@ -60,9 +61,11 @@
 ||` O(∩_7∩)O									 `||-||-||-||-||O||-||-||
 ||Blue Rain||O||-||-||-||-||-||-||
 ||Jay||-||-||O||-||-||-||-||
+||yonlist||O||-||-||O||-||-||-||
 ||wendal||O||-||O||O||-||O||O||
 ||zozohtnt||O||-||O||O||-||O||O||
 ||茶几||O||-||-||-||-||-||-||
+||老袁||-||-||-||O||-||-||-||
 ||水蓝||O||-||O||-||-||-||-||
 ||天行健||O||-||-||-||-||-||-||
 ||云海飞舞||-||O||O||-||O||-||-||
