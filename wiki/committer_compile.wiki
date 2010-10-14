@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`搭建 Eclipse 编译环境`=
-如果你对于 Eclipse 以及 SVN 不是特别熟悉，请参看[committer_svn_project 从 SVN 编译 ]。如果你认为自己有足够的经验，你需要知道一下几点就 能顺利编译：
+如果你对于 Eclipse 以及 SVN 不是特别熟悉，请参看[committer_svn_project 从 SVN 编译 ]。如果你认为自己有足够的经验，你需要知道一下几点就能顺利编译：
 
       # SVN 的 check out 信息在 http://code.google.com/p/nutz/source/checkout
           * 如果你只想阅读最新代码，从这里检出：http://nutz.googlecode.com/svn/trunk
@@ -41,7 +41,7 @@ mysql:> create database zzhtest;
 
 <p align="right">[#Top]</p>
 ==`2. 创建连接配置文件`==
-`在 Eclipse 项目里，增加一个新的 source folder ：右击项目 > New > Source Folder  `
+`在 Eclipse 项目里，增加一个新的 source folder ：右击项目 > New > Source Folder `
 
         # 随便给这个 Folder 起个名字，比如<b>properties </b>
         # 将这个目录设置成为 Source Folder
@@ -60,7 +60,7 @@ password=123456
 
 <font color="#FF0000"><b>请注意，= 前后不要有空格 </b></font>
 
-我之所以这样做而不直接把 nutz-test.properties 文件放到 src 或者 test 下面，是因为，这个文件通常在不同的机器上时不 一样的，我家，公司，以及笔记本上的 nutz-properties 都不一样。所以，不宜将这个文件放到 svn 上。
+我之所以这样做而不直接把 nutz-test.properties 文件放到 src 或者 test 下面，是因为，这个文件通常在不同的机器上时不一样的，我家，公司，以及笔记本上的 nutz-properties 都不一样。所以，不宜将这个文件放到 svn 上。
 
 
 <p align="right">[#Top]</p>
@@ -107,6 +107,8 @@ http://www.nutzam.com/wiki/img/23.png
 
 <p align="right">[#Top]</p>
 =`最后 ...`=
+
+
       * Nutz 是开源项目，你可以修改源代码，并运行JUnit 测试，来验证你的修改会不会导致错误
       * 你还可以增加 JUnit 测试，来看看 Nutz 的代码品质到底如何
       * 当然，如果你写的 JUnit 测出了 Nutz  的 bug，或者修正了Nutz代码的缺陷， 请发信到这个地址  nutzam@googlegroups.com  ,并附上你的代码。

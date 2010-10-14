@@ -8,13 +8,13 @@
 
 <p align="right">[#Top]</p>
 =`什么是一对一映射`=
-有两张数据表，其中A表的某个字段的值指向B表的主键。因为A表的任何一条记录只能对应B表的一条且唯一一条记录，所以称这种 映射为A表对B表数据的一对一映射。(<font color="#999999"> 当然，反过来，你也可是说，是B表对A表的 </font>[dao_links_many 一对多映射 ])。
+有两张数据表，其中A表的某个字段的值指向B表的主键。因为A表的任何一条记录只能对应B表的一条且唯一一条记录，所以称这种映射为A表对B表数据的一对一映射。(<font color="#999999"> 当然，反过来，你也可是说，是B表对A表的 </font>[dao_links_many 一对多映射 ])。
 
 上述结构，如果用 POJO 来表示的话，可以参看下图：
 
 http://www.nutzam.com/wiki/img/links_one.png
 
-如上图， Pet 中就可以有一个字段 master，通过自身的 masterId 指向一个	Master 对象，那么我们说 Pet.master 就是 Pet 对 Master 的一对一映射。
+如上图， Pet 中就可以有一个字段 master，通过自身的 masterId 指向一个	Master 对象，那么我们说 Pet.master 就是 Pet 对Master 的一对一映射。
 
 ----
 
@@ -64,7 +64,7 @@ pet.setMaster(master);
 dao.insertWith(pet,"master");
 }}}
 
-Nutz.Dao 会根据正则表达式 "master" 寻找可以被匹配上的映射字段（只要声明了 @One, @Many, @ManyMany 任何一个注解，都是映射字段） 并根据注解具体的配置信息，执行相应的 SQL。比如上面的操作，会实际上：
+Nutz.Dao 会根据正则表达式 "master" 寻找可以被匹配上的映射字段（只要声明了 @One, @Many, @ManyMany 任何一个注解，都是映射字段）并根据注解具体的配置信息，执行相应的 SQL。比如上面的操作，会实际上：
 
 {{{
 执行 SQL : INSERT INTO t_master (name) VALUES("Peter");
@@ -171,5 +171,5 @@ dao.deleteLinks(pet, "master");
 dao.clearLinks(pet, "master");
 }}}
 
-对于一对一映射来说其实清除和删除是等价的操作，对于一对多和多对多映射来说，就又区别了，因为清除只会执行一条 SQL 删除一批，而且删除会 逐个调用 dao.delete 来删除对象
+对于一对一映射来说其实清除和删除是等价的操作，对于一对多和多对多映射来说，就又区别了，因为清除只会执行一条 SQL 删除一批，而且删除会逐个调用 dao.delete 来删除对象
 

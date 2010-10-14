@@ -8,13 +8,13 @@
 
 <p align="right">[#Top]</p>
 =`简要介绍`=
-`为使用 Dao 接口的 fetch(Class<?>, long) 以及 fetch(Class<?>, String)，需要为一个 POJO 指明它的主键。 主键可以是整数型的，也可以是字符型的。同时它也可以支持复合主键。  `
+`为使用 Dao 接口的 fetch(Class<?>, long) 以及 fetch(Class<?>, String)，需要为一个 POJO 指明它的主键。主键可以是整数型的，也可以是字符型的。同时它也可以支持复合主键。 `
 
 ||整数型主键||注解 @Id||声明在字段上||
 ||字符型主键||注解 @Name||声明在字段上||
 ||复合主键||注解 @PK||声明在类上||
 
-<font color="#FF0000"><b>注意： </b></font>对于一个 POJO，你可以同时为其声明 @Id 和 @Name，它们都能正常工作。你只需要保证 @Name 对应的字段 在数据库里有唯一性约束即可。 但是通常， Nutz.Dao 并没有假设你同时在一个 POJO 里应用 @Id, @Name 和 @PK，如果你 这么做了，可能会引发一些奇怪的问题。事实上，你也不可能这么做，不是吗？
+<font color="#FF0000"><b>注意： </b></font>对于一个 POJO，你可以同时为其声明 @Id 和 @Name，它们都能正常工作。你只需要保证 @Name 对应的字段在数据库里有唯一性约束即可。 但是通常， Nutz.Dao 并没有假设你同时在一个 POJO 里应用 @Id, @Name 和 @PK，如果你这么做了，可能会引发一些奇怪的问题。事实上，你也不可能这么做，不是吗？
 
 ----
 
@@ -55,7 +55,7 @@ SELECT MAX(id) FROM t_pet;
 
 <p align="right">[#Top]</p>
 ==`手工设值`==
-由于默认的，@Id 字段被认为是自增的，所以在插入时，Nutz.Dao 会忽略这个字段。但是，有些时候，你的整数主键不是自增的， 你希望手工为其设值，怎么办呢？ 你可以给 @Id 设一个属性: auto=false
+由于默认的，@Id 字段被认为是自增的，所以在插入时，Nutz.Dao 会忽略这个字段。但是，有些时候，你的整数主键不是自增的，你希望手工为其设值，怎么办呢？ 你可以给 @Id 设一个属性: auto=false
 
 {{{
 @Table("t_pet")
@@ -159,5 +159,5 @@ Pet pet = dao.deletex(Pet.class, 23, 12);
 
 <p align="right">[#Top]</p>
 ==`其他操作`==
-至于 update, clear, insert 则和平常的对象一样。 不过 Update 的时候，你的 POJO 所有的复合主键字段需要被设上值， 才能正确被更新。
+至于 update, clear, insert 则和平常的对象一样。 不过 Update 的时候，你的 POJO 所有的复合主键字段需要被设上值，才能正确被更新。
 

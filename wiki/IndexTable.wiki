@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 关于 1.a.32 (Hatching..)]
+ * [nutz_release_notes 关于 1.a.32]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -23,6 +23,7 @@
    * [dao_links_many_many 多对多映射]
    * [dao_customized_sql 自定义 SQL]
    * [dao_transaction 事务模板]
+   * [dao_transaction_complex 交叉事务]
    * [dao_runner 定制自己的事务模板]
    * [dao_services 内置的服务类]
    * [dao_pojo 更快的构建你的POJO]

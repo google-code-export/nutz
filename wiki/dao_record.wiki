@@ -8,14 +8,14 @@
 
 <p align="right">[#Top]</p>
 =`POJO 之苦`=
-很多时候，程序员在访问数据库时，预先构建一个 POJO 对象，会为之后的编程带来很大的便利。 但是有些时候，构建 POJO 是不可能的，或者是很麻烦的，比如：
+很多时候，程序员在访问数据库时，预先构建一个 POJO 对象，会为之后的编程带来很大的便利。但是有些时候，构建 POJO 是不可能的，或者是很麻烦的，比如：
 
       * 字段可以动态增删的表
       * 表是被动态创建出来的
       * 非常少用到的表，为此维护一个 POJO 很不划算
-当然上述三个问题都可以通过[dao_customized_sql 自定义 SQL ]来实现，但是它毕竟有一点点复杂。 想想其他的动态语言是怎么做的吧。他们为每条数据库记录直接返回一组名值对。很简单不是吗？
+当然上述三个问题都可以通过[dao_customized_sql 自定义 SQL ]来实现，但是它毕竟有一点点复杂。想想其他的动态语言是怎么做的吧。他们为每条数据库记录直接返回一组名值对。很简单不是吗？
 
-名值对，非常像 JDBC 中的 ResourceSet 对象，但是不幸的是，你不能把它保存到任意的地方，因为 一旦 Connection 关闭了，它就 Over 了。为此，我想很多人都会想到从 ResultSet 读取一组 Map。 Nutz.Dao 也提供了一个，它不是 Map 而是一个 Map 的包裹类 -- Record。它比 Map 提供了更多的 一些包裹方法，便于你取值。
+名值对，非常像 JDBC 中的 ResourceSet 对象，但是不幸的是，你不能把它保存到任意的地方，因为一旦 Connection 关闭了，它就 Over 了。为此，我想很多人都会想到从 ResultSet 读取一组 Map。Nutz.Dao 也提供了一个，它不是 Map 而是一个 Map 的包裹类 -- Record。它比 Map 提供了更多的一些包裹方法，便于你取值。
 
 对于 Update, Insert 操作，你可以使用 Chain （值链）。 这个我们后面会给你举几个例子，一看便知。
 
@@ -37,6 +37,8 @@ t_pet {
 
 <p align="right">[#Top]</p>
 =`获取一条记录`=
+
+
 {{{
 // 根据主键获取
 Record re = dao.fetch("t_pet", Cnd.where("id","=",2);
@@ -66,6 +68,8 @@ String json = re.toJson(JsonFormat.nice());
 
 <p align="right">[#Top]</p>
 =`查询多条记录`=
+
+
 {{{
 // 查询所有以 A 开头的 Pet
 List<Record> list = dao.query("t_pet", Cnd.where("name","LIKE","A%"), null);
@@ -78,6 +82,8 @@ List<Record> list = dao.query("t_pet", Cnd.where("name","LIKE","A%"), dao.create
 
 <p align="right">[#Top]</p>
 =`插入`=
+
+
 {{{
 dao.insert("t_pet", Chain.make("name","XiaoBai").add("birthday", new Timestampe(System.currentTimeMillis()));
 }}}
@@ -104,6 +110,8 @@ ch.add("字段名", 字段值);
 
 <p align="right">[#Top]</p>
 =`更新`=
+
+
 {{{
 dao.update("t_pet",
 			Chain.make("name","XiaoBai").add("birthday", new Timestampe(System.currentTimeMillis())),
@@ -122,6 +130,8 @@ UPDATE t_pet SET name='XiaoBai', birthday='2010-4-28 14:27:12' WHERE id=2;
 
 <p align="right">[#Top]</p>
 =`删除`=
+
+
 {{{
 dao.clear("t_pet", Cnd.where("id", "=" ,2);
 }}}

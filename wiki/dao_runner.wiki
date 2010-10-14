@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`终极扩展点 - DaoRunner`=
-如果你使用的是 Dao 接口的默认实现类 (org.nutz.dao.impl.NutDao)，你觉得任何事情都很满意， 但是就是单单事务这部分你很不喜欢。你很不喜欢[dao_transaction 事务模板 ]的写法：
+如果你使用的是 Dao 接口的默认实现类 (org.nutz.dao.impl.NutDao)，你觉得任何事情都很满意，但是就是单单事务这部分你很不喜欢。你很不喜欢[dao_transaction 事务模板 ]的写法：
 
 {{{
 public void doSomething(final Pet pet){
@@ -21,7 +21,7 @@ public void doSomething(final Pet pet){
 }
 }}}
 
-看看，这样写代码太多了。因此，你甚至开始怀念 Spring，它的声明式事务管理，可以让你的代码完全不用这么 繁琐。怎么办呢？
+看看，这样写代码太多了。因此，你甚至开始怀念 Spring，它的声明式事务管理，可以让你的代码完全不用这么繁琐。怎么办呢？
 
 我们提供了一个扩展点。通过修改这个接口，你可以为 Dao 的默认实现类 NutDao 彻底定制事务行为 它就是 DaoRunner，它只有一个方法：
 
@@ -39,7 +39,7 @@ public interface DaoRunner {
 
 <p align="right">[#Top]</p>
 =`同 Spring 事务整合的例子`=
-这个特性是在 1.a.27 之后，由[http://hzzdong.javaeye.com 知足常乐(hzzdong) ]在博客 《[http://hzzdong.javaeye.com/blog/656948 Nutz DAO与spring集成讨论 ]》提出的，我们因此得到了 Issue 162。
+这个特性是在 1.a.27 之后，由[http://hzzdong.javaeye.com 知足常乐(hzzdong) ]在博客《[http://hzzdong.javaeye.com/blog/656948 Nutz DAO与spring集成讨论 ]》提出的，我们因此得到了 Issue 162。
 
 在做了一点修改后，现在(1.a.28)，只要你提供一个这样的 DaoRunner
 
@@ -71,7 +71,5 @@ public class SpringDaoRunner implements DaoRunner {
 dao.setRunner(new SpringDaoRunner());
 }}}
 
-修改 NutDao 的默认事务行为。 当然，如果你的 Dao 对像本身就是通过 Ioc 容器获得，我想你一定知道如何为 你的对象设置一个属性，对吧。
-
-
+修改 NutDao 的默认事务行为。 当然，如果你的 Dao 对像本身就是通过 Ioc 容器获得，我想你一定知道如何为你的对象设置一个属性，对吧。
 

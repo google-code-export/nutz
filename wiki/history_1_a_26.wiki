@@ -64,10 +64,10 @@
 
 <p align="right">[#Top]</p>
 =`博客`=
-      * 《[http://birdwindy.javaeye.com/blog/582200 我的第一个Nutz程序 ]》 @[http://birdwindy.javaeye.com Bird.Wyatt ]
-      * 《[http://bobby1222.javaeye.com/blog/585483 NUTZ与SQL SERVER2000兼容性问题 ]》 @[http://wendal.javaeye.com Ge.PH /hl ]
-      * 《[http://www.3km.com.cn/?p=96 借于Nutz快速实现对表的增删改操作 ]》  @[http://www.3km.com.cn 会跑的蜗牛 ]
-      * 《[http://amosleaf.javaeye.com/blog/562141 使用注解做ORM ]》 @[http://amosleaf.javaeye.com amosleaf ]
+      * 《[http://birdwindy.javaeye.com/blog/582200 我的第一个Nutz程序 ]》@[http://birdwindy.javaeye.com Bird.Wyatt ]
+      * 《[http://bobby1222.javaeye.com/blog/585483 NUTZ与SQL SERVER2000兼容性问题 ]》@[http://wendal.javaeye.com Ge.PH /hl ]
+      * 《[http://www.3km.com.cn/?p=96 借于Nutz快速实现对表的增删改操作 ]》 @[http://www.3km.com.cn 会跑的蜗牛 ]
+      * 《[http://amosleaf.javaeye.com/blog/562141 使用注解做ORM ]》@[http://amosleaf.javaeye.com amosleaf ]
 ----
 
 <p align="right">[#Top]</p>
@@ -89,7 +89,7 @@
 ||[http://www.3km.com.cn 会跑的蜗牛 ]||X||-||-||-||-||-||-||
 ||[http://www.ecplive.cn 知足常乐 ]||X||-||-||-||-||-||X||
 
-另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
+另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
 
 另，由于众所周知的原因，建议大家通过[http://groups.google.de/group/nutzam?hl=zh-CN 别的服务访问讨论区 ]因为非中文版的 Google Group 是没有被 QIAng 的。
 

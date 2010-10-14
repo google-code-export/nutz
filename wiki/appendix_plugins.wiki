@@ -7,6 +7,12 @@
 ----
 
 <p align="right">[#Top]</p>
+=`插件中心`=
+[http://nutzmore.googlecode.com 插件中心 ]
+
+----
+
+<p align="right">[#Top]</p>
 =`IocProvider`=
 [http://code.google.com/p/nutzlab/source/browse/trunk/Nutz-IoC-Spring/src/org/nutz/ioc/impl/spring/SpringIocProvider.java Spring桥 ]
 

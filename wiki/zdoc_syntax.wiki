@@ -156,15 +156,15 @@ zDoc 支持如下字体样式，暂时不支持下划线，以及字体颜色
           * 你可以随便输入你的代码类型，比如 C#, Python, SQL, HTML 等等
 比如
 
-`{{{<Javascript>  `
+`{{{<Javascript> `
 
-`function abc(msg){  `
+`function abc(msg){ `
 
 alert(msg);
 
-`}  `
+`} `
 
-`}}}  `
+`}}} `
 
 将显示为:
 

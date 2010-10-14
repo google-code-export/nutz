@@ -12,9 +12,9 @@
 
       # `雇员表 t_employee `
       # `任务表 t_task `
-每个雇员都会有多个任务，所以任务表有一个字段 eid 指向雇员的主键 id。 我们需要随时知道一个雇员有多少个任务，所以在雇员的的 POJO 里面，有一个 Java 字段叫做 taskCount 来描述雇员当前总的任务数量。
+每个雇员都会有多个任务，所以任务表有一个字段 eid 指向雇员的主键 id。 我们需要随时知道一个雇员有多少个任务，所以在雇员的的POJO 里面，有一个 Java 字段叫做 taskCount 来描述雇员当前总的任务数量。
 
-`那么，如何获取这个 taskCount 呢？ 每次都执行 SELECT COUNT(*) 吗？比较理想的一个解决方法就是使用视图。在视图的 SQL 语句中我 们可以利用数据库的方言，发挥数据库的效率。并且在程序代码里也会更加简洁。比如我们建立一个视图 v_employee  `
+`那么，如何获取这个 taskCount 呢？ 每次都执行 SELECT COUNT(*) 吗？比较理想的一个解决方法就是使用视图。在视图的 SQL 语句中我们可以利用数据库的方言，发挥数据库的效率。并且在程序代码里也会更加简洁。比如我们建立一个视图 v_employee `
 
 {{{
 SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FROM t_employee AS e;
@@ -22,7 +22,7 @@ SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FR
 
 <font color="#008800"><u>这段代码仅仅是个示意，在不同的数据库上，有不同的写法 </u></font>
 
-`那么实际上，我们建立的这个 Employee 的 Java 对象就是要从 v_employee 获取，但是执行 insert, update 或者 delete 的时候，却是 操作 t_employee 的。为了这个特殊的需求， Nutz.Dao 提供了 @View 和 @Readonly 这两个注解。  `
+`那么实际上，我们建立的这个 Employee 的 Java 对象就是要从 v_employee 获取，但是执行 insert, update 或者 delete 的时候，却是操作 t_employee 的。为了这个特殊的需求， Nutz.Dao 提供了 @View 和 @Readonly 这两个注解。 `
 
 ----
 

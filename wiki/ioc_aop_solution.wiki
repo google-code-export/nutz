@@ -8,6 +8,8 @@
 
 <p align="right">[#Top]</p>
 =`为什么需要特别写出NutAop的模型呢?`=
+
+
       * NutAop清晰简洁地实现了Aop中最常用,最常见的需求--控制特定方法的执行逻辑
       * 了解这个模型,能够更好地理解Aop
 ----
@@ -25,19 +27,19 @@ public void exe(){
 被改造后
 
 {{{
-    import org.nutz.aop.InterceptorChain;
-    ....
-    
-    public void exe(){
-        try{
-            new InterceptorChain(XX,XXX...).doChain();
-        }catch (Throwable) {
-            throw e;
-        }
+import org.nutz.aop.InterceptorChain;
+....
+
+public void exe(){
+    try{
+        new InterceptorChain(XX,XXX...).doChain();
+    }catch (Throwable) {
+        throw e;
     }
+}
 }}}
 
-其中使用到的InterceptorChain,可以理解为Servlet里面的FilterChain,它携带着执行原方法时可以获取的信息, 如调用对象.调用方法,参数,返回值等整个 InterceptorChain 不到100行,我相信你很快就能看完. 懒人的话,只看doChain()/invoke(),你将会豁然开朗.
+其中使用到的InterceptorChain,可以理解为Servlet里面的FilterChain,它携带着执行原方法时可以获取的信息,如调用对象.调用方法,参数,返回值等整个 InterceptorChain 不到100行,我相信你很快就能看完.懒人的话,只看doChain()/invoke(),你将会豁然开朗.
 
 <b>整体思路 </b>
 

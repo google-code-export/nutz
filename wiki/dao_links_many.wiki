@@ -8,13 +8,13 @@
 
 <p align="right">[#Top]</p>
 =`什么是一对多映射`=
-有两张数据表，其中A表的某个字段的值指向B表的主键。因为B表的任何一条记录理论上可以对应A表的多条记录，所以称这种 映射为B表对A表数据的一对多映射。(<font color="#999999"> 当然，反过来，你也可是说，是A表对B表的 </font>[dao_links_one 一对一映射 ])。
+有两张数据表，其中A表的某个字段的值指向B表的主键。因为B表的任何一条记录理论上可以对应A表的多条记录，所以称这种映射为B表对A表数据的一对多映射。(<font color="#999999"> 当然，反过来，你也可是说，是A表对B表的 </font>[dao_links_one 一对一映射 ])。
 
 上述结构，如果用 POJO 来表示的话，可以参看下图：
 
 http://www.nutzam.com/wiki/img/links_many.png
 
-`如上图，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象， 那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。  `
+`如上图，一个 Master 自然就能对应多个 Pet ，所以， Master.pets （一个 List<Pet>） 就可以指向多个 Pet 对象，那么我们说 Master.pets 就是 Master 对 Pet 的一对多映射。 `
 
 ----
 
@@ -40,7 +40,7 @@ public class Master extends Pojo {
 }
 }}}
 
-` 在 Master 对象中必须存在一个 List<Pet> 类型的字段，你的一对多映射就需要配置在这个字段上。通过  `<b>@Many </b>注解告诉 Nutz.Dao 对象 Pet 和 Master 对象的关系，其中：
+`在 Master 对象中必须存在一个 List<Pet> 类型的字段，你的一对多映射就需要配置在这个字段上。通过  `<b>@Many </b>注解告诉 Nutz.Dao 对象 Pet 和 Master 对象的关系，其中：
 
       * target 表示你要映射的对象类型
       * field 表示你打算依靠<b>目标对象 </b>的哪一个字段来映射本对象的主键
@@ -80,7 +80,7 @@ public class Master extends Pojo {
 
 <p align="right">[#Top]</p>
 ==`Map`==
-如果采用 Map 类型， 我们还需要你为 @Many 注解多添加一个参数，通过这个参数, Nutz.Dao 才能知道采用目标 POJO 对象 的哪一个字段来作为 Map　的键。
+如果采用 Map 类型， 我们还需要你为 @Many 注解多添加一个参数，通过这个参数, Nutz.Dao 才能知道采用目标 POJO 对象的哪一个字段来作为 Map　的键。
 
 {{{
 @Table("t_master")
@@ -112,7 +112,7 @@ public class Master extends Pojo {
 	// ... 省略其余代码
 }}}
 
-则会从 Pet 对象的数据表中，选取<b>第一个 </b>masterId 为当前对象主键值的 Pet 对象。至于什么是 “<b>第一 </b>” 不同的数据库有所不同。总之，就是 SQL 语句：
+则会从 Pet 对象的数据表中，选取<b>第一个 </b>masterId 为当前对象主键值的 Pet 对象。至于什么是 “<b>第一 </b>”不同的数据库有所不同。总之，就是 SQL 语句：
 
 {{{
 SELECT * FROM t_pet;
@@ -143,7 +143,7 @@ master.setPets(pets);
 dao.insertWith(master, "pets");
 }}}
 
-Nutz.Dao 会根据正则表达式 "pets" 寻找可以被匹配上的映射字段（只要声明了 @One, @Many, @ManyMany 任何一个注解，都是映射字段） 并根据注解具体的配置信息，执行相应的 SQL。比如上面的操作，会实际上：
+Nutz.Dao 会根据正则表达式 "pets" 寻找可以被匹配上的映射字段（只要声明了 @One, @Many, @ManyMany 任何一个注解，都是映射字段）并根据注解具体的配置信息，执行相应的 SQL。比如上面的操作，会实际上：
 
 {{{
 执行 SQL : INSERT INTO t_master (name) VALUES("Peter");

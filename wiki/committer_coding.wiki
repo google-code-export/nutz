@@ -8,6 +8,8 @@
 
 <p align="right">[#Top]</p>
 =`0. 规范的规范`=
+
+
       # 本规范的每一条目必须无二义性，并且可执行。否则作废
       # 本规范的条目分为两个级别:
           * 规则 -<font color="#FF0000"><b>R </b></font>
@@ -22,15 +24,16 @@
       # <font color="#008800"><b>S </b></font>-非 Eclipse 用户请阅读上述 XML 代码自行遵守
           * <i>基本上我们没有为非 Eclipse 用户指定规范，我们还没有一个好办法 </i>
 ----
-2. 命名
 
+<p align="right">[#Top]</p>
+=`2. 命名`=
 ----
 
 <p align="right">[#Top]</p>
-=`2.1 包`=
-      # <font color="#FF0000"><b>R </b></font>-包名必须全部小写，2个以内单词。
-          # <font color="#008800"><b>S </b></font>-最好为 1 个单数名词
-          # <font color="#FF0000"><b>R </b></font>-所有项目的包要以 “org.nutz” 为父 包 。
+==`2.1 包`==
+        # <font color="#FF0000"><b>R </b></font>-包名必须全部小写，2个以内单词。
+            # <font color="#008800"><b>S </b></font>-最好为 1 个单数名词
+        # <font color="#FF0000"><b>R </b></font>-所有项目的包要以 “org.nutz” 为父 包 。
 ----
 
 <p align="right">[#Top]</p>
@@ -124,7 +127,7 @@ public String name(){
 <p align="right">[#Top]</p>
 =`3. 注释`=
       # <font color="#FF0000"><b>R </b></font>-注释必须和代码保持同步 。
-      # <font color="#FF0000"><b>R </b></font>-注释中的第一个句子要以（英文）句号、问号或者感叹号结束。 Java成工具会将注释中的第一个句子放在方法汇 总表和索引中。
+      # <font color="#FF0000"><b>R </b></font>-注释中的第一个句子要以（英文）句号、问号或者感叹号结束。 Java成工具会将注释中的第一个句子放在方法汇总表和索引中。
       # <font color="#FF0000"><b>R </b></font>`-如果注释中有超过一个段落，用 <P> 标签 分隔。 `
       # <font color="#FF0000"><b>R </b></font>`-如果注释中有多个章节，用 <H2> 标签声明每个章节的标题。 `
       # <font color="#FF0000"><b>R </b></font>`-如果注释需要换行，用 <BR> 标签。 `

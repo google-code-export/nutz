@@ -8,11 +8,15 @@
 
 <p align="right">[#Top]</p>
 =`需使用的类`=
+
+
       * org.nutz.ioc.aop.config.impl.JsonAopConfigration
 ----
 
 <p align="right">[#Top]</p>
 =`看看一个示例的ioc配置文件`=
+
+
 {{{
 var ioc = {
 	log : {
@@ -38,7 +42,7 @@ var ioc = {
 }
 }}}
 
-可以看到, 除了$aop这个对象外,其他的与普通的ioc配置文件没有任何区别. $aop ,其实是org.nutz.ioc.aop.config.AopConfigration接口的IOCNAME字段的值, 只有你声明这个名字,且类型为这个接口的实现,就能轻易的配置Ioc. 估计你已经猜到,org.nutz.ioc.aop.config.impl.JsonAopConfigration就是其中一个实现! 细看这个部分代码:
+可以看到, 除了$aop这个对象外,其他的与普通的ioc配置文件没有任何区别.$aop ,其实是org.nutz.ioc.aop.config.AopConfigration接口的IOCNAME字段的值,只有你声明这个名字,且类型为这个接口的实现,就能轻易的配置Ioc.估计你已经猜到,org.nutz.ioc.aop.config.impl.JsonAopConfigration就是其中一个实现!细看这个部分代码:
 
 {{{
 		fields : {
@@ -50,7 +54,7 @@ var ioc = {
 		}
 }}}
 
-使用JsonAopConfigration,只需要为其itemList赋值. 需要什么值? 对,一个数组. 数组的每一行,对应一条规则:
+使用JsonAopConfigration,只需要为其itemList赋值.需要什么值? 对,一个数组.数组的每一行,对应一条规则:
 
 {{{
 ['.+','toString','ioc:log'],
@@ -119,6 +123,8 @@ var ioc = {
 
 <p align="right">[#Top]</p>
 ==`按照上述声明:`==
+
+
         * 对于com.service包下的类的全部方法,均应用log拦截器
         * 对于com.service.status包下的类的全部get/set方法,均应用txNONE拦截器,事务级别 NONE
         * `对于com.service.media包下的类的全部get/set方法,均应用txREAD_UNCOMMITTED拦截器,事务级别 READ_UNCOMMITTED `
@@ -137,16 +143,16 @@ $aop : {
 	fields : {
 		aopConfigrations  : [
 			{	type : 'org.nutz.ioc.aop.config.impl.JsonAopConfigration',
-    				fields : {
-        				itemList : [
+				fields : {
+    				itemList : [
             			['com\\.service\\..+','.+','ioc:log'],
 						['com\\.service\\.status\\..+','(get|set).+','ioc:txNONE'],
 						['com\\.service\\.media\\..+','(get|set).+','ioc:txREAD_UNCOMMITTED'],
 						['com\\.service\\.news\\..+','(get|set).+','ioc:txREAD_COMMITTED'],
 						['com\\.service\\.blog\\..+','(get|save|update|delete).+','ioc:txREPEATABLE_READ'],
 						['com\\.service\\.auth\\..+','.+','ioc:txSERIALIZABLE']
-        				]
-    				}
+    				]
+				}
 			},
 			{	type : 'org.nutz.ioc.aop.config.impl.AnnotationAopConfigration'}
 		]

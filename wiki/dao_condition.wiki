@@ -66,7 +66,7 @@ Cnd.wrap("name LIKE 'J%' AND age>20 ORDER BY name ASC");
 
 <p align="right">[#Top]</p>
 ==`一个友好一些的工具类 -- Cnd`==
-有些情况，数据库中的字段同 Java 对象中的字段并不同名，所以就需要给 Java 字段上的数据库字段注解加上参数 @Column(<font color="#FF00FF">"数据库字段名" </font>) 如果你通过 Cnd.wrap() 硬编码某个字段，那么当这个字段数据库字段名发生改变时，你就需要改动很多。 因此你希望仅仅将对于数据库的变动限制在 Java 对象的源文件里 所以 Nutz 提供了 Cnd.where() 方法
+有些情况，数据库中的字段同 Java 对象中的字段并不同名，所以就需要给 Java 字段上的数据库字段注解加上参数 @Column(<font color="#FF00FF">"数据库字段名" </font>)如果你通过 Cnd.wrap() 硬编码某个字段，那么当这个字段数据库字段名发生改变时，你就需要改动很多。因此你希望仅仅将对于数据库的变动限制在 Java 对象的源文件里所以 Nutz 提供了 Cnd.where() 方法
 
 {{{
 Condition c = Cnd.where("age",">",30).and("name", "LIKE", "%K%").asc("name").desc("id");

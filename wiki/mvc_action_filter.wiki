@@ -75,7 +75,7 @@ public interface ActionFilter {
 
         * <b>一个 View </b>: 这个请求有问题，不要继续执行了，马上用这个 View 来渲染 HTTP 输出流吧
         * <b>null </b>: 恩，这个请求没问题，继续吧。
-如果你的过滤器返回的是 null，Nutz.Mvc 会继续执行下一个过滤器，如果全部的过滤器都返回 null 它就会调用适配器，进行后面的操作
+如果你的过滤器返回的是 null，Nutz.Mvc 会继续执行下一个过滤器，如果全部的过滤器都返回 null它就会调用适配器，进行后面的操作
 
 ----
 
@@ -89,7 +89,5 @@ public interface ActionFilter {
 
 其中 "myFilter" 就是你这个过滤器在 Ioc 容器中的名字。关于 Ioc 容器更多的知识，请参看[ioc_hello Ioc 手册 ]。
 
-<font color="#FF0000"><b>请注意 </b></font>如果你要让 Ioc 容器管理你的过滤器，你的应用必须已经声明了一个 Ioc 容器。 如何在 Mvc 框架中声明 Ioc 容器，请参看[mvc_with_ioc 同 Ioc 容器一起工作 ]
-
-
+<font color="#FF0000"><b>请注意 </b></font>如果你要让 Ioc 容器管理你的过滤器，你的应用必须已经声明了一个 Ioc 容器。 如何在Mvc 框架中声明 Ioc 容器，请参看[mvc_with_ioc 同 Ioc 容器一起工作 ]
 

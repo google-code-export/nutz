@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`关于这个 Hello World`=
-这是一个简单的小例子，通过简单的几步，即可在 Eclipse 中搭建出一个 Nutz.Mvc 的运行环境，我假设你已经：
+这是一个简单的小例子，通过简单的几步，即可在 Eclipse 中搭建出一个 Nutz.Mvc的运行环境，我假设你已经：
 
       # 有了 Eclipse J2EE 套件 -- Eclipse 3.5 以上版本
       # 安装了 Tomcat 6.0 及以上版本
@@ -21,7 +21,7 @@
 
 <p align="right">[#Top]</p>
 ==`创建一个 Dynamic Web Project`==
-`创建一个新的 Dynamic Web Project （File > New > Project ... > Web > Dynamic Web Project）  `
+`创建一个新的 Dynamic Web Project （File > New > Project ... > Web > Dynamic Web Project） `
 
         * 项目的名称为 hellonutz
         * 这个例子使用的是 Tomcat 6.0，所以请将 Dynamic Web module version 设置成 2.5
@@ -33,11 +33,11 @@ http://www.nutzam.com/wiki/img/project_new.png
 ==`创建一个 Tomcat 运行服务器`==
 如果你已经在 Eclipse 中创建了一个 Tomcat 服务器，请[mvc 跳过本步骤 ]，直接将项目 hellonutz 添加到这个服务器中即可
 
-`在 Eclipse 的 Servers 视图中点击右键，选择 New>Server  `
+`在 Eclipse 的 Servers 视图中点击右键，选择 New>Server `
 
 http://www.nutzam.com/wiki/img/server_new.png
 
-`我们使用的 Tomcat 6.0，当然你可以根据自己的需要选用你的 Tomcat 版本，现在 7.0 已经出来了 ^_^  `
+`我们使用的 Tomcat 6.0，当然你可以根据自己的需要选用你的 Tomcat 版本，现在 7.0 已经出来了 ^_^ `
 
 http://www.nutzam.com/wiki/img/server_config.png
 
@@ -50,9 +50,9 @@ http://www.nutzam.com/wiki/img/server_add_project.png
 
 <p align="right">[#Top]</p>
 ==`将 Nutz.jar 加入 lib 目录中`==
-本例子需要 Nutz-1.a.31 或者更高的版本， 不过你可以[committer_svn_project 自己编译一个最新版本 ]
+本例子需要 Nutz-1.a.31 或者更高的版本，不过你可以[committer_svn_project 自己编译一个最新版本 ]
 
-`在 WebContent > WEB-INF > lib 文件夹下右键选择 New > File  `
+`在 WebContent > WEB-INF > lib 文件夹下右键选择 New > File `
 
 http://www.nutzam.com/wiki/img/link_nutz.png
 
@@ -61,7 +61,7 @@ http://www.nutzam.com/wiki/img/link_nutz.png
 
 <p align="right">[#Top]</p>
 ==`创建主模块`==
-`在 src 目录上右键选择 New > Class  `
+`在 src 目录上右键选择 New > Class `
 
 http://www.nutzam.com/wiki/img/main_module.png
 
@@ -161,7 +161,7 @@ http://www.nutzam.com/wiki/img/console.png
 ==`在浏览器中访问`==
 http://www.nutzam.com/wiki/img/ok.png
 
-`这篇文章虽然不算短，但是实际上，你需要作的事情不多，不是吗？ ^_^  `
+`这篇文章虽然不算短，但是实际上，你需要作的事情不多，不是吗？ ^_^ `
 
 ----
 

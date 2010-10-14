@@ -8,7 +8,7 @@
 
 <p align="right">[#Top]</p>
 =`什么是代码模板`=
-通过 Java 提供的 String.format() 方法，可以很方便的声明字符串模板，以及占位符。 但是，它不方便的是，如果我的字符串模板两个占位符希望的是同一个值：
+通过 Java 提供的 String.format() 方法，可以很方便的声明字符串模板，以及占位符。但是，它不方便的是，如果我的字符串模板两个占位符希望的是同一个值：
 
 {{{
 XXXXXXXX $A  XXXXXX $B  XXXXXX $A XXXXX

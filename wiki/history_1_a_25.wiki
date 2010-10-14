@@ -8,11 +8,11 @@
 
 <p align="right">[#Top]</p>
 =`1.a.25`=
-<font color="#FF0000"><b>这是个里程碑式的版本 </b></font>，从这个版本开始， Nutz 将不再依赖 Javassist，而依赖 ASM(内嵌Asm 3.2 ,无需额外jar包) 所以，编译时，你将不再需要 Javassist.jar （在此，特地感谢[http://wendal.javaeye.com 无敌的 Wendal ]）。
+<font color="#FF0000"><b>这是个里程碑式的版本 </b></font>，从这个版本开始， Nutz 将不再依赖 Javassist，而依赖 ASM(内嵌Asm 3.2 ,无需额外jar包)所以，编译时，你将不再需要 Javassist.jar （在此，特地感谢[http://wendal.javaeye.com 无敌的 Wendal ]）。
 
 同时，为了更好的输出日志，Nutz 在编译时依赖了 Log4j， 但是运行时，没有 Log4j 它会选用 Java 的 Logging 或者是控制台输出。
 
-由于已经有小部分人开始试验性的在自己的项目里应用 Nutz，从本版开始，所有的接口和使用方式<b>变动会非常慎重 </b>， 没有重大理由和经过社区充分讨论，它将保持不变。
+由于已经有小部分人开始试验性的在自己的项目里应用 Nutz，从本版开始，所有的接口和使用方式<b>变动会非常慎重 </b>，没有重大理由和经过社区充分讨论，它将保持不变。
 
 
 <p align="right">[#Top]</p>
@@ -56,12 +56,12 @@
 
 <p align="right">[#Top]</p>
 ==`博客`==
-        * 《[http://wendal.javaeye.com/blog/543936 Nutz:重新发明轮子:自己动手,用字节码工具做一个Aop拦截器 ]》 @[http://wendal.javaeye.com Wendal ]
-        * 《[http://wendal.javaeye.com/blog/543681 Nutz:基于ASM的Nut.Aop实现 ]》 @[http://wendal.javaeye.com Wendal ]
-        * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》  @[http://axhack.javaeye.com Axhack ]
-        * 《[http://zozoh.javaeye.com/blog/526494 回复fireflyc：Nutz 的设计以及提高程序员生产力 ]》  @[http://zozoh.javaeye.com zozoh ]
-        * 《[http://amosleaf.javaeye.com/blog/548337 Nutz的 数据库事务 ]》 @[http://amosleaf.javaeye.com amosleaf ]
-        * 《[http://xiaofeng.javaeye.com/blog/549410 不用写代码 你也能为开源作出贡献 ]》 @[http://xiaofeng.javaeye.com hilliate ]
+        * 《[http://wendal.javaeye.com/blog/543936 Nutz:重新发明轮子:自己动手,用字节码工具做一个Aop拦截器 ]》@[http://wendal.javaeye.com Wendal ]
+        * 《[http://wendal.javaeye.com/blog/543681 Nutz:基于ASM的Nut.Aop实现 ]》@[http://wendal.javaeye.com Wendal ]
+        * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》 @[http://axhack.javaeye.com Axhack ]
+        * 《[http://zozoh.javaeye.com/blog/526494 回复fireflyc：Nutz 的设计以及提高程序员生产力 ]》 @[http://zozoh.javaeye.com zozoh ]
+        * 《[http://amosleaf.javaeye.com/blog/548337 Nutz的 数据库事务 ]》@[http://amosleaf.javaeye.com amosleaf ]
+        * 《[http://xiaofeng.javaeye.com/blog/549410 不用写代码 你也能为开源作出贡献 ]》@[http://xiaofeng.javaeye.com hilliate ]
 
 <p align="right">[#Top]</p>
 ==`主要贡献者名单`==
@@ -88,7 +88,7 @@
 ||[http://www.3km.com.cn 会跑的蜗牛 ]||X||-||X||-||-||-||X||
 ||知足常乐||-||-||X||-||-||-||X||
 
-另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。 我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
+另外，非常感谢[http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186) ]以及[https://groups.google.com/group/nutzam?hl=zh-CN Nutzam 讨论区 ]的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架<b>产生着潜移默化的影响 </b>。我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
 
 另，由于众所周知的原因，建议大家通过[https://groups.google.com/group/nutzam?hl=zh-CN 通过 https 方式访问讨论区 ]有时候是可以上的。但是能跳墙还是跳墙的比较好。
 
@@ -106,12 +106,12 @@
 
 <p align="right">[#Top]</p>
 =`1.a.22`=
-请参看[http://www.javaeye.com JavaEye ]的[http://www.javaeye.com/news 新闻 ]: 《[http://www.javaeye.com/news/11774-nutz Nutz1.a.22 发布-Mvc,Ioc 文档完成 ]》
+请参看[http://www.javaeye.com JavaEye ]的[http://www.javaeye.com/news 新闻 ]:《[http://www.javaeye.com/news/11774-nutz Nutz1.a.22 发布-Mvc,Ioc 文档完成 ]》
 
 ----
 
 <p align="right">[#Top]</p>
 =`1.a.15`=
-请参看[http://www.javaeye.com JavaEye ]的[http://www.javaeye.com/news 新闻 ]: 《[http://www.javaeye.com/news/10461  Nutz 框架 1.a.15 发布，全部用例通过 Oracle/Psql/MySql 测试 ]》
+请参看[http://www.javaeye.com JavaEye ]的[http://www.javaeye.com/news 新闻 ]:《[http://www.javaeye.com/news/10461  Nutz 框架 1.a.15 发布，全部用例通过 Oracle/Psql/MySql 测试 ]》
 
 ----

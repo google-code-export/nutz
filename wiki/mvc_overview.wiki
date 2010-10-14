@@ -16,7 +16,7 @@ Nutz.Mvc 是要和一个 Web 服务器 （比如 Tomcat）一起工作的，它�
       * 如果你愿意，你可以不用 View 来渲染 HTTP 输出流
       * 提供几个基本的渲染方式 （比如 JSP, JSON）
       * 除此以外，不内置更多的功能
-每一种 HTTP 请求，标识就是一个 URL，而每一个 Java 函数怎样和一个 URL 关联呢？ 最直接的办法就是在函数上声明一个 注解，这个注解，在 Nutz.Mvc 中，叫 @At
+每一种 HTTP 请求，标识就是一个 URL，而每一个 Java 函数怎样和一个 URL 关联呢？ 最直接的办法就是在函数上声明一个注解，这个注解，在 Nutz.Mvc 中，叫 @At
 
 你如果想快速开始，来一个 Hellow World， 那么请看[mvc_hello Hello World ]一节
 
@@ -58,5 +58,7 @@ http://www.nutzam.com/wiki/img/nutz_mvc_workflow_detail.png
 
 <p align="right">[#Top]</p>
 =`进阶阅读`=
+
+
       * [mvc_web_xml 如何配置 web.xml ]
       * [mvc_modules Nutz.Mvc 的配置语法 ]

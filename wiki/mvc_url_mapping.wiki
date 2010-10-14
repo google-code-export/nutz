@@ -10,7 +10,7 @@
 =`为什么需要详细描述 URL 映射`=
 Nutz.Mvc 的核心任务就是将 HTTP 请求的 URL 映射到某一个入口函数，如果你看完了[mvc_overview Nutz.Mvc 概述 ]你大概应该知道，映射的配置信息是通过注解 @At 来设置的，@At 注解也非常简单，配置起来应该没有什么障碍。
 
-但是，依然在某些时候，你会在你的应用出现 404 错误，为了能让你在编写项目是，心里非常有底，这里将详细的解释一下 JSP/Servlet 以及 Nutz.Mvc 映射部分的工作原理，在你遇到讨厌的 404 时，只要通读本文，相信就能找到问题的症结。
+但是，依然在某些时候，你会在你的应用出现 404 错误，为了能让你在编写项目是，心里非常有底，这里将详细的解释一下JSP/Servlet 以及 Nutz.Mvc 映射部分的工作原理，在你遇到讨厌的 404 时，只要通读本文，相信就能找到问题的症结。
 
 ----
 
@@ -22,15 +22,15 @@ Nutz.Mvc 的核心任务就是将 HTTP 请求的 URL 映射到某一个入口函
 
       * <font color="#FFAA00"><b>http:// </b></font>- 协议，也可以是 https://
       * <font color="#008800"><b>www.myapp.com </b></font>- 域名或者 IP 地址，由 DNS 服务器负责转发
-      * <font color="#FF0000"><b> /app </b></font>` - Context 的 path， 这个匹配到 server.xml 中每个 <context> 的 path 属性，由 HTTP  服务负责转发 `
-      * <font color="#FF00FF"><b> /module </b></font><font color="#0000FF"><b> /action </b></font><b>.suffix </b>- 从这里以后的匹配将交给相应的 Context 的<b>web.xml </b>， 由HTTP 服务器根据<b>web.xml </b>来转发
+      * <font color="#FF0000"><b> /app </b></font>` - Context 的 path， 这个匹配到 server.xml 中每个 <context> 的 path 属性，由 HTTP 服务负责转发 `
+      * <font color="#FF00FF"><b> /module </b></font><font color="#0000FF"><b> /action </b></font><b>.suffix </b>- 从这里以后的匹配将交给相应的 Context 的<b>web.xml </b>，由HTTP 服务器根据<b>web.xml </b>来转发
 因此，我们主要研究的就是<font color="#FF00FF"><b> /module </b></font><font color="#0000FF"><b> /action </b></font><b>.suffix </b>的部分是如何转发的。
 
 ----
 
 <p align="right">[#Top]</p>
 =`web.xml 中的映射 - url-pattern`=
-`通常，在 web.xml 中，我们可以声明各种 HttpServlet 子类， 为了能让某一个子类接受 URL， 就需要配置映射，众所周知 你可以通过 <servlet-mapping>，为你的 Servelet 增加一组至多组的配置：  `
+`通常，在 web.xml 中，我们可以声明各种 HttpServlet 子类， 为了能让某一个子类接受 URL， 就需要配置映射，众所周知你可以通过 <servlet-mapping>，为你的 Servelet 增加一组至多组的配置： `
 
 {{{
 <servlet-mapping>
@@ -39,7 +39,7 @@ Nutz.Mvc 的核心任务就是将 HTTP 请求的 URL 映射到某一个入口函
 </servlet-mapping>
 }}}
 
-`同样，根据 Servlet 的规范，你的 <url-pattern> 可以有如下几种形式的值:  `
+`同样，根据 Servlet 的规范，你的 <url-pattern> 可以有如下几种形式的值: `
 
 
 
@@ -137,13 +137,11 @@ http://localhost:8080/testweb/abc/getlist.nut
 ||req.getPathInfo()||null||
 ||req.getServletPath()||"/abc/getlist.nut"||
 
-
-
 ----
 
 <p align="right">[#Top]</p>
 =`在 Nutz.Mvc 中的映射`=
-Nutz.Mvc 通过 org.nutz.mvc.NutFilter 类将自己同一个 JSP/SERVLET 容器挂接 关于挂接的方法，详细请看[mvc_web_xml 如何配置 web.xml ]
+Nutz.Mvc 通过 org.nutz.mvc.NutFilter 类将自己同一个 JSP/SERVLET 容器挂接关于挂接的方法，详细请看[mvc_web_xml 如何配置 web.xml ]
 
 在设计这个框架之初，我们有一个基本的设计要求：
 
@@ -248,7 +246,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 对于 Nutz.Mvc 我们需要匹配的部分为：
 
         * /getlist
-这里需要说明的是，可能人们会怀疑，为什么目录匹配的时候，只匹配/getlist而不匹配/abc/getlist呢？ 因为，你在你的 web.xml 声明了这样的 url-pattern:
+这里需要说明的是，可能人们会怀疑，为什么目录匹配的时候，只匹配/getlist而不匹配/abc/getlist呢？因为，你在你的 web.xml 声明了这样的 url-pattern:
 
 {{{
 ...
@@ -256,7 +254,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ...
 }}}
 
-显然，你希望在 web.xml 来决定你的 URL 前面那部分，所以后面一部分就交给 Nutz.Mvc 来匹配吧。否则，你修改了 web.xml 的时候，你还需要修改 Nutz.Mvc 的配置，这与显然我们设计的初衷不符，Nutz.Mvc 设计的基本要求就是：
+显然，你希望在 web.xml 来决定你的 URL 前面那部分，所以后面一部分就交给 Nutz.Mvc 来匹配吧。否则，你修改了web.xml 的时候，你还需要修改 Nutz.Mvc 的配置，这与显然我们设计的初衷不符，Nutz.Mvc 设计的基本要求就是：
 
 <b>如果用户修改了 web.xml 或者 server.xml，不需要用户重新修改 Nutz.Mvc 相关的配置 </b>
 
@@ -286,7 +284,5 @@ http://localhost:8080/testweb/abc/getlist.nut
 对于 Nutz.Mvc 我们需要匹配的部分为：
 
         * /abc/getlist
-这种映射方式基本是不会发生的，因为你需要让 Nutz.Mvc 控制一批 URL 而不是单个 URL。所以，你如果选择了这种模式 我就没话讲了，在 Nutz.Mvc 中你就全部匹配吧，惩罚你，哼！
-
-
+这种映射方式基本是不会发生的，因为你需要让 Nutz.Mvc 控制一批 URL 而不是单个 URL。所以，你如果选择了这种模式我就没话讲了，在 Nutz.Mvc 中你就全部匹配吧，惩罚你，哼！
 

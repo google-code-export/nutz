@@ -71,15 +71,13 @@ public class Pet{
 private String name;
 }}}
 
-在执行 dao.inert 操作时， Nutz.Dao 会预先执行这段 SQL, 执行之前，变量<b> $ownerName </b>会被对象本身的 ownerName 字段的值替 换，如果对象本身的 ownerName 字段的值恰好是 "zzh"，那么执行的 SQL 会变成：
+在执行 dao.inert 操作时， Nutz.Dao 会预先执行这段 SQL, 执行之前，变量<b> $ownerName </b>会被对象本身的 ownerName 字段的值替换，如果对象本身的 ownerName 字段的值恰好是 "zzh"，那么执行的 SQL 会变成：
 
 {{{
 SELECT pet_name FROM m_user_pet WHERE ownm='zzh';
 }}}
 
 这段 SQL 执行的结果会复制给对象的 name 字段。
-
-
 
 
 <p align="right">[#Top]</p>
@@ -101,7 +99,7 @@ SELECT pet_name FROM m_user_pet WHERE ownm=?;
 
 <p align="right">[#Top]</p>
 =`数据库方言`=
-无论是 @Prev 还是 @Next，你都是通过 @SQL 声明的数据库方言。但是，假设你并不确定你的 POJO 将会工作在哪一个数据 库上，比如你的项目有两个数据源，一个是 Oracle 一个是 Postgresql，那么你的 POJO 该如何写方言呢？
+无论是 @Prev 还是 @Next，你都是通过 @SQL 声明的数据库方言。但是，假设你并不确定你的 POJO 将会工作在哪一个数据库上，比如你的项目有两个数据源，一个是 Oracle 一个是 Postgresql，那么你的 POJO 该如何写方言呢？
 
 {{{
 @Table("t_pet")
