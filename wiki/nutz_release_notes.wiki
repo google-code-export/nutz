@@ -27,8 +27,13 @@
           * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2000 ]
           * [http://www.ibm.com/software/data/db2/ DB2 ]
 ----
-文档
 
+<p align="right">[#Top]</p>
+=`文档`=
+      * [mvc_view 视图 ]: 添加两种新视图的描述(内部重定向视图/Raw视图)
+      * 修正文档中的一些字眼
+      * [zdoc_ant_task 在Ant中使用zDoc ]: 演示如何在Ant中使用zDoc
+      * [appendix_case 案例 ]: 展示使用Nutz构建的网站/应用
 ----
 
 <p align="right">[#Top]</p>
@@ -47,6 +52,8 @@
 ||wendal||O||O||O||O||O||O||O||
 ||yankuncheng||-||-||-||O||-||-||-||
 ||zozohtnt||O||-||O||O||-||O||O||
+||冬天温泉||-||-||O||-||-||-||-||
+||云海飞舞||-||-||O||-||-||-||-||
 
 另外，很多朋友都在：
 

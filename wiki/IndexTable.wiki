@@ -74,6 +74,7 @@
    * [zdoc_syntax zDoc语法]
    * [zdoc_index_xml 使用 index.xml 作为索引文件]
    * [zdoc_dir_convert zDoc 目录转换细则]
+   * [zdoc_ant_task 在Ant中使用]
  * 版本历史
    * [history_1_a_32 1.a.32 发行注记]
    * [history_1_a_31 1.a.31 发行注记]
@@ -84,6 +85,7 @@
    * [history_1_a_26 1.a.26]
    * [history_1_a_25 1.a.25 及 更早版本]
  * 附录
+   * [appendix_case 案例]
    * [appendix_create_datasource 如何创建 DataSource]
    * [appendix_resources 推荐文章]
    * [appendix_plugins 可用的插件]

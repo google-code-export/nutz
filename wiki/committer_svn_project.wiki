@@ -64,7 +64,7 @@ http://www.nutzam.com/wiki/img/05_3.png
 =`准备依赖的 jar 包`=
 http://www.nutzam.com/wiki/img/06.png
 
-Nutz 不是不依赖其他 jar 吗？ 是的，但是在编译时它依赖 Log4j。
+Nutz 不是不依赖其他 jar 吗? 是的，但是在编译时它依赖 Log4j。
 
 在运行时如果 Log4j 的 jar 不存在，它会采用 java.util.logging 详情请参看[lang_log Nutz 的日志模块 ]
 
@@ -80,7 +80,7 @@ Nutz.Dao 的测试时在
 
 要是运行测试用例，你还得需要 Apache 的连接池，以及某一个数据库的 JDBC 实现。Apache 提供的连接池是两个 jar，有了它，我们就可以很简单的创建 DataSource，你可以选择你喜欢的连接池实现。c3p0，proxool ，爱用什么都可以，但是得把 jar 包准备好。
 
-<font color="#AA0000"><b>注意: </b></font>如果你顺利的检出（Check out）了 SVN 文件，你会发现在<font color="#0000FF"><b> /trunk/build/deps </b></font>目录下，有你需要的所有 jar 包
+<font color="#AA0000"><b>注意: </b></font>如果你顺利的检出（Check out）了 SVN 文件，你会发现在<font color="#0000FF"><b> /trunk/build/deps </b></font>目录下，有你需要的所有 jar 包<font color="#AA0000"><b>注意: </b></font>如果你需要配置成其他数据源,请修改test\org\nutz\dao\test\meta\pojo.js , 参考[appendix_create_datasource 如何创建DataSource ]
 
 我们，先把 jar 文件在 D:/nutz/deps 里面放好，后面会用得到
 
@@ -118,7 +118,7 @@ http://www.nutzam.com/wiki/img/09.png
 
 http://www.nutzam.com/wiki/img/10.png
 
-      * 输入项目名称为： nutz@google   (其实，随便你起个什么名字)
+      * 输入项目名称为： nutz@google   (其实，随便你起个什么名字, 不要有'.'就行)
       * 直接点击 Finish。
       * 如果Eclipse 弹出对话框问你要不要转到 Java透视图，随你便，都行
 http://www.nutzam.com/wiki/img/10_2.png

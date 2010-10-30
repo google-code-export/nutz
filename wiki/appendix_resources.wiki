@@ -28,6 +28,7 @@
 
 <p align="right">[#Top]</p>
 =`关于 Mvc`=
+      * 《[http://myblog.sunfarms.net/100.html 在Nutz MVC中使用Freemarker ]》 @[http://myblog.sunfarms.net/ wendal ]<font color="#008800"><b>新 </b></font>
       * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》 @[http://axhack.javaeye.com axhack ]<font color="#008800"><b>推荐 </b></font>
       * 《[http://yunhaifeiwu.javaeye.com/blog/763832 nutz 文件上传例子 ]》 @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]
       * 《[http://yunhaifeiwu.javaeye.com/blog/763637 nutz 过滤器使用例子 ]》 @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]

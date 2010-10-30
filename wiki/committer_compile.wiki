@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* 运行 JUnit 测试 - Eclipse *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="1"/>
 ----
 
@@ -30,7 +30,7 @@
 
 <p align="right">[#Top]</p>
 ==`1. 创建测试数据库`==
-首先你需要建立一个测试数据库，比如，我们叫 zzhtest.
+首先你需要建立一个测试数据库，比如，我们叫 zzhtest. 建议不要使用test.
 
 {{{
 mysql:> create database zzhtest;

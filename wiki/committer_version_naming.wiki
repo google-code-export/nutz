@@ -34,5 +34,5 @@ nutz[.模块名]-主版本号.质量级别.[发布序号].jar
 
 <p align="right">[#Top]</p>
 =`持续集成`=
-每当有代码提交,Nutz的构建服务器会在15分钟内构建一个快照版本
+每当有代码提交,Nutz的构建服务器会在15分钟内构建一个快照版本[http://build.sunfarms.net/nutz/ http://build.sunfarms.net/nutz/ ]
 

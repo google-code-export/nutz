@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* 视图 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
@@ -208,6 +208,56 @@ public View myFunction(@Param("type") type){
 如果入口函数是 void 或者返回 null，则用空串填充
 }}}
 
+
+
+
+<p align="right">[#Top]</p>
+===`另外一种写法`===
+{{{
+@Ok("redirect:/pet/detail.nut?pid=${id}")
+//等价于
+{{{
+@Ok(">>:/pet/detail.nut?pid=${id}")
+}}}
+
+----
+
+<p align="right">[#Top]</p>
+==`内部重定向视图`==
+视图的实现类为：<b>org.nutz.mvc.view.ForwardView </b>
+
+一般的使用形式：
+
+{{{
+@Ok("forward:/pet/list.nut")
+//或者
+@Ok("forward:/article/2009/10465.html")
+同时也可以写成
+@Ok("->:/article/2009/10465.html")
+}}}
+
+
+<p align="right">[#Top]</p>
+===`当:后面不加值,或者不是以/开头的话,生成的路径将与Jsp视图类似,除了最后不加.jsp之外. 其实Jsp视图只是Forward视图的子类而已`===
+          * 这个将对应<font color="#0000AA"><i><b>WEB-INF/abc/bbc </b></i></font>
+{{{
+@Ok("jsp:abc.bbc")
+}}}
+
+          * 这个将对应<font color="#0000AA"><i><b>abc/bbc </b></i></font>
+{{{
+@Ok("jsp:/abc/bbc")
+}}}
+
+          * 这个将对应<font color="#0000AA"><i><b>abc/bbc.jsp </b></i></font>
+{{{
+@Ok("jsp:/abc/bbc.jsp")
+}}}
+
+
+
+它将按照给定的视图值，服务器内部重定向到指定的地址.
+
 ----
 
 <p align="right">[#Top]</p>
@@ -242,13 +292,54 @@ public View myFunction(@Param("type") type){
 ==`从 Ioc 容器中获取的视图`==
 使用形式
 
-使用形式
-
 {{{
 @Ok("ioc:myView")
 }}}
 
 将从 Ioc 容器中获取 myView 对象。 它必须是一个 View，否则会发生转型错误。通过这种形式，可以支持你可以在 Ioc 容器中定义自己的视图对象。
+
+----
+
+<p align="right">[#Top]</p>
+==`Raw视图`==
+视图的实现类为：<b>org.nutz.mvc.view.RawView </b>
+
+使用形式
+
+{{{
+@Ok("raw")
+}}}
+
+将方法的返回值直接写入流
+
+规则:
+
+{{{
+@Ok("raw")
+//1. 无返回值或者返回值为null,则不写入流
+//2. 返回值为byte[]或者char[], 调用OutputStream或Writer写入resp
+//3. 其他则调用String.valueOf(obj)得出字符串后,通过Writer写入resp
+}}}
+
+默认设置resp的ContentType为text/plain当然,你可以设置ContentType的值
+
+{{{
+@Ok("raw:application/rtf")
+//设置ContentType为application/rtf
+}}}
+
+内置的短ContentType
+
+{{{
+@Ok("raw:xml")    //等价于@Ok("raw:text/xml");
+@Ok("raw:html")   //等价于@Ok("raw:text/html");
+@Ok("raw:htm")    //等价于@Ok("raw:text/html");
+@Ok("raw:stream") //等价于@Ok("raw:application/octet-stream");
+@Ok("raw:json")   //等价于@Ok("raw:application/x-javascript");
+@Ok("raw:js")     //等价于@Ok("raw:application/x-javascript");
+}}}
+
+
 
 ----
 
@@ -311,3 +402,9 @@ public class PdfViewMaker implements ViewMaker{
 
         * 你可以声明多个 ViewMaker
         * 所有的视图工厂，必须有一个 public 的默认构造函数。
+----
+
+<p align="right">[#Top]</p>
+==`已有的,经过检验的自定义视图`==
+[http://axhack.javaeye.com/blog/542441 Freemarker ][http://myblog.sunfarms.net/100.html Freemarker ]可以拓展为Velocity
+
