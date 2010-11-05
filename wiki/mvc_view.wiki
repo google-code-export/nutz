@@ -216,7 +216,6 @@ public View myFunction(@Param("type") type){
 {{{
 @Ok("redirect:/pet/detail.nut?pid=${id}")
 //等价于
-{{{
 @Ok(">>:/pet/detail.nut?pid=${id}")
 }}}
 
@@ -407,4 +406,3 @@ public class PdfViewMaker implements ViewMaker{
 <p align="right">[#Top]</p>
 ==`已有的,经过检验的自定义视图`==
 [http://axhack.javaeye.com/blog/542441 Freemarker ][http://myblog.sunfarms.net/100.html Freemarker ]可以拓展为Velocity
-
