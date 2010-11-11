@@ -15,7 +15,7 @@
 <p align="right">[#Top]</p>
 =`问题修复`=
       * Issue 95 : Ioc - 没有检测循环依赖,且不支持多次继承
-      * Issue 97: 从 Dao 里查出来的对象是一个 Map，或者是ListMap<String, Object`>  `<font color="#AAAAAA">by </font><b>Gdunser </b>
+      * `Issue 97: 从 Dao 里查出来的对象是一个 Map，或者是List<Map<String, Object>>  `<font color="#AAAAAA">by </font><b>Gdunser </b>
       * Issue 100: MVC手册在jsp视图处描述有误<font color="#AAAAAA">by </font><b>ToFishes </b>
       * Issue 101: Dumps.matcher NullpointerException<font color="#AAAAAA">by </font><b>for5million </b>
       * Issue 102: 在update时，如果http参数有Date类型为null，会出错<font color="#AAAAAA">by </font><b>Gdunser </b>
