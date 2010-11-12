@@ -1,0 +1,8 @@
+#! /bin/sh
+export TOMCAT_HOME=/home/zozoh/opt/tomcat6
+export JAVA_HOME=/usr/lib/jvm/default-java
+export DEPS=/home/zozoh/nutz/deps/core
+export OUTPUT=/home/zozoh/nutz/output
+export PROJECT_HOME=/home/zozoh/workspace/svn/nutz/nutz.trunk
+
+ant -f $PROJECT_HOME/build/build.xml
