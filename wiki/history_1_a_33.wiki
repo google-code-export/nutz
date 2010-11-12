@@ -83,12 +83,12 @@
 
 <p align="right">[#Top]</p>
 =`文档`=
-      * [mvc_view 视图 ]: 添加两种新视图的描述(内部重定向视图/Raw视图)
+      * [mvc/view.man 视图 ]: 添加两种新视图的描述(内部重定向视图/Raw视图)
       * 修正文档中的一些字眼
-      * [zdoc_ant_task 在Ant中使用zDoc ]: 演示如何在Ant中使用zDoc
-      * [appendix_case 案例 ]: 展示使用Nutz构建的网站/应用
-      * [mvc_with_ioc 同Ioc一起工作 ]: 在容器对象里获得 ServletContext
-      * [appendix_work_with_maven `appendix/work_with_maven.man `]: 在Maven中使用Nutz
+      * [zdoc/ant_task.man 在Ant中使用zDoc ]: 演示如何在Ant中使用zDoc
+      * [appendix/case.man 案例 ]: 展示使用Nutz构建的网站/应用
+      * [mvc/with_ioc.man#在容器对象里获得_ServletContext 同Ioc一起工作 ]: 在容器对象里获得 ServletContext
+      * [appendix/work_with_maven.man `appendix/work_with_maven.man `]: 在Maven中使用Nutz
 ----
 
 <p align="right">[#Top]</p>

@@ -1,0 +1,47 @@
+#summary 在Maven中使用Nutz
+=Top=
+<p align="center"><font size=6>* 在Maven中使用Nutz *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
+<wiki:toc max_depth="2"/>
+----
+
+<p align="right">[#Top]</p>
+=`Nutz的POM`=
+当前的POM
+
+{{{
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.nutz</groupId>
+	<artifactId>nutz</artifactId>
+	<packaging>jar</packaging>
+	<name>Nutz</name>
+	<version>1.a.33</version>
+	<url>http://nutz.googlecode.com</url>
+	<!-- other info ...... -->
+</project>
+}}}
+
+你可以在[http://code.google.com/p/nutz/source/browse/trunk/META-INF/maven/org/nutz/pom.xml 这里 ]找到当前POM
+
+
+<p align="right">[#Top]</p>
+=`如何使用`=
+将Nutz加入你的POM
+
+{{{
+<dependency>
+	<groupId>org.nutz</groupId>
+	<artifactId>nutz</artifactId>
+	<version>1.a.33</version>
+</dependency>
+}}}
+
+无需添加repository即可使用Nutz.不要惊讶,因为我们已经将Nutz提交到maven中央仓库!
+
+
+<p align="right">[#Top]</p>
+=`Nutz使用Maven来构建的吗?`=
+答案是否定的,我们现在仍在使用Ant进行构建.
+

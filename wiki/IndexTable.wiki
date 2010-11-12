@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.a.33 发行注记(Haching...)]
+ * [nutz_release_notes 1.a.33 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -76,6 +76,7 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
    * [zdoc_ant_task 在Ant中使用]
  * 版本历史
+   * [history_1_a_33 1.a.33 发行注记]
    * [history_1_a_32 1.a.32 发行注记]
    * [history_1_a_31 1.a.31 发行注记]
    * [history_1_a_30 1.a.30 发行注记]
@@ -87,5 +88,6 @@
  * 附录
    * [appendix_case 案例]
    * [appendix_create_datasource 如何创建 DataSource]
+   * [appendix_work_with_maven 在Maven中使用Nutz]
    * [appendix_resources 推荐文章]
    * [appendix_plugins 可用的插件]
