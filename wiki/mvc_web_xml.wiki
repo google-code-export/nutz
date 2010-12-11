@@ -5,28 +5,78 @@
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
-在 web.xml 中，一个比较典型的例子：
+
+<p align="right">[#Top]</p>
+=`在 web.xml 中，一个比较典型的例子：`=
+
 
 {{{
-<filter>
-	<filter-name>nutz</filter-name>
-	<filter-class>org.nutz.mvc.NutFilter</filter-class>
-	<init-param>
-		<param-name>modules</param-name>
-		<param-value>com.mine.app.MainModule</param-value>
-	</init-param>
-</filter>
+	<filter>
+		<filter-name>nutz</filter-name>
+		<filter-class>org.nutz.mvc.NutFilter</filter-class>
+		<init-param>
+			<param-name>modules</param-name>
+			<param-value>com.mine.app.MainModule</param-value>
+		</init-param>
+	</filter>
 
+	<filter-mapping>
+		<filter-name>nutz</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+}}}
+
+
+
+      * 如果你没有声明 '<b>modules </b>' 参数，这个过滤器将不会映射 URL，但是它并不会抛异常
+      * 默认的，只要被正则式<b>` "^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg)$" `</b>匹配上的 URL 都不会被 Nutz 过滤器处理
+      * 你可以为 NutFilter 设置参数 "ignore"，来重新设置这个正则表达式
+      * 如果你的值是 "null" （不区分大小写），所有的请求都会转发到 Nutz.mvc 进行处理
+      * 如果 Nutz.mvc 没有找到合适入口函数处理,将会继续 chain.doFilter
+注意,如果你使用[mvc_view Forward视图 ],请这样写filter-mapping
+
+{{{
 <filter-mapping>
-	<filter-name>nutz</filter-name>
+	<filter-name>nutz</filtername>
 	<url-pattern>/*</url-pattern>
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
 </filter-mapping>
 }}}
 
 
 
-    * 如果你没有声明 '<b>modules </b>' 参数，这个过滤器将不会映射 URL，但是它并不会抛异常
-    * 默认的，只要被正则式<b>` "^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg)$" `</b>匹配上的 URL 都不会被 Nutz 过滤器处理
-    * 你可以为 NutFilter 设置参数 "ignore"，来重新设置这个正则表达式
-    * 如果你的值是 "null" （不区分大小写），所有的请求都会转发到 Nutz.mvc 进行处理
-    * 如果 Nutz.mvc 没有找到合适入口函数处理,将会继续 chain.doFilter
+
+<p align="right">[#Top]</p>
+=`比较传统的方式`=
+{{{
+	<filter>
+		<filter-name>msgs</filter-name>
+		<filter-class>org.nutz.mvc.NutFilter</filter-class>
+		<init-param>
+			<param-name>skip-mode</param-name>
+			<param-value>true</param-value>
+		</init-param>
+    </filter>
+	<filter-mapping>
+		<filter-name>msgs</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    
+    <servlet>
+		<servlet-name>nutz</servlet-name>
+		<servlet-class>org.nutz.mvc.NutServlet</servlet-class>
+			<init-param>
+				<param-name>modules</param-name>
+				<param-value>your.package.MainModule</param-value>
+            </init-param>
+            <load-on-startup>1</load-on-startup>
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>nutz</servlet-name>
+		<url-pattern>*.nut</url-pattern>
+    </servlet-mapping>
+}}}
+
+
+

@@ -50,6 +50,9 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 
 <font color="#CCCCCC"><i>贡献列表，我已经写了一个小程序，根据 Issue 列表来自动统计... </i></font>
 
+||贡献者||问题||博客||支持||代码||示例||文档||测试||
+||` Jef_Wang  	 `||-||-||-||-||-||O||-||
+
 另外，很多朋友都在：
 
       * [https://groups.google.bg/group/nutzam?hl=zh-CN Nutzam 讨论区 ]
