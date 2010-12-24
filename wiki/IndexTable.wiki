@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.a.34 发行注记(Hatching...)]
+ * [nutz_release_notes 1.b.34 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -76,6 +76,7 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
    * [zdoc_ant_task 在Ant中使用]
  * 版本历史
+   * [history_1_b_34 1.b.34 发行注记]
    * [history_1_a_33 1.a.33 发行注记]
    * [history_1_a_32 1.a.32 发行注记]
    * [history_1_a_31 1.a.31 发行注记]
