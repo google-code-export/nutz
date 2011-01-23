@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.b.34 发行注记]
+ * [nutz_release_notes 1.b.35 发行注记 (Hatching....)]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -39,7 +39,7 @@
    * [ioc_aop AOP -- 声明式切片]
    * [ioc_scope 对象生命范围]
    * [ioc_xml_ioc_loader 使用XML作为配置文件格式]
-   * [ioc_annotation_ioc_loader 使用注解配置Ioc]
+   * [ioc_loader_annotation Ioc 注解加载器]
    * [ioc_aop_json 用json文件声明Aop切片]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
@@ -86,6 +86,10 @@
    * [history_1_a_27 1.a.27 发行注记]
    * [history_1_a_26 1.a.26]
    * [history_1_a_25 1.a.25 及 更早版本]
+ * FAQ
+   * [faq_how_to_pronounce_nutz Nutz 该如何发音]
+   * [faq_use_nutz_without_other_jar Nutz需要依赖第三方jar吗?Log如何配置?]
+   * [faq_what_aop_can_do Nutz.Aop能做什么,不能做什么?]
  * 附录
    * [appendix_case 案例]
    * [appendix_create_datasource 如何创建 DataSource]
