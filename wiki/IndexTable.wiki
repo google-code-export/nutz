@@ -39,7 +39,8 @@
    * [ioc_aop AOP -- 声明式切片]
    * [ioc_scope 对象生命范围]
    * [ioc_xml_ioc_loader 使用XML作为配置文件格式]
-   * [ioc_loader_annotation Ioc 注解加载器]
+   * [ioc_loader_annotation Ioc - Annotation 加载器]
+   * [ioc_loader_combo Ioc - 复合加载器]
    * [ioc_aop_json 用json文件声明Aop切片]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]

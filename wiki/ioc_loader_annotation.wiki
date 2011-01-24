@@ -1,6 +1,6 @@
-#summary Ioc 注解加载器
+#summary Ioc - Annotation 加载器
 =Top=
-<p align="center"><font size=6>* Ioc 注解加载器 *</font></p>
+<p align="center"><font size=6>* Ioc - Annotation 加载器 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *wendal* (<font color="#080"> wendal1985@gmail.com </font>)  *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
@@ -14,7 +14,7 @@
 
 `我可以负责任的告诉你，完全是可以滴 ^_^ `
 
-首先这篇文章，会详细讲解一下如果通过注解来配置你的容器对象，而[loader_combo.man Ioc 组合加载器 ]一篇，将会告诉你如何组合多个加载器，这样你就可以把你的对象依赖关系分别写到 xml,json,以及 Java 注解里，组合使用了。
+首先这篇文章，会详细讲解一下如果通过注解来配置你的容器对象，而[ioc_loader_combo Ioc 复合加载器 ]一篇，将会告诉你如何组合多个加载器，这样你就可以把你的对象依赖关系分别写到 xml,json,以及 Java 注解里，组合使用了。
 
 ----
 
@@ -31,7 +31,7 @@ Ioc ioc = new NutIoc(new AnnotationIocLoader("com.you.app.package0", "com.you.ap
 {{{
 @IocBy(type = AnnotationIocProvider.class, 
        args = { "com.you.app.package0",
-				"com.you.app.package1"})
+                "com.you.app.package1"})
 public class MainModule {
     ....
 }}}
@@ -85,14 +85,13 @@ public class MyObject {
 还有另外一种方法，你可以为你的对象声明一个单独注解：
 
 {{{
-{{{<Java>
 @InjectName("myObjectName")
 @IocBean
 public class MyObject {
 	...
 }}}
 
-`}}}列位，看到这里，可能有人会问了，这不是脱裤子放屁吗？ @IocBean 可以有 name 属性，而你又搞了一个@InjectName 注解专门声明名字，你到底打算让我们用哪一个？你逗我们玩哪？ `
+列位，看到这里，可能有人会问了，这不是脱裤子放屁吗？ @IocBean 可以有 name 属性，而你又搞了一个@InjectName 注解专门声明名字，你到底打算让我们用哪一个？你逗我们玩哪？
 
 首先，我得跟大家声明一下，这的确是一点点历史问题，原先的 @InjectName 是给 Nutz.Mvc 用的，它如果发现了子模块声明了这个属性，就交付给 Ioc 容器管理。 后来，我们发现，介个名字和 @IocBean 的名字必须是相同的，所以在 AnnotationIocLoader 里，我们做了如下优先级的判断:
 

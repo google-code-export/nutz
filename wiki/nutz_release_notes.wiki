@@ -35,8 +35,10 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 
 <p align="right">[#Top]</p>
 =`文档`=
-只是简单的修改了一些小问题，不值一提
 
+
+      * 重写[ioc_loader_annotation Ioc - Annotation加载器  ]
+      * 增加[ioc_loader_combo Ioc - 复合加载器  ]
 ----
 
 <p align="right">[#Top]</p>
