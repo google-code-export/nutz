@@ -54,6 +54,7 @@ http://www.nutzam.com/wiki/img/nutz_mvc_workflow_detail.png
                     * 你可以用 org.nutz.mvc.view.ViewWrapper 将你的返回对象以及要返回的视图组合在一起返回，ViewWrapper 也是一个 View
                 * 否则用函数的 @Ok 注解声明的 View 来渲染<b>入口函数 </b>的返回对象
                 * 如果你的函数处理过程中抛出了异常，用 @Error 注解声明的 View 来渲染异常对象
+                * 返回值会保存在request的attr中,名字是<b>obj </b>
 ----
 
 <p align="right">[#Top]</p>
