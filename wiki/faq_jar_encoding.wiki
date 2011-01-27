@@ -1,0 +1,29 @@
+#summary 我的Nutz的源码是乱码怎么办？
+=Top=
+<p align="center"><font size=6>* 我的Nutz的源码是乱码怎么办？ *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
+----
+
+<p align="right">[#Top]</p>
+=`问题的提出`=
+采用的是 nutz-source.jar 的方式存放源码
+
+----
+
+<p align="right">[#Top]</p>
+=`Ecipse 用户`=
+打开
+
+{{{
+window > Preferebces > General > Workspace
+}}}
+
+看看"Text file encoding" 项是不是设成 "UTF-8" 了
+
+----
+
+<p align="right">[#Top]</p>
+=`Netbean 用户`=
+还没发现 Netbean 用户遇到过这个问题
+

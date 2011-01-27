@@ -66,6 +66,7 @@
    * [lang_castors 让 Java 类型不那么强]
    * [lang_mirror 增强反射 -- Mirror]
    * [lang_segment 代码模板]
+   * [lang_filepool 文件池]
    * [lang_plugin 插件]
    * [lang_log 日志]
  * zMole - 快速代码生成工具
@@ -91,6 +92,7 @@
    * [faq_how_to_pronounce_nutz Nutz 该如何发音]
    * [faq_use_nutz_without_other_jar Nutz需要依赖第三方jar吗?Log如何配置?]
    * [faq_what_aop_can_do Nutz.Aop能做什么,不能做什么?]
+   * [faq_jar_encoding 我的Nutz的源码是乱码怎么办？]
  * 附录
    * [appendix_case 案例]
    * [appendix_create_datasource 如何创建 DataSource]
