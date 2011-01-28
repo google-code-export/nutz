@@ -78,7 +78,7 @@ ${obj}
 
 都会直接输出字符串<b>"this is test" </b>
 
-[mvc JSP 视图的更多介绍 ]
+[mvc_view JSP 视图的更多介绍 ]
 
 
 <p align="right">[#Top]</p>
@@ -97,7 +97,7 @@ ${obj}
         * Reader
 等，这时候你用 Json 视图来输出本身也是自找别扭，建议你使用[mvc #Raw视图 ]
 
-[mvc Json 视图的更多介绍 ]
+[mvc_view Json 视图的更多介绍 ]
 
 ----
 
