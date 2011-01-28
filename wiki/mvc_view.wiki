@@ -2,7 +2,7 @@
 =Top=
 <p align="center"><font size=6>* 视图 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)  *wendal* (<font color="#080"> juqkai@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
@@ -18,6 +18,86 @@
       * Json － 将对象输出成 Json 字符串
       * void - 什么都不做
 当然你还可以根据需要开发你自己的视图实现类，定制自己的视图也非常简单，请参看本文[mvc #定制自己的视图 ]一节
+
+----
+
+<p align="right">[#Top]</p>
+=`入口函数返回值`=
+前面提到的，视图（View）就是来处理入口函数的返回值的。 当然每个视图的实现类处理的方式不同。我们先来看看视图接口的源代码，非常简单：
+
+{{{
+public interface View {
+    void render(HttpServletRequest req, 
+                HttpServletResponse resp,
+                Object obj)
+                throws Throwable;
+}
+}}}
+
+你要想创建自己的视图，你主要的工作就是实现这个接口。
+
+      * 显然你的实现类能拿到这次 HTTP 请求的 request 和 response 对象
+      * 参数<b>obj </b>就是你入口函数的返回
+      * 如果你在<font color="#3366BB">@Fail </font>里声明的视图，<b>obj </b>就是抛出的异常对象
+这里还需要再强调一下 Nutz 所谓视图的概念：
+
+<font color="#0000FF"><b>一种视图就是一种将 Java 对象写入 HTTP 响应流的方式，谢谢 </b></font>
+
+下面，我们就这个观点，再多举几个个例子，希望大家能通过这两例子，理解不同的视图处理同样的对象，可以有多大的差异。
+
+
+<p align="right">[#Top]</p>
+==`比如 Jsp 视图`==
+即你声明:
+
+{{{
+@Ok("jsp:xxxx")
+}}}
+
+的时候，无论入口函数返回什么对象,它会将其保存到request的<b>"obj" </b>属性中。比如
+
+{{{
+@At
+@Ok("/test.jsp")
+public String test(){
+    return "this is test";
+}
+}}}
+
+那么，你在 test.jsp 这个页面里，通过:
+
+{{{
+<%=request.getAttribute("obj")%>
+}}}
+
+或者用 JSTL 的 EL
+
+{{{
+${obj}
+}}}
+
+都会直接输出字符串<b>"this is test" </b>
+
+[mvc JSP 视图的更多介绍 ]
+
+
+<p align="right">[#Top]</p>
+==`比如 Json 视图`==
+即你声明:
+
+{{{
+@Ok("json")
+}}}
+
+的时候，无论入口函数返回什么对象，都会被 Json.toJson 函数变成字符串，直接写到HTTP 响应流里。
+
+当然，有些对象，被 Json.toJson 有点麻烦，比如
+
+        * InputStream
+        * Reader
+等，这时候你用 Json 视图来输出本身也是自找别扭，建议你使用[mvc #Raw视图 ]
+
+[mvc Json 视图的更多介绍 ]
 
 ----
 
@@ -312,42 +392,44 @@ public View myFunction(@Param("type") type){
 ==`Raw视图`==
 视图的实现类为：<b>org.nutz.mvc.view.RawView </b>
 
-使用形式
+该视图将数据对象直接写入 HTTP 响应
+
+ContentType 支持几种缩写:
+
+        * xml - 表示 text/xml
+        * html - 表示 text/html
+        * htm - 表示 text/html
+        * stream - 表示 application/octet-stream
+        * 默认的(<font color="#AAAAAA">即 '@Ok("raw")' </font>) - 将采用<font color="#008800">ContentType?=text/plain </font>
+使用方式
 
 {{{
 @Ok("raw")
 }}}
 
-将方法的返回值直接写入流
+将方法的返回值直接写入流，数据对象可以是如下类型:
 
-规则:
+||null||什么都不做||
+||` byte[]     `||按二进制方式写入HTTP响应流||
+||InputStream||按二进制方式写入响应流，并关闭 InputStream?||
+||` char[]     `||按文本方式写入HTTP响应流||
+||Reader||按文本方式写入HTTP响应流，并关闭 Reader||
+||默认的||直接将对象 toString() 后按文本方式写入HTTP响应流||
 
-{{{
-@Ok("raw")
-//1. 无返回值或者返回值为null,则不写入流
-//2. 返回值为byte[]或者char[], 调用OutputStream或Writer写入resp
-//3. 其他则调用String.valueOf(obj)得出字符串后,通过Writer写入resp
-}}}
-
-默认设置resp的ContentType为text/plain当然,你可以设置ContentType的值
+默认设置resp的ContentType为text/plain，当然,你可以设置ContentType的值
 
 {{{
 @Ok("raw:application/rtf")
-//设置ContentType为application/rtf
 }}}
 
-内置的短ContentType
+同时，它也支持如下的缩写形式：
 
-{{{
-@Ok("raw:xml")    //等价于@Ok("raw:text/xml");
-@Ok("raw:html")   //等价于@Ok("raw:text/html");
-@Ok("raw:htm")    //等价于@Ok("raw:text/html");
-@Ok("raw:stream") //等价于@Ok("raw:application/octet-stream");
-@Ok("raw:json")   //等价于@Ok("raw:application/x-javascript");
-@Ok("raw:js")     //等价于@Ok("raw:application/x-javascript");
-}}}
-
-
+||@Ok("raw:xml")||等价于@Ok("raw:text/xml");||
+||@Ok("raw:html")||等价于@Ok("raw:text/html");||
+||@Ok("raw:htm")||等价于@Ok("raw:text/html");||
+||@Ok("raw:stream")||等价于@Ok("raw:application/octet-stream");||
+||@Ok("raw:json")||等价于@Ok("raw:application/x-javascript");||
+||@Ok("raw:js")||等价于@Ok("raw:application/x-javascript");||
 
 ----
 
@@ -375,10 +457,10 @@ public View myFunction(@Param("type") type){
 
 {{{
 public class PdfView implements View{
-	public void render(HttpServletRequest req, HttpServletResponse resp, Object obj){
-	
-	....
-	
+    public void render(HttpServletRequest req, HttpServletResponse resp, Object obj){
+        // TODO 实现代码 ...
+    }
+}
 }}}
 
 实现 Render 函数即可，第三个参数就是你的入口函数的返回
