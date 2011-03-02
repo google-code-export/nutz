@@ -88,7 +88,7 @@ dao.fastInsert(pet)
 public class Pet{
 	@Column
 	@Name
-	private int name;
+	private String name;
 ...
 }}}
 
@@ -106,7 +106,7 @@ Pet pet = dao.fetch(Pet.class,"XiaoBai");
 	public class Pet{
 		@Column
 		@Name(casesensitive=false)
-		private int name;
+		private String name;
 	...
 }}}
 
