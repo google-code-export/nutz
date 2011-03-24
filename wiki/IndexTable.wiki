@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.b.35 发行注记]
+ * [nutz_release_notes 1.b.36 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -48,6 +48,7 @@
    * [mvc_web_xml 如何配置 web.xml]
    * [mvc_modules 主模块-子模块-入口函数]
    * [mvc_url_mapping URL 映射]
+   * [mvc_action_chain 动作链]
    * [mvc_http_adaptor 适配器]
    * [mvc_view 视图]
    * [mvc_with_ioc 同 Ioc 容器一起工作]
@@ -80,6 +81,7 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
    * [zdoc_ant_task 在Ant中使用]
  * 版本历史
+   * [history_1_b_36 1.b.36 发行注记]
    * [history_1_b_35 1.b.35 发行注记]
    * [history_1_b_34 1.b.34 发行注记]
    * [history_1_a_33 1.a.33 发行注记]
