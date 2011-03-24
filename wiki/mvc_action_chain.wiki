@@ -117,7 +117,7 @@ public NutActionChainMaker(String...args) {
 =`(E)为入口函数创建动作链`=
 就像前面提到的，在每个入口函数里，你可以通过注解<font color="#AAAAAA">@Chain </font>来指定你的这个函数将采用哪个动作链。如果你没有指定，Nutz.Mvc 认为你是希望用<font color="#AAAAAA">@Chain( </font><font color="#FF0000">"default" </font><font color="#AAAAAA">) </font>`} 来处理这个入口函数。 `
 
-需要说明的是，考虑到效率，在 Nutz.Mvc 加载时，它就会为每个入口函数创建 URL 映射关系。即把一个 URL 映射到一个动作链上。所以动作链的实例，是在加载时就被创建了。所以如果你自己实现了动作链工厂，
+需要说明的是，考虑到效率，在 Nutz.Mvc 加载时，它就会为每个入口函数创建 URL 映射关系。即把一个 URL 映射到一个动作链上。所以动作链的实例，是在加载时就被创建了。所以如果你自己实现了动作链工厂，<font color="#FF0000"><b>请保证工厂生成的每个动作链是线程安全的 </b></font>。
 
 ----
 
