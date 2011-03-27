@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.b.36 发行注记]
+ * [nutz_release_notes 1.b.37 发行注记(Hatching...)]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
@@ -56,6 +56,7 @@
    * [mvc_action_filter 过滤器]
    * [mvc_file_upload 文件上传]
    * [mvc_module_of_request 请求范围的模块]
+   * [mvc_rest REST 的支持]
    * [mvc_annotations Nutz.Mvc 注解一览表]
  * Json 手册
    * [json_hello Nutz.Json 简要说明]

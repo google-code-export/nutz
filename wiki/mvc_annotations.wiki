@@ -45,4 +45,10 @@
 ||<font color="#888888">@AdaptBy </font>||HTTP 参数适配方式||
 ||<font color="#888888">@Filters </font>||函数的过滤器数组||
 ||<font color="#888888">@Encoding </font>||HTTP 请求的输入输出字符编码||
+||||限定函数接受 HTTP GET 请求||
+||||限定函数接受 HTTP POST 请求||
+||||限定函数接受 HTTP PUT 请求||
+||||限定函数接受 HTTP DELETE 请求||
 
+      * 灰色的注解表示还可以应用在<b>子模块 </b>以及<b>入口函数 </b>上
+      * 蓝色的注解表示只能应用在<b>入口函数 </b>上
