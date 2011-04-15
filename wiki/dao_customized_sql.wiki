@@ -287,7 +287,7 @@ Sql setCondition(Condition condition);
 ----
 
 <p align="right">[#Top]</p>
-==`特殊的占位符 -- null`==
+==`特殊的占位符 -- $condition`==
 唯一需要说明的是，在你写作的 SQL 中，需要声明一个特殊的占位符，比如下面的代码输出所有 id 大于 35 的 Pet 对象的名称
 
 {{{

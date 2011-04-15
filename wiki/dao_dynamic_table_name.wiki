@@ -57,7 +57,7 @@ public void demoTableName(final Dao dao) {
 }
 }}}
 
-通过创建一个匿名 java.lang.Runnable 对象，你可以像静态 POJO 一样使用 Dao 接口的一切方法。因为通过你传入的参数 3 (TableName.run 方法的第一个参数)， 以及前面的 @Table 声明，Nutz.Dao 已经很清楚如何操作数据库了，它会用 3 替代 null。
+通过创建一个匿名 java.lang.Runnable 对象，你可以像静态 POJO 一样使用 Dao 接口的一切方法。因为通过你传入的参数 3 (TableName.run 方法的第一个参数)， 以及前面的 @Table 声明，Nutz.Dao 已经很清楚如何操作数据库了，它会用 3 替代 $cid。
 
 如果细心一些，你会发现在 TableName.run 方法的声明是：
 
