@@ -28,7 +28,8 @@
 
 <p align="right">[#Top]</p>
 =`关于 Mvc`=
-      * 《[http://helloqiner.iteye.com/blog/982157 在Nutz框架中提供Pojo校验（验证）功能的支持 ]》 @[http://helloqiner.iteye.com/ helloqiner ]<font color="#008800"><b>新 </b></font>
+      * 《[http://helloqiner.iteye.com/blog/1007646 让Nutz支持最快的模板引擎Smarty4j ]@[http://helloqiner.iteye.com/ QinerG ]<font color="#008800"><b>新 </b></font>
+      * 《[http://helloqiner.iteye.com/blog/982157 在Nutz框架中提供Pojo校验（验证）功能的支持 ]》 @[http://helloqiner.iteye.com/ QinerG ]<font color="#008800"><b>新 </b></font>
       * 《[http://myblog.sunfarms.net/100.html 在Nutz MVC中使用Freemarker ]》 @[http://myblog.sunfarms.net/ wendal ]<font color="#008800"><b>推荐 </b></font>
       * 《[http://axhack.javaeye.com/blog/542441 给 nutz 添加 freemarker 视图 ]》 @[http://axhack.javaeye.com axhack ]<font color="#008800"><b>推荐 </b></font>
       * 《[http://yunhaifeiwu.javaeye.com/blog/763832 nutz 文件上传例子 ]》 @[http://yunhaifeiwu.javaeye.com 云海飞舞 ]

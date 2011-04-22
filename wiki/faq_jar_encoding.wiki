@@ -19,7 +19,7 @@
 window > Preferebces > General > Workspace
 }}}
 
-看看"Text file encoding" 项是不是设成 "UTF-8" 了
+看看"Text file encoding" 项是不是设成 "UTF-8" 了还是不行? 请重启你的Eclipse
 
 ----
 
