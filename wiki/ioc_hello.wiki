@@ -185,5 +185,5 @@ false
       * [ioc_aop AOP ]-- 声明式切片
       * [ioc_scope 对象生命范围 ]-- 级联的上下文环境
       * [ioc_xml_ioc_loader 使用XML作为配置文件格式 ]-- 使用XML作为配置文件格式
-      * [annotation_ioc_loader.man 使用注解配置Ioc ]--使用注解配置Ioc
+      * [ioc_loader_annotation 使用注解配置Ioc ]--使用注解配置Ioc
       * [ioc_aop_json 在json配置文件中声明Aop ]-- 在json配置文件中声明Aop及声明式事务

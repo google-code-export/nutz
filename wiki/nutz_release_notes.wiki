@@ -45,6 +45,7 @@
       * [http://code.google.com/p/nutz/issues/detail?id=347 Issue 347 ]应该设计一个PostActionFilter或者改造现在的ActionFilter<font color="#AAAAAA">by </font><b>moreztea </b>
       * [http://code.google.com/p/nutz/issues/detail?id=369 Issue 369 ]mvc:PairAdaptor在处理REST风格的URL时对参数的解析不够智能<font color="#AAAAAA">by </font><b>Landraxee </b>
       * [http://code.google.com/p/nutz/issues/detail?id=383 Issue 383 ]1.b.35Rollback SQLException<font color="#AAAAAA">by </font><b>幸福的旁边 </b>
+      * [http://code.google.com/p/nutz/issues/detail?id=395 Issue 395 ]在使用ioc的事件监听功能时，如何配置存在于默认包下的类？<font color="#AAAAAA">by </font><b>ywjno.dev </b>
       * [http://code.google.com/p/nutz/issues/detail?id=410 Issue 410 ]关于EL中的StringElValue<font color="#AAAAAA">by </font><b>juqkai </b>
       * [http://code.google.com/p/nutz/issues/detail?id=412 Issue 412 ]UploadAdaptor不支持路径参数<font color="#AAAAAA">by </font><b>天行健 </b>
       * [http://code.google.com/p/nutz/issues/detail?id=417 Issue 417 ]入口方法中包含数组参数时,启动报错<font color="#AAAAAA">by </font><b>幸福的旁边 </b>
