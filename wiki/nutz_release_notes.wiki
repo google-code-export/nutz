@@ -14,7 +14,7 @@
 
 这个版主要解决了前一个版本[http://code.google.com/p/nutz/wiki/history_1_b_36 1.b.36 ]` 的某些问题。前一个版本因为重写了 Mvc 的核心逻辑，因此带来了一点点不太严重的小问题。在这个版（1.b.37）基本都被我们修了，总之，我可以负责任的告诉你，这个版，比 1.b.36 要好那么一点点 ^_^ `
 
-还有一件事:[http://http://wendal.net Wendal 同学 ]录制了两款视频教程，分别在[http://code.google.com/p/nutz/downloads/detail?name=NutMVC--%E4%B8%8EIoc%E5%92%8CDao%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8.zip 这里 ]和[http://code.google.com/p/nutz/downloads/detail?name=NutMVC%20--%20QuickStart_v2.exe 这里 ]，无论怎样，你在[http://code.google.com/p/nutz/downloads/list Nutz 的下载列表 ]就能找到这两个文件，强烈推荐刚接触[http://nutzam.com Nutz 框架 ]的同学看一下
+还有一件事:[http://wendal.net Wendal 同学 ]录制了两款视频教程，分别在[http://code.google.com/p/nutz/downloads/detail?name=NutMVC--%E4%B8%8EIoc%E5%92%8CDao%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8.zip 这里 ]和[http://code.google.com/p/nutz/downloads/detail?name=NutMVC%20--%20QuickStart_v2.exe 这里 ]，无论怎样，你在[http://code.google.com/p/nutz/downloads/list Nutz 的下载列表 ]就能找到这两个文件，强烈推荐刚接触[http://nutzam.com Nutz 框架 ]的同学看一下
 
 另外需要推介的是[http://helloqiner.iteye.com/ QinerG ]同学写的两篇文章
 
@@ -67,6 +67,8 @@
 <p align="right">[#Top]</p>
 =`质量`=
 共通过了<font color="#FF00FF"><b>697 </b></font>个单元测试用例,代码覆盖率达到
+
+http://www.nutzam.com/wiki/img/emma.png
 
 Nutz.Dao 经测试在如下数据库上可以工作正常
 
