@@ -8,18 +8,17 @@ import org.nutz.dao.entity.MappingField;
 import org.nutz.dao.impl.jdbc.NutPojo;
 import org.nutz.dao.sql.Pojo;
 import org.nutz.el.El;
-import org.nutz.el.obj.BinElObj;
 import org.nutz.lang.util.Context;
 
 public class ElFieldMacro extends NutPojo {
 
-	private BinElObj bin;
+	private El bin;
 
 	private MappingField entityField;
 
 	public ElFieldMacro(MappingField field, String str) {
 		this.entityField = field;
-		this.bin = El.compile(str);
+		this.bin = new El(str);
 	}
 
 	private ElFieldMacro() {}
@@ -27,7 +26,7 @@ public class ElFieldMacro extends NutPojo {
 	public void onAfter(Connection conn, ResultSet rs) throws SQLException {
 		if (rs.next()) {
 			Context context = entityField.getEntity().wrapAsContext(getOperatingObject());
-			Object value = bin.eval(context).get();
+			Object value = bin.eval(context);
 			entityField.setValue(getOperatingObject(), value);
 		}
 	}
