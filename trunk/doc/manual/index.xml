@@ -29,6 +29,7 @@
 		<doc path="transaction.man"/>
 		<doc path="transaction_complex.man"/>
 		<doc path="runner.man"/>
+		<doc path="entity.man"/>
 		<doc path="services.man"/>
 		<doc path="pojo.man"/>
 		<doc path="record.man"/>
@@ -95,6 +96,7 @@
 		<doc path="ant_task.man"/>
 	</doc-->
 	<doc path="history" title="版本历史">
+		<doc path="1_b_38.man"/>
 		<doc path="1_b_37.man"/>
 		<doc path="1_b_36.man"/>
 		<doc path="1_b_35.man"/>
