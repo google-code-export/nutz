@@ -81,8 +81,8 @@ WHERE age>30 AND name LIKE '%K%' ORDERBY name ASC, id DESC
 你也可以嵌套表达式
 
 {{{
-ExpGroup e1 = Cnd.exps("name", "LIKE", "P%").and("age", ">", "20");
-ExpGroup e2 = Cnd.exps("name", "LIKE", "S%").and("age", "<", "30");
+SqlExpressionGroup e1 = Cnd.exps("name", "LIKE", "P%").and("age", ">", "20");
+SqlExpressionGroup e2 = Cnd.exps("name", "LIKE", "S%").and("age", "<", "30");
 Condition c = Cnd.where(e1).or(e2).asc("name");
 }}}
 
@@ -92,3 +92,43 @@ Condition c = Cnd.where(e1).or(e2).asc("name");
 WHERE (name LIKE 'P%' AND age>'20') OR (name LIKE 'S%' AND age<'30') ORDER BY name ASC
 }}}
 
+
+
+----
+
+<p align="right">[#Top]</p>
+=`拼装更加复杂的条件`=
+上面的例子的 Cnd.where 函数，在大多数情况下可以快速的生成一个简单的查询条件。但是，如果查询条件非常复杂，用它可能就比较费劲了。是的，它的设计初衷就是 "<font color="#008800"><b> 查询条件应该一行搞定 </b></font>"。
+
+有些时候，查询条件很复杂，一行确实搞不定，怎么办？<b> Nutz-1.b.38 </b>以后，提供了 Criteria 接口，它继承自Condition 接口，它的设计目的有两个：
+
+      # 让程序员更容易的拼装复杂逻辑的条件
+      # 让生成的 SQL 可以被参数化，更好的支持 PreparedStatement
+这个接口的使用也很简单，它基本符合 "IDE 的所见即所得" 接口设计原则。 就是说，如果你的 IDE 有智能提示的话，你使用这个接口是不需要文档的。
+
+{{{
+// 创建一个 Criteria 接口实例
+Criteria cri = Cnd.cri();
+
+// 组装条件
+if(...){
+    cri.where().andIn("id", 3,4,5).andIn("name", "Peter", "Wendal", "Juqkai");
+}else if(...){
+    cri.where().andLT("id", 9);
+}
+
+if(...){
+    cri.where().andLike("name", "%A%");
+}
+
+cri.getOrderBy().asc("name").desc("id");
+
+// 执行查询
+List<MyObj> list = dao.query(MyObj.class, cri, null);
+}}}
+
+Criteria 的 where() 函数返回的是 SqlExpressionGroup，主要由它来提供各种 SQL 条件的组合方法。这里需要给出一点提示，比如方法名<font color="#008800"><b> andGT </b></font>，表示的是 and<font color="#008800"><b>G </b></font>reat<font color="#008800"><b>T </b></font>han，即"<font color="#008800"><b>大于 </b></font>" 的意思，同理:
+
+      * LT : 小于 (LessThan)
+      * GTE : 大于等于 (GreatThanEquale)
+      * LTE : 小于等于 (LessThanEquale)

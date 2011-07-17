@@ -6,18 +6,19 @@
 
 <p align="right">[#Top]</p>
 =`org.nutz.*`=
-||<b>包名 </b>||<b>描述 </b>||<b>依赖 </b>||
-||aop||拦截器框架||<b>lang </b>||
-||castors||对象类型转换框架||<b>lang </b>,<b>json </b>||
-||dao||对象持久化框架||<b>lang </b>,<b>castors </b>,<b>trans </b>||
-||filepool||文件池接口以及默认实现||<b>lang </b>,<b>castors </b>||
-||http||Http 的发送||<b>lang </b>,<font color="#0000AA"><u><b>servlet-api.jar </b></u></font>||
-||ioc||对象生命周期管理框架||<b>lang </b>,<b>castors </b>,<b>json </b>,<b>aop </b>||
-||json||JSON 的解析器和渲染器||<b>lang </b>,<b>castors </b>||
-||lang||在 JDK 的基础上，提供了一些便利方法||<font color="#008800"><u>不依赖任何第三方 jar 包 </u></font>||
-||log||轻便的 Log 打印的功能||<b>plugin </b>||
-||mvc||Web 框架，提供了 Servlet 用来嵌入到 web.xml 中||<b>ioc </b>,<font color="#0000AA"><u><b>servlet-api.jar </b></u></font>||
-||service||org.nutz.dao.Dao 接口的高级封装，提供了树形数据的操作能力||<b>dao </b>||
-||trans||用接口回调的方式，为 dao 提供事务性操作的支持||<b>lang </b>||
-||plugin||轻便的插件机制||<b>lang </b>||
+||<b>包名 </b>||<b>描述 </b>||
+||aop||拦截器框架||
+||castors||帮助你把任何类型转换成任何类型，从而让 Java 的类型不是那么的"强"||
+||dao||数据库访问接口，更薄，更简单轻便||
+||el||嵌入式表达式引擎||
+||filepool||文件池接口以及默认实现||
+||http||简单的Http客户端工具类，帮助你发送 HTTP 请求||
+||ioc||Ioc 容器，你懂得||
+||json||JSON 的解析器和渲染器||
+||lang||让 Java 的语法更加友好，这个包，是 Nutz 最基础的包||
+||log||轻便的 Log 打印的功能||
+||mvc||基于注解的 Mvc 框架，可以和Ioc容器很好的结合使用||
+||service||数据库业务逻辑访问接口，它提供了几个很基础的类，你可以扩展它们，成为你自己的 CRUD||
+||trans||提供了事务能力，它让 dao 包里的类不用关心事务，你如果需要事务，就用找个包里的 Trans.run 就好了||
+||plugin||轻便的插件机制，我们提供了所谓"热部署"的概念，它比"热插拔"似乎更实用||
 

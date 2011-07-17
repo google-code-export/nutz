@@ -1,6 +1,6 @@
-#summary 插件
+#summary 部署时决定-插件机制
 =Top=
-<p align="center"><font size=6>* 插件 *</font></p>
+<p align="center"><font size=6>* 部署时决定-插件机制 *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>

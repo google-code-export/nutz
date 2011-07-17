@@ -53,7 +53,7 @@ Sql sql = dao.sqls().create("delete.data");
 
 <p align="right">[#Top]</p>
 =`Sql 对象 -- org.nutz.dao.sql.Sql`=
-我几乎是不加思索的将 SQL 的实现封装在一个接口后面。现在想想这到也没什么坏处。接口的默认实现是org.nutz.dao.sql.SqlImpl。你可以直接 new 这个对象，但是我不建议你这么做，因为它的构造函数不那么友好 -- 你需要传入一个 SqlLiteral 对象以及一个 StatementAdapter 对象。当然，我提供了非常方便的构造 Sql 对象的方法 ...
+我几乎是不加思索的将 SQL 的实现封装在一个接口后面。现在想想这到也没什么坏处。接口的默认实现是<font color="#008800"><b> org.nutz.dao.impl.sql.NutSql </b></font>。你可以直接 new 这个对象，当然，我也提供了构造 Sql 对象的静态方法:
 
 
 <p align="right">[#Top]</p>
@@ -64,7 +64,13 @@ Sql sql = dao.sqls().create("delete.data");
 Sql sql = Sqls.create("INSERT INTO t_abc (name,age) VALUES('Peter',18)");
 }}}
 
-Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来帮助你构建 Sql 对象。它们之间的区别在稍后会详细说明
+Sqls 提供的
+
+        * fetchEntity
+        * fetchInt
+        * fetchString
+        * queryEntity
+方法来帮助你构建 Sql 对象。它们之间的区别在稍后会详细说明。
 
 通常的情况，你需要构建某些<b>动态 </b>的 SQL，所以我也允许你为你的 SQL 设置占位符，占位符分两种：
 
@@ -76,7 +82,7 @@ Sqls 提供的 fetchEntity, fetchInt, fetchString, 以及 queryEntity 方法来�
 }}}
 
             * 在执行 SQL 前，该占位符会被用户设置的值替换
-            * 类似 C 语言中的<b>宏 </b>
+            * 类似 C 语言中的<font color="#008800"><b>宏 </b></font>
         * 参数(param)占位符 - 形式为<font color="#008800">@名称 </font>
             * 以字符 @ 开头，名称为英文字母，数字，下划线，减号和句点。
             * 正则表达式为：
@@ -113,6 +119,22 @@ void demoSql(Dao dao){
 }}}
 
 这就完了吗？我怎么取得查询的结果呢。是的，同 UPDATE, DELETE, INSERT 不同， SELECT 是需要返回结果的，但是 Nutz.Dao 也不太清楚怎样为你自定义的 SELECT 语句返回结果，于是，就需要你设置回调。
+
+
+<p align="right">[#Top]</p>
+==`批量执行`==
+在 Nutz 1.b.38 之后的版本，自定义 SQL 可以支持批量操作
+
+{{{
+Sql sql = Sqls.create("UPDATE t_pet SET name=@name WHERE id=@id");
+sql.params().set("name","XiaoBai").set("id",4);
+sql.addBatch();
+sql.params().set("name","XiaoHei").set("id",5);
+sql.addBatch();
+dao.execute(sql);
+}}}
+
+
 
 
 <p align="right">[#Top]</p>
@@ -158,7 +180,7 @@ List<String> demoSql(Dao dao) {
 
 {{{
 Sql.create("SELECT m.* FROM master m JOIN detail d ON m.d_id=d.d_id WHERE d.name='aa'");
-sql.setCallback(Sql.callback.entities());
+sql.setCallback(Sqls.callback.entities());
 sql.setEntity(dao.getEntity(Master.class));
 dao.execute(sql);
 List<Master> list = sql.getList(Master.class);
@@ -224,52 +246,8 @@ Dao dao = new NutDao(datasource);
 System.out.println(dao.sqls().count());
 }}}
 
-----
 
-<p align="right">[#Top]</p>
-=`ComboSql （组合SQL） 的用处`=
-通过 Dao 接口的 execute 接口，可以传入数目可变的 SQL 对象。 SQL 对象可以从 Dao.sqls().create() 方法获得。但是有些时候，你有可能需要批量的为多个 SQL 对象统一设定占位符的值。比如你有这么两个 SQL，需要同时执行。
 
-{{{
-/* master.update */
-UPDATE t_master SET petId=@petId WHERE id=@masterId
-
-/* pet.update */
-UPDATE t_pet SET masterid=@masterId WHERE id=@petId;
-}}}
-
-为了能让主人和宠物建立一个双向的一对一关联，那么在 Java 代码中，你就需要这样写：
-
-{{{
-void demoCombo(Dao dao) {
-	Sql uMaster = dao.sqls().create("master.update");
-	Sql uPet = dao.sqls().create("pet.update");
-
-	uMaster.params().set("petId", 20).set("masterId", 16);
-	uPet.params().set("petId", 20).set("masterId", 16);
-
-	dao.execute(uMaster, uPet);
-}
-}}}
-
-看，每个 SQL 都需要为占位符 petId 和 masterId 设值，如果使用 ComboSql，代码为：
-
-{{{
-void demoCombo(Dao dao) {
-	Sql sql = dao.sqls().createCombo("master.update", "pet.update");
-	sql.params().set("petId", 20).set("masterId", 16);
-	dao.execute(sql);
-}
-}}}
-
-代码少了很多，不是吗？
-
-关于 ComboSql，你还需要知道的是：
-
-      # ComboSql 也是一种 Sql，它也实现了 org.nutz.dao.sql.Sql 接口。
-      # 函数 createCombo 接受数目可变的字符串型参数，代表 SQL 的 key。
-      # 一个 ComboSql 被执行的顺序同你给定的 key 的顺序相同。
-      # 函数 createCombo 如果没有接受到参数，那么将会包括所有你文件中所有的 SQL 。
 ----
 
 <p align="right">[#Top]</p>
@@ -314,18 +292,14 @@ sql.setCondition(Cnd.where("id", ">", 35));
 
 第一行的占位符 $condition 已经被 Nutz.Dao 保留。声明了该占位符的 SQL 都可以使用 setCondition 函数。否则，你设置的条件将无效。
 
-同样的，针对 FetchSql 和 ExecutableSql 也是同样，例如：
+另外一个例子 -<b>将所有的 id 大于 35 的 Pet 对象的 masterId 设置为 45 </b>
 
-----
-
-<p align="right">[#Top]</p>
-==`另外一个例子 - 将所有的 id 大于 35 的 Pet 对象的 masterId 设置为 45`==
 {{{
 void demoCondition2(Dao dao){
-	Sql sql = Sqls.create("UPDATE t_pet SET masterid=@masterId $condition");
-	sql.params().set("masterId", 45);
-	sql.setCondition(Cnd.wrap("id>35"));
-	dao.execute(sql);
+    Sql sql = Sqls.create("UPDATE t_pet SET masterid=@masterId $condition");
+    sql.params().set("masterId", 45);
+    sql.setCondition(Cnd.wrap("id>35"));
+    dao.execute(sql);
 }
 }}}
 

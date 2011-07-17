@@ -1,7 +1,8 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.b.37 发行注记]
+ * [nutz_release_notes 1.b.38 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
+   * [committer_git_project 从 Git 编译源码]
    * [committer_compile 运行 JUnit 测试 - Eclipse]
    * [committer_ant 使用 Ant 编译]
    * [committer_packages Nutz 的包结构]
@@ -24,7 +25,8 @@
    * [dao_customized_sql 自定义 SQL]
    * [dao_transaction 事务模板]
    * [dao_transaction_complex 交叉事务]
-   * [dao_runner 定制自己的事务模板]
+   * [dao_runner 更底层定制NutDao]
+   * [dao_entity 实体解析]
    * [dao_services 内置的服务类]
    * [dao_pojo 更快的构建你的POJO]
    * [dao_record 不构建 POJO 访问数据库]
@@ -72,9 +74,9 @@
    * [lang_mirror 增强反射 -- Mirror]
    * [lang_segment 代码模板]
    * [lang_filepool 文件池]
-   * [lang_plugin 插件]
+   * [lang_plugin 部署时决定-插件机制]
    * [lang_log 日志]
- * zMole - 快速代码生成工具
+ * zMole
    * [zmole_zmole_get_start zMole 快速入门]
  * zDoc 手册
    * [zdoc_overview zDoc 概述]
@@ -83,6 +85,7 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
    * [zdoc_ant_task 在Ant中使用]
  * 版本历史
+   * [history_1_b_38 1.b.38 发行注记]
    * [history_1_b_37 1.b.37 发行注记]
    * [history_1_b_36 1.b.36 发行注记]
    * [history_1_b_35 1.b.35 发行注记]

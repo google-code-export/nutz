@@ -19,12 +19,10 @@
 
 ||插入||Insert||一条 SQL 插入一条记录||
 ||删除||Delete||一条 SQL 删除一条记录||
-||更新||Update||一条 SQL 更新一条记录||
+||更新||Update||一条 SQL 更新一条或者多条记录||
 ||获取||Fetch||一条 SQL 获取一条记录||
 ||查询||Query||一条 SQL 根据条件获取多条记录||
 ||清除||Clear||一条 SQL 根据条件删除多条记录||
-
-因此，我们发现在 Nutz.Dao 的数据操作概念中，并不支持一条 SQL 更新多条记录。 如果需要一条 SQL 更新多条记录，你需要自己定义 SQL。关于如何定义和管理自己的 SQL，请参看[dao_customized_sql 自定义SQL ]
 
 <font color="#FF0000"><b>请注意： </b></font>这里我是说 “<i>一条 </i>”  SQL。 如果通过 Dao 接口，你传入的是一个集合或者数组，它为为每一个元素都生成一条 SQL 并执行，并更新操作:
 
@@ -42,6 +40,36 @@ dao.update(pets);	// 可以是数组，当然 pets 也可以是集合，
       * 我们假设已经创建了实体类<b>com.zzh.demo.Person </b>和实体表<b>`t_person `</b>
       * 在文档[dao_hello Nutz.Dao 入门 ]中，我们已经声明了这个实体
       * 下述所有的操作都是假设已经有了 dao 变量，并且它指向一个 Dao 的实例。文档[dao_hello Nutz.Dao 入门 ]中，我们给出了如何创建 Dao 实例，以及如何搭建运行环境
+----
+
+<p align="right">[#Top]</p>
+=`创建数据表`=
+为 Pet 创建数据表，如果数据表存在，先 DROP 掉，再创建
+
+{{{
+dao.create(Pet.class, true);
+}}}
+
+为 Pet 创建数据表，如果数据表存在，忽略
+
+{{{
+dao.create(Pet.class, true);
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`删除数据表`=
+删除 Pet 的数据表
+
+{{{
+dao.drop(Pet.class);
+}}}
+
+
+
 ----
 
 <p align="right">[#Top]</p>
@@ -83,6 +111,14 @@ System.out.println(p.getName());
 Person p = dao.fetch(Person.class,2);
 p.setAge(32);
 dao.update(p)
+}}}
+
+----
+
+<p align="right">[#Top]</p>
+=`更新多条`=
+{{{
+dao.update(Person.class, Chain.make("dead",true), Cnd.where("age",">",150));
 }}}
 
 ----

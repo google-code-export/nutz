@@ -12,7 +12,9 @@
     * 用 SVN 工具检出源代码:[http://code.google.com/p/nutz/source/checkout http://code.google.com/p/nutz/source/checkout ]
     * 下载源代码:[http://code.google.com/p/nutz/downloads/list http://code.google.com/p/nutz/downloads/list ]
 ||<font color="#888888">@Column </font>||字段||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Column </font>||
+||<font color="#888888">@ColDefine </font>||字段精确定义||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.ColDefine </font>||
 ||<font color="#888888">@Default </font>||默认值||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Default </font>||
+||<font color="#888888">@EL </font>||字段表达式宏||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.SQL </font>||
 ||<font color="#888888">@Id </font>||数字主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Id </font>||
 ||<font color="#888888">@Name </font>||字符主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Name </font>||
 ||<font color="#888888">@PK </font>||复合主键||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.PK </font>||
@@ -22,7 +24,7 @@
 ||<font color="#888888">@Prev </font>||自动设置||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Prev </font>||
 ||<font color="#888888">@Next </font>||自动获取||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Next </font>||
 ||<font color="#888888">@Readonly </font>||只读声明||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Readonly </font>||
-||<font color="#888888">@SQL </font>||自定义SQL||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.SQL </font>||
+||<font color="#888888">@SQL </font>||字段SQL宏||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.SQL </font>||
 ||<font color="#888888">@Table </font>||表名||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.Table </font>||
 ||<font color="#888888">@View </font>||视图名||@see JDoc:<font color="#5566FF">org.nutz.dao.entity.annotation.View </font>||
 
