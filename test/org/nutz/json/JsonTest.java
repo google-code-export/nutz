@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.nutz.dao.test.meta.Base;
 import org.nutz.ioc.meta.IocValue;
@@ -249,6 +250,7 @@ public class JsonTest {
 		assertEquals(15, cal.get(Calendar.DAY_OF_MONTH));
 	}
 
+	@Ignore
 	@Test
 	public void testPersonObject() throws Exception {
 		Person p = Json.fromJson(	Person.class,
@@ -658,6 +660,13 @@ public class JsonTest {
 		assertEquals(2, list.size());
 		assertEquals("nutz", list.get(0).name);
 		assertEquals("wendal", list.get(1).name);
+	}
+	
+	@Test
+	public void test_sp(){
+		String j = "{'abc':'http:\\/\\/wendal.net'}";
+		Map<String, Object> map = Json.fromJson(Map.class, j);
+		assertEquals("http://wendal.net", map.get("abc"));
 	}
 }
 
