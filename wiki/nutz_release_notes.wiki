@@ -1,145 +1,24 @@
-#summary 1.b.38 发行注记
+#summary 1.b.39 发行注记
 =Top=
-<p align="center"><font size=6>* 1.b.38 发行注记 *</font></p>
+<p align="center"><font size=6>* 1.b.39 发行注记 *</font></p>
 ----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)  *wendal* (<font color="#080"> wendal1985@gmail.com </font>)</p>
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
 ----
 
 <p align="right">[#Top]</p>
-=`1.b.38 发行注记`=
-自[http://code.google.com/p/nutz/wiki/history_1_b_37 Nutz 1.b.37 ]发布以来，时隔近3个月。为什么间隔这么时间涅？ 因为我们做了很多重大的调整：
+=`1.b.39 发行注记`=
+又发布了？ 是的，因为这是一个[http://code.google.com/p/nutz/wiki/history_1_b_38 1.b.38 ]` 的 Bug Fix 版。Bug Fix 版发布就要快嘛，嘿嘿，你看人家 Firefox  ^_^ `
 
-      # 重构了 Dao -- 兑现了我们之前的承诺
-      # 重构了 EL
-      # Nutz 的源码管理迁移到了[https://github.com/nutzam/nutz Github ]上
-以后，希望大家报 Issue 到[https://github.com/nutzam/nutz/issues Nutz Github 的问题列表 ]中。[http://code.google.com/p/nutz/issues/list Google Code 的问题列表 ]还有66个 Issue 没有处理，我们会在后续的版本中尽快修复。如果都修复了，我们就会关闭<font color="#888888">~~ Google Code 的问题列表 ~~</font>，只维护[https://github.com/nutzam/nutz/issues Github 的问题列表 ]。
+当然这么快发布还有一个原因 ＝》[https://github.com/nutzam/nutz/issues/23 Issue 23 ]
 
-另外，如果你在 Github 上有帐号，欢迎随时[https://github.com/nutzam/nutz/network fork Nutz ]，请记住[https://github.com/nutzam 我们 ]的口号就是：<font color="#008800"><b> 喜欢 Nutz，就 Fork 它 </b></font>
+[http://code.google.com/p/nutz/wiki/history_1_b_38 1.b.38 ]的 Dao 部分进行了重大的调整，这几周来，似乎没有被大家抱怨特别的不适，Dao 的变动带来的影响比我想想的小多了，因此强烈推荐你升级到这个版本
 
-当然，Nutz 的下载地址仍然一直会是[http://code.google.com/p/nutz/downloads/list Google Code 下载列表 ]，并且[http://nutz.googlecode.com Nutz 在 Google Code 的项目主页 ]也会一直维护。
+      * 这里是 Nutz 的下载列表 :[http://code.google.com/p/nutz/downloads/list http://code.google.com/p/nutz/downloads/list ]
+      * 木有听说过 Nutz 的同学请看 :[http://nutz.googlecode.com http://nutz.googlecode.com ]
+本版涉及到的问题，有兴趣的同学请看下面的问题列表，这里就不废话了。
 
-同时，我想提醒大家注意一下[http://nutzam.com Nutz 的官网 ]，我们会不断的充实它的内容，比如最近做的
-
-      * [http://nutzam.com/doc/html/ Nutz 的文档 ]
-      * [http://nutzam.com:8080/nutzam Nutz 的小白测试 ]
-说到小白测试，不得不提一下 Dao 重构。我们这次重构 Dao 后总是不放心，其实我们在今年 5 月初就重构完了，然后我们测试呀，测试，毕竟是重构 Dao 了嘛，但是我们还是不放心，于是又测试呀测试... 但是我们还是不放心...
-
-于是[https://github.com/juqkai Juqkai ]同学在我和 Wendal 的撺掇下痛下决心，写了这个应用:
-
-[http://nutzam.com:8080/nutzam/ Nutz 小白测试计划 ]
-
-我们希望这个计划，能让更多人方便的参与测试，提交测试结果，这样我们就能为更多的人提供更稳定的 Jar 包。同时，我们也能更准确的统计贡献者名单。
-
-当然如果没有人参与这个测试计划，最差的结果就是维持现状。令人欣慰的是，还是有4位同学(包括我)参加了[http://nutzam.com:8080/nutzam/testResult/list.htm?nutzVersion=1.b.38 1.b.38测试的小白测试 ]
-
-`那么，让我们看看，以后的版本参加的人是会越来越多，还是越来越少 ^_^! `
-
-----
-
-<p align="right">[#Top]</p>
-=`Dao 兼容性问题`=
-作为一篇发行注记，这次我们要上点干货了
-
-1.b.38 的 Dao 与之前的 Dao 使用上的主要区别
-
-      * 更快的批量操作 -- 比如大数据量的插入
-      * 提供了 Criteria 接口，扩展了 Condition 接口，这样查询的时候，可以用 PreparedStatement 参数
-      * 同时 Criteria 接口也非常方便你组织更复杂的 SQL 条件
-      * 自定义 SQL 可以设置 fetchSize，但是依然不能支持 pager，你还得自己用 SQL 方言来翻页
-      * 重新设计的 Entity ，可以方便的扩展，这样有些偏爱 JPA 或者配置文件的同学，可以扩展自己的实体配置方式
-      * 重新设计的 LOG，可以让 SQL 打印的更清晰
-      * 你甚至可以 dao.insert 或者 dao.update 一个 Map
-      * 支持 dao.create/dao.drop 方式来建表和删表
-      * org.nutz.dao.Dao 原有的接口函数统统保持不变，从而保证了兼容性不会有太大问题。
-为了上述的优点，我们放弃了一点点兼容性，你的项目如果用 Nutz.1.b.38 可能需要少量修改几行代码。
-
-----
-<font color="#FF0000"><b> Cnd 类的兼容问题 </b></font>
-
-当然，如果你直接实现 Condition 接口也不会有问题。
-
-      * Cnd.exp 的返回值类型变成了 SqlExpression
-      * Cnd.exps 的返回值类型变成了 SqlExpressionGroup
-<font color="#FF0000"><b> Entity 接口的兼容问题 </b></font>
-
-极个别很有 Hacking 精神的同学使用 Nutz 的时候，使用了 Entity 类，但是不幸的是现在 Entity 已经变成一个接口并且某些方法已经变了名字，但是原来 Entity 类所有的功能，现在 Entity 接口都能提供。如果你发现某些方法找不到了，耐心看看新的 Entity 接口的定义，我想你很快就能找到你要找的方法。
-
-最重要的一个改变，就是原来的 entity.fields() 方法，变成了 entity.getMappingFields()。这个是有同学向我抱怨过，因此觉得有必要在这里特别提一下。
-
-<font color="#FF0000"><b> org.nutz.dao.tool 包的兼容问题 </b></font>
-
-某些很有探索精神的同学可能偶然发现了 Nutz 还隐藏了一个 Dao 工具类的包，里面的方法可以跨数据库的建表，所以很有可能在自己的项目里也这么应用了。但是不幸的是，1.b.38 之后，这个包没了。因为我们不再需要它了。你的建表可以用:
-
-{{{
-dao.create(Pet.class, true);   // true 表示如果存在，先 DROP 掉再建, false 表示如果存在就不建了
-}}}
-
-来完成。当然，删表，可以用:
-
-{{{
-dao.drop(Pet.class);
-}}}
-
-----
-除此之外，Nutz.Dao 不会有和之前不兼容的地方了。当然如果你发现了，请随时告诉我们，应该都不是大问题。
-
-----
-
-<p align="right">[#Top]</p>
-=`EL 兼容性问题`=
-EL 作为比较新的一个功能，可能用的人比较少，我们之后会再各个模块里逐渐发掘 EL 的潜力。本次发布 EL 经过了重构，效率提升了将近1倍。当然，作为一个用反射实现的东东，它的还是很慢，但是我们设计 EL 的时候假定它的使用场景是配置文件，后台进程等一些不是非常需要效率的地方。它可以让你的程序更有弹性。如果非常需要效率的地方，恐怕它不是一个很好的选择。
-
-重构后的 EL，eval 的结果不再是 ElValue，而是普通的 Object，这样，你使用的时候会更方便一些。
-
-并且EL的预编译，不再是
-
-{{{
-BinObj exp = El.compile("3+4");
-}}}
-
-而是
-
-{{{
-El exp = new El("3+4");
-}}}
-
-看起来更清爽一些不是吗？[https://github.com/juqkai Juqkai ]` 同学的设计 ^_^ `
-
-----
-
-<p align="right">[#Top]</p>
-=`Json 新玩法`=
-看看你的项目是否需要处理这样的Json字符串:
-
-{{{
-[
-    {"id":2345,"name":"Wendal"},
-    {"id":2436,"name":"Zozoh"}
-]
-}}}
-
-现在支持一行语句完成转换了
-
-{{{
-List<User> users = (List<User>)Json.fromJson(NutType.list(User.class),json_str);
-}}}
-
-Pojo中有不期望被输出的字段?
-
-{{{
-public class User{
-    
-    private long id;
-    private String name;
-
-    @JsonField(ignore=true)
-    private String password;
-
-}
-}}}
-
-那么执行Json.toJson时,password字段就会被忽略
+还有，天气热，气压低，国度神奇，希望8月份的人民注意防暑，[http://pangwu86.iteye.com/ 胖五同学 ]做动车时不要轻易睡着，我会持之以恒的为你祈祷的 :P
 
 ----
 
@@ -147,43 +26,24 @@ public class User{
 =`问题修复`=
 
 
-      * [http://code.google.com/p/nutz/issues/detail?id=34 Issue 34 ]dao: support JPA Annotation<font color="#AAAAAA">by </font><b>zozoh </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=85 Issue 85 ]NutDao 中需要提供批量更新操作的方法.<font color="#AAAAAA">by </font><b>ming300 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=121 Issue 121 ]Nutz是否有根据实体上的注解来自动创建数据库表等对象的计划？<font color="#AAAAAA">by </font><b>hzzdong </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=137 Issue 137 ]数据库操作是否可以增加对Blob类型的支持<font color="#AAAAAA">by </font><b>Toni.xutao </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=155 Issue 155 ]Dao 的 @Column注解可否标注在getter函数上<font color="#AAAAAA">by </font><b>jinghui70 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=192 Issue 192 ]NutDao性能问题：关于批量操作，使用PreparedStatement的Batch功能<font color="#AAAAAA">by </font><b>hzzdong </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=230 Issue 230 ]关于nutz dao能否动态根据tables.dod 更新表结构<font color="#AAAAAA">by </font><b>shao0707 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=267 Issue 267 ]NutzDao能否提供设置fetchSize的方法<font color="#AAAAAA">by </font><b>superxlm1985 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=294 Issue 294 ]Nutz Dao 大量数据插入效率问题<font color="#AAAAAA">by </font><b>fjayblue </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=332 Issue 332 ]sqlserver2005 nutz@google Junit测试<font color="#AAAAAA">by </font><b>haoyoushuai1986 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=416 Issue 416 ]建议nutz提供一个拼接复杂的查询条件的方法<font color="#AAAAAA">by </font><b>liuxiaogang1987 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=420 Issue 420 ]Sqls.create语句中包含'@'会出错。<font color="#AAAAAA">by </font><b>wangyingdong </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=426 Issue 426 ]Condition Cnd.where + orderBy<font color="#AAAAAA">by </font><b>muyushi85 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=433 Issue 433 ]MVC的代码覆盖率实在太低,很多都没测试用例!<font color="#AAAAAA">by </font><b>wendal </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=437 Issue 437 ]SqlLiteral中的@过滤<font color="#AAAAAA">by </font><b>zhuyingxi </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=457 Issue 457 ]Json:增加字段映射方式<font color="#AAAAAA">by </font><b>wendal </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=458 Issue 458 ]ActionChainMakerConfiguration类名拼写错误<font color="#AAAAAA">by </font><b>jentrees2008 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=466 Issue 466 ]使用MySQL数据库，使用Nutz.dao的自定义SQL报错<font color="#AAAAAA">by </font><b>mamacmm </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=469 Issue 469 ]Json.toJson 对char类型没有加引号<font color="#AAAAAA">by </font><b>lwk0571 </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=471 Issue 471 ]Dao: 添加对Hsql数据库的支持<font color="#AAAAAA">by </font><b>wendal </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=473 Issue 473 ]使nutz兼容OSGi<font color="#AAAAAA">by </font><b>windywany </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=478 Issue 478 ]1.b.38 的新 Dao 应该忽略 Column 不存在的情况 -- by Jay<font color="#AAAAAA">by </font><b>zozoh </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=479 Issue 479 ]38 update 问题<font color="#AAAAAA">by </font><b>fjayblue </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=482 Issue 482 ]将Nutz打成jar， 2 个 Scans 的测试过不了<font color="#AAAAAA">by </font><b>zozoh </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=485 Issue 485 ]EL表达式引擎在某些情况下会出现错误<font color="#AAAAAA">by </font><b>ywjno.dev </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=487 Issue 487 ]ioc中某个属性的值是Map时,如果是null偶尔报：String can not cast to java.util.Map<font color="#AAAAAA">by </font><b>superhanliu </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=489 Issue 489 ]AnnotationIocLoader类对set方法处理@Inject 有bug<font color="#AAAAAA">by </font><b>feiyan </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=490 Issue 490 ]38的Dao,在DB2下,使用@Column('abc')的话,insert会报错<font color="#AAAAAA">by </font><b>wendal </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=493 Issue 493 ]Lang的str2number方法在某些情况下会出错<font color="#AAAAAA">by </font><b>ywjno.dev </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=494 Issue 494 ]自定义SQL wiki<font color="#AAAAAA">by </font><b>superhanliu </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=497 Issue 497 ]Nztz.Dao 注释没写全，和注释重写<font color="#AAAAAA">by </font><b>hongchongyuan </b>
-      * [http://code.google.com/p/nutz/issues/detail?id=500 Issue 500 ]nutz.Json 应扩展一下@JsonField注解<font color="#AAAAAA">by </font><b>conanca </b>
+      * [https://github.com/nutzam/nutz/issues/28 Issue 28 ]NutzQuickStart 木有与时俱进<font color="#AAAAAA">by </font><b>fjay </b>
+      * [https://github.com/nutzam/nutz/issues/25 Issue 25 ]Mvc：使用UploadAdaptor时，ArrayInjector和NameInjector注入的参数值错误 Mvc<font color="#AAAAAA">by </font><b>lAndRaxeE </b>
+      * [https://github.com/nutzam/nutz/issues/24 Issue 24 ]主模块声明应用的子模块时，能够直接指定包的相对路径，来搜索子模块 Mvc 需求<font color="#AAAAAA">by </font><b>conanca </b>
+      * [https://github.com/nutzam/nutz/issues/23 Issue 23 ]一对多关联，调用insertWith方法关联新增后，发现关联属性字段为空 Dao<font color="#AAAAAA">by </font><b>fnet123 </b>
+      * [https://github.com/nutzam/nutz/issues/22 Issue 22 ]在Setup的init方法中，通过Mvcs.getAtMap(config.getServletContext())得到的AtMap的size为0 Mvc 需求 5 comments<font color="#AAAAAA">by </font><b>conanca </b>
+      * [https://github.com/nutzam/nutz/issues/21 Issue 21 ]DB2环境上NutzDao的fastInsert失败<font color="#AAAAAA">by </font><b>nneverwei </b>
+      * [https://github.com/nutzam/nutz/issues/17 Issue 17 ]dao.delete 需要支持传入一个集合或者数组 Dao<font color="#AAAAAA">by </font><b>zozoh </b>
+      * [https://github.com/nutzam/nutz/issues/15 Issue 15 ]Mirror类无法获取对象中的静态变量<font color="#AAAAAA">by </font><b>happyday517 </b>
+      * [https://github.com/nutzam/nutz/issues/14 Issue 14 ]Nutz.dao获取实体的回调，实体类中的非数据表字段未被赋值 Dao FAQ<font color="#AAAAAA">by </font><b>conanca </b>
+      * [https://github.com/nutzam/nutz/issues/13 Issue 13 ]1.38执行sql语句有问题. Dao FAQ<font color="#AAAAAA">by </font><b>wangyingdong </b>
+      * [https://github.com/nutzam/nutz/issues/12 Issue 12 ]发布 Nutz1.b.39 项目维护<font color="#AAAAAA">by </font><b>zozoh </b>
+      * [https://github.com/nutzam/nutz/issues/11 Issue 11 ][1.b.38 1.b.38 ]Model类中@Readonly注解失效 Dao 重要<font color="#AAAAAA">by </font><b>gevinhjy </b>
+      * [https://github.com/nutzam/nutz/issues/10 Issue 10 ]测试与JDK7的兼容性 项目维护<font color="#AAAAAA">by </font><b>wendal </b>
 ----
 
 <p align="right">[#Top]</p>
 =`质量`=
-共通过了<font color="#FF00FF"><b>697 </b></font>个单元测试用例,代码覆盖率达到
+共通过了<font color="#FF00FF"><b>710 </b></font>个单元测试用例,代码覆盖率达到<font color="#FF00FF">64.5% </font>(按line计算)
 
 http://www.nutzam.com/wiki/img/emma.png
 
@@ -202,7 +62,7 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 
 <p align="right">[#Top]</p>
 =`文档`=
-修改了很多文档 ...
+没有更新
 
 ----
 
@@ -221,33 +81,17 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 <font color="#CCCCCC"><i>贡献列表，我已经写了一个小程序，根据 Issue 列表来自动统计... </i></font>
 
 ||贡献者||问题||博客||支持||代码||示例||文档||测试||
-||Toni.xutao||O||-||-||-||-||-||-||
-||caji.net||O||-||-||-||-||-||-||
+||Gevin||O||O||-||-||-||-||-||
+||Jay 蓝色幽默||O||-||-||-||-||-||-||
 ||conanca||O||-||-||-||-||-||-||
-||feiyan||O||-||-||-||-||-||-||
-||fjayblue||O||-||-||-||-||-||-||
-||haoyoushuai1986||O||-||-||-||-||-||-||
-||hongchongyuan||O||-||-||-||-||-||-||
-||hzzdong||O||-||-||-||-||-||-||
-||jentrees2008||O||-||-||-||-||-||-||
-||jinghui70||O||-||-||-||-||-||-||
-||juqkai||O||-||O||O||-||O||O||
-||liuxiaogang1987||O||-||-||-||-||-||-||
-||lwk0571||O||-||-||-||-||-||-||
-||mamacmm||O||O||-||-||-||-||O||
-||ming300||O||-||-||-||-||-||-||
-||muyushi85||O||-||-||-||-||-||-||
-||shao0707||O||-||-||-||-||-||-||
-||shine||-||-||-||-||O||-||-||
-||superhanliu||O||-||-||-||-||-||-||
-||superxlm1985||O||-||-||-||-||-||-||
+||fnet123||O||-||-||-||-||-||-||
+||lAndRaxeE||O||-||-||-||-||-||-||
+||nneverwei||O||-||-||-||-||-||-||
 ||wangyingdong||O||-||-||-||-||-||-||
-||wendal||O||O||O||O||O||O||O||
-||windywany||O||-||-||-||-||-||-||
-||ywjno.dev||O||-||-||-||-||-||-||
-||zhuyingxi||O||-||-||-||-||-||-||
-||zozoh||O||-||O||O||O||O||O||
-||Jay 蓝色幽默||O||-||-||O||-||-||O||
+||wendal||O||O||O||O||O||-||O||
+||zozoh||O||-||O||O||-||-||O||
+||幸福的旁边||O||-||-||-||-||-||-||
+||胖五||-||O||-||-||-||-||-||
 
 另外，很多朋友都在：
 
