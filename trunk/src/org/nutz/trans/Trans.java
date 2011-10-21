@@ -9,7 +9,7 @@ import org.nutz.lang.Mirror;
  * 用模板的方式操作事务
  * 
  * @author zozoh(zozohtnt@gmail.com)
- * 
+ * @author wendal(wendal1985@gmail.com)
  */
 public abstract class Trans {
 

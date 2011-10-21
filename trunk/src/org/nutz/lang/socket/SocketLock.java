@@ -9,8 +9,11 @@ public class SocketLock {
 
 	private boolean stop;
 
-	public synchronized void setStop(boolean stop) {
-		this.stop = stop;
+	/**
+	 * 一旦设置为true,就不允许取消
+	 */
+	public synchronized void setStop() {
+		this.stop = true;
 	}
 
 	public synchronized boolean isStop() {

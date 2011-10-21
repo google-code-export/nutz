@@ -2,18 +2,23 @@ package org.nutz.dao.test.normal;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.nutz.dao.Chain;
+import org.nutz.castor.Castors;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.DaoException;
 import org.nutz.dao.Sqls;
 import org.nutz.dao.entity.Entity;
+import org.nutz.dao.entity.Record;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.test.DaoCase;
+import org.nutz.dao.test.meta.Abc;
 import org.nutz.dao.test.meta.Pet;
 import org.nutz.dao.test.meta.PetObj;
 import org.nutz.dao.test.meta.SimplePOJO;
@@ -32,6 +37,19 @@ public class SimpleDaoTest extends DaoCase {
 			pet.setNickName("alias_" + i);
 			dao.insert(pet);
 		}
+	}
+
+	@Test
+	public void test_simple_fetch_record() {
+		Pet pet = Pet.create("abc");
+		long now = System.currentTimeMillis();
+		pet.setBirthday(Castors.me().castTo(now, Timestamp.class));
+		dao.insert(pet);
+
+		List<Record> pets = dao.query("t_pet", null, null);
+		assertEquals(1, pets.size());
+		assertEquals("abc", pets.get(0).getString("name"));
+		assertEquals(now / 1000, pets.get(0).getTimestamp("birthday").getTime() / 1000);
 	}
 
 	@Test
@@ -150,5 +168,33 @@ public class SimpleDaoTest extends DaoCase {
 		dao.insert(p);
 		p.setSex("东方不败");
 		dao.update(p);
+	}
+
+	@Test
+	public void test_order_by() {
+		dao.create(Abc.class, true);
+		Abc a = new Abc();
+		a.setName("ccc");
+		dao.insert(a);
+		a.setName("abc");
+		dao.insert(a);
+		dao.query(Abc.class, Cnd.where("id", ">", "-1").asc("name"), null);
+	}
+
+	@Test
+	public void test_clear() {
+		dao.create(Pet.class, true);
+		dao.insert(Pet.create("Wendal"));
+		dao.insert(Pet.create("Wendal2"));
+		dao.insert(Pet.create("Wendal3"));
+		dao.insert(Pet.create("Wendal4"));
+		dao.insert(Pet.create("Wendal5"));
+		assertEquals(5, dao.count(Pet.class));
+		assertEquals(5, dao.clear(Pet.class));
+	}
+	
+	@Test
+	public void test_chain_insert() {
+		dao.insert(Pet.class, Chain.make("name", "wendal").add("nickName", "asfads"));
 	}
 }

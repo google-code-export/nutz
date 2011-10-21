@@ -20,5 +20,11 @@ public @interface JsonField {
 	 * @return 是否忽略这个字段
 	 */
 	boolean ignore() default false;
+	
+	@Deprecated
+	String by() default "";
+	
+	String getBy() default "";
 
+	String createBy() default "";
 }
