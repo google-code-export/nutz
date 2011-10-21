@@ -4,13 +4,15 @@
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *zozoh* (<font color="#080"> zozohtnt@gmail.com </font>)</p>
 <wiki:toc max_depth="2"/>
+----
 
 <p align="right">[#Top]</p>
 =`为什么需要过滤字段`=
-某些时候，尤其是在更新对象的时候，用户希望忽略某些字段。通过注解[dao_annotations Nutz.Dao 实体注解 ]<font color="#AA7744"><b>@Readonly </b></font>可以达到这个目的。但是更多的时候，对于 POJO 对象，只有在运行时，用户的程序才能决定哪些字段更新，哪些不更新。<font color="#AA7744"><b>@Readonly </b></font>注解可就达不到这个目的了。
+某些时候，尤其是在更新对象的时候，用户希望忽略某些字段。通过注解[dao_annotations Nutz.Dao 实体注解 ]<font color="#AA7744"><b>@Readonly </b></font>可以达到 这个目的。但是更多的时候，对于 POJO 对象，只有在运行时，用户的程序才能决定哪些字段更新，哪些不更新。<font color="#AA7744"><b>@Readonly </b></font>注解可就达不到这个 目的了。
 
 怎么办呢？ Nutz.Dao 提供了类似于[dao_dynamic_table_name 动态表名 ]的解决办法。
 
+----
 
 <p align="right">[#Top]</p>
 =`如何过滤字段的例子`=
@@ -29,26 +31,124 @@ FieldFilter.create(Pet.class, "id|name").run(new Atom() {
 
 
 
+----
 
 <p align="right">[#Top]</p>
-=`关于 FieldFilter`=
-类 org.nutz.dao.FieldFilter  提供了静态创建函数 create。 对于 FieldFilter 类的实例，也提供了 set 方法，可以设置什么字段可以被过滤。又提供run 函数，接受一个 org.nutz.trans.Atom 类型的参数。
+=`字段过滤器的原理`=
+字段过滤，不过是要在一个地方记录一下下面两个信息：
 
-http://www.nutzam.com/wiki/img/funcs_field_filter.png
+      # 对什么实体
+      # 过滤哪些字段
+`并且它希望 Nutz.Dao 自行能获取到这些信息。当然，ThreadLocal 就是一个很好的选择。实际上，你如果看看 FieldFilter 里面的方法，你其实就能猜到。为了能为多个实体保存字段过滤配置信息，它实际上在ThreadLoacal 里保存了自身的一个实例，同时，它自己有一个私有的  Map<Class<?>, FieldMatcher>，具体的，你可以看 FieldFilter 这个类的定义: `
 
-`在调用 run 函数之前，你需要通过 set 方法（或者直接 FilterFilter.create 传入的参数）你可以设定一组名值对，其中以 POJO 的 Class<?> 为键，以一个 FieldMatcher 对象为值。 FieldMatcher 对象有三个字段： `
+{{{
+public class FieldFilter {
 
-http://www.nutzam.com/wiki/img/funcs_field_matcher.png
+    ...
+    private static ThreadLocal<FieldFilter> FF = new ThreadLocal<FieldFilter>();
+    ...
+    private Map<Class<?>, FieldMatcher> map;
+    ...
 
-实际上，FieldFilter 记录了一组配置的信息，对于每个 POJO 对象，都有三个值
+}}}
 
-      # actived
-      # locked
-      # ignoreNull
-其中，actived 和 locked 是[http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html java.util.regex.Pattern ]（<font color="#008800"><u>正则表达式 </u></font>）型字段。匹配的是一个 POJO 的的字段名。
+而且既然在 ThreadLocal 设置了数据，它就不得不考虑如何让你清除这个数据。因此，它的写法也保证了你一定会清掉你的数据了。
 
-      # 如果 actived 不为 null，没有被其匹配上的字段在 Nutz.Dao 操作的时候会被忽略
-      # 如果 locked 不为 null，被其匹配上的字段在 Nutz.Dao 操作的时候会被忽略
-      # 如果 ignoreNull 为 true， 在 Nutz.Dao 操作的时候， 值为 null 的字段会被忽略
-你可以根据自己的需要，按照 POJO 类型来设置具体哪些字段被忽略。
+{{{
+FieldFilter ... run(new Atom(){   <-- 开始将自身加入 ThreadLocal
+    public void run(){
+        // 这里是你的代码，你的 Dao 调用都会得到 ThreadLocal 中你对于实体字段过滤的设置
+    }
+});   <-- run 方法结束前，会从 ThreadLocal 清除自身
+}}}
+
+
+
+----
+
+<p align="right">[#Top]</p>
+=`字段过滤器的创建`=
+下面是一个最简单和常用的例子：
+
+{{{
+FieldFilter.create(Pet.class, "id|name").run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
+
+      * 这样，无论你查询或者更新等操作，对 Pet 这个实体只会针对能被正则表达式 "id|name" 匹配的字段进行操作
+          * 实际上，上例的正则表达式表示:<font color="#FF0000"> 所有包括 id 和 name 字符的字段 </font>
+      * 如果你想仅仅让 id 和 name 字段受到匹配，你的正则表达式最好写的严格一些，比如 "^id|name$"
+      * 当然，SQL 的条件部分不会受到字段过滤器的影响
+如果你读完上面的介绍，你应该就很了解字段过滤器如何使用了，但是你可能还有个几个小疑问:
+
+      * 如果我字段比较多怎么办呢？
+      * 如果我想忽略所有之为空的字段怎么办呢？
+      * 如果我想同时为多个实体设置字段过滤怎么办呢？
+
+<p align="right">[#Top]</p>
+==`忽略少数字段`==
+{{{
+FieldFilter.lock(Pet.class, "last|age").run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
+
+
+
+
+<p align="right">[#Top]</p>
+==`忽略空值`==
+{{{
+FieldFilter.create(Pet.class, true).run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
+
+
+
+
+<p align="right">[#Top]</p>
+==`保留几个字段且忽略空值`==
+{{{
+FieldFilter.create(Pet.class,"id|name|age|last", true).run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
+
+
+
+
+<p align="right">[#Top]</p>
+==`忽略少数字段且忽略空值`==
+{{{
+FieldFilter.create(Pet.class, null, "age|last", true).run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
+
+
+
+
+<p align="right">[#Top]</p>
+==`为多个实体设置字段过滤`==
+{{{
+FieldFilter.create(Pet.class, true)
+           .set(Master.class, "id|name")
+           .run(new Atom(){
+    public void run(){
+        // TODO 你的 DAO 操作代码
+    }
+});
+}}}
 

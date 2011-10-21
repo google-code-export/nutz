@@ -153,9 +153,6 @@ System.out.println(El.eval("3+2*5"));
 
 
 {{{
-System.out.println(El.eval("  abc  ".trim()));
-// 输出为  abc
-
 System.out.println(El.eval("trim(\"  abc  \")"));
 // 输出为  abc
 }}}
@@ -186,7 +183,7 @@ System.out.println(El.eval(context,"pet.name"));
 {{{
 Context context = new Context();
 Pet pet = new Pet();
-
+context.set("pet",pet);
 El.eval(context, "pet.setName('XiaoBai')");
 
 System.out.println(El.eval(context,"pet.getName()"));
