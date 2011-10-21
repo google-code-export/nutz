@@ -32,7 +32,7 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 	public void formatQuery(Pojo pojo) {
 		Pager pager = pojo.getContext().getPager();
 		// 需要进行分页
-		if (pager != null)
+		if (null != pager && pager.getPageNumber()>0)
 			pojo.append(Pojos.Items.wrapf(" LIMIT %d, %d", pager.getOffset(), pager.getPageSize()));
 	}
 
@@ -46,7 +46,7 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 			else if (width <= 4) {
 				return "TINYINT(" + (width * 4) + ")";
 			} else if (width <= 8) {
-				return "INT(" + (width * 4) + ")";
+				return "INT(" + (width * 4) + ")"; 
 			}
 			return "BIGINT(" + (width * 4) + ")";
 		}
@@ -73,7 +73,7 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 				if (mf.isAutoIncreasement())
 					sb.append(" AUTO_INCREMENT");
 				if (mf.hasDefaultValue())
-					sb.append(" DEFAULT '").append(mf.getDefaultValue(null)).append('\'');
+					sb.append(" DEFAULT '").append(getDefaultValue(mf)).append('\'');
 			}
 			sb.append(',');
 		}

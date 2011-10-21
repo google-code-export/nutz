@@ -47,7 +47,7 @@ public class HsqldbJdbcExpert extends AbstractJdbcExpert {
 				else if (mf.isNotNull())
 					sb.append(" NOT NULL");
 				if (mf.hasDefaultValue())
-					sb.append(" DEFAULT '").append(mf.getDefaultValue(null)).append('\'');
+					sb.append(" DEFAULT '").append(getDefaultValue(mf)).append('\'');
 			}
 			sb.append(',');
 		}
@@ -101,10 +101,12 @@ public class HsqldbJdbcExpert extends AbstractJdbcExpert {
 
 	public void formatQuery(Pojo pojo) {
 		Pager pager = pojo.getContext().getPager();
-		if (pager == null)
-			return;
-		// See http://hsqldb.org/doc/guide/ch09.html#select-section
-		pojo.append(Pojos.Items.wrapf(" LIMIT %d offset %d", pager.getPageSize(), pager.getOffset()));
+		if (null != pager && pager.getPageNumber() > 0) {
+			// See http://hsqldb.org/doc/guide/ch09.html#select-section
+			pojo.append(Pojos.Items.wrapf(	" LIMIT %d offset %d",
+											pager.getPageSize(),
+											pager.getOffset()));
+		}
 	}
 
 	protected String createResultSetMetaSql(Entity<?> en) {

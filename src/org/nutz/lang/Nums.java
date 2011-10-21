@@ -1,7 +1,5 @@
 package org.nutz.lang;
 
-import java.util.Arrays;
-
 /**
  * 关于数的一些帮助函数
  * 
@@ -37,7 +35,7 @@ public abstract class Nums {
 
 	/**
 	 * 整合两个整数数组为一个数组
-	 * 
+	 * <b>这个方法在JDK5不可用!!<b/>
 	 * @param ary
 	 *            整数数组
 	 * @param is
@@ -47,11 +45,12 @@ public abstract class Nums {
 	public static int[] join(int[] ary, int... is) {
 		if (null == ary)
 			return is;
-		int[] re = Arrays.copyOf(ary, ary.length + is.length);
+		int length = ary.length + is.length;
+		int[] re = new int[length];
+		System.arraycopy(ary, 0, re, 0, Math.min(ary.length, length));
 		int i = ary.length;
 		for (int num : is)
 			re[i++] = num;
 		return re;
 	}
-
 }

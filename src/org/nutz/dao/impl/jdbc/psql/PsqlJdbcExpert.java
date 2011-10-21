@@ -28,7 +28,7 @@ public class PsqlJdbcExpert extends AbstractJdbcExpert {
 	public void formatQuery(Pojo pojo) {
 		Pager pager = pojo.getContext().getPager();
 		// 需要进行分页
-		if (pager != null)
+		if (null != pager && pager.getPageNumber()>0)
 			pojo.append(Pojos.Items.wrapf(	" LIMIT %d OFFSET %d",
 											pager.getPageSize(),
 											pager.getOffset()));
@@ -57,7 +57,7 @@ public class PsqlJdbcExpert extends AbstractJdbcExpert {
 					if (mf.isAutoIncreasement())
 						throw Lang.noImplement();
 					if (mf.hasDefaultValue())
-						sb.append(" DEFAULT '").append(mf.getDefaultValue(null)).append('\'');
+						sb.append(" DEFAULT '").append(getDefaultValue(mf)).append('\'');
 				}
 			}
 			sb.append(',');

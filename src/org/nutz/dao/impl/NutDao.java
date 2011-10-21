@@ -28,6 +28,8 @@ import org.nutz.dao.impl.link.DoInsertLinkVisitor;
 import org.nutz.dao.impl.link.DoInsertRelationLinkVisitor;
 import org.nutz.dao.impl.link.DoUpdateLinkVisitor;
 import org.nutz.dao.impl.link.DoUpdateRelationLinkVisitor;
+import org.nutz.dao.impl.sql.pojo.PojoEachEntityCallback;
+import org.nutz.dao.impl.sql.pojo.PojoEachRecordCallback;
 import org.nutz.dao.impl.sql.pojo.PojoFetchEntityCallback;
 import org.nutz.dao.impl.sql.pojo.PojoFetchIntCallback;
 import org.nutz.dao.impl.sql.pojo.PojoFetchRecordCallback;
@@ -41,6 +43,7 @@ import org.nutz.dao.sql.PojoCallback;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Daos;
 import org.nutz.dao.util.Pojos;
+import org.nutz.lang.ContinueLoop;
 import org.nutz.lang.Each;
 import org.nutz.lang.ExitLoop;
 import org.nutz.lang.Lang;
@@ -54,9 +57,13 @@ public class NutDao extends DaoSupport implements Dao {
 
 	private PojoCallback _pojo_fetchEntity;
 
+	private PojoCallback _pojo_eachEntity;
+
 	private PojoCallback _pojo_queryRecord;
 
 	private PojoCallback _pojo_fetchRecord;
+
+	private PojoCallback _pojo_eachRecord;
 
 	private PojoCallback _pojo_fetchInt;
 
@@ -67,9 +74,11 @@ public class NutDao extends DaoSupport implements Dao {
 		// 设置默认的回调
 		_pojo_queryEntity = new PojoQueryEntityCallback();
 		_pojo_fetchEntity = new PojoFetchEntityCallback();
+		_pojo_eachEntity = new PojoEachEntityCallback();
 		_pojo_fetchInt = new PojoFetchIntCallback();
 		_pojo_queryRecord = new PojoQueryRecordCallback();
 		_pojo_fetchRecord = new PojoFetchRecordCallback();
+		_pojo_eachRecord = new PojoEachRecordCallback();
 	}
 
 	public NutDao(DataSource dataSource) {
@@ -222,32 +231,44 @@ public class NutDao extends DaoSupport implements Dao {
 		return opt.getUpdateCount();
 	}
 
-	public <T> T updateWith(T obj, String regex) {
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public <T> T updateWith(T obj, final String regex) {
+		if (null == obj)
 			return null;
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
 
-		opt.entity.visitOne(obj, regex, doUpdate(opt));
-		opt.addUpdate();
-		opt.entity.visitMany(obj, regex, doUpdate(opt));
-		opt.entity.visitManyMany(obj, regex, doUpdate(opt));
+				opt.entity.visitOne(ele, regex, doUpdate(opt));
+				opt.addUpdate();
+				opt.entity.visitMany(ele, regex, doUpdate(opt));
+				opt.entity.visitManyMany(ele, regex, doUpdate(opt));
 
-		opt.exec();
-
+				opt.exec();
+			}
+		});
 		return obj;
 	}
 
-	public <T> T updateLinks(T obj, String regex) {
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public <T> T updateLinks(T obj, final String regex) {
+		if (null == obj)
 			return null;
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
 
-		opt.entity.visitOne(obj, regex, doUpdate(opt));
-		opt.entity.visitMany(obj, regex, doUpdate(opt));
-		opt.entity.visitManyMany(obj, regex, doUpdate(opt));
+				opt.entity.visitOne(ele, regex, doUpdate(opt));
+				opt.entity.visitMany(ele, regex, doUpdate(opt));
+				opt.entity.visitManyMany(ele, regex, doUpdate(opt));
 
-		opt.exec();
-
+				opt.exec();
+			}
+		});
 		return obj;
 	}
 
@@ -293,34 +314,47 @@ public class NutDao extends DaoSupport implements Dao {
 		return opt.getUpdateCount();
 	}
 
-	public int deleteWith(Object obj, String regex) {
-		// TODO 天啊,又有4个正则表达式,能快起来不?
-		// TODO zzh: NutEntity 会缓存正则表达式计算的结果的，会很快的
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public int deleteWith(Object obj, final String regex) {
+		if (null == obj)
 			return 0;
+		final int[] re = new int[1];
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
+				opt.entity.visitMany(ele, regex, doDelete(opt));
+				opt.entity.visitManyMany(ele, regex, doClearRelationByLinkedField(opt));
+				opt.entity.visitManyMany(ele, regex, doDelete(opt));
+				opt.addDeleteSelfOnly();
+				opt.entity.visitOne(ele, regex, doDelete(opt));
 
-		opt.entity.visitMany(obj, regex, doDelete(opt));
-		opt.entity.visitManyMany(obj, regex, doClearRelationByLinkedField(opt));
-		opt.entity.visitManyMany(obj, regex, doDelete(opt));
-		opt.addDeleteSelfOnly();
-		opt.entity.visitOne(obj, regex, doDelete(opt));
-
-		return opt.exec().getUpdateCount();
+				re[0] += opt.exec().getUpdateCount();
+			}
+		});
+		return re[0];
 	}
 
-	public int deleteLinks(Object obj, String regex) {
-		// TODO 天啊,又有4个正则表达式,能快起来不?
-		// TODO zzh: NutEntity 会缓存正则表达式计算的结果的，会很快的
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public int deleteLinks(Object obj, final String regex) {
+		if (null == obj)
 			return 0;
-		opt.entity.visitMany(obj, regex, doDelete(opt));
-		opt.entity.visitManyMany(obj, regex, doClearRelationByLinkedField(opt));
-		opt.entity.visitManyMany(obj, regex, doDelete(opt));
-		opt.entity.visitOne(obj, regex, doDelete(opt));
+		final int[] re = new int[1];
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
+				opt.entity.visitMany(ele, regex, doDelete(opt));
+				opt.entity.visitManyMany(ele, regex, doClearRelationByLinkedField(opt));
+				opt.entity.visitManyMany(ele, regex, doDelete(opt));
+				opt.entity.visitOne(ele, regex, doDelete(opt));
 
-		return opt.exec().getUpdateCount();
+				re[0] += opt.exec().getUpdateCount();
+			}
+		});
+		return re[0];
 	}
 
 	public <T> List<T> query(Class<T> classOfT, Condition cnd, Pager pager) {
@@ -334,6 +368,19 @@ public class NutDao extends DaoSupport implements Dao {
 		return pojo.getList(classOfT);
 	}
 
+	public <T> int each(Class<T> classOfT, Condition cnd, Pager pager, Each<T> callback) {
+		Pojo pojo = pojoMaker.makeQuery(holder.getEntity(classOfT))
+								.append(Pojos.Items.cnd(cnd))
+								.addParamsBy("*")
+								.setPager(pager)
+								.setAfter(_pojo_queryEntity);
+		expert.formatQuery(pojo);
+		pojo.setAfter(_pojo_eachEntity);
+		pojo.getContext().attr(Each.class.getName(), callback);
+		_exec(pojo);
+		return pojo.getInt();
+	}
+
 	public List<Record> query(String tableName, Condition cnd, Pager pager) {
 		Pojo pojo = pojoMaker.makeQuery(tableName)
 								.addParamsBy("*")
@@ -343,6 +390,18 @@ public class NutDao extends DaoSupport implements Dao {
 		pojo.setAfter(_pojo_queryRecord);
 		_exec(pojo);
 		return pojo.getList(Record.class);
+	}
+
+	public int each(String tableName, Condition cnd, Pager pager, Each<Record> callback) {
+		Pojo pojo = pojoMaker.makeQuery(tableName)
+								.addParamsBy("*")
+								.setPager(pager)
+								.append(Pojos.Items.cnd(cnd));
+		expert.formatQuery(pojo);
+		pojo.setAfter(_pojo_eachRecord);
+		pojo.getContext().attr(Each.class.getName(), callback);
+		_exec(pojo);
+		return pojo.getInt();
 	}
 
 	public <T> T fetch(Class<T> classOfT, long id) {
@@ -409,14 +468,21 @@ public class NutDao extends DaoSupport implements Dao {
 		return null;
 	}
 
-	public <T> T fetchLinks(T obj, String regex) {
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public <T> T fetchLinks(T obj, final String regex) {
+		if (null == obj)
 			return null;
-		opt.entity.visitMany(obj, regex, doFetch(opt));
-		opt.entity.visitManyMany(obj, regex, doFetch(opt));
-		opt.entity.visitOne(obj, regex, doFetch(opt));
-		opt.exec();
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
+				opt.entity.visitMany(ele, regex, doFetch(opt));
+				opt.entity.visitManyMany(ele, regex, doFetch(opt));
+				opt.entity.visitOne(ele, regex, doFetch(opt));
+				opt.exec();
+			}
+		});
 		return obj;
 	}
 
@@ -440,16 +506,22 @@ public class NutDao extends DaoSupport implements Dao {
 		return clear(tableName, null);
 	}
 
-	public <T> T clearLinks(T obj, String regex) {
-		EntityOperator opt = this._optBy(obj);
-		if (null == opt)
+	public <T> T clearLinks(T obj, final String regex) {
+		if (null == obj)
 			return null;
-		opt.entity.visitMany(obj, regex, doClear(opt));
-		opt.entity.visitManyMany(obj, regex, doClearRelationByHostField(opt));
-		opt.entity.visitOne(obj, regex, doClear(opt));
+		Lang.each(obj, new Each<Object>() {
+			public void invoke(int index, Object ele, int length) throws ExitLoop, ContinueLoop,
+					LoopException {
+				EntityOperator opt = _optBy(ele);
+				if (null == opt)
+					return;
+				opt.entity.visitMany(ele, regex, doClear(opt));
+				opt.entity.visitManyMany(ele, regex, doClearRelationByHostField(opt));
+				opt.entity.visitOne(ele, regex, doClear(opt));
 
-		opt.exec();
-
+				opt.exec();
+			}
+		});
 		return obj;
 	}
 
@@ -655,9 +727,15 @@ public class NutDao extends DaoSupport implements Dao {
 	}
 
 	EntityOperator _optBy(Object obj) {
+		// 阻止空对象
 		if (null == obj)
 			return null;
-		EntityOperator re = _opt(holder.getEntityBy(obj));
+		// 对象是否有内容，这里会考虑集合与数组
+		Entity<?> en = holder.getEntityBy(obj);
+		if (null == en)
+			return null;
+		// 创建操作对象
+		EntityOperator re = _opt(en);
 		re.myObj = obj.getClass().isArray() ? Lang.array2list((Object[]) obj) : obj;
 		return re;
 	}

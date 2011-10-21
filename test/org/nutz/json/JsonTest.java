@@ -23,6 +23,7 @@ import org.nutz.json.meta.JB;
 import org.nutz.json.meta.JC;
 import org.nutz.json.meta.JMapItem;
 import org.nutz.json.meta.OuterClass;
+import org.nutz.json.meta.TestBy;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Streams;
 import org.nutz.lang.stream.StringInputStream;
@@ -31,6 +32,19 @@ import org.nutz.lang.util.NutType;
 
 @SuppressWarnings({"unchecked"})
 public class JsonTest {
+
+	@Test
+	public void test_toJson_with_super_field() {
+//		Xyz x = new Xyz();
+//		x.id = 100;
+//		x.name = "haha";
+//		x.setXyz("!!!");
+//		String str = Json.toJson(x);
+//		Xyz x2 = Json.fromJson(Xyz.class, str);
+//		assertEquals(x.getXyz(), x2.getXyz());
+//		assertEquals(x.id, x2.id);
+//		assertEquals(x.name, x2.name);
+	}
 
 	@Test
 	public void test_map_class_item() {
@@ -619,54 +633,74 @@ public class JsonTest {
 		assertEquals(1, msgList.get(0).get("a").intValue());
 		assertEquals(2, msgList.get(1).get("b").intValue());
 	}
-	
-	@Test(timeout=5000,expected=Throwable.class)
+
+	@Test(timeout = 5000, expected = Throwable.class)
 	public void test_bad_json() {
-//		Json.fromJson(LinkedHashMap.class, "{persons: [{name:'zzh'}, {name:'wendal'}]");
-		//Json.fromJson(LinkedHashMap.class, "{persons: [{name:'zzh'}, {name:'wendal'}}");
-		//Json.fromJson(LinkedHashMap.class, "{persons: [{name:'zzh'}, {name'wendal'}]}");
-		//Json.fromJson(LinkedHashMap.class, "{persons: [{name:'zzh', {name:'wendal'}]}");
-		//Json.fromJson(LinkedHashMap.class, "{persons: [{name:'zzh'}, {name:wendal'}]}");
+		// Json.fromJson(LinkedHashMap.class,
+		// "{persons: [{name:'zzh'}, {name:'wendal'}]");
+		// Json.fromJson(LinkedHashMap.class,
+		// "{persons: [{name:'zzh'}, {name:'wendal'}}");
+		// Json.fromJson(LinkedHashMap.class,
+		// "{persons: [{name:'zzh'}, {name'wendal'}]}");
+		// Json.fromJson(LinkedHashMap.class,
+		// "{persons: [{name:'zzh', {name:'wendal'}]}");
+		// Json.fromJson(LinkedHashMap.class,
+		// "{persons: [{name:'zzh'}, {name:wendal'}]}");
 		Json.fromJson(LinkedHashMap.class, "{persons: [123,,,,,]}");
 	}
-	
+
 	@Test
 	public void test_render_char() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("charX", 'c');
 		assertEquals("{\"charX\":\"c\"}", Json.toJson(map, JsonFormat.compact()));
 	}
-	
-	@Test //For issue 474
+
+	@Test
+	// For issue 474
 	public void test_inner_class() {
 		JC c = new JC();
 		String str = Json.toJson(c);
-		Map<String, Map<String,Object>> map = (Map<String, Map<String, Object>>) Json.fromJson(str);
+		Map<String, Map<String, Object>> map = (Map<String, Map<String, Object>>) Json.fromJson(str);
 		assertEquals(1, map.get("ixx").get("abc"));
 	}
-	
-	//For issue 487
+
+	// For issue 487
 	@Test
 	public void test_map_null() {
 		String j = "{map:{map:null,m2:{abc:123}}}";
 		Map<String, Map<String, Object>> map = (Map<String, Map<String, Object>>) Json.fromJson(j);
 		assertNull(map.get("map").get("map"));
 	}
-	
+
 	@Test
-	public void test_from_list(){
-		List<Abc> list = (List<Abc>) Json.fromJson(NutType.list(Abc.class), Streams.fileInr("org/nutz/json/list.txt"));
+	public void test_from_list() {
+		List<Abc> list = (List<Abc>) Json.fromJson(	NutType.list(Abc.class),
+													Streams.fileInr("org/nutz/json/list.txt"));
 		assertNotNull(list);
 		assertEquals(2, list.size());
 		assertEquals("nutz", list.get(0).name);
 		assertEquals("wendal", list.get(1).name);
 	}
-	
+
 	@Test
-	public void test_sp(){
+	public void test_sp() {
 		String j = "{'abc':'http:\\/\\/wendal.net'}";
 		Map<String, Object> map = Json.fromJson(Map.class, j);
 		assertEquals("http://wendal.net", map.get("abc"));
 	}
+	
+	@Test
+	public void test_by() {
+		TestBy b = new TestBy();
+		b.setId(1000);
+		Map<String, Object> map = Json.fromJson(Map.class,Json.toJson(b));
+		assertEquals(1000, map.get("id"));
+		assertEquals("I am OK", map.get("obj"));
+		assertEquals("Wendal", map.get("obj2"));
+	}
+	
+	public static String justOK(Object obj){
+		return "I am OK";
+	}
 }
-

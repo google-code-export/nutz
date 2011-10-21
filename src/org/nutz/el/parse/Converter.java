@@ -2,7 +2,6 @@ package org.nutz.el.parse;
 
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -20,7 +19,7 @@ import org.nutz.lang.Lang;
 
 /**
  * 转换器,也就是用来将字符串转换成队列.
- * @ JKTODO 这个类的名字不知道取什么好...
+ * TODO 这个类的名字不知道取什么好...
  * @author juqkai(juqkai@gmail.com)
  *
  */
@@ -32,7 +31,7 @@ public class Converter {
 	//表达式项
 	private Queue<Object> itemCache;
 	//括号栈
-	private Deque<BracketType> bracket = new LinkedList<BracketType>();
+	private LinkedList<BracketType> bracket = new LinkedList<BracketType>();
 	
 	//上一个数据
 	private Object prev = null;

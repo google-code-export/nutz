@@ -16,8 +16,6 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Pojo;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Pojos;
-import org.nutz.log.Log;
-import org.nutz.log.Logs;
 
 public class OracleJdbcExpert extends AbstractJdbcExpert {
 
@@ -33,8 +31,6 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 									+ " SELECT ${T}_${F}_seq.nextval into :new.${F} FROM dual;"
 									+ " END ${T}_${F}_ST;";
 
-	private static final Log log = Logs.get();
-
 	public OracleJdbcExpert(JdbcExpertConfigFile conf) {
 		super(conf);
 	}
@@ -47,7 +43,6 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 
 	public boolean createEntity(Dao dao, Entity<?> en) {
 		StringBuilder sb = new StringBuilder("CREATE TABLE " + en.getTableName() + "(");
-		boolean pked = false;
 		// 创建字段
 		for (MappingField mf : en.getMappingFields()) {
 			sb.append('\n').append(mf.getColumnName());
@@ -58,19 +53,12 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 			}
 			// 普通字段
 			else {
-				if (mf.isPk())
-					if (pked)
-						log.info("Too many primary keys, ignore!!"); // TODO
-																		// 啥情况??!!
-																		// 复合主键?!
-					else {
-						sb.append(" primary key ");
-						pked = true;
-					}
+				if (mf.isPk() && en.getPks().size() == 1)
+					sb.append(" primary key ");
 				if (mf.isNotNull())
 					sb.append(" NOT NULL");
 				if (mf.hasDefaultValue())
-					sb.append(" DEFAULT '").append(mf.getDefaultValue(null)).append('\'');
+					sb.append(" DEFAULT '").append(getDefaultValue(mf)).append('\'');
 				if (mf.isUnsigned()) // 有点暴力
 					sb.append(" Check ( ").append(mf.getColumnName()).append(" >= 0)");
 			}
@@ -97,7 +85,7 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 			}
 			pkNames.setLength(pkNames.length() - 1);
 			pkNames2.setLength(pkNames2.length() - 1);
-			String sql = String.format(	"alter table %s add constraint primary_key_%s primary key (%s);",
+			String sql = String.format(	"alter table %s add constraint primary_key_%s primary key (%s)",
 										en.getTableName(),
 										pkNames2,
 										pkNames);
@@ -136,7 +124,7 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 	public void formatQuery(Pojo pojo) {
 		Pager pager = pojo.getContext().getPager();
 		// 需要进行分页
-		if (pager != null) {
+		if (null != pager && pager.getPageNumber() > 0) {
 			pojo.insertFirst(Pojos.Items.wrap("SELECT * FROM (SELECT T.*, ROWNUM RN FROM ("));
 			pojo.append(Pojos.Items.wrapf(	") T WHERE ROWNUM <= %d) WHERE RN > %d",
 											pager.getOffset() + pager.getPageSize(),
