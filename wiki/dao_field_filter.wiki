@@ -19,7 +19,7 @@
 如下代码，将只更新 Pet 的 id 和 name 字段：
 
 {{{
-FieldFilter.create(Pet.class, "id|name").run(new Atom() {
+FieldFilter.create(Pet.class, "^id|name$").run(new Atom() {
 	public void run() {
 		Pet pet = dao.fetch(Pet.class, 24);
 		pet.setName("ABC");
@@ -71,7 +71,7 @@ FieldFilter ... run(new Atom(){   <-- 开始将自身加入 ThreadLocal
 下面是一个最简单和常用的例子：
 
 {{{
-FieldFilter.create(Pet.class, "id|name").run(new Atom(){
+FieldFilter.create(Pet.class, "^id|name$").run(new Atom(){
     public void run(){
         // TODO 你的 DAO 操作代码
     }
@@ -91,7 +91,7 @@ FieldFilter.create(Pet.class, "id|name").run(new Atom(){
 <p align="right">[#Top]</p>
 ==`忽略少数字段`==
 {{{
-FieldFilter.lock(Pet.class, "last|age").run(new Atom(){
+FieldFilter.lock(Pet.class, "^last|age$").run(new Atom(){
     public void run(){
         // TODO 你的 DAO 操作代码
     }
@@ -117,7 +117,7 @@ FieldFilter.create(Pet.class, true).run(new Atom(){
 <p align="right">[#Top]</p>
 ==`保留几个字段且忽略空值`==
 {{{
-FieldFilter.create(Pet.class,"id|name|age|last", true).run(new Atom(){
+FieldFilter.create(Pet.class,"^id|name|age|last$", true).run(new Atom(){
     public void run(){
         // TODO 你的 DAO 操作代码
     }
@@ -130,7 +130,7 @@ FieldFilter.create(Pet.class,"id|name|age|last", true).run(new Atom(){
 <p align="right">[#Top]</p>
 ==`忽略少数字段且忽略空值`==
 {{{
-FieldFilter.create(Pet.class, null, "age|last", true).run(new Atom(){
+FieldFilter.create(Pet.class, null, "^age|last$", true).run(new Atom(){
     public void run(){
         // TODO 你的 DAO 操作代码
     }
@@ -144,7 +144,7 @@ FieldFilter.create(Pet.class, null, "age|last", true).run(new Atom(){
 ==`为多个实体设置字段过滤`==
 {{{
 FieldFilter.create(Pet.class, true)
-           .set(Master.class, "id|name")
+           .set(Master.class, "^id|name$")
            .run(new Atom(){
     public void run(){
         // TODO 你的 DAO 操作代码
