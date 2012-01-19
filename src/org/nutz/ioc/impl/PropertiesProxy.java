@@ -1,6 +1,7 @@
 package org.nutz.ioc.impl;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -79,7 +80,7 @@ public class PropertiesProxy {
 
 	public int getInt(String key, int defaultValue) {
 		try {
-			return Integer.parseInt(key);
+			return Integer.parseInt(get(key));
 		}
 		catch (NumberFormatException e) {
 			return defaultValue;
@@ -92,5 +93,13 @@ public class PropertiesProxy {
 
 	public String getTrim(String key, String defaultValue) {
 		return Strings.trim(get(key, defaultValue));
+	}
+
+	public List<String> getKeys() {
+		return mp.keys();
+	}
+
+	public Collection<String> getValues() {
+		return mp.values();
 	}
 }

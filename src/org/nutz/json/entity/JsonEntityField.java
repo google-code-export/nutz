@@ -1,12 +1,13 @@
 package org.nutz.json.entity;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 
 import org.nutz.json.JsonField;
-import org.nutz.json.JsonParsing;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Mirror;
+import org.nutz.lang.Objs;
 import org.nutz.lang.Strings;
 import org.nutz.lang.eject.EjectBySimpleEL;
 import org.nutz.lang.eject.Ejecting;
@@ -31,9 +32,12 @@ public class JsonEntityField {
 		JsonField jf = fld.getAnnotation(JsonField.class);
 		if (null != jf && jf.ignore())
 			return null;
+		//瞬时变量就不要持久化了
+		if (Modifier.isTransient(fld.getModifiers()))
+			return null;
 
 		JsonEntityField jef = new JsonEntityField();
-		jef.genericType = fld.getGenericType();
+	    jef.genericType = Lang.getFieldType(mirror, fld);
 		
 		//看看有没有指定获取方式
 		if (jf != null) {
@@ -78,10 +82,7 @@ public class JsonEntityField {
 
 	public Object createValue(Object holder, Object value) {
 		if (this.createBy == null)
-			return JsonParsing.convert(genericType, value);
-//		try {
-//			return genericType.getMethod(createBy, holder.getClass(), Type.class, Object.class).invoke(null, holder,genericType,value);
-//		} catch (Throwable e){}
+		    return Objs.convert(value, genericType);
 		try {
 			return holder.getClass().getMethod(createBy, Type.class, Object.class).invoke(holder, genericType, value);
 		} catch (Throwable e){

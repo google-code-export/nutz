@@ -13,5 +13,8 @@ import org.junit.runners.Suite;
 						BoneCP_Test.class,
 						SupportedFieldTypeTest.class,
 						AutoGenerateValueTest.class,
-						PkTest.class})
+						PkTest.class,
+						BinaryDaoTest.class,
+						CreateDropTableTest.class,
+						CreateTableWithCommentTest.class})
 public class AllNormal {}

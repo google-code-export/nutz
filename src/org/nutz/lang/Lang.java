@@ -1197,21 +1197,25 @@ public abstract class Lang {
 	}
 
 	/**
-	 * 取得第一个对象，无论是 数组，集合还是 Map。如果是一个一般 JAVA 对象，则返回自身
+	 * 如果是数组或集合取得第一个对象。 否则返回自身
 	 * 
 	 * @param obj
 	 *            任意对象
 	 * @return 第一个代表对象
 	 */
 	public static Object first(Object obj) {
-		final Object[] re = new Object[1];
-		each(obj, new Each<Object>() {
-			public void invoke(int i, Object obj, int length) throws ExitLoop {
-				re[0] = obj;
-				Lang.Break();
-			}
-		});
-		return re[0];
+		if (null == obj)
+			return obj;
+
+		if (obj instanceof Collection<?>) {
+			Iterator<?> it = ((Collection<?>) obj).iterator();
+			return it.hasNext() ? it.next() : null;
+		}
+
+		if (obj.getClass().isArray())
+			return Array.getLength(obj) > 0 ? Array.get(obj, 0) : null;
+
+		return obj;
 	}
 
 	/**
@@ -1268,11 +1272,38 @@ public abstract class Lang {
 	 * @param callback
 	 *            回调
 	 */
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static <T> void each(Object obj, Each<T> callback) {
+		each(obj, true, callback);
+	}
+
+	/**
+	 * 用回调的方式，遍历一个对象，可以支持遍历
+	 * <ul>
+	 * <li>数组
+	 * <li>集合
+	 * <li>Map
+	 * <li>单一元素
+	 * </ul>
+	 * 
+	 * @param obj
+	 *            对象
+	 * @param loopMap
+	 *            是否循环 Map，如果循环 Map 则主要看 callback 的 T，如果是 Map.Entry 则循环 Entry
+	 *            否循环 value。如果本值为 false， 则将 Map 当作一个完整的对象来看待
+	 * @param callback
+	 *            回调
+	 */
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	public static <T> void each(Object obj, boolean loopMap, Each<T> callback) {
 		if (null == obj || null == callback)
 			return;
 		try {
+			// 循环开始
+			if (callback instanceof Loop)
+				if (!((Loop) callback).begin())
+					return;
+
+			// 进行循环
 			Class<T> eType = Mirror.getTypeParam(callback.getClass(), 0);
 			if (obj.getClass().isArray()) {
 				int len = Array.getLength(obj);
@@ -1295,7 +1326,7 @@ public abstract class Lang {
 					catch (ExitLoop e) {
 						break;
 					}
-			} else if (obj instanceof Map) {
+			} else if (loopMap && obj instanceof Map) {
 				Map map = (Map) obj;
 				int len = map.size();
 				int i = 0;
@@ -1337,6 +1368,10 @@ public abstract class Lang {
 				}
 				catch (ContinueLoop e) {}
 				catch (ExitLoop e) {}
+
+			// 循环结束
+			if (callback instanceof Loop)
+				((Loop) callback).end();
 		}
 		catch (LoopException e) {
 			throw Lang.wrapThrow(e.getCause());
@@ -1661,6 +1696,39 @@ public abstract class Lang {
 	}
 
 	/**
+	 * 当一个类使用<T,K>来定义泛型时,本方法返回类的一个字段的具体类型。
+	 * 
+	 * @param me
+	 * @param field
+	 * @return
+	 */
+	public static Type getFieldType(Mirror<?> me, String field) throws NoSuchFieldException {
+		return getFieldType(me, me.getField(field));
+	}
+
+	/**
+	 * 当一个类使用<T,K>来定义泛型时,本方法返回类的一个字段的具体类型。
+	 * 
+	 * @param me
+	 * @param field
+	 * @return
+	 */
+	public static Type getFieldType(Mirror<?> me, Field field) {
+		Type type = field.getGenericType();
+		Type[] types = me.getGenericsTypes();
+		if (type instanceof TypeVariable && types != null && types.length > 0) {
+			Type[] tvs = me.getType().getTypeParameters();
+			for (int i = 0; i < tvs.length; i++) {
+				if (type.equals(tvs[i])) {
+					type = me.getGenericsType(i);
+					break;
+				}
+			}
+		}
+		return type;
+	}
+
+	/**
 	 * 获取一个Type类型实际对应的Class
 	 */
 	@SuppressWarnings("rawtypes")
@@ -1690,18 +1758,19 @@ public abstract class Lang {
 		}
 		return clazz;
 	}
-	
+
 	/**
 	 * 返回一个type的泛型数组, 如果没有, 则直接返回null
+	 * 
 	 * @param type
 	 * @return
 	 */
-	public static Type[] getGenericsTypes(Type type){
-	    if(type instanceof ParameterizedType){
-	        ParameterizedType pt = (ParameterizedType) type;
-	        return pt.getActualTypeArguments();
-	    }
-	    return null;
+	public static Type[] getGenericsTypes(Type type) {
+		if (type instanceof ParameterizedType) {
+			ParameterizedType pt = (ParameterizedType) type;
+			return pt.getActualTypeArguments();
+		}
+		return null;
 	}
 
 	/**

@@ -4,12 +4,17 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
 import org.nutz.json.entity.JsonEntity;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Mirror;
+import org.nutz.lang.Objs;
+import org.nutz.lang.stream.StringReader;
+import org.nutz.lang.util.NutType;
 
 public class Json {
 
@@ -71,7 +76,7 @@ public class Json {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T fromJson(Class<T> type, Reader reader) throws JsonException {
-		return (T) JsonParsing.parse(type, reader);
+		return (T) parse(type, reader);
 	}
 
 	/**
@@ -85,8 +90,12 @@ public class Json {
 	 * @throws JsonException
 	 */
 	public static Object fromJson(Type type, Reader reader) throws JsonException {
-		return JsonParsing.parse(type, reader);
+		return parse(type, reader);
 	}
+	
+	private static Object parse(Type type, Reader reader) {
+        return Objs.convert(new JsonCompile().parse(reader), type);
+    }
 
 	/**
 	 * 根据指定的类型，从输入流中生成 JSON 对象。 你的类型可以是任何 Java 对象。
@@ -132,6 +141,104 @@ public class Json {
 	 */
 	public static <T> T fromJson(Class<T> type, CharSequence cs) throws JsonException {
 		return fromJson(type, Lang.inr(cs));
+	}
+	
+	/**
+     * 从 JSON 字符串中，根据获取某种指定类型的 List 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> List<T> fromJsonAsList(Class<T> eleType, CharSequence cs){
+	    return (List<T>) fromJson(NutType.list(eleType), cs);
+	}
+	/**
+     * 从 JSON 输入流中，根据获取某种指定类型的 List 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> List<T> fromJsonAsList(Class<T> eleType, Reader reader){
+	    return (List<T>) fromJson(NutType.list(eleType), reader);
+	}
+	
+	/**
+     * 从 JSON 字符串中，根据获取某种指定类型的 数组 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> T[] fromJsonAsArray(Class<T> eleType, CharSequence cs){
+	    return (T[]) fromJson(NutType.array(eleType), cs);
+	}
+	/**
+     * 从 JSON 输入流中，根据获取某种指定类型的 数组 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> T[] fromJsonAsArray(Class<T> eleType, Reader reader){
+	    return (T[]) fromJson(NutType.array(eleType), reader);
+	}
+	/**
+     * 从 JSON 字符串中，根据获取某种指定类型的 Map 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> Map<String,T> fromJsonAsMap(Class<T> eleType, CharSequence cs){
+	    return (Map<String, T>) fromJson(NutType.mapStr(eleType), cs);
+	}
+	/**
+     * 从 JSON 输入流中，根据获取某种指定类型的 Map 对象。
+     * <p>
+     * 请参看函数 ‘<T> T fromJson(Class<T> type, Reader reader)’ 的描述
+     * 
+     * @param type
+     *            对象类型
+     * @param cs
+     *            JSON 字符串
+     * @return 特定类型的 JAVA 对象
+     * @throws JsonException
+     */
+	@SuppressWarnings("unchecked")
+    public static <T> Map<String,T> fromJsonAsMap(Class<T> eleType, Reader reader){
+	    return (Map<String, T>) fromJson(NutType.mapStr(eleType), reader);
 	}
 
 	/**
@@ -193,5 +300,16 @@ public class Json {
 			throw Lang.wrapThrow(e, JsonException.class);
 		}
 	}
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public static Object fromJsonMerge(String... srcs) {
+        List list = new ArrayList();
+        for(String src : srcs){
+            Reader reader = new StringReader(src);
+            Object obj = new JsonCompile().parse(reader);
+            list.add(obj);
+        }
+        return Objs.merge(list.toArray());
+    }
 
 }

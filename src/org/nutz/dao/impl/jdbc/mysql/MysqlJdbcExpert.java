@@ -13,6 +13,7 @@ import org.nutz.dao.impl.jdbc.AbstractJdbcExpert;
 import org.nutz.dao.jdbc.JdbcExpertConfigFile;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Pojo;
+import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Pojos;
 
 public class MysqlJdbcExpert extends AbstractJdbcExpert {
@@ -32,7 +33,7 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 	public void formatQuery(Pojo pojo) {
 		Pager pager = pojo.getContext().getPager();
 		// 需要进行分页
-		if (null != pager && pager.getPageNumber()>0)
+		if (null != pager && pager.getPageNumber() > 0)
 			pojo.append(Pojos.Items.wrapf(" LIMIT %d, %d", pager.getOffset(), pager.getPageSize()));
 	}
 
@@ -46,7 +47,7 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 			else if (width <= 4) {
 				return "TINYINT(" + (width * 4) + ")";
 			} else if (width <= 8) {
-				return "INT(" + (width * 4) + ")"; 
+				return "INT(" + (width * 4) + ")";
 			}
 			return "BIGINT(" + (width * 4) + ")";
 		}
@@ -66,15 +67,39 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 			}
 			// 普通字段
 			else {
+				// 下面的关于Timestamp处理，是因为MySql中第一出现Timestamp的话，如果没有设定default，数据库默认会设置为CURRENT_TIMESTAMP
 				if (mf.isUnsigned())
 					sb.append(" UNSIGNED");
-				if (mf.isNotNull())
+
+				if (mf.isNotNull()) {
 					sb.append(" NOT NULL");
+				} else if (mf.getColumnType() == ColType.TIMESTAMP) {
+					sb.append(" NULL");
+				}
+
 				if (mf.isAutoIncreasement())
 					sb.append(" AUTO_INCREMENT");
-				if (mf.hasDefaultValue())
-					sb.append(" DEFAULT '").append(getDefaultValue(mf)).append('\'');
+
+				if (mf.getColumnType() == ColType.TIMESTAMP) {
+					if (mf.hasDefaultValue()) {
+						sb.append(" ").append(getDefaultValue(mf));
+					} else {
+						if (mf.isNotNull()) {
+							sb.append(" DEFAULT 0");
+						} else {
+							sb.append(" DEFAULT NULL");
+						}
+					}
+				} else {
+					if (mf.hasDefaultValue())
+						sb.append(" DEFAULT '").append(getDefaultValue(mf)).append("'");
+				}
 			}
+
+			if (mf.hasColumnComment()) {
+				sb.append(" COMMENT '").append(mf.getColumnComment()).append("'");
+			}
+
 			sb.append(',');
 		}
 		// 创建主键
@@ -88,8 +113,6 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 			sb.setCharAt(sb.length() - 1, ')');
 			sb.append("\n ");
 		}
-		// 创建索引
-		// TODO ...
 
 		// 结束表字段设置
 		sb.setCharAt(sb.length() - 1, ')');
@@ -103,9 +126,17 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
 		} else {
 			sb.append(" CHARSET=utf8");
 		}
+		// 表名注释
+		if (en.hasTableComment()) {
+			sb.append(" COMMENT='").append(en.getTableComment()).append("'");
+		}
 
 		// 执行创建语句
 		dao.execute(Sqls.create(sb.toString()));
+
+		// 创建索引
+		dao.execute(createIndexs(en).toArray(new Sql[0]));
+
 		// 创建关联表
 		createRelation(dao, en);
 
