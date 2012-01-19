@@ -65,9 +65,6 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 			sb.append(',');
 		}
 
-		// 创建索引
-		// TODO ...
-
 		// 结束表字段设置
 		sb.setCharAt(sb.length() - 1, ')');
 
@@ -110,6 +107,9 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 			sqls.add(Sqls.create(gSQL(CTRI, en.getTableName(), mf.getColumnName())));
 		}
 
+		// 创建索引
+		sqls.addAll(createIndexs(en));
+
 		// TODO 详细处理Clob
 		// TODO 详细处理Blob
 
@@ -117,6 +117,8 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
 		dao.execute(sqls.toArray(new Sql[sqls.size()]));
 		// 创建关联表
 		createRelation(dao, en);
+		// 添加注释(表注释与字段注释)
+		addComment(dao, en);
 
 		return true;
 	}

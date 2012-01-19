@@ -45,10 +45,14 @@ public class SqlExpressionGroup extends AbstractPItem implements SqlExpression {
 	}
 
 	public SqlExpressionGroup andEquals(String name, Object val) {
+		if (null == val)
+			return andIsNull(name);
 		return and(eq(name, val));
 	}
 
 	public SqlExpressionGroup andNotEquals(String name, Object val) {
+		if (null == val)
+			return andNotIsNull(name);
 		return and(eq(name, val).not());
 
 	}
@@ -81,7 +85,7 @@ public class SqlExpressionGroup extends AbstractPItem implements SqlExpression {
 		return and(inLong(name, ids));
 	}
 
-	public SqlExpressionGroup andIn(String name, int... ids) {
+	public SqlExpressionGroup andInIntArray(String name, int... ids) {
 		return and(inInt(name, ids));
 	}
 
@@ -270,6 +274,5 @@ public class SqlExpressionGroup extends AbstractPItem implements SqlExpression {
 	public boolean isEmpty() {
 		return exps.isEmpty();
 	}
-
 
 }

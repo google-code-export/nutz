@@ -140,27 +140,28 @@ public class Mirror<T> {
 								: new Mirror<T>(classOfT).setTypeExtractor(typeExtractor == null ? defaultTypeExtractor
 																								: typeExtractor);
 	}
-	
+
 	/**
-	 * 根据Type生成Mirror, 如果type是 {@link ParameterizedType} 类型的对象<br> 
+	 * 根据Type生成Mirror, 如果type是 {@link ParameterizedType} 类型的对象<br>
 	 * 可以使用 getGenericsTypes() 方法取得它的泛型数组
+	 * 
 	 * @param type
 	 * @return
 	 */
-	@SuppressWarnings({ "unchecked" })
-    public static <T> Mirror<T> me(Type type){
-	    if(null == type){
-	        return null;
-	    }
-	    Mirror<T> mir = (Mirror<T>) Mirror.me(Lang.getTypeClass(type));
-	    mir.type = type;
-	    return mir;
+	@SuppressWarnings({"unchecked"})
+	public static <T> Mirror<T> me(Type type) {
+		if (null == type) {
+			return null;
+		}
+		Mirror<T> mir = (Mirror<T>) Mirror.me(Lang.getTypeClass(type));
+		mir.type = type;
+		return mir;
 	}
 
 	private Class<T> klass;
-	
+
 	private Type type;
-	
+
 	private TypeExtractor typeExtractor;
 
 	/**
@@ -190,29 +191,26 @@ public class Mirror<T> {
 	 *             没有找到 Getter
 	 */
 	public Method getGetter(String fieldName) throws NoSuchMethodException {
-		try {
-			String fn = Strings.capitalize(fieldName);
-			try {
-				try {
-					return klass.getMethod("get" + fn);
-				}
-				catch (NoSuchMethodException e) {
-					Method m = klass.getMethod("is" + fn);
-					if (!Mirror.me(m.getReturnType()).isBoolean())
-						throw new NoSuchMethodException();
-					return m;
-				}
+		String fn = Strings.capitalize(fieldName);
+		String _get = "get" + fn;
+		String _is = "is" + fn;
+		for (Method method : klass.getMethods()) {
+			if (method.getParameterTypes().length != 0)
+				continue;
+			if (_get.equals(method.getName()))
+				return method;
+			if (_is.equals(method.getName())) {
+				if (!Mirror.me(method.getReturnType()).isBoolean())
+					throw new NoSuchMethodException();
+				return method;
 			}
-			catch (NoSuchMethodException e) {
-				return klass.getMethod(fieldName);
-			}
+			if (fieldName.equals(method.getName()))
+				return method;
 		}
-		catch (RuntimeException e) {
-			throw Lang.makeThrow(	NoSuchMethodException.class,
-									"Fail to find getter for [%s]->[%s]",
-									klass.getName(),
-									fieldName);
-		}
+		throw Lang.makeThrow(	NoSuchMethodException.class,
+								"Fail to find getter for [%s]->[%s]",
+								klass.getName(),
+								fieldName);
 	}
 
 	/**
@@ -226,24 +224,7 @@ public class Mirror<T> {
 	 *             没有找到 Getter
 	 */
 	public Method getGetter(Field field) throws NoSuchMethodException {
-		try {
-			try {
-				String fn = Strings.capitalize(field.getName());
-				if (Mirror.me(field.getType()).isBoolean())
-					return klass.getMethod("is" + fn);
-				else
-					return klass.getMethod("get" + fn);
-			}
-			catch (NoSuchMethodException e) {
-				return klass.getMethod(field.getName());
-			}
-		}
-		catch (Exception e) {
-			throw Lang.makeThrow(	NoSuchMethodException.class,
-									"Fail to find getter for [%s]->[%s]",
-									klass.getName(),
-									field.getName());
-		}
+		return getGetter(field.getName());
 	}
 
 	/**
@@ -258,26 +239,7 @@ public class Mirror<T> {
 	 *             没找到 Setter
 	 */
 	public Method getSetter(Field field) throws NoSuchMethodException {
-		try {
-			try {
-				return klass.getMethod("set" + Strings.capitalize(field.getName()), field.getType());
-			}
-			catch (RuntimeException e) {
-				try {
-					if (field.getName().startsWith("is") && Mirror.me(field.getType()).isBoolean())
-						return klass.getMethod(	"set" + field.getName().substring(2),
-												field.getType());
-				}
-				catch (RuntimeException e1) {}
-				return klass.getMethod(field.getName(), field.getType());
-			}
-		}
-		catch (RuntimeException e) {
-			throw Lang.makeThrow(	NoSuchMethodException.class,
-									"Fail to find setter for [%s]->[%s]",
-									klass.getName(),
-									field.getName());
-		}
+		return getSetter(field.getName(), field.getType());
 	}
 
 	/**
@@ -407,9 +369,10 @@ public class Mirror<T> {
 	}
 
 	/**
-	 * 获得所有的属性，包括私有属性。不包括 Object 的属性
+	 * 获得当前类以及所有父类的所有的属性，包括私有属性。 <br>
+	 * 但是父类不包括 Object 类，并且，如果子类的属性如果与父类重名，将会将其覆盖
 	 * 
-	 * @return 字段列表
+	 * @return 属性列表
 	 */
 	public Field[] getFields() {
 		return _getFields(true, false, true, true);
@@ -471,27 +434,28 @@ public class Mirror<T> {
 		} while (null == ann && cc != Object.class);
 		return ann;
 	}
-	
+
 	/**
 	 * 取得当前类型的泛型数组
+	 * 
 	 * @return
 	 */
-	public Type[] getGenericsTypes(){
-	    if(type instanceof ParameterizedType){
-	        return Lang.getGenericsTypes(type);
-	    }
-	    return null;
+	public Type[] getGenericsTypes() {
+		if (type instanceof ParameterizedType) {
+			return Lang.getGenericsTypes(type);
+		}
+		return null;
 	}
-	
+
 	/**
 	 * 取得当前类型的指定泛型
+	 * 
 	 * @param index
 	 * @return
 	 */
-	public Type getGenericsType(int index){
-	    Type[] ts = getGenericsTypes();
-	    return ts == null ? null : 
-	        (ts.length <= index ? null : ts[index]);
+	public Type getGenericsType(int index) {
+		Type[] ts = getGenericsTypes();
+		return ts == null ? null : (ts.length <= index ? null : ts[index]);
 	}
 
 	/**
@@ -1210,6 +1174,13 @@ public class Mirror<T> {
 	}
 
 	/**
+	 * @return 当前类型是不是接口
+	 */
+	public boolean isInterface() {
+		return null == klass ? null : klass.isInterface();
+	}
+
+	/**
 	 * @return 当前对象是否为小数 (float, dobule)
 	 */
 	public boolean isDecimal() {
@@ -1315,7 +1286,7 @@ public class Mirror<T> {
 	 * 获取一个类的泛型参数数组，如果这个类没有泛型参数，返回 null
 	 */
 	public static Type[] getTypeParams(Class<?> klass) {
-	    // TODO 这个实现会导致泛型丢失,只能取得申明类型
+		// TODO 这个实现会导致泛型丢失,只能取得申明类型
 		if (klass == null || "java.lang.Object".equals(klass.getName()))
 			return null;
 		// 看看父类

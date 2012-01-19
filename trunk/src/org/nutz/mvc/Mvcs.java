@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.nutz.ioc.Ioc;
+import org.nutz.ioc.IocContext;
 import org.nutz.json.Json;
 import org.nutz.json.JsonFormat;
 import org.nutz.lang.Strings;
-import org.nutz.mvc.annotation.Localization;
 import org.nutz.mvc.config.AtMap;
 import org.nutz.mvc.ioc.SessionIocContext;
 
@@ -22,12 +22,59 @@ import org.nutz.mvc.ioc.SessionIocContext;
  * Mvc 相关帮助函数
  * 
  * @author zozoh(zozohtnt@gmail.com)
+ * @author wendal(wendal1985@gmail.com)
  */
 public abstract class Mvcs {
 
 	public static final String DEFAULT_MSGS = "$default";
 	public static final String MSG = "msg";
 	public static final String LOCALE_NAME = "nutz_mvc_locale";
+
+	// 新的,基于ThreadLoacl改造过的Mvc辅助方法
+	// ====================================================================
+
+	public static Ioc getIoc() {
+		return (Ioc) servletContext.getAttribute(getName() + "_ioc");
+	}
+
+	public static void setIoc(Ioc ioc) {
+		servletContext.setAttribute(getName() + "_ioc", ioc);
+	}
+
+	public static AtMap getAtMap() {
+		return (AtMap) servletContext.getAttribute(getName() + "_atmap");
+	}
+
+	public static void setAtMap(AtMap atmap) {
+		servletContext.setAttribute(getName() + "_atmap", atmap);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static Map<String, Map<String, String>> getMessageSet() {
+		return (Map<String, Map<String, String>>) servletContext.getAttribute(getName()
+																				+ "_localization");
+	}
+
+	public static void setMessageSet(Map<String, Map<String, Object>> messageSet) {
+		servletContext.setAttribute(getName() + "_localization", messageSet);
+	}
+
+	public static Map<String, String> getLocaleMessage(String localeName) {
+		Map<String, Map<String, String>> msgss = getMessageSet();
+		if (null != msgss)
+			return msgss.get(localeName);
+		return null;
+	}
+
+	public static void setNutConfig(NutConfig config) {
+		getServletContext().setAttribute(getName() + "_mvc_config", config);
+	}
+
+	public static NutConfig getNutConfig() {
+		return (NutConfig) getServletContext().getAttribute(getName() + "_mvc_config");
+	}
+
+	// ====================================================================
 
 	/**
 	 * 从 Request 里获取一个 Ioc 容器
@@ -43,7 +90,7 @@ public abstract class Mvcs {
 	 */
 	@Deprecated
 	public static Ioc getIoc(HttpServletRequest request) {
-		return getIoc(request.getSession().getServletContext());
+		return getIoc();
 	}
 
 	/**
@@ -56,12 +103,14 @@ public abstract class Mvcs {
 	 * 
 	 * @see org.nutz.mvc.annotation.IocBy
 	 */
+	@Deprecated
 	public static Ioc getIoc(ServletContext context) {
-		return (Ioc) context.getAttribute(Ioc.class.getName());
+		return getIoc();
 	}
 
+	@Deprecated
 	public static AtMap getAtMap(ServletContext context) {
-		return (AtMap) context.getAttribute(AtMap.class.getName());
+		return getAtMap();
 	}
 
 	/**
@@ -97,7 +146,7 @@ public abstract class Mvcs {
 	 * 获取整个应用可用的 Locale 名称集合
 	 */
 	public static Set<String> getLocaleNames(ServletContext context) {
-		Map<String, Map<String, String>> msgss = getMessageSet(context);
+		Map<String, Map<String, String>> msgss = getMessageSet();
 		if (null != msgss)
 			return msgss.keySet();
 		return null;
@@ -112,7 +161,7 @@ public abstract class Mvcs {
 	 * @return 设置的 本地化字符串表
 	 */
 	public static Map<String, String> setLocale(HttpSession session, String localeName) {
-		Map<String, Map<String, String>> msgss = getMessageSet(session.getServletContext());
+		Map<String, Map<String, String>> msgss = getMessageSet();
 		if (null != msgss) {
 			Map<String, String> msgs = null;
 			if (null != localeName)
@@ -140,8 +189,9 @@ public abstract class Mvcs {
 	 * @see org.nutz.mvc.annotation.Localization
 	 * @see org.nutz.mvc.MessageLoader
 	 */
+	@Deprecated
 	public static Map<String, String> getLocaleMessage(ServletContext context, String localeName) {
-		Map<String, Map<String, String>> msgss = getMessageSet(context);
+		Map<String, Map<String, String>> msgss = getMessageSet();
 		if (null != msgss)
 			return msgss.get(localeName);
 		return null;
@@ -155,7 +205,7 @@ public abstract class Mvcs {
 	 * @return 字符串表
 	 */
 	public static Map<String, String> getDefaultLocaleMessage(ServletContext context) {
-		Map<String, Map<String, String>> msgss = getMessageSet(context);
+		Map<String, Map<String, String>> msgss = getMessageSet();
 		if (null != msgss)
 			return msgss.get(DEFAULT_MSGS);
 		return null;
@@ -168,9 +218,9 @@ public abstract class Mvcs {
 	 *            上下文
 	 * @return 字符串表集合
 	 */
-	@SuppressWarnings("unchecked")
+	@Deprecated
 	public static Map<String, Map<String, String>> getMessageSet(ServletContext context) {
-		return (Map<String, Map<String, String>>) context.getAttribute(Localization.class.getName());
+		return getMessageSet();
 	}
 
 	/**
@@ -213,17 +263,22 @@ public abstract class Mvcs {
 	 */
 	@SuppressWarnings("unchecked")
 	public static void updateRequestAttributes(HttpServletRequest req) {
-		if (null != req.getSession().getServletContext().getAttribute(Localization.class.getName())) {
+		if (null != getMessageSet()) {
 			HttpSession session = req.getSession();
 			Map<String, String> msgs = null;
 			if (!hasLocale(session))
 				msgs = setLocale(session, getLocaleName(session));
 			else
 				msgs = (Map<String, String>) session.getAttribute(MSG);
+			// 没有设定特殊的 Local 名字，随便取一个
+			if (null == msgs) {
+				Map<String, Map<String, String>> msgss = getMessageSet();
+				if (msgss.size() > 0)
+					msgs = msgss.values().iterator().next();
+			}
+			// 记录到请求中
 			req.setAttribute(MSG, msgs);
 		}
-		// Update context path each time, Servlet 2.4 and early don't support
-		// ServletContext.getContextPath()
 		req.setAttribute("base", req.getContextPath());
 		req.setAttribute("$request", req);
 	}
@@ -307,4 +362,66 @@ public abstract class Mvcs {
 		resp.flushBuffer();
 	}
 
+	// 将当前请求的主要变量保存到ThreadLocal, by wendal
+	// ==================================================================
+	private static final ThreadLocal<HttpServletRequest> REQ = new ThreadLocal<HttpServletRequest>();
+	private static final ThreadLocal<HttpServletResponse> RESP = new ThreadLocal<HttpServletResponse>();
+	private static final ThreadLocal<String> NAME = new ThreadLocal<String>();
+	private static final ThreadLocal<ActionContext> ACTION_CONTEXT = new ThreadLocal<ActionContext>();
+	private static final ThreadLocal<IocContext> IOC_CONTEXT = new ThreadLocal<IocContext>();
+
+	private static ServletContext servletContext;
+
+	public static final HttpServletRequest getReq() {
+		return REQ.get();
+	}
+
+	public static final HttpServletResponse getResp() {
+		return RESP.get();
+	}
+
+	public static final String getName() {
+		return NAME.get();
+	}
+
+	public static final ActionContext getActionContext() {
+		return ACTION_CONTEXT.get();
+	}
+
+	public static void set(String name, HttpServletRequest req, HttpServletResponse resp) {
+		NAME.set(name);
+		REQ.set(req);
+		RESP.set(resp);
+	}
+
+	public static void setServletContext(ServletContext servletContext) {
+		Mvcs.servletContext = servletContext;
+	}
+
+	public static void setActionContext(ActionContext actionContext) {
+		ACTION_CONTEXT.set(actionContext);
+	}
+
+	public static ServletContext getServletContext() {
+		return servletContext;
+	}
+	
+	public static void setIocContext(IocContext iocContext) {
+		IOC_CONTEXT.set(iocContext);
+	}
+	
+	public static IocContext getIocContext() {
+		return IOC_CONTEXT.get();
+	}
+
+	// ==================================================================
+
+	// 重置当前线程所持有的对象
+	public static void resetALL() {
+		ACTION_CONTEXT.set(null);
+		REQ.set(null);
+		RESP.set(null);
+		NAME.set(null);
+		IOC_CONTEXT.set(null);
+	}
 }
