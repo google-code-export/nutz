@@ -357,6 +357,16 @@ Files.clearDir(new File("D:/demo/abc"));
 Files.cleanAllFolderInSubFolderes(new File("D:/demo"), ".svn");
 }}}
 
+        * 文件拷贝
+{{{
+Files.copyFile(new File("D:/a/b/c.txt"), new File("E:/a/b/e.txt"));
+}}}
+
+        * 目录拷贝
+{{{
+Files.copyDir(new File("D:/a/b/c"), new File("E:/a/b/e"));
+}}}
+
 
 <p align="right">[#Top]</p>
 ==`读取-写入`==

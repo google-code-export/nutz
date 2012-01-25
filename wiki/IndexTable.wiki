@@ -1,5 +1,5 @@
  * [nutz_preface 写在前面的话]
- * [nutz_release_notes 1.b.40 发行注记]
+ * [nutz_release_notes 1.b.41 发行注记]
  * 关于源码
    * [committer_svn_project 从 SVN 编译 - Eclipse]
    * [committer_git_project 从 Git 编译源码]
@@ -45,6 +45,7 @@
    * [ioc_loader_combo Ioc - 复合加载器]
    * [ioc_aop_json 用json文件声明Aop切片]
    * [ioc_ioc_annos Ioc 注解列表]
+   * [ioc_ioc_properties 让Ioc容器帮你规划配置文件]
  * Mvc 手册
    * [mvc_overview Nutz.Mvc 概述]
    * [mvc_hello Hello World]
@@ -86,6 +87,7 @@
    * [zdoc_dir_convert zDoc 目录转换细则]
    * [zdoc_ant_task 在Ant中使用]
  * 版本历史
+   * [history_1_b_41 1.b.41 发行注记]
    * [history_1_b_40 1.b.40 发行注记]
    * [history_1_b_39 1.b.39 发行注记]
    * [history_1_b_38 1.b.38 发行注记]
