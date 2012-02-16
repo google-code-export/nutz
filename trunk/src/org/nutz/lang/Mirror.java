@@ -32,6 +32,8 @@ import org.nutz.lang.eject.Ejecting;
 import org.nutz.lang.inject.InjectByField;
 import org.nutz.lang.inject.InjectBySetter;
 import org.nutz.lang.inject.Injecting;
+import org.nutz.lang.util.Callback;
+import org.nutz.lang.util.Callback3;
 
 /**
  * 包裹了 Class<?>， 提供了更多的反射方法
@@ -225,6 +227,106 @@ public class Mirror<T> {
 	 */
 	public Method getGetter(Field field) throws NoSuchMethodException {
 		return getGetter(field.getName());
+	}
+
+	/**
+	 * 根据给定的一个方法，判断其是 Getter 还是 Setter
+	 * <p>
+	 * 对于回调会接受三个参数
+	 * 
+	 * <pre>
+	 * callback(虚字段名, getter, setter)
+	 * </pre>
+	 * 
+	 * 回调都会给一个参数，表示这个方法对应的虚拟字段名。所谓"虚拟字段"，就比如
+	 * <ul>
+	 * <li>如果是 setAbc : 那么就是 "abc"
+	 * <li>如果是 getAbc : 那么就是 "abc"
+	 * <li>如果是 isAbc : 那么就是 "abc"
+	 * </ul>
+	 * 而 getter 或者 setter 参数如果为 null，则表示本函数未发现对应的 getter|setter
+	 * 
+	 * @param method
+	 *            方法对象
+	 * @param callback
+	 *            回调, 如果为 null，则无视
+	 * @param whenError
+	 *            如果本方法即不是 Getter 也不是 Setter 的回调, 如果为 null，则无视
+	 */
+	public static void evalGetterSetter(Method method,
+										Callback3<String, Method, Method> callback,
+										Callback<Method> whenError) {
+		String name = method.getName();
+		Method getter = null;
+		Method setter = null;
+
+		// 是 getter
+		if (name.startsWith("get") && method.getParameterTypes().length == 0) {
+			name = Strings.lowerFirst(name.substring(4));
+			getter = method;
+			// 寻找 setter
+			try {
+				setter = method.getDeclaringClass().getMethod(	"set" + Strings.capitalize(name),
+																method.getReturnType());
+			}
+			catch (Exception e) {}
+
+		}
+		// 布尔的 getter
+		else if (name.startsWith("is")
+					&& Mirror.me(method.getReturnType()).isBoolean()
+					&& method.getParameterTypes().length == 0) {
+			name = Strings.lowerFirst(name.substring(3));
+			getter = method;
+			// 寻找 setter
+			try {
+				setter = method.getDeclaringClass().getMethod(	"set" + Strings.capitalize(name),
+																method.getReturnType());
+			}
+			catch (Exception e) {}
+		}
+		// 是 setter
+		else if (name.startsWith("set") && method.getParameterTypes().length == 1) {
+			name = Strings.lowerFirst(name.substring(4));
+			setter = method;
+			// 寻找 getter
+			try {
+				getter = method.getDeclaringClass().getMethod("get" + Strings.capitalize(name));
+			}
+			catch (Exception e) {}
+
+		}
+		// 虾米都不是，错!
+		else {
+			if (null != whenError)
+				whenError.invoke(method);
+			return;
+		}
+		// 最后调用回调
+		if (null != callback)
+			callback.invoke(name, getter, setter);
+	}
+
+	/**
+	 * 根据给定的一个方法，判断其是 Getter 还是 Setter，根据情况不同，调用不同的回调。
+	 * 
+	 * @param method
+	 *            方法对象
+	 * @param errmsgFormat
+	 *            如果本方法即不是 Getter 也不是 Setter 的回调, 则根据这个消息模板抛出一个运行时异常。 这个字符串格式是个
+	 *            Java 的字符串模板，接受两个参数，第一个是方法名，第二个是所在类名
+	 * @param callback
+	 *            回调, 如果为 null，则无视
+	 */
+	public static void evalGetterSetter(final Method method,
+										final String errmsgFormat,
+										Callback3<String, Method, Method> callback) {
+		evalGetterSetter(method, callback, new Callback<Method>() {
+			public void invoke(Method method) {
+				throw Lang.makeThrow(errmsgFormat, method.getName(), method.getDeclaringClass()
+																			.getName());
+			}
+		});
 	}
 
 	/**
@@ -1245,6 +1347,82 @@ public class Mirror<T> {
 	 */
 	public boolean isPrimitiveNumber() {
 		return isInt() || isLong() || isFloat() || isDouble() || isByte() || isShort();
+	}
+
+	/**
+	 * 如果不是容器，也不是 POJO，那么它必然是个 Obj
+	 * 
+	 * @return true or false
+	 */
+	public boolean isObj() {
+		return isContainer() || isPojo();
+	}
+
+	/**
+	 * 判断当前类型是否为POJO。 除了下面的类型，其他均为 POJO
+	 * <ul>
+	 * <li>原生以及所有包裹类
+	 * <li>类字符串
+	 * <li>类日期
+	 * <li>非容器
+	 * </ul>
+	 * 
+	 * @return true or false
+	 */
+	public boolean isPojo() {
+		if (this.klass.isPrimitive())
+			return false;
+
+		if (this.isStringLike() || this.isDateTimeLike())
+			return false;
+
+		if (this.isPrimitiveNumber() || this.isBoolean() || this.isChar())
+			return false;
+
+		return !isContainer();
+	}
+
+	/**
+	 * 判断当前类型是否为容器，包括 Map，Collection, 以及数组
+	 * 
+	 * @return true of false
+	 */
+	public boolean isContainer() {
+		return isColl() || isMap();
+	}
+
+	/**
+	 * 判断当前类型是否为数组
+	 * 
+	 * @return true of false
+	 */
+	public boolean isArray() {
+		return klass.isArray();
+	}
+
+	/**
+	 * 判断当前类型是否为 Collection
+	 * 
+	 * @return true of false
+	 */
+	public boolean isCollection() {
+		return isOf(Collection.class);
+	}
+
+	/**
+	 * @return 当前类型是否是数组或者集合
+	 */
+	public boolean isColl() {
+		return isArray() || isCollection();
+	}
+
+	/**
+	 * 判断当前类型是否为 Map
+	 * 
+	 * @return true of false
+	 */
+	public boolean isMap() {
+		return isOf(Map.class);
 	}
 
 	/**

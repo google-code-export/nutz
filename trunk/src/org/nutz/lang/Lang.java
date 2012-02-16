@@ -1061,12 +1061,15 @@ public abstract class Lang {
 					}
 				}
 				// Map
-				else if (v instanceof Map) {
+				else if (v instanceof Map && Map.class.isAssignableFrom(ft)) {
 					// 创建
 					final Map map;
+					// Map 接口
 					if (ft == Map.class) {
 						map = new HashMap();
-					} else {
+					}
+					// 自己特殊的 Map
+					else {
 						try {
 							map = (Map) ft.newInstance();
 						}
@@ -1081,9 +1084,10 @@ public abstract class Lang {
 							map.put(en.getKey(), Castors.me().castTo(en.getValue(), valType));
 						}
 					});
-
 					vv = map;
-				} else {
+				}
+				// 强制转换
+				else {
 					vv = Castors.me().castTo(v, ft);
 				}
 				mirror.setValue(obj, field, vv);
@@ -1376,6 +1380,27 @@ public abstract class Lang {
 		catch (LoopException e) {
 			throw Lang.wrapThrow(e.getCause());
 		}
+	}
+
+	/**
+	 * 安全的从一个数组获取一个元素，容忍 null 数组，以及支持负数的 index
+	 * <p>
+	 * 如果该下标越界，则返回 null
+	 * 
+	 * @param <T>
+	 * @param array
+	 *            数组，如果为 null 则直接返回 null
+	 * @param index
+	 *            下标，-1 表示倒数第一个， -2 表示倒数第二个，以此类推
+	 * @return 数组元素
+	 */
+	public static <T> T get(T[] array, int index) {
+		if (null == array)
+			return null;
+		int i = index < 0 ? array.length + index : index;
+		if (i < 0 || i >= array.length)
+			return null;
+		return array[i];
 	}
 
 	/**

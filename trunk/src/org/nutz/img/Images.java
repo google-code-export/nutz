@@ -2,19 +2,32 @@ package org.nutz.img;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Transparency;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.ComponentColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
+import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Iterator;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 
 import org.nutz.lang.Files;
@@ -37,7 +50,7 @@ public class Images {
 	 *            旋转角度, 90 为顺时针九十度， -90 为逆时针九十度
 	 * @return 旋转后得图像对象
 	 */
-	public static BufferedImage rotate(File srcIm, File taIm, int degree) {
+	public static BufferedImage rotate(Object srcIm, File taIm, int degree) {
 		BufferedImage im = Images.read(srcIm);
 		BufferedImage im2 = Images.rotate(im, degree);
 		Images.write(im2, taIm);
@@ -117,7 +130,9 @@ public class Images {
 	}
 
 	/**
-	 * 自动等比缩放一个图片，多余的部分，用给定背景颜色补上，并将其保存成目标图像文件
+	 * 自动等比缩放一个图片，并将其保存成目标图像文件<br />
+	 * 多余的部分，用给定背景颜色补上<br />
+	 * 如果参数中的宽度或高度为<b>-1</b>的话，着按照指定的高度或宽度对原图等比例缩放图片，不添加背景颜色
 	 * <p>
 	 * 图片格式支持 png | gif | jpg | bmp | wbmp
 	 * 
@@ -137,7 +152,7 @@ public class Images {
 	 * @throws IOException
 	 *             当读写文件失败时抛出
 	 */
-	public static BufferedImage zoomScale(File srcIm, File taIm, int w, int h, Color bgColor)
+	public static BufferedImage zoomScale(Object srcIm, File taIm, int w, int h, Color bgColor)
 			throws IOException {
 		BufferedImage old = read(srcIm);
 		BufferedImage im = Images.zoomScale(old, w, h, bgColor);
@@ -146,7 +161,9 @@ public class Images {
 	}
 
 	/**
-	 * 自动等比缩放一个图片，多余的部分，用给定背景颜色补上，并将其保存到目标图像路径
+	 * 自动等比缩放一个图片，并将其保存成目标图像文件<br />
+	 * 多余的部分，用给定背景颜色补上<br />
+	 * 如果参数中的宽度或高度为<b>-1</b>的话，着按照指定的高度或宽度对原图等比例缩放图片，不添加背景颜色
 	 * <p>
 	 * 图片格式支持 png | gif | jpg | bmp | wbmp
 	 * 
@@ -177,7 +194,8 @@ public class Images {
 	}
 
 	/**
-	 * 自动等比缩放一个图片，多余的部分，用给定背景颜色补上
+	 * 自动等比缩放一个图片，多余的部分，用给定背景颜色补上<br />
+	 * 如果参数中的宽度或高度为<b>-1</b>的话，着按照指定的高度或宽度对原图等比例缩放图片，不添加背景颜色
 	 * 
 	 * @param im
 	 *            图像对象
@@ -191,6 +209,10 @@ public class Images {
 	 * @return 被转换后的图像
 	 */
 	public static BufferedImage zoomScale(BufferedImage im, int w, int h, Color bgColor) {
+		if (w == -1 || h == -1) {
+			return zoomScale(im, w, h);
+		}
+
 		// 检查背景颜色
 		bgColor = null == bgColor ? Color.black : bgColor;
 		// 获得尺寸
@@ -224,6 +246,7 @@ public class Images {
 			x = 0;
 			y = 0;
 		}
+
 		// 创建图像
 		BufferedImage re = new BufferedImage(w, h, ColorSpace.TYPE_RGB);
 		// 得到一个绘制接口
@@ -231,6 +254,44 @@ public class Images {
 		gc.setColor(bgColor);
 		gc.fillRect(0, 0, w, h);
 		gc.drawImage(im, x, y, nW, nH, bgColor, null);
+		// 返回
+		return re;
+	}
+
+	/**
+	 * 自动等比缩放一个图片
+	 * 
+	 * @param im
+	 *            图像对象
+	 * @param w
+	 *            宽度
+	 * @param h
+	 *            高度
+	 * 
+	 * @return 被转换后的图像
+	 */
+	public static BufferedImage zoomScale(BufferedImage im, int w, int h) {
+		// 获得尺寸
+		int oW = im.getWidth();
+		int oH = im.getHeight();
+
+		int nW = w, nH = h;
+
+		/*
+		 * 缩放
+		 */
+		// 未指定图像高度，根据原图尺寸计算出高度
+		if (h == -1) {
+			nH = (int) ((float) w / oW * oH);
+		}
+		// 未指定图像宽度，根据原图尺寸计算出宽度
+		else if (w == -1) {
+			nW = (int) ((float) h / oH * oW);
+		}
+
+		// 创建图像
+		BufferedImage re = new BufferedImage(nW, nH, ColorSpace.TYPE_RGB);
+		re.getGraphics().drawImage(im, 0, 0, nW, nH, null);
 		// 返回
 		return re;
 	}
@@ -253,7 +314,7 @@ public class Images {
 	 * @throws IOException
 	 *             当读写文件失败时抛出
 	 */
-	public static BufferedImage clipScale(File srcIm, File taIm, int w, int h) throws IOException {
+	public static BufferedImage clipScale(Object srcIm, File taIm, int w, int h) throws IOException {
 		BufferedImage old = read(srcIm);
 		BufferedImage im = Images.clipScale(old, w, h);
 		write(im, taIm);
@@ -348,12 +409,36 @@ public class Images {
 	 *            图片文件
 	 * @return 图片对象
 	 */
-	public static BufferedImage read(File imgFile) {
+	public static BufferedImage read(Object img) {
 		try {
-			return ImageIO.read(imgFile);
+			if (img instanceof File)
+				return ImageIO.read((File) img);
+			else if (img instanceof URL)
+				img = ((URL) img).openStream();
+			if (img instanceof InputStream) {
+				File tmp = File.createTempFile("nutz_img", "jpg");
+				Files.write(tmp, (InputStream)img);
+				tmp.deleteOnExit();
+				return read(tmp);
+			}
+			throw Lang.makeThrow("Unkown img info!! --> " + img);
 		}
 		catch (IOException e) {
-			throw Lang.wrapThrow(e);
+			try {
+					InputStream in = null;
+					if (img instanceof File)
+						in = new FileInputStream((File)img);
+					else if (img instanceof URL)
+						in = ((URL)img).openStream();
+					else if (img instanceof InputStream)
+						in = (InputStream)img;
+					if (in != null)
+						return readJpeg(in);
+			} catch (IOException e2) {
+				e2.fillInStackTrace();
+			}
+			return null;
+			//throw Lang.wrapThrow(e);
 		}
 	}
 
@@ -399,4 +484,73 @@ public class Images {
 		}
 	}
 
+	/**
+	 * 尝试读取JPEG文件的高级方法,可读取32位的jpeg文件
+	 * <p/>
+	 * 来自: http://stackoverflow.com/questions/2408613/problem-reading-jpeg-image-using-imageio-readfile-file
+	 * 
+	 * */
+	private static BufferedImage readJpeg(InputStream in) throws IOException {
+		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName("JPEG");
+	    ImageReader reader = null;
+	    while(readers.hasNext()) {
+	        reader = (ImageReader)readers.next();
+	        if(reader.canReadRaster()) {
+	            break;
+	        }
+	    }
+	    ImageInputStream input = ImageIO.createImageInputStream(in);
+	    reader.setInput(input);
+	    //Read the image raster
+	    Raster raster = reader.readRaster(0, null); 
+	    BufferedImage image = createJPEG4(raster);
+	    File tmp = File.createTempFile("nutz.img", "jpg"); //需要写到文件,然后重新解析哦
+	    writeJpeg(image, tmp, 1);
+	    return read(tmp);
+	}
+	
+	  /**                                                                                                                                           
+    Java's ImageIO can't process 4-component images                                                                                             
+    and Java2D can't apply AffineTransformOp either,                                                                                            
+    so convert raster data to RGB.                                                                                                              
+    Technique due to MArk Stephens.                                                                                                             
+    Free for any use.                                                                                                                           
+  */
+    private static BufferedImage createJPEG4(Raster raster) {
+        int w = raster.getWidth();
+        int h = raster.getHeight();
+        byte[] rgb = new byte[w * h * 3];
+      
+        float[] Y = raster.getSamples(0, 0, w, h, 0, (float[]) null);
+        float[] Cb = raster.getSamples(0, 0, w, h, 1, (float[]) null);
+        float[] Cr = raster.getSamples(0, 0, w, h, 2, (float[]) null);
+        float[] K = raster.getSamples(0, 0, w, h, 3, (float[]) null);
+
+        for (int i = 0, imax = Y.length, base = 0; i < imax; i++, base += 3) {
+            float k = 220 - K[i], y = 255 - Y[i], cb = 255 - Cb[i],
+                    cr = 255 - Cr[i];
+
+            double val = y + 1.402 * (cr - 128) - k;
+            val = (val - 128) * .65f + 128;
+            rgb[base] = val < 0.0 ? (byte) 0 : val > 255.0 ? (byte) 0xff
+                    : (byte) (val + 0.5);
+
+            val = y - 0.34414 * (cb - 128) - 0.71414 * (cr - 128) - k;
+            val = (val - 128) * .65f + 128;
+            rgb[base + 1] = val < 0.0 ? (byte) 0 : val > 255.0 ? (byte) 0xff
+                    : (byte) (val + 0.5);
+
+            val = y + 1.772 * (cb - 128) - k;
+            val = (val - 128) * .65f + 128;
+            rgb[base + 2] = val < 0.0 ? (byte) 0 : val > 255.0 ? (byte) 0xff
+                    : (byte) (val + 0.5);
+        }
+
+
+        raster = Raster.createInterleavedRaster(new DataBufferByte(rgb, rgb.length), w, h, w * 3, 3, new int[]{0, 1, 2}, null);
+
+        ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_sRGB);
+        ColorModel cm = new ComponentColorModel(cs, false, true, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+        return new BufferedImage(cm, (WritableRaster) raster, true, null);
+    }
 }
