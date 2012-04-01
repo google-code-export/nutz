@@ -133,7 +133,7 @@ public abstract class Mvcs {
 	 * 判断当前会话是够设置了特殊的 Locale 的名称。
 	 */
 	public static boolean hasLocaleName(HttpSession session) {
-		return Strings.isBlank(getLocaleName(session));
+		return !Strings.isBlank(getLocaleName(session));
 	}
 
 	/**
@@ -275,13 +275,15 @@ public abstract class Mvcs {
 	 */
 	@SuppressWarnings("unchecked")
 	public static void updateRequestAttributes(HttpServletRequest req) {
+		HttpSession sess = getHttpSession();
+
+		// 初始化本次请求的多国语言字符串
 		if (null != getMessageSet()) {
-			HttpSession session = req.getSession();
 			Map<String, String> msgs = null;
-			if (!hasLocale(session))
-				msgs = setLocale(session, getLocaleName(session));
+			if (!hasLocale(sess))
+				msgs = setLocale(sess, getLocaleName(sess));
 			else
-				msgs = (Map<String, String>) session.getAttribute(MSG);
+				msgs = (Map<String, String>) sess.getAttribute(MSG);
 			// 没有设定特殊的 Local 名字，随便取一个
 			if (null == msgs) {
 				Map<String, Map<String, String>> msgss = getMessageSet();
@@ -291,6 +293,8 @@ public abstract class Mvcs {
 			// 记录到请求中
 			req.setAttribute(MSG, msgs);
 		}
+
+		// 记录一些数据到请求对象中
 		req.setAttribute("base", req.getContextPath());
 		req.setAttribute("$request", req);
 	}
@@ -435,5 +439,13 @@ public abstract class Mvcs {
 		RESP.set(null);
 		NAME.set(null);
 		IOC_CONTEXT.set(null);
+	}
+
+	public static HttpSession getHttpSession() {
+		return REQ.get().getSession();
+	}
+
+	public static HttpSession getHttpSession(boolean createNew) {
+		return REQ.get().getSession(createNew);
 	}
 }

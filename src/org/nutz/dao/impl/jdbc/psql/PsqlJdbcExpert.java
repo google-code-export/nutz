@@ -18,10 +18,6 @@ import org.nutz.lang.Lang;
 
 public class PsqlJdbcExpert extends AbstractJdbcExpert {
 
-	private static String COMMENT_TABLE = "COMMENT ON TABLE \"$table\" IS '$tableComment'";
-
-	private static String COMMENT_COLUMN = "COMMENT ON COLUMN \"$table\".\"$column\" IS '$columnComment'";
-
 	public PsqlJdbcExpert(JdbcExpertConfigFile conf) {
 		super(conf);
 	}
@@ -37,6 +33,15 @@ public class PsqlJdbcExpert extends AbstractJdbcExpert {
 			pojo.append(Pojos.Items.wrapf(	" LIMIT %d OFFSET %d",
 											pager.getPageSize(),
 											pager.getOffset()));
+	}
+	
+	public void formatQuery(Sql sql) {
+		Pager pager = sql.getContext().getPager();
+		if (null != pager && pager.getPageNumber() > 0) {
+			sql.setSourceSql(sql.getSourceSql() + String.format(" LIMIT %d OFFSET %d",
+											pager.getPageSize(),
+											pager.getOffset()));
+		}
 	}
 
 	public boolean createEntity(Dao dao, Entity<?> en) {
@@ -92,7 +97,7 @@ public class PsqlJdbcExpert extends AbstractJdbcExpert {
 		createRelation(dao, en);
 
 		// 添加注释(表注释与字段注释)
-		addComment(dao, en, COMMENT_TABLE, COMMENT_COLUMN);
+		addComment(dao, en);
 
 		return true;
 	}

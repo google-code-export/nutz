@@ -90,10 +90,10 @@ public class NutPojo extends NutStatement implements Pojo {
 		}
 		return re;
 	}
-
+	
 	public String toPreparedStatement() {
 		StringBuilder sb = new StringBuilder();
-		for (PItem item : items)
+		for (PItem item : items) 
 			item.joinSql(getEntity(), sb);
 		return sb.toString();
 	}

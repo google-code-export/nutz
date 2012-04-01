@@ -3,7 +3,6 @@ package org.nutz.json;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 import org.nutz.json.entity.JsonEntity;
@@ -28,9 +28,13 @@ import org.nutz.lang.Strings;
  * 
  */
 public class JsonRendering {
+	public static final String RECURSION_QUOTED_PREFIX = "$nutz.json::";
+	public static final String JSON_EL_PREFIX = "$nutz.el::";
 	private static String NL = "\n";
 
 	private HashMap<Object, Object> memo;
+
+	private Stack<String> path = new Stack<String>();
 
 	private Writer writer;
 
@@ -40,6 +44,7 @@ public class JsonRendering {
 		// TODO make a new faster collection
 		// implementation
 		memo = new HashMap<Object, Object>();
+		// path.push("root");
 	}
 
 	private JsonFormat format;
@@ -70,6 +75,7 @@ public class JsonRendering {
 		appendPairBegin();
 		appendName(name);
 		appendPairSep();
+		path.push(name);
 		render(value);
 	}
 
@@ -161,13 +167,7 @@ public class JsonRendering {
 				catch (NoSuchMethodException e) {}
 			}
 		}
-		catch (IllegalArgumentException e) {
-			throw Lang.wrapThrow(e);
-		}
-		catch (IllegalAccessException e) {
-			throw Lang.wrapThrow(e);
-		}
-		catch (InvocationTargetException e) {
+		catch (Exception e) {
 			throw Lang.wrapThrow(e);
 		}
 		/*
@@ -182,8 +182,23 @@ public class JsonRendering {
 			String name = jef.getName();
 			try {
 				Object value = jef.getValue(obj);
-				if (!this.isIgnore(name, value))
+				// 判断是否应该被忽略
+				if (!this.isIgnore(name, value)) {
+					// 以前曾经输出过 ...
+					if (null != value && memo.containsKey(value)) {
+						// zozoh: 如果在 format 里特别指定，要采用 nutz json 特殊兼容格式，
+						// 则记录循环引用对象的 JSON 路径
+						if (format.isNutzJson()) {
+							value = RECURSION_QUOTED_PREFIX + memo.get(value);
+						}
+						// zozoh: 循环引用的默认行为，应该为 null，以便和其他语言交换数据
+						else {
+							value = null;
+						}
+					}
+					// 加入输出列表 ...
 					list.add(new Pair(name, value));
+				}
 			}
 			catch (FailToGetValueException e) {}
 		}
@@ -251,30 +266,47 @@ public class JsonRendering {
 			string2Json(((Mirror<?>) obj).getType().getName());
 		} else {
 			Mirror mr = Mirror.me(obj.getClass());
+			// 枚举
 			if (mr.isEnum()) {
 				string2Json(((Enum) obj).name());
-			} else if (mr.isNumber() || mr.isBoolean()) {
+			}
+			// 数字，布尔等
+			else if (mr.isNumber() || mr.isBoolean()) {
 				writer.append(obj.toString());
-			} else if (mr.isStringLike() || mr.isChar()) {
+			}
+			// 字符串
+			else if (mr.isStringLike() || mr.isChar()) {
 				string2Json(obj.toString());
-			} else if (mr.isDateTimeLike()) {
+			}
+			// 日期时间
+			else if (mr.isDateTimeLike()) {
 				string2Json(format.getCastors().castToString(obj));
-			} else if (memo.containsKey(obj)) {
-				writer.append("null");
-			} else {
-				memo.put(obj, null);
-				if (obj instanceof Map)
+			}
+			// 其他
+			else {
+				// Map
+				if (obj instanceof Map) {
 					map2Json((Map) obj);
-				else if (obj instanceof Collection)
-					coll2Json((Collection) obj);
-				else if (obj.getClass().isArray())
-					array2Json(obj);
-				else {
-					pojo2Json(obj);
 				}
-				memo.remove(obj);
+				// 集合
+				else if (obj instanceof Collection) {
+					coll2Json((Collection) obj);
+				}
+				// 数组
+				else if (obj.getClass().isArray()) {
+					array2Json(obj);
+				}
+				// 普通 Java 对象
+				else {
+					memo.put(obj, fetchPath());
+					pojo2Json(obj);
+					memo.remove(obj);
+				}
+				// memo.remove(obj);
 			}
 		}
+		if (path.size() > 0)
+			path.pop();
 	}
 
 	private void array2Json(Object obj) throws IOException {
@@ -283,9 +315,11 @@ public class JsonRendering {
 		if (len > -1) {
 			int i;
 			for (i = 0; i < len; i++) {
+				path.push("[" + i + "]");
 				render(Array.get(obj, i));
 				writer.append(',').append(' ');
 			}
+			path.push("[" + i + "]");
 			render(Array.get(obj, i));
 		}
 		writer.append(']');
@@ -293,7 +327,9 @@ public class JsonRendering {
 
 	private void coll2Json(Collection<?> obj) throws IOException {
 		writer.append('[');
+		int i = 0;
 		for (Iterator<?> it = obj.iterator(); it.hasNext();) {
+			path.push("[" + (i++) + "]");
 			render(it.next());
 			if (it.hasNext())
 				writer.append(',').append(' ');
@@ -301,5 +337,17 @@ public class JsonRendering {
 				break;
 		}
 		writer.append(']');
+	}
+
+	private String fetchPath() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("root");
+		for (String item : path) {
+			if (item.charAt(0) != '[') {
+				sb.append(".");
+			}
+			sb.append(item);
+		}
+		return sb.toString();
 	}
 }

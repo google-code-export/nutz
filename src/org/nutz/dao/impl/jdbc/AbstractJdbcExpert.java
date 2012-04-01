@@ -288,8 +288,8 @@ public abstract class AbstractJdbcExpert implements JdbcExpert {
 			Sql tableCommentSQL = Sqls.create(Strings.isBlank(commentTable)	? DEFAULT_COMMENT_TABLE
 																			: commentTable);
 			tableCommentSQL.vars()
-							.set("table", en.getTableName().toUpperCase())
-							.set("tableComment", en.getTableComment().toUpperCase());
+							.set("table", en.getTableName())
+							.set("tableComment", en.getTableComment());
 			sqls.add(tableCommentSQL);
 		}
 		// 字段注释
@@ -299,8 +299,8 @@ public abstract class AbstractJdbcExpert implements JdbcExpert {
 					Sql columnCommentSQL = Sqls.create(Strings.isBlank(commentColumn)	? DEFAULT_COMMENT_COLUMN
 																						: commentColumn);
 					columnCommentSQL.vars()
-									.set("table", en.getTableName().toUpperCase())
-									.set("column", mf.getColumnName().toUpperCase())
+									.set("table", en.getTableName())
+									.set("column", mf.getColumnName())
 									.set("columnComment", mf.getColumnComment());
 					sqls.add(columnCommentSQL);
 				}
@@ -308,5 +308,20 @@ public abstract class AbstractJdbcExpert implements JdbcExpert {
 		}
 		// 执行创建语句
 		dao.execute(sqls.toArray(new Sql[sqls.size()]));
+	}
+	
+	public void formatQuery(DaoStatement daoStatement) {
+		if (daoStatement instanceof Pojo)
+			formatQuery((Pojo)daoStatement);
+		else if (daoStatement instanceof Sql)
+			formatQuery((Sql)daoStatement);
+		else
+			throw Lang.noImplement();
+	}
+
+	public abstract void formatQuery(Pojo pojo);
+	
+	public void formatQuery(Sql sql) {
+		throw Lang.noImplement();
 	}
 }

@@ -43,4 +43,10 @@ public class Issue125Test {
 	 * 由于","操作符的权重设置不正确, 导致错误的逆波兰解析.
 	 * @ TODO 整理一下这个问题的测试, 别这么乱
 	 */
+	
+	@Test
+	public void test_XX() {
+		System.out.println(El.eval("0.1354*((70-8)/70)*100"));
+		System.out.println(0.1354*((70-8)/70)*100);
+	}
 }

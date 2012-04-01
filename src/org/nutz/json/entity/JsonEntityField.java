@@ -1,6 +1,7 @@
 package org.nutz.json.entity;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 
@@ -27,8 +28,44 @@ public class JsonEntityField {
 	
 	private boolean hasAnno;
 
+	/**
+	 * 根据名称获取字段实体, 默认以set优先
+	 * @param mirror
+	 * @param name
+	 * @return
+	 */
+	public static JsonEntityField eval(Mirror<?> mirror, String name){
+	    Method[] methods = mirror.findSetters(name);
+	    if(methods.length == 1){
+	        Type[] types = Lang.getMethodParamTypes(mirror, methods[0]);
+	        JsonEntityField jef = new JsonEntityField();
+	        jef.genericType = types[0];
+	        fillJef(jef, mirror, name);
+	        return jef;
+	    }else {
+	        try {
+                return eval(mirror, mirror.getField(name));
+            } catch (NoSuchFieldException e) {
+                for(Field field : mirror.getFields()){
+                    JsonField jf = field.getAnnotation(JsonField.class);
+                    if(jf == null){
+                        continue;
+                    }
+                    if (null != jf && jf.ignore())
+                        return null;
+                    if(jf.value().equals(name)){
+                        return eval(mirror, field);
+                    }
+                }
+                return null;
+            }
+	    }
+	}
 	@SuppressWarnings("deprecation")
 	public static JsonEntityField eval(Mirror<?> mirror, Field fld) {
+	    if(fld == null){
+	        return null;
+	    }
 		JsonField jf = fld.getAnnotation(JsonField.class);
 		if (null != jf && jf.ignore())
 			return null;
@@ -44,7 +81,7 @@ public class JsonEntityField {
 			String getBy = jf.getBy();
 			if (Strings.isBlank(getBy))
 				getBy = jf.by();
-			if (!Strings.isBlank(jf.by()))
+			if (!Strings.isBlank(getBy))
 				jef.ejecting = new EjectBySimpleEL(getBy);
 			if (!Strings.isBlank(jf.value()))
 				jef.name = jf.value();
@@ -52,14 +89,21 @@ public class JsonEntityField {
 				jef.createBy = jf.createBy();
 			jef.hasAnno = true;
 		}
-		if (null == jef.ejecting )
-			jef.ejecting = mirror.getEjecting(fld.getName());
-		if (null == jef.injecting)
-			jef.injecting = mirror.getInjecting(fld.getName());
-		if (null == jef.name)
-			jef.name = fld.getName();
+		fillJef(jef, mirror, fld.getName());
 
 		return jef;
+	}
+	
+	private static void fillJef(JsonEntityField jef, Mirror<?> mirror, String name){
+	    if (null == jef.ejecting )
+	        // @ TODO 如果是纯方法, 没有字段的形式进行注入时并没有getter方法, 但是这里的实现可能有点欠妥.
+	        try{
+	            jef.ejecting = mirror.getEjecting(name);
+	        }catch(Exception e){}
+        if (null == jef.injecting)
+            jef.injecting = mirror.getInjecting(name);
+        if (null == jef.name)
+            jef.name = name;
 	}
 
 	private JsonEntityField() {}
