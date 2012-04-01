@@ -54,16 +54,24 @@ public abstract class Disks {
 	 * @return 相对于基础文件对象的相对路径
 	 */
 	public static String getRelativePath(File base, File file) {
-		return getRelativePath(base.getAbsolutePath(), file.getAbsolutePath());
+		String pathBase = base.getAbsolutePath();
+		if (base.isDirectory())
+			pathBase += "/";
+
+		String pathFile = file.getAbsolutePath();
+		if (file.isDirectory())
+			pathFile += "/";
+
+		return getRelativePath(pathBase, pathFile);
 	}
 
 	/**
 	 * 将两个路径比较，得出相对路径
 	 * 
 	 * @param base
-	 *            基础路径
+	 *            基础路径，以 '/' 结束，表示目录
 	 * @param path
-	 *            相对文件路径
+	 *            相对文件路径，以 '/' 结束，表示目录
 	 * @return 相对于基础路径对象的相对路径
 	 */
 	public static String getRelativePath(String base, String path) {
@@ -74,7 +82,15 @@ public abstract class Disks {
 		for (; pos < len; pos++)
 			if (!bb[pos].equals(ff[pos]))
 				break;
-		StringBuilder sb = new StringBuilder(Strings.dup("../", bb.length - 1 - pos));
+
+		if (len == pos && bb.length == ff.length)
+			return "./";
+
+		int dir = 1;
+		if (base.endsWith("/"))
+			dir = 0;
+
+		StringBuilder sb = new StringBuilder(Strings.dup("../", bb.length - pos - dir));
 		return sb.append(Lang.concat(pos, ff.length - pos, '/', ff)).toString();
 	}
 
@@ -156,8 +172,8 @@ public abstract class Disks {
 					url = Thread.currentThread().getContextClassLoader().getResource(path);
 				if (null == url)
 					url = ClassLoader.getSystemResource(path);
-			} catch (Throwable e) {
 			}
+			catch (Throwable e) {}
 			if (null != url)
 				return normalize(url.getPath(), Encoding.UTF8);// 通过URL获取String,一律使用UTF-8编码进行解码
 			return null;

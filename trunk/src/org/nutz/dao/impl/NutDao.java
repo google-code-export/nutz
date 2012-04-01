@@ -19,9 +19,9 @@ import org.nutz.dao.Sqls;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.entity.LinkVisitor;
 import org.nutz.dao.entity.Record;
+import org.nutz.dao.impl.link.DoClearLinkVisitor;
 import org.nutz.dao.impl.link.DoClearRelationByHostFieldLinkVisitor;
 import org.nutz.dao.impl.link.DoClearRelationByLinkedFieldLinkVisitor;
-import org.nutz.dao.impl.link.DoClearLinkVisitor;
 import org.nutz.dao.impl.link.DoDeleteLinkVisitor;
 import org.nutz.dao.impl.link.DoFetchLinkVisitor;
 import org.nutz.dao.impl.link.DoInsertLinkVisitor;
@@ -755,5 +755,9 @@ public class NutDao extends DaoSupport implements Dao {
 		re.myObj = obj.getClass().isArray() ? Lang.array2list((Object[]) obj) : obj;
 		return re;
 	}
+
+	//---------------------------------------------------------------
+	//专属于NutDao的一些帮助方法
+
 
 }

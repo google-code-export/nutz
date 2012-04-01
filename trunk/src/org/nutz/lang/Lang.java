@@ -10,10 +10,13 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -26,9 +29,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
-
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.nutz.castor.Castors;
@@ -1449,7 +1450,7 @@ public abstract class Lang {
 	 * @throws ParserConfigurationException
 	 */
 	public static DocumentBuilder xmls() throws ParserConfigurationException {
-		return DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		return Xmls.xmls();
 	}
 
 	/**
@@ -1523,12 +1524,14 @@ public abstract class Lang {
 			Object v = mirror.getValue(obj, fld);
 			if (null == v) {
 				map.put(fld.getName(), null);
+				continue;
 			}
 			Mirror<?> mr = Mirror.me(fld.getType());
 			if (mr.isNumber()
 				|| mr.isBoolean()
 				|| mr.isChar()
 				|| mr.isStringLike()
+				|| mr.isEnum()
 				|| mr.isDateTimeLike()) {
 				map.put(fld.getName(), v);
 			} else if (memo.containsKey(v)) {
@@ -1730,6 +1733,21 @@ public abstract class Lang {
 	public static Type getFieldType(Mirror<?> me, String field) throws NoSuchFieldException {
 		return getFieldType(me, me.getField(field));
 	}
+	
+	/**
+	 * 当一个类使用<T, K> 来定义泛型时, 本方法返回类的一个方法所有参数的具体类型
+	 * @param me
+	 * @param method
+	 * @return
+	 */
+	public static Type[] getMethodParamTypes(Mirror<?> me, Method method){
+	    Type[] types = method.getGenericParameterTypes();
+	    List<Type> ts = new ArrayList<Type>();
+	    for(Type type : types){
+	        ts.add(getGenericsType(me, type));
+	    }
+	    return ts.toArray(new Type[ts.size()]);
+	}
 
 	/**
 	 * 当一个类使用<T,K>来定义泛型时,本方法返回类的一个字段的具体类型。
@@ -1740,17 +1758,27 @@ public abstract class Lang {
 	 */
 	public static Type getFieldType(Mirror<?> me, Field field) {
 		Type type = field.getGenericType();
-		Type[] types = me.getGenericsTypes();
-		if (type instanceof TypeVariable && types != null && types.length > 0) {
-			Type[] tvs = me.getType().getTypeParameters();
-			for (int i = 0; i < tvs.length; i++) {
-				if (type.equals(tvs[i])) {
-					type = me.getGenericsType(i);
-					break;
-				}
-			}
-		}
-		return type;
+		return getGenericsType(me, type);
+	}
+	
+	/**
+	 * 当一个类使用<T,K>来定义泛型时,本方法返回类的一个字段的具体类型。
+	 * @param me
+	 * @param type
+	 * @return
+	 */
+	public static Type getGenericsType(Mirror<?> me, Type type){
+	    Type[] types = me.getGenericsTypes();
+        if (type instanceof TypeVariable && types != null && types.length > 0) {
+            Type[] tvs = me.getType().getTypeParameters();
+            for (int i = 0; i < tvs.length; i++) {
+                if (type.equals(tvs[i])) {
+                    type = me.getGenericsType(i);
+                    break;
+                }
+            }
+        }
+        return type;
 	}
 
 	/**
@@ -1817,6 +1845,29 @@ public abstract class Lang {
 		}
 		catch (ClassNotFoundException e) {
 			throw Lang.wrapThrow(e);
+		}
+	}
+	
+	public static String md5(String str) {
+		if (str == null)
+			str = "";
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("md5");
+			md5.update(str.getBytes(Encoding.CHARSET_UTF8));
+			byte[] data = md5.digest();
+			StringBuilder sb = new StringBuilder();
+			for (byte b : data) {
+				String s = Integer.toHexString(b);
+				if (s.length() == 1)
+					sb.append('0').append(s);
+				else if (s.length() == 2)
+					sb.append(s);
+				else
+					sb.append(s.substring(s.length() - 2, s.length()));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			throw Lang.impossible();
 		}
 	}
 }
