@@ -8,6 +8,7 @@ import org.nutz.ioc.IocLoader;
 import org.nutz.ioc.impl.NutIoc;
 import org.nutz.ioc.json.pojo.Mammal;
 import org.nutz.ioc.loader.json.JsonLoader;
+import org.nutz.json.Json;
 
 public class AopJsonIocTest {
 
@@ -25,5 +26,6 @@ public class AopJsonIocTest {
 		fox.getName();
 		assertEquals("B:getName0;A:getName0;B:getName0;A:getName0;", sb.toString());
 
+		System.out.println(Json.toJson(il));
 	}
 }

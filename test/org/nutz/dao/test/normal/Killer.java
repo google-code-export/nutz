@@ -29,7 +29,7 @@ public class Killer {
 	@Prev(@SQL("SELECT COUNT(*) FROM t_killer_re WHERE killer=@name"))
 	private int killedCount;
 
-	@Column("last")
+	@Column("lastK")
 	@Prev(@SQL("SELECT name FROM t_resident WHERE id IN (SELECT rid FROM t_killer_re WHERE killer=@name) ORDER BY name DESC"))
 	private String lastKillName;
 

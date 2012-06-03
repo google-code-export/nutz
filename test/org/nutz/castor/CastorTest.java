@@ -229,6 +229,7 @@ public class CastorTest {
 	public void testArray2String() throws Exception {
 		Email[] mails = {new Email("zzh@263.net"), new Email("zozohtnt@yahoo.com.cn")};
 		String done = Castors.me().castToString(mails);
+		System.out.println(done);
 		Email[] mails2 = Castors.me().castTo(done, Email[].class);
 		assertTrue(Lang.equals(mails, mails2));
 	}
