@@ -14,7 +14,4 @@ import org.nutz.ioc.val.AllVal;
 						AllLoader.class,
 						AllVal.class,
 						AllAopConfigration.class})
-public class AllIoc {
-	
-	public long XX = 1000;
-}
+public class AllIoc {}

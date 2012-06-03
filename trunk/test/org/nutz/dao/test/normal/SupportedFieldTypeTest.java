@@ -199,7 +199,7 @@ public class SupportedFieldTypeTest extends DaoCase {
 				if (null == expValue)
 					continue;
 			}
-			if (!expValue.equals(ttValue) && !dao.meta().isDB2()) //DB2的精度有点问题
+			if (!expValue.equals(ttValue) && !dao.meta().isDB2() && !dao.meta().isDerby()) //DB2的精度有点问题
 				throw Lang.makeThrow(	"'%s' expect [%s] but it was [%s]",
 										f.getName(),
 										expValue,

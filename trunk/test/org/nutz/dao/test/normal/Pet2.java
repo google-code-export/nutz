@@ -4,6 +4,10 @@ import org.nutz.dao.entity.annotation.*;
 import org.nutz.dao.test.meta.Pet;
 
 public class Pet2 extends Pet {
+	
+	public Pet2() {
+		new Throwable().printStackTrace();
+	}
 
 	@Column("alias")
 	@Prev(@SQL("SELECT 'dog.$name'"))

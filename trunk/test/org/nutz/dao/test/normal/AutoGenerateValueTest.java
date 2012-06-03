@@ -24,7 +24,7 @@ public class AutoGenerateValueTest extends DaoCase {
 		// TODO HSQL 也不认这样的语句 SELECT 'dog.xb'
 		// TODO DB2 同样不认
 		if (dao.meta().isOracle() || dao.meta().isHsql()
-				|| dao.meta().isDB2())
+				|| dao.meta().isDB2() || dao.meta().isDerby())
 			return;
 		pojos.initPet();
 		Pet2 pet = new Pet2();
@@ -33,6 +33,8 @@ public class AutoGenerateValueTest extends DaoCase {
 		dao.insert(pet);
 
 		assertEquals("dog.xb", pet.getNickName());
+		
+		dao.fetch(Pet2.class);
 	}
 
 	@Test

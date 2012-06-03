@@ -11,6 +11,7 @@ import org.nutz.aop.ClassAgent;
 import org.nutz.aop.ClassDefiner;
 import org.nutz.aop.asm.test.Aop1;
 import org.nutz.aop.asm.test.Aop7;
+import org.nutz.aop.asm.test.MoreMethods;
 import org.nutz.aop.asm.test.MyMethodInterceptor;
 import org.nutz.aop.asm.test.ZZZ;
 import org.nutz.aop.interceptor.AbstractMethodInterceptor;
@@ -171,5 +172,16 @@ public class ClassXTest {
 		Class<?> clazz = classAgent.define(Nutzs.cd(), Aop7.class);
 		System.out.println(clazz.newInstance());
 		assertTrue(Aop1.class.equals(Mirror.getTypeParam(clazz, 0)));
+	}
+	
+	@Test
+	public void ten_thousand_method() throws Throwable{
+		Class<?> clazz = classAgent.define(Nutzs.cd(), MoreMethods.class);
+		MoreMethods mm = (MoreMethods) clazz.newInstance();
+		for (int i = 0; i < 5000; i++) {
+			System.out.println("mm.method"+i+"();");
+		}
+		
+		mm.method4999();
 	}
 }

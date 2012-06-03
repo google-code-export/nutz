@@ -1,4 +1,4 @@
-package org.nutz.json;
+package org.nutz.json.impl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -7,8 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.nutz.el.El;
+import org.nutz.json.JsonException;
+import org.nutz.json.JsonParser;
 import org.nutz.lang.Lang;
+import org.nutz.mapl.MaplCompile;
 
 /**
  * 将json理解为Map+List
@@ -16,7 +18,7 @@ import org.nutz.lang.Lang;
  * @author wendal
  *
  */
-public class JsonCompile {
+public class JsonCompileImpl implements JsonParser, MaplCompile<Reader> {
 	
 	private int cursor;
 	private Reader reader;
@@ -56,7 +58,7 @@ public class JsonCompile {
 		}
 	}
 	
-	private Object parseFromHere() throws IOException{
+	protected Object parseFromHere() throws IOException{
 		skipCommentsAndBlank();
 		switch(cursor){
 		case '{':
@@ -69,29 +71,10 @@ public class JsonCompile {
 			return list;
 		case '"':
 		case '\'':
-			return parseEl(parseString(cursor));//看来是个String
+			return parseString(cursor);//看来是个String
 		default:
 			return parseSimpleType();//其他基本数据类型
 		}
-	}
-	
-	/**
-	 * 判断字符串是否能转换成EL对象, 如果能则返回EL对象, 否则返回字符串
-	 * @param str
-	 * @return
-	 */
-	private Object parseEl(String str){
-	    if(str.startsWith(JsonRendering.RECURSION_QUOTED_PREFIX)){
-	        String s = str.substring(JsonRendering.RECURSION_QUOTED_PREFIX.length());
-	        s = s.replace('.', 'm');
-	        s = s.replace('[', 'a');
-	        s = s.replace("]", "");
-	        return new El(s);
-	    }
-	    if(str.startsWith(JsonRendering.JSON_EL_PREFIX)){
-	        return new El(str.substring(JsonRendering.JSON_EL_PREFIX.length()));
-	    }
-	    return str;
 	}
 	
 	/**
@@ -296,48 +279,61 @@ public class JsonCompile {
 		}
 	}
 	
-	private void parseMapItem(Map<String, Object> map) throws IOException {
-		//找key
-		String key = null;
-		switch (cursor) {
-		case '"':
-		case '\'':
-			key = parseString(cursor);
-			nextChar();
-			skipCommentsAndBlank();
-			break;
-		default:
-			//没办法,看来是无分隔符的字符串,找一下吧
-			StringBuilder sb = new StringBuilder();
-			sb.append((char)cursor);
-			OUTER: while(true) {
-				nextChar();
-				switch (cursor) {
-				case '\\'://特殊字符
-					parseSp(sb);
-					break;
-				case ' ':
-				case '/':
-					skipCommentsAndBlank();
-					if(cursor == ':') {
-						key = sb.toString().trim().intern();
-						break OUTER;
-					} else
-						throw unexpectedChar();
-				case ':':
-					key = sb.toString().trim().intern();
-					break OUTER;
-				default:
-					sb.append((char)cursor);
-				}
-			}
-		}
-		//TODO 判断一下key是否合法
-		//当前字符为: 跳过去
-		nextChar();
-		skipCommentsAndBlank();
-		map.put(key, parseFromHere());
+	/**
+	 * 生成MAP对象
+	 * @param map
+	 * @throws IOException
+	 */
+	protected void parseMapItem(Map<String, Object> map) throws IOException {
+		map.put(fetchKey(), parseFromHere());
 	}
+	
+	/**
+	 * 找KEY
+	 */
+	protected String fetchKey() throws IOException{
+	  //找key
+        String key = null;
+        switch (cursor) {
+        case '"':
+        case '\'':
+            key = parseString(cursor);
+            nextChar();
+            skipCommentsAndBlank();
+            break;
+        default:
+            //没办法,看来是无分隔符的字符串,找一下吧
+            StringBuilder sb = new StringBuilder();
+            sb.append((char)cursor);
+            OUTER: while(true) {
+                nextChar();
+                switch (cursor) {
+                case '\\'://特殊字符
+                    parseSp(sb);
+                    break;
+                case ' ':
+                case '/':
+                    skipCommentsAndBlank();
+                    if(cursor == ':') {
+                        key = sb.toString().trim().intern();
+                        break OUTER;
+                    } else
+                        throw unexpectedChar();
+                case ':':
+                    key = sb.toString().trim().intern();
+                    break OUTER;
+                default:
+                    sb.append((char)cursor);
+                }
+            }
+        }
+        // TODO 判断一下key是否合法
+        // 当前字符为: 跳过去
+        nextChar();
+        skipCommentsAndBlank();
+        return key;
+	}
+	
 	
 	/**
 	 * 处理List
