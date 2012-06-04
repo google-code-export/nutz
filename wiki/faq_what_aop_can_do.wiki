@@ -22,7 +22,7 @@
 =`Nutz.Aop是如何做到拦截一个方法的`=
       # 继承需要拦截的类. 这个类必须的非abstract非final的顶层类,不能是内部类和本地类(这个很少见)
       # override需要拦截的方法. 这个方法必须是非abstract非final非static非native
-      # 嵌入拦截器逻辑到方法中. 看网页:[ioc_aop_solution Nutz.Aop模型 ]
+      # 嵌入拦截器逻辑到方法中. 看网页:[../ioc/aop_solution.man Nutz.Aop模型 ]
 ----
 
 <p align="right">[#Top]</p>
@@ -50,7 +50,7 @@
       # 在Ioc中添加Aop支持
           # [ioc_loader_annotation @Aop注解 ]
           # 声明式Aop
-              # [ioc_aop_json json方式 ]
+              # [../ioc/aop_json.man json方式 ]
               # xml方式,暂未资料
 ----
 

@@ -11,7 +11,7 @@
 又到了[http://nutzam.com Nutz ]发布的日子，本次发布不像之前的几次，仅仅是一点微调，这次我们还是稍微的用了一点心思
 
       * 我们支持了[http://db.apache.org/derby/ Derby ]数据库
-      * 为了能更灵活的支持 JSON 类的数据转换，将 JSON 包中的某些方法抽象成[maplist_overview Mapl 结构 ]
+      * 为了能更灵活的支持 JSON 类的数据转换，将 JSON 包中的某些方法抽象成[maplist/overview.man Mapl 结构 ]
       * 之前一直被抱怨的 Nutz.Mvc 多国语言字符串，切换本地字符串时，那几个脑残的接口也被改的不那么脑残
       * 最重大的修改是 Wendal 重构了 Scans 包，我想，这应该能成为我们更好支持 Maven 运行环境的基础
 总之这个版，是很值得升级的。
@@ -90,7 +90,7 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 =`文档`=
 
 
-      * 增加[maplist_overview Mapl 结构 ]
+      * 增加[maplist/overview.man Mapl 结构 ]
 ----
 
 <p align="right">[#Top]</p>
