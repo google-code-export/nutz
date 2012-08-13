@@ -1,11 +1,10 @@
 package org.nutz.mapl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -235,5 +234,69 @@ public class MaplTest {
         assertEquals(5, Mapl.cell(obj, "[1].age"));
         assertEquals(dest, Json.toJson(obj, new JsonFormat()));
     }
+    
+    /**
+     * 添加元素到mapl中
+     */
+    @Test
+    public void addItemTest(){
+        String json = "{'user':[{'name':'jk', 'age':12},{'name':'nutz', 'age':5}]}";
+        Object obj = Json.fromJson(json);
+        Mapl.put(obj, "user[0].test", "test");
+        assertEquals("test", Mapl.cell(obj, "user[0].test"));
+    }
+    
+    /**
+     * 删除元素到mapl中
+     */
+    @Test
+    public void delItemTest(){
+        String json = "{'user':[{'name':'jk', 'age':12},{'name':'nutz', 'age':5}]}";
+        Object obj = Json.fromJson(json);
+        Mapl.del(obj, "user[0].age");
+        assertNull(Mapl.cell(obj, "user[0].age"));
+        assertEquals(1, ((Map<?,?>)Mapl.cell(obj, "user[0]")).size());
+    }
+    
+    /**
+     * 修改元素到mapl中
+     */
+    @Test
+    public void updateItemTest(){
+        String json = "{'user':[{'name':'jk', 'age':12},{'name':'nutz', 'age':5}]}";
+        Object obj = Json.fromJson(json);
+        Mapl.update(obj, "user[0].name", "test");
+        assertEquals("test", Mapl.cell(obj, "user[0].name"));
+    }
 
+    @Test
+    public void issue243Test(){
+        String json = "{'user':[{'name':'jk', 'age':12},{'name':'nutz', 'age':5}]}";
+        Object obj = Json.fromJson(json);
+        Object item = Mapl.cell(obj, "user[]");
+        assertFalse(item instanceof List);
+        assertTrue(item instanceof Map);
+    }
+    
+    @Test
+    public void issue243Test2(){
+        List<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        List<String> items= new LinkedList<String>();
+        items.add(new String("aa"));
+        items.add(new String("bb"));
+
+        map.put("id", 0);
+        map.put("items",items);
+
+        list.add(map);
+        
+        assertEquals(Mapl.cell(list,"[0].items.0"), "aa");
+        assertTrue(Mapl.cell(list,"[0].items[0]").equals("aa"));
+        assertTrue(Mapl.cell(list,"[0].items[1]").equals("bb"));
+        assertTrue(Mapl.cell(list,"[0].items[]").equals("aa"));
+        assertTrue(Mapl.cell(list,"[0].items").equals(items));
+    }
 }

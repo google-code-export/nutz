@@ -24,7 +24,7 @@ public class CustomMake {
      * 加载插件
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    private static void init(){
+    public static void init(){
         List<String> plug = (List<String>) ((Map)NutConf.get("EL")).get("custom");
         String [] t = plug.toArray(new String[0]);
         PluginManager<RunMethod> rm = new SimplePluginManager<RunMethod>(t);
@@ -33,11 +33,11 @@ public class CustomMake {
         }
     }
     
-	/**
-	 * 自定义方法 工厂方法
-	 */
-	public static RunMethod make(String val) {
-	    return runms.get(val);
-	}
-	
+    /**
+     * 自定义方法 工厂方法
+     */
+    public static RunMethod make(String val) {
+        return runms.get(val);
+    }
+    
 }

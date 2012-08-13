@@ -3,3 +3,6 @@
 /*.project
 /tmp/
 /.settings/
+*.DS_Store
+target/
+D:*

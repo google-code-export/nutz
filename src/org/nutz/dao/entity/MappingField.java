@@ -13,6 +13,16 @@ import org.nutz.dao.jdbc.ValueAdaptor;
 public interface MappingField extends EntityField {
 
 	/**
+	 * 通过 Record 为映射字段注入值
+	 * 
+	 * @param obj
+	 *            被注入对象
+	 * @param rec
+	 *            结果集
+	 */
+	void injectValue(Object obj, Record rec);
+
+	/**
 	 * 通过 resultSet 为映射字段注入值
 	 * 
 	 * @param obj
@@ -146,8 +156,19 @@ public interface MappingField extends EntityField {
 	 * @return 当前字段是否有注释。
 	 */
 	boolean hasColumnComment();
-	
+
 	void setCustomDbType(String customDbType);
-	 
+
 	String getCustomDbType();
+
+	/**
+	 * @return 当前字段是否参与保存操作
+	 */
+	boolean isInsert();
+
+	/**
+	 * @return 当前字段是否参与更新操作
+	 */
+	boolean isUpdate();
+
 }
