@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.nutz.el.opt.custom.CustomMake;
 import org.nutz.json.Json;
 import org.nutz.lang.Files;
 import org.nutz.lang.util.NutType;
@@ -33,101 +34,102 @@ import org.nutz.resource.impl.FileResource;
  * 
  */
 public class NutConf {
-	
-	private static final Log log = Logs.get();
-	
-	private static final String DEFAULT_CONFIG = "org/nutz/conf/NutzDefaultConfig.js";
 
-	// 所有的配置信息
-	private Map<String, Object> map = new HashMap<String,Object>();
-	private static final Object lock = new Object();
+    private static final Log log = Logs.get();
 
-	private static NutConf conf;
+    private static final String DEFAULT_CONFIG = "org/nutz/conf/NutzDefaultConfig.js";
 
-	private static NutConf me() {
-		if (null == conf) {
-			synchronized (lock) {
-				if (null == conf)
-					conf = new NutConf();
-			}
-		}
-		return conf;
-	}
+    // 所有的配置信息
+    private Map<String, Object> map = new HashMap<String, Object>();
+    private static final Object lock = new Object();
 
-	private NutConf() {
-		// 加载框架自己的一些配置
-		loadResource(DEFAULT_CONFIG);
-	}
+    private static NutConf conf;
 
-	public static void load(String... paths) {
-		me().loadResource(paths);
-	}
+    private static NutConf me() {
+        if (null == conf) {
+            synchronized (lock) {
+                if (null == conf)
+                    conf = new NutConf();
+            }
+        }
+        return conf;
+    }
 
-	/**
-	 * 加载资源
-	 */
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	private void loadResource(String... paths) {
-		for (String path : paths) {
-			List<NutResource> resources;
-			if (path.endsWith(".js")) {
-				File f = Files.findFile(path);
-				resources = new ArrayList<NutResource>();
-				resources.add(new FileResource(f));
-			} else {
-				resources = Scans.me().scan(path, "\\.js$");
-			}
+    private NutConf() {
+        // 加载框架自己的一些配置
+        loadResource(DEFAULT_CONFIG);
+    }
 
-			for (NutResource nr : resources) {
-				try {
-					Object obj = Json.fromJson(nr.getReader());
-					if (obj instanceof Map) {
-						Map m = (Map) obj;
-						map = (Map) Mapl.merge(map, m);
-						for (Object key : m.keySet()) {
-							if (key.equals("include")) {
-								List<String> include = (List) m.get("include");
-								loadResource(include.toArray(new String[0]));
-							}
-						}
-					}
-				}
-				catch (Throwable e) {
-					if (log.isWarnEnabled())
-						log.warn("Fail to load config?! for " + nr.getName(), e);
-				}
-			}
-		}
-	}
+    public static void load(String... paths) {
+        me().loadResource(paths);
+        CustomMake.init();
+    }
 
-	/**
-	 * 读取一个配置项, 并转换成相应的类型.
-	 */
-	public static Object get(String key, Type type) {
-		return me().getItem(key, type);
-	}
+    /**
+     * 加载资源
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private void loadResource(String... paths) {
+        for (String path : paths) {
+            List<NutResource> resources;
+            if (path.endsWith(".js")) {
+                File f = Files.findFile(path);
+                resources = new ArrayList<NutResource>();
+                resources.add(new FileResource(f));
+            } else {
+                resources = Scans.me().scan(path, "\\.js$");
+            }
 
-	/**
-	 * 读取配置项, 返回Map, List或者 Object. 具体返回什么, 请参考 JSON 规则
-	 */
-	public static Object get(String key) {
-		return me().getItem(key, null);
-	}
+            for (NutResource nr : resources) {
+                try {
+                    Object obj = Json.fromJson(nr.getReader());
+                    if (obj instanceof Map) {
+                        Map m = (Map) obj;
+                        map = (Map) Mapl.merge(map, m);
+                        for (Object key : m.keySet()) {
+                            if (key.equals("include")) {
+                                List<String> include = (List) m.get("include");
+                                loadResource(include.toArray(new String[0]));
+                            }
+                        }
+                    }
+                }
+                catch (Throwable e) {
+                    if (log.isWarnEnabled())
+                        log.warn("Fail to load config?! for " + nr.getName(), e);
+                }
+            }
+        }
+    }
 
-	/**
-	 * 读取一个配置项, 并转换成相应的类型.
-	 * 
-	 * @param key
-	 * @param type
-	 * @return
-	 */
-	private Object getItem(String key, Type type) {
-		if (null == map) {
-			return null;
-		}
-		if (null == type) {
-			return map.get(key);
-		}
-		return Mapl.maplistToObj(map.get(key), type);
-	}
+    /**
+     * 读取一个配置项, 并转换成相应的类型.
+     */
+    public static Object get(String key, Type type) {
+        return me().getItem(key, type);
+    }
+
+    /**
+     * 读取配置项, 返回Map, List或者 Object. 具体返回什么, 请参考 JSON 规则
+     */
+    public static Object get(String key) {
+        return me().getItem(key, null);
+    }
+
+    /**
+     * 读取一个配置项, 并转换成相应的类型.
+     * 
+     * @param key
+     * @param type
+     * @return
+     */
+    private Object getItem(String key, Type type) {
+        if (null == map) {
+            return null;
+        }
+        if (null == type) {
+            return map.get(key);
+        }
+        return Mapl.maplistToObj(map.get(key), type);
+    }
 }

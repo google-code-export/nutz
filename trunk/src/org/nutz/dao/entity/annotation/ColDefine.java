@@ -37,4 +37,15 @@ public @interface ColDefine {
 	boolean auto() default false;
 
 	String customType() default "";
+
+	/**
+	 * 描述当前字段是否可插入
+	 */
+	boolean insert() default true;
+
+	/**
+	 * 描述当前字段是否可更新
+	 */
+	boolean update() default true;
+
 }

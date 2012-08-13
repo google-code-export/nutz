@@ -6,13 +6,12 @@ import org.nutz.ioc.loader.annotation.IocBean;
 
 @IocBean
 public class ClassB {
-	
-	@SuppressWarnings("unused")
-	@Inject("refer:dao")
-	private Dao dao;
-	
-	public void setDao(Dao dao) {
-		this.dao = dao;
-	}
+    
+    @Inject("refer:dao")
+    public Dao dao;
+    
+    public void setDao(Dao dao) {
+        this.dao = dao;
+    }
 
 }

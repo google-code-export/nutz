@@ -386,11 +386,15 @@ public class AnnotationEntityMaker implements EntityMaker {
 			// 自增，如果 @Id(auto=false)，则忽略
 			if (info.annDefine.auto() && !ef.isId())
 				ef.setAsAutoIncreasement();
-			
-			//是否为自定义类型呢?
+
+			// 是否为自定义类型呢?
 			if (info.annDefine.customType().length() > 0) {
 				ef.setCustomDbType(info.annDefine.customType());
 			}
+
+			// 插入更新操作
+			ef.setInsert(info.annDefine.insert());
+			ef.setUpdate(info.annDefine.update());
 		}
 		// 猜测字段类型
 		else {

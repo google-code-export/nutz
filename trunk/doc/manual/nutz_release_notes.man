@@ -1,50 +1,51 @@
-#title: 1.b.44 发行注记
+#title: 1.b.45 发行注记
 #index:0,1
 #author:zozoh(zozohtnt@gmail.com)
 --------------------------------------------------------------------------------------------------------
-1.b.44 发行注记
+1.b.45 发行注记
 
-    又到了 [http://nutzam.com Nutz] 发布的日子，本次发布不像之前的几次，仅仅是一点微调，
-    这次我们还是稍微的用了一点心思
-     * 我们支持了 [http://db.apache.org/derby/ Derby] 数据库
-     * 为了能更灵活的支持 JSON 类的数据转换，将 JSON 包中的某些方法抽象成 [maplist/overview.man Mapl 结构]
-     * 之前一直被抱怨的 Nutz.Mvc 多国语言字符串，切换本地字符串时，那几个脑残的接口也被改的不那么脑残
-     * 最重大的修改是 Wendal 重构了 Scans 包，我想，这应该能成为我们更好支持 Maven 运行环境的基础
-    
-    总之这个版，是很值得升级的。
-    
-    说点新闻。前几天，[http://www.iteye.com/news/24777 我们的开源项目] 在北京弄了一个沙龙一样的聚会，
-    征集演讲主题，并投票决定是否给你分配演讲的时间。由于自知是一个小众的项目，因此如果事先知道还要被投票，我们可能就不会参加了。
-    不过另我们意外的是，[http://nutzam.com Nutz] 水军力量似乎比较强大，我们获得了排名第二的投票。所以阴差阳错的去了。
-    说起来，这似乎是第一次，我们在公开场合肉身谈论 Nutz 这个项目。
-    记得当天早上，我神奇发了烧，嗓子发炎的厉害。
-    以致被 [http://pangwu86.iteye.com/ 胖五] 坚决的认为我心理素质有问题，遇见大场面就需要尿不湿。
-    
-    无论怎样，我们是去参加了这个活动，并且认真的准备了一组演讲稿:
-    [http://nutzam.com/press/what_is_nutz/ Nutz:一次刻意的意外 de 演讲稿]
-    
-    当天 [http://pangwu86.iteye.com/ 胖五] 录了一段未剪辑过的演讲视频。有兴趣的朋友请看这里:
-    [http://v.youku.com/v_show/id_XNDAzMDI0NDEy.html Nutz - 一次刻意的意外]
-    
-    这个活动是一个系列的活动，我想关注国内开源的朋友或多或少都听说过，有的还参加过。
-    这里，我们希望活动的主创人员能够坚持下去，也祝愿这个活动越办越好。
-    
-    因为要肉身现场和上百个人谈论 [http://nutzam.com Nutz]， [http://wendal.net Wendal] 也就决定肉身过来听听。
-    因此我心里上很感谢 [http://www.iteye.com/news/24777 我们的开源项目]，要不是他们，我可能到现在还没有见过 
-    [http://wendal.net Wendal] 的真人。 我们在一起度过一个愉快的周末，当然我们也录了很多 DV，
-    因为太多，不能全放上来，我做了一点剪辑，后来发现加几个字配个背景音乐，可以完全当作一个 [http://nutzam.com Nutz]
-    的宣传视频，有兴趣的朋友可以看这里  [http://v.youku.com/v_show/id_XNDA3MDE3ODc2.html nutz_宣传片第0季]
-    
-    [http://my.oschina.net/dlpinghailinfeng jeffsui] 在 OSChain 上也投递了一篇相关的新闻
-    [http://www.oschina.net/news/29608/nutz-video IT范儿是什么范儿-nutz_宣传片第0季]
-    
-    期间，我就 [http://nutzam.com Nutz] 这个项目采访了过 [http://pangwu86.iteye.com/ 胖五同学]， 
-    稍候我会做整理，把视频传上来。 [http://pangwu86.iteye.com/ 胖五同学] 对 [http://nutzam.com Nutz] 未来的一些
-    设想，未来的几个月内将变成现实，我可以负责任的说: "虽然还需要继续做一些工作，但是基本已经没有什么悬念了。" 
+    Hi 大家好，从六月初发布了 Nutz.1.b.44 以来，已经过去将近两个月了，期间我们颇收集了一些小 bug，
+    于是就发这个 bug fix 版吧。 使用 1.b.4x 的同学可以安心升级。 
+    还在用 1.b.3x 的同学建议你快点升级 -_-!。
 
+    另外说一下，临到发布前，我们还是决定将 "mock" 包从 nutz.jar 里移走，它的内容现在被移动到 "test" 目录下了，
+    这个包可能不会有太多人用到，如果个别人想用，可以从 test 目录里 copy 源代码自行编译。这个算是 nutz
+    瘦身活动的开始。我们之后会努力让这个小 jar 包更稳定和小巧。
+
+    这两个多月，[http://wendal.net 无敌的Wendal] 开始录制 Nutz 系列教程，现已经录了两季了：
+     * [http://v.youku.com/v_show/id_XNDMxODAzMTQ4.html 视频: Nutz 入门教程第一季 - 基础框架的搭建]
+     * [http://v.youku.com/v_show/id_XNDMxODA5MjQw.html 视频: Nutz入门教程第二季 - Ioc 漫谈]
+
+    这两个教程的下载地址都在 [https://code.google.com/p/nutz/downloads/list Nutz 下载列表]里能找到。
+    内容对初学者是很有帮助的，高级用户也推荐看一看：视频录制期间，[http://wendal.net Wendal] 出现了几次
+    可爱的输出错误，看着他修复时果断且狐疑的样子，我都被萌到了，啊哈哈哈哈 ^_^。
+
+    如果想更及时关注教程更新信息的同学，可以到新浪微博关注：
+     * [http://weibo.com/wendalme @WendalMe]
+     * 或者 [http://weibo.com/zozoh @zozoh]
+     * 或者 [http://weibo.com/pangwu86 @胖五86]
+    这三个微博都会随时推 [http://s.weibo.com/weibo/Nutz Nutz 的相关动态]。
+
+    5月底由于参加了 [http://www.iteye.com/news/24777 我们的开源项目] 组织的活动，我们录了几段视频：
+     * [http://v.youku.com/v_show/id_XNDAzMDI0NDEy.html 视频:Nutz一次刻意的意外！]
+     * [http://v.youku.com/v_show/id_XNDA3MDE3ODc2.html 视频: nutz_宣传片第0季]
+    有兴趣的朋友大家可以看看。
+
+    {#008800;*======= 特别预告 ===========}
+
+    一个月前，我曾经因为好玩，假模假样的采访过 [http://weibo.com/pangwu86 @胖五86]:
+     * [http://v.youku.com/v_show/id_XNDA5MTk5MTcy.html `视频: Nutz [任何人采任何人] 之 zozoh采胖五`]
+    但是这个谈话我自己回头看的时候觉得很有意思。尤其是最后，胖五透露了一点我们未来的规划 ...
+
+    由于很多不可预测的原因，我们年初计划的 "Nutz 的应用" 一拖再拖。
+    不过，如果不出意外，我可以比较负责任的说，
+    下次我们再见面，大家会得到一个基于 Nutz 的应用的。
+    一个绝对值得你试着用用，而且肯定有用的应用 （{#CCCCCC;/ 注：不是 CMS 类的}）。
+    我都有点等不急了，2个月，快点过去吧 ... 阿门 ~~~
     
+
     ------------------------------ Nutz 的下载地址的分隔线 -------------------------
-    
+
      * 稳定版下载地址 : [http://code.google.com/p/nutz/downloads/list]
      * 日编译下载地址 : [http://build.sunfarms.net/nutz/]
      * Nutz 的主页 :  [http://nutzam.com]
@@ -53,30 +54,26 @@
 --------------------------------------------------------------------------------------------------------
 问题修复
 
-    * [https://github.com/nutzam/nutz/issues/231 Issue 231] 引入MapList, 取消JsonFilter 项目维护 Json Lang 文档 需求  {#AAA;by} {*juqkai}
-    * [https://github.com/nutzam/nutz/issues/229 Issue 229] org.nutz.dao.util.cri.Exps.create方法NOT LKIE写错 项目维护 Dao  {#AAA;by} {*hzl7652}
-    * [https://github.com/nutzam/nutz/issues/228 Issue 228] ColType 字段类型太少 Dao 需求 重要  {#AAA;by} {*gnoloahs}
-    * [https://github.com/nutzam/nutz/issues/224 Issue 224] Json.toJson 如果对象有枚举字段，将输出 null Json {#AAA;by} {*zozoh}
-    * [https://github.com/nutzam/nutz/issues/222 Issue 222] maven项目引用其他子项目时，class文件不能被扫描 需求  {#AAA;by} {*for5million}
-    * [https://github.com/nutzam/nutz/issues/218 Issue 218] NutzDao建表时 ，Blob转译问题(sqlserver2000/2005) Dao 重要  {#AAA;by} {*naily}
-    * [https://github.com/nutzam/nutz/issues/216 Issue 216] Mvc 的本地化 问题 Mvc  {#AAA;by} {*enzozhong}
-    * [https://github.com/nutzam/nutz/issues/214 Issue 214] 1.44对象扫描异常 项目维护 Lang  {#AAA;by} {*albinhdk}
-    * [https://github.com/nutzam/nutz/issues/209 Issue 209] nutz dao 能不能实现 update table set col=col+10 where id=1 这样的语句? Dao FAQ  {#AAA;by} {*ming300}
-    * [https://github.com/nutzam/nutz/issues/208 Issue 208] 添加对SQLServer2012的支持 Dao 需求 重要  {#AAA;by} {*wendal}
-    * [https://github.com/nutzam/nutz/issues/207 Issue 207] 添加对Derby数据库的支持  {#AAA;by} {*wendal}
-    * [https://github.com/nutzam/nutz/issues/206 Issue 206] Dao.execute如果传入null,会报Not implement yet! Dao 重要  {#AAA;by} {*wendal}
-    * [https://github.com/nutzam/nutz/issues/205 Issue 205] JSON结构转换  {#AAA;by} {*juqkai}
-    * [https://github.com/nutzam/nutz/issues/204 Issue 204] dao.query和动态sql中 分页 在sql2000中无效  {#AAA;by} {*j9dai}
-    * [https://github.com/nutzam/nutz/issues/203 Issue 203] Scans 总是抛异常 项目维护 Lang 重要  {#AAA;by} {*zozoh}
-    * [https://github.com/nutzam/nutz/issues/201 Issue 201] DAO对于pgsql的date类型问题 Dao 重要  {#AAA;by} {*enzozhong}
-    * [https://github.com/nutzam/nutz/issues/200 Issue 200] 重新实现Resouce包 项目维护 Lang 重要  {#AAA;by} {*wendal}
-    * [https://github.com/nutzam/nutz/issues/198 Issue 198] Nutz Ioc找不到jar包内的类 Lang 需求  {#AAA;by} {*fnet123}
-    * [https://github.com/nutzam/nutz/issues/195 Issue 195] Json中对entities缓存不能清空 Json 需求  {#AAA;by} {*weirhp}
-    * [https://github.com/nutzam/nutz/issues/194 Issue 194] 在多对多的映射关系中,NutzDao不支持SET类型！ Dao 需求  {#AAA;by} {*elkan1788}
-    * [https://github.com/nutzam/nutz/issues/159 Issue 159] 视图的填充占位符只能获取到req作用域以下的值。 Mvc 需求  {#AAA;by} {*godson741}
-    * [https://github.com/nutzam/nutz/issues/83 Issue 83] Criteria对between and没有支持 不接纳  {#AAA;by} {*mengqiang81}
-    * [https://github.com/nutzam/nutz/issues/34 Issue 34] 国际化的一个小BUG Mvc 需求  {#AAA;by} {*zwt}
-
+    * [https://github.com/nutzam/nutz/issues/278 Issue 278] 使用nutz获取clob字段,并将转换为String后,出现乱码问题 Dao  {#AAA;by} {*xiaxiaofeng}
+    * [https://github.com/nutzam/nutz/issues/271 Issue 271] 将 Mock 移动到新的源码包里去 需求  {#AAA;by} {*zozoh}
+    * [https://github.com/nutzam/nutz/issues/265 Issue 265] 让适配器所产生的错误,可捕捉,可处理 Mvc {#AAA;by} {*wendal}
+    * [https://github.com/nutzam/nutz/issues/264 Issue 264] DB2 9.x下对boolean属性为空的实体更新时报错 Dao {#AAA;by} {*wendal}
+    * [https://github.com/nutzam/nutz/issues/263 Issue 263] Mirror类的evalGetterSetter方法无法正确获取getter/setter Lang 重要 {#AAA;by} {*wendal}
+    * [https://github.com/nutzam/nutz/issues/260 Issue 260] Blob字段处理 Dao 重要  {#AAA;by} {*aodixiaoqiang}
+    * [https://github.com/nutzam/nutz/issues/255 Issue 255] glassfish-3.1.2-web下使用nutz上传文件出现file为null Mvc 重要  {#AAA;by} {*wendal}
+    * [https://github.com/nutzam/nutz/issues/254 Issue 254] 允许通过Ioc加载MessageLoader实现  {#AAA;by} {*enzozhong}
+    * [https://github.com/nutzam/nutz/issues/250 Issue 250] 编译时，也应该支持 Servlet 3.0  {#AAA;by} {*zozoh}
+    * [https://github.com/nutzam/nutz/issues/249 Issue 249] 在glassfish-3.1.2-web下项目启动失败 项目维护 Lang 重要  {#AAA;by} {*ichaly}
+    * [https://github.com/nutzam/nutz/issues/247 Issue 247] 文件池文档中的在池中创建一个文件描述错误 项目维护 Lang FAQ  {#AAA;by} {*hzl7652}
+    * [https://github.com/nutzam/nutz/issues/245 Issue 245] 查询返回List`<Record>`的方法，Record中的key都变成了小写  {#AAA;by} {*zhuer0632}
+    * [https://github.com/nutzam/nutz/issues/244 Issue 244] 文档的MVC部分没有关于@Attr的信息 项目维护 Mvc  {#AAA;by} {*shevawen}
+    * [https://github.com/nutzam/nutz/issues/243 Issue 243] Mapl.cell的Path规则  {#AAA;by} {*shevawen}
+    * [https://github.com/nutzam/nutz/issues/240 Issue 240] filter中执行跳转时,obj未传进去,报空指针异常 项目维护 Mvc  {#AAA;by} {*lziilzii}
+    * [https://github.com/nutzam/nutz/issues/239 Issue 239] Mapl添加"增删改" Json 需求  {#AAA;by} {*juqkai}
+    * [https://github.com/nutzam/nutz/issues/238 Issue 238] 国际化动态切换失效 项目维护 Mvc  {#AAA;by} {*mamacmm}
+    * [https://github.com/nutzam/nutz/issues/180 Issue 180] Eclipse debug 模式启动时，AOP 导致 AjaxModule 弹出错误提示 FAQ AOP  {#AAA;by} {*zozoh}
+    * [https://github.com/nutzam/nutz/issues/82 Issue 82] 文档 Ioc，需要一篇介绍 Ioc 原理的文档，解释加载对象的过程 Ioc 文档  {#AAA;by} {*zozoh}
+    * [https://github.com/nutzam/nutz/issues/49 Issue 49] 探讨“插入前后的设置” Dao 需求  {#AAA;by} {*conanca}
 
 --------------------------------------------------------------------------------------------------------
 质量
@@ -95,15 +92,17 @@
 	 * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2000]
 	 * [http://www.ibm.com/software/data/db2/ DB2]
 	 * [http://db.apache.org/derby/ Derby]
+
 --------------------------------------------------------------------------------------------------------
 文档
 
-     * 增加 [maplist/overview.man Mapl 结构]
+     * 少量修改 [lang/filepool.man 文件池]
+     * 少量修改 [faq/jar_encoding.man 我的Nutz的源码是乱码怎么办？]
 
 --------------------------------------------------------------------------------------------------------
 主要贡献者名单
 	贡献的种类:
-	 * 问题: 给项目的[http://code.google.com/p/nutz/issues/list 问题列表]汇报一个上的问题，并且该问题被本次发布包括
+	 * 问题: 给项目的[https://github.com/nutzam/nutz/issues 问题列表]汇报一个上的问题，并且该问题被本次发布包括
 	 * 博客: 在本版本开发期间，写过关于 Nutz 的文章，并被 [http://code.google.com/p/nutz/wiki/appendix_resources 推荐列表]收录
 	 * 代码: 提交过至少一个修订
 	 * Demo: 为 [https://github.com/nutzam/nutzdemo NutzDemo] 提交过代码
@@ -114,26 +113,21 @@
 	 
 	{#CCC;/贡献列表，我已经写了一个小程序，根据 Issue 列表来自动统计...}   
     
-    || 贡献者        || 问题  || 博客 || 支持 || 代码 || 示例 || 文档 || 测试 ||
-    || albinhdk   	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || elkan1788  	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || enzozhong  	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  O   ||
-    || fnet123    	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || for5million	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  O   ||
-    || gnoloahs   	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || godson741  	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || hzl7652    	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || j9dai      	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || jeffsui    	||  -   ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || juqkai     	||  O   ||  -   ||  O   ||  O   ||  -   ||  O   ||  O   ||
-    || mengqiang81	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || ming300    	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || naily      	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || weirhp     	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
-    || wendal     	||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||
-    || ywjno     	||  -   ||  -   ||  O   ||  O   ||  -   ||  -   ||  -   ||
-    || zozoh      	||  O   ||  -   ||  O   ||  O   ||  -   ||  -   ||  O   ||
-    || zwt        	||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || 贡献者           || 问题 || 博客 || 支持 || 代码 || 示例 || 文档 || 测试 ||
+    || aodixiaoqiang    ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || conanca          ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || enzozhong        ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || hzl7652          ||  O   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || ichaly           ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || juqkai           ||  O   ||  -   ||  O   ||  O   ||  -   ||  -   ||  O   ||
+    || lziilzii         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || mamacmm          ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || shevawen         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || wendal       	||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||
+    || xiaxiaofeng      ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || ywjno            ||  -   ||  -   ||  -   ||  O   ||  -   ||  O   ||  -   ||
+    || zhuer0632        ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || zozoh         	||  O   ||  -   ||  O   ||  O   ||  -   ||  -   ||  O   ||
 
 
 	另外，很多朋友都在：

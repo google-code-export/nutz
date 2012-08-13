@@ -24,199 +24,204 @@ import org.nutz.lang.Lang;
  */
 public class Record implements Map<String, Object>, java.io.Serializable {
 
-	/**
-	 * @author mawenming at Jan 11, 2011 2:20:09 PM
-	 */
-	private static final long serialVersionUID = 4614645901639942051L;
+    /**
+     * @author mawenming at Jan 11, 2011 2:20:09 PM
+     */
+    private static final long serialVersionUID = 4614645901639942051L;
 
-	public static Record create(ResultSet rs) {
-		try {
-			Record re = new Record();
-			ResultSetMetaData meta = rs.getMetaData();
-			int count = meta.getColumnCount();
-			for (int i = 1; i <= count; i++) {
-				String name = meta.getColumnLabel(i);
-				switch (meta.getColumnType(i)) {
-				case Types.TIMESTAMP: {
-					re.set(name, rs.getTimestamp(name));
-					break;
-				}
-				case Types.DATE: {//ORACLE的DATE类型包含时间,如果用默认的只有日期没有时间 from cqyunqin
-					re.set(name, rs.getTimestamp(name));
-					break;
-				}
-				case Types.CLOB: {
-					re.set(name, rs.getString(i));
-					break;
-				}
-				default:
-					re.set(name, rs.getObject(i));
-					break;
-				}
-				re.setSqlType(name, meta.getColumnType(i));
-			}
-			return re;
-		}
-		catch (SQLException e) {
-			throw Lang.wrapThrow(e);
-		}
-	}
+    public static Record create(ResultSet rs) {
+        try {
+            Record re = new Record();
+            ResultSetMetaData meta = rs.getMetaData();
+            int count = meta.getColumnCount();
+            for (int i = 1; i <= count; i++) {
+                String name = meta.getColumnLabel(i);
+                switch (meta.getColumnType(i)) {
+                case Types.TIMESTAMP: {
+                    re.set(name, rs.getTimestamp(name));
+                    break;
+                }
+                case Types.DATE: {// ORACLE的DATE类型包含时间,如果用默认的只有日期没有时间 from
+                                    // cqyunqin
+                    re.set(name, rs.getTimestamp(name));
+                    break;
+                }
+                case Types.CLOB: {
+                    re.set(name, rs.getString(i));
+                    break;
+                }
+                default:
+                    re.set(name, rs.getObject(i));
+                    break;
+                }
+                re.setSqlType(name, meta.getColumnType(i));
+            }
+            return re;
+        }
+        catch (SQLException e) {
+            throw Lang.wrapThrow(e);
+        }
+    }
 
-	private Map<String, Object> map;
+    private Map<String, Object> map;
 
-	private Map<String, Integer> sqlTypeMap;
+    private Map<String, Integer> sqlTypeMap;
 
-	public Record() {
-		map = new HashMap<String, Object>();
-		sqlTypeMap = new HashMap<String, Integer>();
-	}
+    public Record() {
+        map = new HashMap<String, Object>();
+        sqlTypeMap = new HashMap<String, Integer>();
+    }
 
-	/**
-	 * 设置值
-	 * 
-	 * @param name
-	 *            字段名
-	 * @param value
-	 *            字段值
-	 * @return 记录本身
-	 */
-	public Record set(String name, Object value) {
-		map.put(name.toLowerCase(), value);
-		return this;
-	}
+    /**
+     * 设置值
+     * 
+     * @param name
+     *            字段名
+     * @param value
+     *            字段值
+     * @return 记录本身
+     */
+    public Record set(String name, Object value) {
+        map.put(name.toLowerCase(), value);
+        return this;
+    }
 
-	/**
-	 * 移除一个字段
-	 * 
-	 * @param name
-	 *            字段名
-	 * @return 移除的字段值
-	 */
-	public Object remove(String name) {
-		return map.remove(name.toLowerCase());
-	}
+    /**
+     * 移除一个字段
+     * 
+     * @param name
+     *            字段名
+     * @return 移除的字段值
+     */
+    public Object remove(String name) {
+        return map.remove(name.toLowerCase());
+    }
 
-	/**
-	 * @return 记录的字段数
-	 */
-	public int getColumnCount() {
-		return map.size();
-	}
+    /**
+     * @return 记录的字段数
+     */
+    public int getColumnCount() {
+        return map.size();
+    }
 
-	/**
-	 * @return 记录的所有字段名
-	 */
-	public Set<String> getColumnNames() {
-		return map.keySet();
-	}
+    /**
+     * @return 记录的所有字段名
+     */
+    public Set<String> getColumnNames() {
+        return map.keySet();
+    }
 
-	public int getInt(String name) {
-		try {
-			Object val = get(name);
-			if (null == val)
-				return -1;
-			return Castors.me().castTo(val, int.class);
-		}
-		catch (Exception e) {}
-		return -1;
-	}
+    public int getInt(String name) {
+        try {
+            Object val = get(name);
+            if (null == val)
+                return -1;
+            return Castors.me().castTo(val, int.class);
+        }
+        catch (Exception e) {}
+        return -1;
+    }
 
-	public String getString(String name) {
-		Object val = get(name);
-		if (null == val)
-			return null;
-		return Castors.me().castToString(val);
-	}
+    public String getString(String name) {
+        Object val = get(name);
+        if (null == val)
+            return null;
+        return Castors.me().castToString(val);
+    }
 
-	public Timestamp getTimestamp(String name) {
-		Object val = get(name);
-		if (null == val)
-			return null;
-		return Castors.me().castTo(val, Timestamp.class);
-	}
+    public Timestamp getTimestamp(String name) {
+        Object val = get(name);
+        if (null == val)
+            return null;
+        return Castors.me().castTo(val, Timestamp.class);
+    }
 
-	public String toJson(JsonFormat format) {
-		return Json.toJson(map, format);
-	}
+    public String toJson(JsonFormat format) {
+        return Json.toJson(map, format);
+    }
 
-	public String toString() {
-		return Json.toJson(map);
-	}
+    public String toString() {
+        return Json.toJson(map);
+    }
 
-	public <T> T toPojo(Class<T> type) {
-		return Lang.map2Object(map, type);
-	}
+    public <T> T toPojo(Class<T> type) {
+        return Lang.map2Object(map, type);
+    }
 
-	public void clear() {
-		map.clear();
-	}
+    public <T> T toEntity(Entity<T> en) {
+        return en.getObject(this);
+    }
 
-	public boolean containsKey(Object key) {
-		return map.containsKey(key.toString().toLowerCase());
-	}
+    public void clear() {
+        map.clear();
+    }
 
-	public boolean containsValue(Object value) {
-		return map.containsValue(value);
-	}
+    public boolean containsKey(Object key) {
+        return map.containsKey(key.toString().toLowerCase());
+    }
 
-	public Set<Entry<String, Object>> entrySet() {
-		return map.entrySet();
-	}
+    public boolean containsValue(Object value) {
+        return map.containsValue(value);
+    }
 
-	public boolean equals(Object out) {
-		return map.equals(out);
-	}
+    public Set<Entry<String, Object>> entrySet() {
+        return map.entrySet();
+    }
 
-	public Object get(Object name) {
-		if (null == name)
-			return null;
-		return map.get(name.toString().toLowerCase());
-	}
+    public boolean equals(Object out) {
+        return map.equals(out);
+    }
 
-	public int hashCode() {
-		return map.hashCode();
-	}
+    public Object get(Object name) {
+        if (null == name)
+            return null;
+        return map.get(name.toString().toLowerCase());
+    }
 
-	public boolean isEmpty() {
-		return map.isEmpty();
-	}
+    public int hashCode() {
+        return map.hashCode();
+    }
 
-	public Set<String> keySet() {
-		return map.keySet();
-	}
+    public boolean isEmpty() {
+        return map.isEmpty();
+    }
 
-	public Object put(String name, Object value) {
-		return map.put(name.toLowerCase(), value);
-	}
+    public Set<String> keySet() {
+        return map.keySet();
+    }
 
-	public void putAll(Map<? extends String, ? extends Object> out) {
-		for (Entry<? extends String, ? extends Object> entry : out.entrySet())
-			map.put(entry.getKey().toLowerCase(), entry.getValue());
-	}
+    public Object put(String name, Object value) {
+        return map.put(name.toLowerCase(), value);
+    }
 
-	public Object remove(Object key) {
-		return map.remove(key.toString().toLowerCase());
-	}
+    public void putAll(Map<? extends String, ? extends Object> out) {
+        for (Entry<? extends String, ? extends Object> entry : out.entrySet())
+            map.put(entry.getKey().toLowerCase(), entry.getValue());
+    }
 
-	public int size() {
-		return map.size();
-	}
+    public Object remove(Object key) {
+        return map.remove(key.toString().toLowerCase());
+    }
 
-	public Collection<Object> values() {
-		return map.values();
-	}
+    public int size() {
+        return map.size();
+    }
 
-	public Chain toChain() {
-		return Chain.from(map);
-	}
+    public Collection<Object> values() {
+        return map.values();
+    }
 
-	// ===========================================
+    public Chain toChain() {
+        return Chain.from(map);
+    }
 
-	public int getSqlType(String name) {
-		return sqlTypeMap.get(name.toLowerCase());
-	}
+    // ===========================================
 
-	protected void setSqlType(String name, int value) {
-		sqlTypeMap.put(name.toLowerCase(), value);
-	}
+    public int getSqlType(String name) {
+        return sqlTypeMap.get(name.toLowerCase());
+    }
+
+    protected void setSqlType(String name, int value) {
+        sqlTypeMap.put(name.toLowerCase(), value);
+    }
 }

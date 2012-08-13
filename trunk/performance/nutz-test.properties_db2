@@ -1,0 +1,4 @@
+driver=com.ibm.db2.jcc.DB2Driver
+url=jdbc:db2://127.0.0.1:50000/nutz
+username=db2admin
+password=123456
