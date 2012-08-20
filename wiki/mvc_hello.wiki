@@ -12,8 +12,7 @@
 
       # 有了 Eclipse J2EE 套件 -- Eclipse 3.5 以上版本
       # 安装了 Tomcat 6.0 及以上版本
-      # 下载了 Nutz 的最新版本 （最好是 1.a.31 或更新版本）
-          * 截止到本文写作之时， 1.a.31 还未发布，不过你可以[committer_svn_project 自己编译一个最新版本 ]
+      # 下载了 Nutz 的最新版本
 ----
 
 <p align="right">[#Top]</p>

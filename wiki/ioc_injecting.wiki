@@ -284,7 +284,6 @@ import org.nutz.lang.Lang;
 
 public class ScanValueProxyMaker implements ValueProxyMaker {
 
-	@Override
 	public ValueProxy make(IocMaking ing, IocValue iv) {
 		if ("scan".equals(iv.getType())) {
 			final String address = iv.getValue().toString();
@@ -299,7 +298,10 @@ public class ScanValueProxyMaker implements ValueProxyMaker {
 		}
 		return null;
 	}
-
+	
+	public String[] supportedTypes() {
+		return new String[]{"scan"};
+	}
 }
 }}}
 

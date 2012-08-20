@@ -23,7 +23,7 @@
 </project>
 }}}
 
-你可以在[http://code.google.com/p/nutz/source/browse/trunk/pom.xml 这里 ]找到当前POM
+你可以在[https://github.com/nutzam/nutz/blob/master/pom.xml 这里 ]找到当前POM
 
 
 <p align="right">[#Top]</p>

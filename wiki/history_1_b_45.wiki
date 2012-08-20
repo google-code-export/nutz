@@ -62,7 +62,7 @@
       * [https://github.com/nutzam/nutz/issues/250 Issue 250 ]编译时，也应该支持 Servlet 3.0<font color="#AAAAAA">by </font><b>zozoh </b>
       * [https://github.com/nutzam/nutz/issues/249 Issue 249 ]在glassfish-3.1.2-web下项目启动失败 项目维护 Lang 重要<font color="#AAAAAA">by </font><b>ichaly </b>
       * [https://github.com/nutzam/nutz/issues/247 Issue 247 ]文件池文档中的在池中创建一个文件描述错误 项目维护 Lang FAQ<font color="#AAAAAA">by </font><b>hzl7652 </b>
-      * [https://github.com/nutzam/nutz/issues/245 Issue 245 ]` 查询返回List<Record>的方法，Record中的key都变成了小写   `<font color="#AAAAAA">by </font><b>zhuer0632 </b>
+      * [https://github.com/nutzam/nutz/issues/245 Issue 245 ]查询返回ListRecord的方法，Record中的key都变成了小写<font color="#AAAAAA">by </font><b>zhuer0632 </b>
       * [https://github.com/nutzam/nutz/issues/244 Issue 244 ]文档的MVC部分没有关于@Attr的信息 项目维护 Mvc<font color="#AAAAAA">by </font><b>shevawen </b>
       * [https://github.com/nutzam/nutz/issues/243 Issue 243 ]Mapl.cell的Path规则<font color="#AAAAAA">by </font><b>shevawen </b>
       * [https://github.com/nutzam/nutz/issues/240 Issue 240 ]filter中执行跳转时,obj未传进去,报空指针异常 项目维护 Mvc<font color="#AAAAAA">by </font><b>lziilzii </b>
@@ -97,8 +97,8 @@ Nutz.Dao 经测试在如下数据库上可以工作正常
 =`文档`=
 
 
-      * 少量修改[lang_filepool 文件池 ]
-      * 少量修改[faq_jar_encoding 我的Nutz的源码是乱码怎么办？ ]
+      * 少量修改[lang/filepool.man 文件池 ]
+      * 少量修改[faq/jar_encoding.man 我的Nutz的源码是乱码怎么办？ ]
 ----
 
 <p align="right">[#Top]</p>

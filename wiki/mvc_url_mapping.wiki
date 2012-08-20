@@ -70,7 +70,7 @@ http://localhost:8080/testweb/abc/getlist.nut
 ----
 
 <p align="right">[#Top]</p>
-==`web.xml 中的录匹配 - /abc/*`==
+==`web.xml 中的目录匹配 - /abc/*`==
 转发到本 Context 的任何请求只要以<b> /abc/ </b>开头，都会调用这个 Servlet，比如：
 
         * <font color="#FF00FF"><b> /abc </b></font><font color="#0000FF"><b> /dosome </b></font>
@@ -212,6 +212,20 @@ public class SubModule{
 }}}
 
 当然，一般的说，很少有人在主模块上声明 @At
+
+<font color="#FF0000"><b>注: </b></font>使用不带参数的@At()注解, 默认会使用方法名/类名的小写做为入口地址!
+
+{{{
+// 比如 
+@At
+public String getPet() {
+    ...
+
+// 与下面的代码是等效的
+@At("/getpet")
+public String getPet() {
+    ...
+}}}
 
 通过上面的内容我们可以知道，只要有一个 URL，我们就知道如何设置注解 '@At'，但是你确定我们要匹配的 URL 就是
 
