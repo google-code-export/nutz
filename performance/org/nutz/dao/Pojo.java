@@ -29,13 +29,5 @@ public class Pojo {
 		this.name = name;
 	}
 	
-	private Pojo p2 ;
 	
-	public void setP2(Pojo p2) {
-		this.p2 = p2;
-	}
-	
-	public Pojo getP2() {
-		return p2;
-	}
 }

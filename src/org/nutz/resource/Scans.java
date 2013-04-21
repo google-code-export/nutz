@@ -5,8 +5,10 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ import javax.servlet.ServletContext;
 
 import org.nutz.Nutz;
 import org.nutz.castor.Castors;
+import org.nutz.lang.Encoding;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Streams;
 import org.nutz.lang.util.ClassTools;
@@ -83,7 +86,7 @@ public class Scans {
                                     "folder or file like '%s' no found in %s",
                                     regex,
                                     Castors.me().castToString(paths));
-        return list;
+        return new ArrayList<NutResource>((new HashSet<NutResource>(list)));
     }
 
     public void registerLocation(Class<?> klass) {
@@ -94,9 +97,15 @@ public class Scans {
         }
         catch (Throwable e) { // Android上会死
             String classFile = klass.getName().replace('.', '/') + ".class";
-            URL url = klass.getClassLoader().getResource(classFile);
+            URL url = ClassTools.getClassLoader().getResource(classFile);
             if (url != null) { // 基本上不可能为null
                 String str = url.toString();
+                try {
+                    str = URLDecoder.decode(str, Encoding.UTF8);
+                }
+                catch (UnsupportedEncodingException e1) {
+                    throw Lang.impossible();
+                }
                 str = str.substring(0, str.length() - classFile.length());
                 try {
                     registerLocation(new URL(str));
@@ -121,6 +130,9 @@ public class Scans {
             if (str.endsWith(".jar")) {
                 return ResourceLocation.jar(str);
             } else if (str.contains("jar!")) {
+            	if (str.startsWith("jar:file:")) {
+            		str = str.substring("jar:file:".length());
+            	}
                 return ResourceLocation.jar(str.substring(0, str.lastIndexOf("jar!") + 3));
             } else if (str.startsWith("file:")) {
                 return ResourceLocation.file(new File(url.getFile()));
@@ -168,9 +180,10 @@ public class Scans {
                 } else {
                     list.add(new FileResource(src, srcFile));
                 }
-                return list;
             }
-            return scan(src.substring(1), regex);
+            else
+                scan(src.substring(1), regex);
+            //虽然已经找到一些了, 但还是扫描一些吧,这样才全!!
         }
         for (ResourceLocation location : locations) {
             location.scan(src, pattern, list);
@@ -178,7 +191,7 @@ public class Scans {
         // 如果啥都没找到,那么,用增强扫描
         if (list.isEmpty()) {
             try {
-                Enumeration<URL> enu = getClass().getClassLoader().getResources(src);
+                Enumeration<URL> enu = ClassTools.getClassLoader().getResources(src);
                 if (enu != null && enu.hasMoreElements()) {
                     while (enu.hasMoreElements()) {
                         try {
@@ -237,7 +250,7 @@ public class Scans {
         String packagePath = pkg.replace('.', '/').replace('\\', '/');
         if (!packagePath.endsWith("/"))
             packagePath += "/";
-        return rs2class(scan(packagePath, regex));
+        return rs2class(pkg, scan(packagePath, regex));
     }
 
     public static boolean isInJar(File file) {
@@ -274,7 +287,6 @@ public class Scans {
                                                     final String base) throws IOException {
         NutResource nutResource = new NutResource() {
 
-            @Override
             public InputStream getInputStream() throws IOException {
                 ZipInputStream zis = makeZipInputStream(jarPath);
                 ZipEntry ens = null;
@@ -283,6 +295,10 @@ public class Scans {
                         return zis;
                 }
                 throw Lang.impossible();
+            }
+            
+            public int hashCode() {
+            	return (jarPath + ":" + entryName).hashCode();
             }
         };
         if (entryName.equals(base))
@@ -317,19 +333,26 @@ public class Scans {
      *            列表
      * @return 类对象列表
      */
-    private static List<Class<?>> rs2class(List<NutResource> list) {
+    private static List<Class<?>> rs2class(String pkg, List<NutResource> list) {
         Set<Class<?>> re = new HashSet<Class<?>>(list.size());
         if (!list.isEmpty()) {
             for (NutResource nr : list) {
                 if (!nr.getName().endsWith(".class") || nr.getName().endsWith("package-info.class")) {
-                    if (log.isInfoEnabled())
-                        log.infof("Resource can't map to Class, Resource %s", nr);
                     continue;
                 }
+                // Class快速载入
+                String className = pkg + "." + nr.getName().substring(0, nr.getName().length() - 6).replaceAll("[/\\\\]", ".");
+                try {
+                	Class<?> klass = Lang.loadClass(className);
+                    re.add(klass);
+					continue;
+				}
+				catch (Throwable e) {}
+                // 失败了? 尝试终极方法,当然了,慢多了
                 InputStream in = null;
                 try {
                     in = nr.getInputStream();
-                    String className = ClassTools.getClassName(in);
+                    className = ClassTools.getClassName(in);
                     if (className == null) {
                         if (log.isInfoEnabled())
                             log.infof("Resource can't map to Class, Resource %s", nr);
@@ -414,7 +437,7 @@ public class Scans {
         String[] referPaths = new String[]{    "META-INF/MANIFEST.MF",
                                             "log4j.properties",
                                             ".nutz.resource.mark"};
-        ClassLoader cloader = getClass().getClassLoader();
+        ClassLoader cloader = ClassTools.getClassLoader();
         for (String referPath : referPaths) {
             try {
                 Enumeration<URL> urls = cloader.getResources(referPath);

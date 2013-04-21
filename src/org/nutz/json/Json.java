@@ -11,10 +11,9 @@ import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.nutz.json.entity.JsonEntity;
-import org.nutz.json.impl.JsonCompileImpl;
 import org.nutz.json.impl.JsonRenderImpl;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
@@ -32,7 +31,8 @@ public class Json {
      * 从一个文本输入流中，生成一个对象。
      */
     public static Object fromJson(Reader reader) throws JsonException {
-        return new JsonCompileImpl().parse(reader);
+    	return new org.nutz.json.impl.JsonCompileImpl().parse(reader);
+        //return new org.nutz.json.impl.JsonCompileImplV2().parse(reader);
     }
 
     /**
@@ -65,7 +65,7 @@ public class Json {
     }
 
     private static Object parse(Type type, Reader reader) {
-        Object obj = new JsonCompileImpl().parse(reader);
+        Object obj = fromJson(reader);
         if (type != null)
             return Mapl.maplistToObj(obj, type);
         return obj;
@@ -230,6 +230,10 @@ public class Json {
             Files.createFileIfNoExists(f);
             writer = Streams.fileOutw(f);
             Json.toJson(writer, obj, format);
+            writer.append('\n');
+        }
+        catch (IOException e) {
+            throw Lang.wrapThrow(e);
         }
         finally {
             Streams.safeClose(writer);
@@ -246,21 +250,17 @@ public class Json {
     /**
      * 保存所有的 Json 实体
      */
-    private static final Map<String, JsonEntity> entities = new WeakHashMap<String, JsonEntity>();
+    private static final ConcurrentHashMap<String, JsonEntity> entities = new ConcurrentHashMap<String, JsonEntity>();
 
     /**
      * 获取一个 Json 实体
      */
-    public static JsonEntity getEntity(Class<?> classOfT) {
-        JsonEntity je = entities.get(classOfT.getName());
-        if (null == je)
-            synchronized (entities) {
-                je = entities.get(classOfT.getName());
-                if (null == je) {
-                    je = new JsonEntity(Mirror.me(classOfT));
-                    entities.put(classOfT.getName(), je);
-                }
-            }
+    public static JsonEntity getEntity(Mirror<?> mirror) {
+        JsonEntity je = entities.get(mirror.getTypeId());
+        if (null == je) {
+            je = new JsonEntity(mirror);
+            entities.put(mirror.getTypeId(), je);
+        }
         return je;
     }
 

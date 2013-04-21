@@ -1,10 +1,13 @@
 package org.nutz.lang;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -29,6 +33,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -37,8 +42,8 @@ import org.nutz.castor.FailToCastObjectException;
 import org.nutz.json.Json;
 import org.nutz.lang.stream.StringInputStream;
 import org.nutz.lang.stream.StringOutputStream;
-import org.nutz.lang.stream.StringReader;
 import org.nutz.lang.stream.StringWriter;
+import org.nutz.lang.util.ClassTools;
 import org.nutz.lang.util.Context;
 import org.nutz.lang.util.SimpleContext;
 
@@ -162,7 +167,7 @@ public abstract class Lang {
             if (itE.getTargetException() != null)
                 return unwrapThrow(itE.getTargetException());
         }
-        if (e.getCause() != null)
+        if (e instanceof RuntimeException && e.getCause() != null)
             return unwrapThrow(e.getCause());
         return e;
     }
@@ -349,7 +354,7 @@ public abstract class Lang {
      * @return 文本输出流对象
      */
     public static Reader inr(CharSequence cs) {
-        return new StringReader(cs);
+        return new StringReader(cs.toString());
     }
 
     /**
@@ -444,6 +449,20 @@ public abstract class Lang {
         for (T ele : eles)
             list.add(ele);
         return list;
+    }
+
+    /**
+     * 创建一个 Hash 集合
+     * 
+     * @param eles
+     *            可变参数
+     * @return 集合对象
+     */
+    public static <T> Set<T> set(T... eles) {
+        Set<T> set = new HashSet<T>();
+        for (T ele : eles)
+            set.add(ele);
+        return set;
     }
 
     /**
@@ -1008,7 +1027,7 @@ public abstract class Lang {
                 return (T) map;
             }
             catch (Exception e) {
-                throw new FailToCastObjectException("target type fail to born!", e);
+                throw new FailToCastObjectException("target type fail to born!", unwrapThrow(e));
             }
 
         }
@@ -1460,7 +1479,7 @@ public abstract class Lang {
      * @param millisecond
      *            休眠时间
      */
-    public void quiteSleep(long millisecond) {
+    public static void quiteSleep(long millisecond) {
         try {
             if (millisecond > 0)
                 Thread.sleep(millisecond);
@@ -1685,7 +1704,7 @@ public abstract class Lang {
         InputStream is = null;
         try {
             String classFileName = "/" + Lang.class.getName().replace('.', '/') + ".class";
-            is = Lang.class.getClassLoader().getResourceAsStream(classFileName);
+            is = ClassTools.getClassLoader().getResourceAsStream(classFileName);
             if (is != null && is.available() > 8) {
                 is.skip(7);
                 return is.read() > 49;
@@ -1849,37 +1868,188 @@ public abstract class Lang {
     }
 
     /**
-     * 使用MD5加密文字
-     * 
-     * @param str
-     *            需要加密的文字
-     * @return MD5加密后的文字
+     * @see #digest(String, File)
      */
-    public static String md5(String str) {
-        if (str == null)
-            str = "";
+    public static String md5(File f) {
+        return digest("MD5", f);
+    }
+
+    /**
+     * @see #digest(String, InputStream)
+     */
+    public static String md5(InputStream ins) {
+        return digest("MD5", ins);
+    }
+
+    /**
+     * @see #digest(String, CharSequence)
+     */
+    public static String md5(CharSequence cs) {
+        return digest("MD5", cs);
+    }
+
+    /**
+     * @see #digest(String, File)
+     */
+    public static String sha1(File f) {
+        return digest("SHA1", f);
+    }
+
+    /**
+     * @see #digest(String, InputStream)
+     */
+    public static String sha1(InputStream ins) {
+        return digest("SHA1", ins);
+    }
+
+    /**
+     * @see #digest(String, CharSequence)
+     */
+    public static String sha1(CharSequence cs) {
+        return digest("SHA1", cs);
+    }
+
+    /**
+     * 从数据文件计算出数字签名
+     * 
+     * @param algorithm
+     *            算法，比如 "SHA1" 或者 "MD5" 等
+     * @param f
+     *            文件
+     * @return 数字签名
+     */
+    public static String digest(String algorithm, File f) {
+        return digest(algorithm, Streams.fileIn(f));
+    }
+
+    /**
+     * 从流计算出数字签名，计算完毕流会被关闭
+     * 
+     * @param algorithm
+     *            算法，比如 "SHA1" 或者 "MD5" 等
+     * @param ins
+     *            输入流
+     * @return 数字签名
+     */
+    public static String digest(String algorithm, InputStream ins) {
         try {
-            MessageDigest md5 = MessageDigest.getInstance("md5");
-            md5.update(str.getBytes(Encoding.CHARSET_UTF8));
-            byte[] data = md5.digest();
-            StringBuilder sb = new StringBuilder();
-            for (byte b : data) {
-                sb.append(Strings.toHex(b, 2));
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+
+            byte[] bs = new byte[1024];
+            int len = 0;
+            while ((len = ins.read(bs)) != -1) {
+                md.update(bs, 0, len);
             }
-            return sb.toString();
+
+            byte[] hashBytes = md.digest();
+
+            return fixedHexString(hashBytes);
         }
         catch (NoSuchAlgorithmException e) {
-            throw Lang.impossible();
+            throw Lang.wrapThrow(e);
+        }
+        catch (FileNotFoundException e) {
+            throw Lang.wrapThrow(e);
+        }
+        catch (IOException e) {
+            throw Lang.wrapThrow(e);
+        }
+        finally {
+            Streams.safeClose(ins);
         }
     }
-    
+
+    /**
+     * 从字符串计算出数字签名
+     * 
+     * @param algorithm
+     *            算法，比如 "SHA1" 或者 "MD5" 等
+     * @param cs
+     *            字符串
+     * @return 数字签名
+     */
+    public static String digest(String algorithm, CharSequence cs) {
+        return digest(algorithm, Strings.getBytesUTF8(null == cs ? "" : cs),null,1);
+    }
+
+	/**
+	 * 从字节数组计算出数字签名
+	 * 
+	 * @param algorithm
+	 *            算法，比如 "SHA1" 或者 "MD5" 等
+	 * @param bytes
+	 *            字节数组
+	 * @param salt
+	 *            随机字节数组
+	 * @param iterations
+	 *            迭代次数
+	 * @return 数字签名
+	 */
+	public static String digest(String algorithm, byte[] bytes, byte[] salt, int iterations) {
+		try {
+			MessageDigest md = MessageDigest.getInstance(algorithm);
+
+			if (salt != null) {
+				md.update(salt);
+			}
+
+			byte[] hashBytes = md.digest(bytes);
+
+			for (int i = 1; i < iterations; i++) {
+				md.reset();
+				hashBytes = md.digest(hashBytes);
+			}
+
+			return fixedHexString(hashBytes);
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw Lang.wrapThrow(e);
+        }
+    }
+
     public static final boolean isAndroid;
     static {
         boolean flag = false;
         try {
             Class.forName("android.Manifest");
             flag = true;
-        } catch (Throwable e) {}
+        }
+        catch (Throwable e) {}
         isAndroid = flag;
+    }
+
+    /**
+     * 将数组内容倒着排序
+     * 
+     * @param arrays
+     */
+    public static <T> void reverse(T[] arrays) {
+        int size = arrays.length;
+        for (int i = 0; i < size; i++) {
+            int ih = i;
+            int it = size - 1 - i;
+            if (ih == it || ih > it) {
+                break;
+            }
+            T ah = arrays[ih];
+            T swap = arrays[it];
+            arrays[ih] = swap;
+            arrays[it] = ah;
+        }
+    }
+
+    public static String simpleMetodDesc(Method method) {
+        return String.format("%s.%s(...)",
+                             method.getDeclaringClass().getSimpleName(),
+                             method.getName());
+    }
+    
+    public static String fixedHexString(byte[] hashBytes) {
+    	StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < hashBytes.length; i++) {
+            sb.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
     }
 }

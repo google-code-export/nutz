@@ -1,6 +1,9 @@
 package org.nutz.ioc.impl;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
@@ -8,6 +11,8 @@ import java.util.Properties;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
 import org.nutz.lang.util.MultiLineProperties;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 import org.nutz.resource.NutResource;
 import org.nutz.resource.Scans;
 
@@ -21,10 +26,14 @@ import org.nutz.resource.Scans;
  */
 public class PropertiesProxy {
 
-    // 是否为UTF8格式的Properties文件
-    private boolean utf8;
+    private static final Log log = Logs.get();
 
-    private MultiLineProperties mp;
+    // 是否为UTF8格式的Properties文件
+    private final boolean utf8;
+    // 是否忽略无法加载的文件
+    private boolean ignoreResourceNotFound = false;
+
+    private MultiLineProperties mp = new MultiLineProperties();
 
     public PropertiesProxy() {
         this(true);
@@ -39,6 +48,17 @@ public class PropertiesProxy {
         this.setPaths(paths);
     }
 
+    public PropertiesProxy(InputStream in) {
+        this(true);
+        try {
+            mp = new MultiLineProperties();
+            mp.load(new InputStreamReader(in));
+        }
+        catch (IOException e) {
+            throw Lang.wrapThrow(e);
+        }
+    }
+
     /**
      * 加载指定文件/文件夹的Properties文件,合并成一个Properties对象
      * <p>
@@ -49,8 +69,9 @@ public class PropertiesProxy {
      */
     public void setPaths(String... paths) {
         mp = new MultiLineProperties();
-        List<NutResource> list = Scans.me().loadResource("^.+[.]properties$", paths);
+
         try {
+            List<NutResource> list = getResources(paths);
             if (utf8)
                 for (NutResource nr : list)
                     mp.load(nr.getReader(), false);
@@ -65,6 +86,37 @@ public class PropertiesProxy {
         catch (IOException e) {
             throw Lang.wrapThrow(e);
         }
+    }
+
+    /**
+     * 加载指定文件/文件夹的Properties文件
+     * 
+     * @param paths
+     *            需要加载的Properties文件路径
+     * @return 加载到的Properties文件Resource列表
+     */
+    private List<NutResource> getResources(String... paths) {
+        List<NutResource> list = new ArrayList<NutResource>();
+        for (String path : paths) {
+            try {
+                List<NutResource> resources = Scans.me().loadResource("^.+[.]properties$", path);
+                list.addAll(resources);
+            }
+            catch (Exception e) {
+                if (ignoreResourceNotFound) {
+                    if (log.isWarnEnabled()) {
+                        log.warn("Could not load resource from " + path + ": " + e.getMessage());
+                    }
+                } else {
+                    throw Lang.wrapThrow(e);
+                }
+            }
+        }
+        return list;
+    }
+
+    public void setIgnoreResourceNotFound(boolean ignoreResourceNotFound) {
+        this.ignoreResourceNotFound = ignoreResourceNotFound;
     }
 
     public void put(String key, String value) {

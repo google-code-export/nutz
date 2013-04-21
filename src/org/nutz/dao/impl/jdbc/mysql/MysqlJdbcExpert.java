@@ -9,6 +9,7 @@ import org.nutz.dao.entity.Entity;
 import org.nutz.dao.entity.MappingField;
 import org.nutz.dao.entity.PkType;
 import org.nutz.dao.entity.annotation.ColType;
+import org.nutz.dao.impl.entity.macro.SqlFieldMacro;
 import org.nutz.dao.impl.jdbc.AbstractJdbcExpert;
 import org.nutz.dao.jdbc.JdbcExpertConfigFile;
 import org.nutz.dao.pager.Pager;
@@ -59,6 +60,9 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
                 return "INT(" + (width * 4) + ")";
             }
             return "BIGINT(" + (width * 4) + ")";
+        }
+        if (mf.getColumnType() == ColType.BINARY) {
+            return "MediumBlob"; //默认用16M的应该可以了吧?
         }
         // 其它的参照默认字段规则 ...
         return super.evalFieldType(mf);
@@ -155,5 +159,11 @@ public class MysqlJdbcExpert extends AbstractJdbcExpert {
     protected String createResultSetMetaSql(Entity<?> en) {
         return "SELECT * FROM " + en.getViewName() + " LIMIT 1";
     }
-
+    
+    public Pojo fetchPojoId(Entity<?> en, MappingField idField) {
+        String autoSql = "SELECT @@@@IDENTITY";
+        Pojo autoInfo = new SqlFieldMacro(idField, autoSql);
+        autoInfo.setEntity(en);
+        return autoInfo;
+    }
 }

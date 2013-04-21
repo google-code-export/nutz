@@ -1,5 +1,6 @@
 package org.nutz.dao.impl.jdbc.oracle;
 
+import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.nutz.dao.entity.MappingField;
 import org.nutz.dao.entity.PkType;
 import org.nutz.dao.impl.jdbc.AbstractJdbcExpert;
 import org.nutz.dao.jdbc.JdbcExpertConfigFile;
+import org.nutz.dao.jdbc.Jdbcs;
 import org.nutz.dao.jdbc.ValueAdaptor;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Pojo;
@@ -38,6 +40,8 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
     public ValueAdaptor getAdaptor(MappingField ef) {
         if (ef.getTypeMirror().isBoolean())
             return new OracleBooleanAdaptor();
+        if (Clob.class.isAssignableFrom(ef.getTypeClass()))
+            return new OracleClobAdapter(Jdbcs.getFilePool());
         return super.getAdaptor(ef);
     }
 
@@ -75,13 +79,13 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
         List<MappingField> pks = en.getPks();
         if (pks.size() > 1) {
             StringBuilder pkNames = new StringBuilder();
-            StringBuilder pkNames2 = new StringBuilder();
             for (MappingField pk : pks) {
                 pkNames.append(pk.getColumnName()).append(',');
-                pkNames2.append(pk.getColumnName()).append('_');
             }
             pkNames.setLength(pkNames.length() - 1);
-            pkNames2.setLength(pkNames2.length() - 1);
+            
+            String pkNames2 = makePksName(en);
+            
             String sql = String.format("alter table %s add constraint primary_key_%s primary key (%s)",
                                        en.getTableName(),
                                        pkNames2,
@@ -179,6 +183,8 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
                 return "NUMBER(15,10)";
             return "NUMBER";
         case TIME:
+        case DATETIME:
+        case DATE:
             return "DATE";
         default:
             return super.evalFieldType(mf);
@@ -211,4 +217,7 @@ public class OracleJdbcExpert extends AbstractJdbcExpert {
         return false;
     }
 
+    public boolean isSupportAutoIncrement() {
+        return false;
+    }
 }

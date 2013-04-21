@@ -78,6 +78,7 @@ public abstract class Daos {
             if (meta.getColumnName(i).equalsIgnoreCase(colName))
                 return i;
         // TODO 尝试一下meta.getColumnLabel?
+        log.infof("Can not find @Column(%s) in database", colName);
         throw Lang.makeThrow(SQLException.class, "Can not find @Column(%s)", colName);
     }
 
@@ -240,7 +241,7 @@ public abstract class Daos {
             if (mf != null)
                 colName = mf.getColumnName();
             sql.append(colName).append("=");
-            if (head.special) {
+            if (head.special()) {
                 if ("+1".equals(head.value()) || "-1".equals(head.value())) {
                     sql.append(colName);
                 }

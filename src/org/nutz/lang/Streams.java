@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +22,6 @@ import java.io.Reader;
 import java.io.Writer;
 
 import org.nutz.lang.stream.NullInputStream;
-import org.nutz.lang.util.ByteInputStream;
 import org.nutz.resource.NutResource;
 import org.nutz.resource.Scans;
 
@@ -90,7 +90,7 @@ public abstract class Streams {
     }
 
     /**
-     * 将输出流写入一个输出流。块大小为 8192
+     * 将输入流写入一个输出流。块大小为 8192
      * <p>
      * <b style=color:red>注意</b>，它并不会关闭输入/出流
      * 
@@ -102,12 +102,12 @@ public abstract class Streams {
      * @return 写入的字节数
      * @throws IOException
      */
-    public static int write(OutputStream ops, InputStream ins) throws IOException {
+    public static long write(OutputStream ops, InputStream ins) throws IOException {
         return write(ops, ins, BUF_SIZE);
     }
 
     /**
-     * 将输出流写入一个输出流。
+     * 将输入流写入一个输出流。
      * <p>
      * <b style=color:red>注意</b>，它并不会关闭输入/出流
      * 
@@ -122,23 +122,23 @@ public abstract class Streams {
      * 
      * @throws IOException
      */
-    public static int write(OutputStream ops, InputStream ins, int bufferSize) throws IOException {
+    public static long write(OutputStream ops, InputStream ins, int bufferSize) throws IOException {
         if (null == ops || null == ins)
             return 0;
 
         byte[] buf = new byte[bufferSize];
         int len;
-        int re = 0;
+        long bytesCount = 0;
         while (-1 != (len = ins.read(buf))) {
-            re += len;
+            bytesCount += len;
             ops.write(buf, 0, len);
         }
         ops.flush();
-        return re;
+        return bytesCount;
     }
 
     /**
-     * 将输出流写入一个输出流。块大小为 8192
+     * 将输入流写入一个输出流。块大小为 8192
      * <p>
      * <b style=color:red>注意</b>，它会关闭输入/出流
      * 
@@ -148,7 +148,7 @@ public abstract class Streams {
      *            输入流
      * @return 写入的字节数
      */
-    public static int writeAndClose(OutputStream ops, InputStream ins) {
+    public static long writeAndClose(OutputStream ops, InputStream ins) {
         try {
             return write(ops, ins);
         }
@@ -162,7 +162,7 @@ public abstract class Streams {
     }
 
     /**
-     * 将文本输出流写入一个文本输出流。块大小为 8192
+     * 将文本输入流写入一个文本输出流。块大小为 8192
      * <p>
      * <b style=color:red>注意</b>，它并不会关闭输入/出流
      * 
@@ -184,7 +184,7 @@ public abstract class Streams {
     }
 
     /**
-     * 将文本输出流写入一个文本输出流。块大小为 8192
+     * 将文本输入流写入一个文本输出流。块大小为 8192
      * <p>
      * <b style=color:red>注意</b>，它会关闭输入/出流
      * 
@@ -568,7 +568,7 @@ public abstract class Streams {
     }
 
     public static InputStream wrap(byte[] bytes) {
-        return new ByteInputStream(bytes);
+        return new ByteArrayInputStream(bytes);
     }
 
     /**
@@ -587,13 +587,16 @@ public abstract class Streams {
     }
 
     public static void appendWriteAndClose(File f, String text) {
+        FileWriter fw = null;
         try {
-            FileWriter fw = new FileWriter(f, true);
+            fw = new FileWriter(f, true);
             fw.write(text);
-            fw.close();
         }
         catch (IOException e) {
             throw Lang.wrapThrow(e);
+        }
+        finally {
+            safeClose(fw);
         }
 
     }

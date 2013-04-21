@@ -69,6 +69,7 @@
 		<doc path="module_of_request.man"/>
     	<doc path="rest.man"/>
 		<doc path="annotations.man"/>
+		<doc path="session.man"></doc>
 	</doc>
 	<doc path="json" title="Json 手册">
 		<doc path="hello.man"/>
@@ -103,6 +104,9 @@
 		<doc path="ant_task.man"/>
 	</doc>
 	<doc path="history" title="版本历史">
+		<doc path="1_b_48.man"/>
+		<doc path="1_b_47.man"/>
+		<doc path="1_b_46.man"/>
 		<doc path="1_b_45.man"/>
 		<doc path="1_b_44.man"/>
 		<doc path="1_b_43.man"/>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.nutz.lang.util.Context;
 import org.nutz.mvc.config.ServletNutConfig;
 
 /**
@@ -20,7 +21,7 @@ import org.nutz.mvc.config.ServletNutConfig;
 @SuppressWarnings("serial")
 public class NutServlet extends HttpServlet {
 
-    private ActionHandler handler;
+    protected ActionHandler handler;
     
     private String selfName;
     
@@ -49,7 +50,8 @@ public class NutServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Mvcs.resetALL();
+        String preName = Mvcs.getName();
+        Context preContext = Mvcs.resetALL();
         try {
             if (sp != null)
                 req = sp.filter(req, resp, getServletContext());
@@ -58,6 +60,13 @@ public class NutServlet extends HttpServlet {
                 resp.sendError(404);
         } finally {
             Mvcs.resetALL();
+            //仅当forward/incule时,才需要恢复之前设置
+            if (null != (req.getAttribute("javax.servlet.forward.request_uri"))) {
+                if (preName != null)
+                    Mvcs.set(preName, req, resp);
+                if (preContext != null)
+                    Mvcs.ctx.reqThreadLocal.set(preContext);
+            }
         }
     }
 }

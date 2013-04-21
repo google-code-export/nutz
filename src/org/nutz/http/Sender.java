@@ -1,10 +1,10 @@
 package org.nutz.http;
 
 import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -23,15 +23,31 @@ import org.nutz.lang.stream.NullInputStream;
  * 
  */
 public abstract class Sender {
+	
+	/**
+	 * 默认连接超时, 30秒
+	 */
+	public static int Default_Conn_Timeout = 30*1000;
+	/**
+	 * 默认读取超时, 10分钟
+	 */
+	public static int Default_Read_Timeout = 10*60*1000;
 
     public static Sender create(String url) {
         return create(Request.get(url));
     }
 
+    public static Sender create(String url, int timeout) {
+        return create(Request.get(url)).setTimeout(timeout);
+    }
+
     public static Sender create(Request request) {
-        if (request.isGet())
-            return new GetSender(request);
-        return new PostSender(request);
+        return request.isGet() ? new GetSender(request) : new PostSender(request);
+    }
+
+    public static Sender create(Request request, int timeout) {
+        Sender sender = request.isGet() ? new GetSender(request) : new PostSender(request);
+        return sender.setTimeout(timeout);
     }
 
     protected Request request;
@@ -46,10 +62,9 @@ public abstract class Sender {
 
     public abstract Response send() throws HttpException;
 
-    protected Response createResponse(Map<String, String> reHeaders)
-            throws IOException {
+    protected Response createResponse(Map<String, String> reHeaders) throws IOException {
         Response rep = null;
-        if (reHeaders != null && reHeaders.get(null) != null) {
+        if (reHeaders != null) {
             rep = new Response(conn, reHeaders);
             if (rep.isOK()) {
                 InputStream is1 = conn.getInputStream();
@@ -72,7 +87,7 @@ public abstract class Sender {
                 try {
                     rep.setStream(conn.getInputStream());
                 }
-                catch (FileNotFoundException e) {
+                catch (IOException e) {
                     rep.setStream(new NullInputStream());
                 }
             }
@@ -80,7 +95,9 @@ public abstract class Sender {
         return rep;
     }
 
-    protected Map<String, String> getResponseHeader() {
+    protected Map<String, String> getResponseHeader() throws IOException {
+        if (conn.getResponseCode() < 0)
+            throw new IOException("Network error!! resp code < 0");
         Map<String, String> reHeaders = new HashMap<String, String>();
         for (Entry<String, List<String>> en : conn.getHeaderFields().entrySet()) {
             List<String> val = en.getValue();
@@ -96,9 +113,25 @@ public abstract class Sender {
     }
 
     protected void openConnection() throws IOException {
+    	ProxySwitcher proxySwitcher = Http.proxySwitcher;
+    	if (proxySwitcher != null) {
+    		Proxy proxy = proxySwitcher.getProxy(request.getUrl());
+    		if (proxy != null) {
+    			conn = (HttpURLConnection) request.getUrl().openConnection(proxy);
+    			conn.setConnectTimeout(Default_Conn_Timeout);
+    	        if (timeout > 0)
+    	            conn.setReadTimeout(timeout);
+    	        else
+    	        	conn.setReadTimeout(Default_Read_Timeout);
+    	        return;
+    		}
+    	}
         conn = (HttpURLConnection) request.getUrl().openConnection();
+        conn.setConnectTimeout(Default_Conn_Timeout);
         if (timeout > 0)
             conn.setReadTimeout(timeout);
+        else
+        	conn.setReadTimeout(Default_Read_Timeout);
     }
 
     protected void setupRequestHeader() {
@@ -112,5 +145,14 @@ public abstract class Sender {
             for (Entry<String, String> entry : header.getAll())
                 conn.addRequestProperty(entry.getKey(), entry.getValue());
     }
+    
+    public Sender setTimeout(int timeout) {
+		this.timeout = timeout;
+		return this;
+	}
+    
+    public int getTimeout() {
+		return timeout;
+	}
 
 }

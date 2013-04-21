@@ -2,6 +2,7 @@ package org.nutz.resource;
 
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.nutz.conf.NutConf;
 
@@ -13,6 +14,11 @@ import static org.junit.Assert.*;
  *
  */
 public class NutConfigTest {
+    
+    @Before
+    public void init(){
+        NutConf.clear();
+    }
     
     @Test
     public void nullConfigTest(){
@@ -45,7 +51,7 @@ public class NutConfigTest {
     public void loadDefaultConfigTest(){
         NutConf.load("org/nutz/conf/NutzDefaultConfig.js");
         Map<?, ?> conf = (Map<?, ?>) NutConf.get("TEST", Map.class);
-        assertNotNull(conf);
+        assertNull(conf); 
     }
     
     @Test

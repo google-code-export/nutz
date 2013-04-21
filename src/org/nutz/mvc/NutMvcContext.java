@@ -23,7 +23,7 @@ public class NutMvcContext extends SimpleContext {
     public Map<String, Map<String, Map<String, Object>>> localizations = new HashMap<String, Map<String, Map<String, Object>>>();
     
     public void close() {
-        reqThreadLocal.get().clear();
+        reqThreadLocal.set(Lang.context());
         iocs.clear();
         atMaps.clear();
         nutConfigs.clear();

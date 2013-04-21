@@ -347,7 +347,7 @@ public interface Dao {
     <T> List<T> query(Class<T> classOfT, Condition cnd, Pager pager);
 
     /**
-     * 查询一组对象。你可以为这次查询设定条件，并且只获取一部分对象（翻页）
+     * 查询一组对象。你可以为这次查询设定条件
      * 
      * @param classOfT
      *            对象类型
@@ -654,6 +654,19 @@ public interface Dao {
      * @see org.nutz.dao.entity.annotation.ManyMany
      */
     <T> T fetchLinks(T obj, String regex);
+    
+    /**
+     * 根据一个正则表达式，获取对象所有的关联字段, 并按Condition进行数据过滤排序<p/>
+     * <b>严重提醒,当使用Condition进行数据过滤排序时,应当使regex只匹配特定的映射字段</b>
+     * @param obj
+     *            数据对象
+     * @param regex
+     *            正则表达式，描述了什么样的关联字段将被关注。如果为 null，则表示全部的关联字段都会被查询
+     * @param cnd
+     *            关联字段的过滤(排序,条件语句,分页等)
+     * @return
+     */
+    <T> T fetchLinks(T obj, String regex, Condition cnd);
 
     /**
      * 根据一个 WHERE 条件，清除一组对象。只包括对象本身，不包括关联字段
