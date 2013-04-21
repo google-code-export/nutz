@@ -1,6 +1,12 @@
 package org.nutz.dao.jdbc;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -22,6 +28,7 @@ import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.impl.entity.field.NutMappingField;
 import org.nutz.dao.impl.jdbc.BlobValueAdaptor;
 import org.nutz.dao.impl.jdbc.ClobValueAdaptor;
+import org.nutz.filepool.FilePool;
 import org.nutz.json.Json;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
@@ -31,6 +38,7 @@ import org.nutz.lang.Strings;
 import org.nutz.lang.meta.Email;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.trans.Trans;
 
 /**
  * 提供一些与 JDBC 有关的帮助函数
@@ -83,9 +91,10 @@ public abstract class Jdbcs {
      * @see org.nutz.dao.jdbc.Jdbcs#getExpert(String, String)
      */
     public static JdbcExpert getExpert(DataSource ds) {
+    	log.info("Get Connection from DataSource for JdbcExpert");
         Connection conn = null;
         try {
-            conn = ds.getConnection();
+            conn = Trans.getConnectionAuto(ds);
             DatabaseMetaData meta = conn.getMetaData();
             String pnm = meta.getDatabaseProductName();
             String ver = meta.getDatabaseProductVersion();
@@ -95,11 +104,7 @@ public abstract class Jdbcs {
             throw Lang.wrapThrow(e);
         }
         finally {
-            if (null != conn)
-                try {
-                    conn.close();
-                }
-                catch (SQLException e) {}
+            Trans.closeConnectionAuto(conn);
         }
     }
 
@@ -679,7 +684,33 @@ public abstract class Jdbcs {
                 if (null == obj) {
                     stat.setNull(index, Types.BINARY);
                 } else {
-                    stat.setBinaryStream(index, (InputStream) obj);
+                    if (obj instanceof InputStream) {
+                        try {
+                            File f = Jdbcs.getFilePool().createFile(".dat");
+                            FileOutputStream fos = new FileOutputStream(f);
+                            InputStream in = (InputStream) obj;
+                            int size = 0;
+                            byte[] cbuf = new byte[8192];
+                            while (true) {
+                                int len = in.read(cbuf);
+                                if (len == -1)
+                                    break;
+                                if (len == 0)
+                                    continue;
+                                size += len;
+                                fos.write(cbuf, 0, len);
+                            }
+                            fos.flush();
+                            fos.close();
+                            stat.setBinaryStream(index, new FileInputStream(f), size);
+                        }
+                        catch (FileNotFoundException e) {
+                            throw Lang.impossible();
+                        }
+                        catch (IOException e) {
+                            throw Lang.wrapThrow(e);
+                        }
+                    }
                 }
             }
         };
@@ -694,7 +725,7 @@ public abstract class Jdbcs {
                 if (null == obj) {
                     stat.setNull(index, Types.BINARY);
                 } else {
-                    stat.setCharacterStream(index, (Reader) obj);
+                    setCharacterStream(index, obj, stat);
                 }
             }
         };
@@ -802,4 +833,35 @@ public abstract class Jdbcs {
         }
     }
 
+    public static FilePool getFilePool() {
+        return conf.getPool();
+    }
+    
+    public static void setCharacterStream(int index, Object obj, PreparedStatement stat) throws SQLException {
+        try {
+            File f = Jdbcs.getFilePool().createFile(".dat");
+            FileWriter fw = new FileWriter(f);
+            Reader reader = (Reader) obj;
+            int size = 0;
+            char[] cbuf = new char[8192];
+            while (reader.ready()) {
+                int len = reader.read(cbuf);
+                if (len == -1)
+                    break;
+                if (len == 0)
+                    continue;
+                size += len;
+                fw.write(cbuf, 0, len);
+            }
+            fw.flush();
+            fw.close();
+            stat.setCharacterStream(index, new FileReader(f), size);
+        }
+        catch (FileNotFoundException e) {
+            throw Lang.impossible();
+        }
+        catch (IOException e) {
+            throw Lang.wrapThrow(e);
+        }
+    }
 }

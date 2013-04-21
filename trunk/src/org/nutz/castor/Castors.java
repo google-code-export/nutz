@@ -5,19 +5,17 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.nutz.castor.castor.Array2Array;
 import org.nutz.castor.castor.Object2Object;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Mirror;
 import org.nutz.lang.TypeExtractor;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
-import org.nutz.resource.Scans;
 
 /**
  * 一个创建 Castor 的工厂类。它的使用方式是：
@@ -52,10 +50,7 @@ public class Castors {
      * 如何抽取对象的类型级别
      */
     private TypeExtractor extractor;
-    /**
-     * Castor 的搜索路径
-     */
-    private List<Class<?>> paths;
+    
     /**
      * Castor 的配置
      */
@@ -81,49 +76,6 @@ public class Castors {
     }
 
     /**
-     * 你的的 Castor 可能存在在不同包下，你可以把每个包下的随便一个 Castor 作为例子放到一个列表里。 这样， Nutz.Castor
-     * 就能找到同一包下其他的 Castor 了。
-     * <p>
-     * 你的 Castor 存放在 CLASSPAH 下或者 Jar 包里都是没有问题的
-     * 
-     * @param paths
-     *            Castor 例子列表
-     */
-    public synchronized Castors setPaths(List<Class<?>> paths) {
-        if (paths != null) {
-            this.paths = paths;
-            reload();
-        }
-        return this;
-    }
-
-    /**
-     * 将 Castor 的寻找路径恢复成默认值。
-     */
-    public synchronized Castors resetPaths() {
-        paths = new ArrayList<Class<?>>();
-        paths.add(Array2Array.class);
-        reload();
-        return this;
-    }
-
-    /**
-     * 增加 Castor 的寻找路径。
-     * 
-     * @param paths
-     *            示例 Castor
-     */
-    public synchronized Castors addPaths(Class<?>... paths) {
-        if (null != paths) {
-            for (Class<?> path : paths)
-                if (path != null)
-                    this.paths.add(path);
-            reload();
-        }
-        return this;
-    }
-
-    /**
      * 设置自定义的对象类型提取器逻辑
      * 
      * @param te
@@ -136,43 +88,20 @@ public class Castors {
 
     private Castors() {
         setting = new DefaultCastorSetting();
-        resetPaths();
+        reload();
     }
 
     private void reload() {
-        if (paths == null || paths.size() == 0) {
-            resetPaths();
-            return;
-        }
         HashMap<Class<?>, Method> settingMap = new HashMap<Class<?>, Method>();
         for (Method m1 : setting.getClass().getMethods()) {
             Class<?>[] pts = m1.getParameterTypes();
             if (pts.length == 1 && Castor.class.isAssignableFrom(pts[0]))
                 settingMap.put(pts[0], m1);
         }
-        // build castors
-//        this.map = new HashMap<String, Map<String, Castor<?, ?>>>();
 
-        this.map = new HashMap<Integer, Castor<?,?>>();
+        this.map = new ConcurrentHashMap<String, Castor<?,?>>();
         ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
-        if (Lang.isAndroid) {
-            classes.addAll(classes);
-        } else {
-            for (Iterator<Class<?>> it = paths.iterator(); it.hasNext();) {
-                Class<?> baseClass = it.next();
-                if (baseClass == null)
-                    continue;
-                List<Class<?>> list = Scans.me().scanPackage(baseClass);
-                if (null != list && list.size() > 0)
-                    classes.addAll(list);
-            }
-            // 一个类都找不到,好吧,加载默认的,从文件读取列表
-            if (classes.size() == 0) {
-                if (log.isWarnEnabled())
-                    log.warn("!!No castor found!!!!!!!!! Load default castor list");
-                classes.addAll(defaultCastorList);
-            }
-        }
+        classes.addAll(defaultCastorList);
         for (Class<?> klass : classes) {
             try {
                 if (Modifier.isAbstract(klass.getModifiers()))
@@ -190,6 +119,15 @@ public class Castors {
             log.debugf("Using %s castor for Castors", map.size());
     }
     
+    public void addCastor(Class<?> klass) {
+        try {
+            fillMap(klass, new HashMap<Class<?>, Method>());
+        }
+        catch (Throwable e) {
+            throw Lang.wrapThrow(Lang.unwrapThrow(e));
+        }
+    }
+    
     /**
      * 填充 map .<br>
      * 在map中使用hash值来做为key来进行存储
@@ -202,8 +140,8 @@ public class Castors {
      */
     private void fillMap(Class<?> klass, HashMap<Class<?>, Method> settingMap) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
         Castor<?, ?> castor = (Castor<?, ?>) klass.newInstance();
-        if(!map.containsKey(castor.hashCode())){
-            map.put(castor.hashCode(), castor);
+        if(!map.containsKey(castor.toString())){
+            map.put(castor.toString(), castor);
         }
         Method m = settingMap.get(castor.getClass());
         if (null == m) {
@@ -223,7 +161,8 @@ public class Castors {
      * First index is "from" (source) The second index is "to" (target)
      */
 //    private Map<String, Map<String, Castor<?, ?>>> map;
-    private Map<Integer, Castor<?,?>> map;
+//    private Map<Integer, Castor<?,?>> map;
+    private Map<String, Castor<?,?>> map;
 
     /**
      * 转换一个 POJO 从一个指定的类型到另外的类型
@@ -274,8 +213,6 @@ public class Castors {
         if (toType.isAssignableFrom(fromType))
             return (T) src;
         Mirror<?> from = Mirror.me(fromType, extractor);
-        if (from.canCastToDirectly(toType)) // Use language built-in cases
-            return (T) src;
         Castor c = find(from, toType);
         if (null == c)
             throw new FailToCastObjectException(String.format(    "Can not find castor for '%s'=>'%s' in (%d) because:\n%s",
@@ -283,6 +220,9 @@ public class Castors {
                                                                 toType.getName(),
                                                                 map.size(),
                                                                 "Fail to find matched castor"));
+        if (Object2Object.class.getName().equals(c.getClass().getName()) && from.canCastToDirectly(toType)) { // Use language built-in cases
+            return (T) src;
+        }
         try {
             return (T) c.cast(src, toType, args);
         }
@@ -296,7 +236,7 @@ public class Castors {
                                                                 src,
                                                                 e.getClass().getSimpleName(),
                                                                 e.getMessage()),
-                                                e);
+                                                Lang.unwrapThrow(e));
         }
     }
 
@@ -315,13 +255,22 @@ public class Castors {
 
     @SuppressWarnings("unchecked")
     private <F, T> Castor<F, T> find(Mirror<F> from, Class<T> toType) {
+        String key = Castor.key(from.getType(), toType);
+        // 哈，这种类型以前转过，直接返回转换器就行了
+        if (map.containsKey(key)) {
+            return (Castor<F, T>) map.get(key);
+        }
+        
         Mirror<T> to = Mirror.me(toType, extractor);
         Class<?>[] fets = from.extractTypes();
         Class<?>[] tets = to.extractTypes();
         for(Class<?> ft : fets){
             for(Class<?> tt : tets){
-                if(map.containsKey(Castor.fetchHash(ft, tt))){
-                    return (Castor<F, T>) map.get(Castor.fetchHash(ft, tt));
+                if(map.containsKey(Castor.key(ft, tt))){
+                    Castor<F, T> castor = (Castor<F, T>) map.get(Castor.key(ft, tt));
+                    // 缓存转换器，加速下回转换速度
+                    map.put(key, castor);
+                    return castor;
                 }
             }
         }
@@ -377,7 +326,7 @@ public class Castors {
         }
     }
     
-    private static List<Class<?>> defaultCastorList = new ArrayList<Class<?>>(100);
+    private static List<Class<?>> defaultCastorList = new ArrayList<Class<?>>(120);
     static {
         defaultCastorList.add(org.nutz.castor.castor.String2Character.class);
         defaultCastorList.add(org.nutz.castor.castor.Calendar2String.class);
@@ -414,6 +363,7 @@ public class Castors {
         defaultCastorList.add(org.nutz.castor.castor.String2Class.class);
         defaultCastorList.add(org.nutz.castor.castor.String2Pattern.class);
         defaultCastorList.add(org.nutz.castor.castor.String2Map.class);
+        defaultCastorList.add(org.nutz.castor.castor.String2BigDecimal.class);
         defaultCastorList.add(org.nutz.castor.castor.Mirror2Class.class);
         defaultCastorList.add(org.nutz.castor.castor.SqlTime2String.class);
         defaultCastorList.add(org.nutz.castor.castor.Object2Object.class);

@@ -2,8 +2,13 @@ package org.nutz.trans;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+
+import javax.sql.DataSource;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.nutz.dao.ConnCallback;
 import org.nutz.dao.test.DaoCase;
 import org.nutz.lang.Lang;
 
@@ -65,4 +70,40 @@ public class SimpleTransTest extends DaoCase {
         dao.delete(cat2);
     }
 
+
+    @Test
+    public void test_issue312() {
+        Trans.exec(new Atom(){
+            public void run() {
+                final Connection[] conns = new Connection[2];
+                dao.run(new ConnCallback() {
+                    public void invoke(Connection conn) throws Exception {
+                        conns[0] = conn;
+                    } 
+                });
+                dao.run(new ConnCallback() {
+                    public void invoke(Connection conn) throws Exception {
+                        conns[1] = conn;
+                    } 
+                });
+                //必然是同一个对象
+                assertEquals(conns[0], conns[1]);
+                assertTrue(conns[0] == conns[1]);
+                try {
+                    //必然是同一个对象
+                    assertEquals(Trans.get().getConnection(ioc.get(DataSource.class)), conns[1]);
+                    assertEquals(Trans.get().getConnection(ioc.get(DataSource.class)), conns[1]);
+                    assertEquals(Trans.get().getConnection(ioc.get(DataSource.class)), conns[1]);
+                    assertEquals(Trans.get().getConnection(ioc.get(DataSource.class)), conns[1]);
+
+                    assertEquals(Trans.get().getConnection(ioc.get(DataSource.class)), Trans.get().getConnection(ioc.get(DataSource.class)));
+                    
+                    assertTrue(Trans.get().getConnection(ioc.get(DataSource.class)) == Trans.get().getConnection(ioc.get(DataSource.class)));
+                }
+                catch (Throwable e) {
+                    throw Lang.wrapThrow(e);
+                }
+            } 
+        });
+    }
 }

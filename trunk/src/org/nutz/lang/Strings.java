@@ -1,5 +1,6 @@
 package org.nutz.lang;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -714,37 +715,13 @@ public abstract class Strings {
         return sb.toString();
     }
 
-    /**
-     * 根据给定的分隔符拼接字符串
-     * 
-     * @param strs
-     *            字符串集合
-     * @param sp
-     *            分隔符
-     * @return
-     */
-    public static String splice(Collection<String> strs, String sp) {
-        if (strs == null || strs.size() == 0) {
-            return "";
+    public static byte[] getBytesUTF8(CharSequence cs) {
+        try {
+            return cs.toString().getBytes(Encoding.UTF8);
         }
-        if (sp == null)
-            sp = "";
-        StringBuilder sb = new StringBuilder();
-        for (String str : strs) {
-            sb.append(str.trim()).append(sp);
+        catch (UnsupportedEncodingException e) {
+            throw Lang.wrapThrow(e);
         }
-        return sb.substring(0, sb.length() - sp.length());
-    }
-
-    /**
-     * 使用逗号作为分隔符拼接字符串
-     * 
-     * @param strs
-     *            字符串集合
-     * @return
-     */
-    public static String splice(Collection<String> strs) {
-        return splice(strs, ",");
     }
 
 }

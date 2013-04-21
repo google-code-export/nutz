@@ -28,6 +28,7 @@ import org.nutz.resource.Scans;
 
 /**
  * 基于注解的Ioc配置
+ * 
  * @author wendal(wendal1985@gmail.com)
  * 
  */
@@ -43,13 +44,13 @@ public class AnnotationIocLoader implements IocLoader {
                 addClass(classZ);
         if (map.size() > 0) {
             if (log.isInfoEnabled())
-                log.infof(    "Scan complete ! Found %s classes in %s base-packages!\nbeans = %s",
-                        map.size(),
-                        packages.length,
-                        Castors.me().castToString(map.keySet()));
-        }
-        else {
-            log.warn("NONE Annotation-Class found!! Check your configure or report a bug!! packages=" + Arrays.toString(packages));
+                log.infof("Scan complete ! Found %s classes in %s base-packages!\nbeans = %s",
+                          map.size(),
+                          packages.length,
+                          Castors.me().castToString(map.keySet()));
+        } else {
+            log.warn("NONE Annotation-Class found!! Check your configure or report a bug!! packages="
+                     + Arrays.toString(packages));
         }
     }
 
@@ -81,6 +82,14 @@ public class AnnotationIocLoader implements IocLoader {
                     beanName = Strings.lowerFirst(classZ.getSimpleName());
                 }
             }
+
+            if (map.containsKey(beanName))
+                throw Lang.makeThrow(IocException.class,
+                                     "Duplicate beanName=%s, by %s !!  Have been define by %s !!",
+                                     beanName,
+                                     classZ,
+                                     map.get(beanName).getClass());
+
             IocObject iocObject = new IocObject();
             iocObject.setType(classZ);
             map.put(beanName, iocObject);
@@ -91,8 +100,8 @@ public class AnnotationIocLoader implements IocLoader {
 
             // 看看构造函数都需要什么函数
             String[] args = iocBean.args();
-//            if (null == args || args.length == 0)
-//                args = iocBean.param();
+            // if (null == args || args.length == 0)
+            // args = iocBean.param();
             if (null != args && args.length > 0)
                 for (String value : args)
                     iocObject.addArg(convert(value));
@@ -113,9 +122,9 @@ public class AnnotationIocLoader implements IocLoader {
             Field[] fields = mirror.getFields(Inject.class);
             for (Field field : fields) {
                 Inject inject = field.getAnnotation(Inject.class);
-                //无需检查,因为字段名是唯一的
-                //if(fieldList.contains(field.getName()))
-                //    throw duplicateField(classZ,field.getName());
+                // 无需检查,因为字段名是唯一的
+                // if(fieldList.contains(field.getName()))
+                // throw duplicateField(classZ,field.getName());
                 IocField iocField = new IocField();
                 iocField.setName(field.getName());
                 IocValue iocValue;
@@ -130,28 +139,36 @@ public class AnnotationIocLoader implements IocLoader {
                 fieldList.add(iocField.getName());
             }
             // 处理字段(以@Inject方式,位于set方法)
-            Method[] methods = mirror.getMethods();
+            Method[] methods;
+            try {
+                methods = classZ.getMethods();
+            }
+            catch (Exception e) {
+                // 如果获取失败,就忽略之
+                log.info("Fail to call getMethods(), miss class or Security Limit, ignore it", e);
+                methods = new Method[0];
+            }
             for (Method method : methods) {
                 Inject inject = method.getAnnotation(Inject.class);
                 if (inject == null)
                     continue;
-                //过滤特殊方法
+                // 过滤特殊方法
                 int m = method.getModifiers();
-                if(Modifier.isAbstract(m) || (!Modifier.isPublic(m))
-                        || Modifier.isStatic(m))
+                if (Modifier.isAbstract(m) || (!Modifier.isPublic(m)) || Modifier.isStatic(m))
                     continue;
-                if (method.getName().startsWith("set") 
-                    && method.getName().length() > 3
+                String methodName = method.getName();
+                if (methodName.startsWith("set")
+                    && methodName.length() > 3
                     && method.getParameterTypes().length == 1) {
                     IocField iocField = new IocField();
-                    iocField.setName(Strings.lowerFirst(method.getName().substring(3)));
-                    if(fieldList.contains(iocField.getName()))
-                        throw duplicateField(classZ,iocField.getName());
+                    iocField.setName(Strings.lowerFirst(methodName.substring(3)));
+                    if (fieldList.contains(iocField.getName()))
+                        throw duplicateField(classZ, iocField.getName());
                     IocValue iocValue;
                     if (Strings.isBlank(inject.value())) {
                         iocValue = new IocValue();
                         iocValue.setType(IocValue.TYPE_REFER);
-                        iocValue.setValue(Strings.lowerFirst(method.getName().substring(3)));
+                        iocValue.setValue(Strings.lowerFirst(methodName.substring(3)));
                     } else
                         iocValue = convert(inject.value());
                     iocField.setValue(iocValue);
@@ -164,16 +181,16 @@ public class AnnotationIocLoader implements IocLoader {
             if (flds != null && flds.length > 0) {
                 for (String fieldInfo : flds) {
                     if (fieldList.contains(fieldInfo))
-                        throw duplicateField(classZ,fieldInfo);
+                        throw duplicateField(classZ, fieldInfo);
                     IocField iocField = new IocField();
                     if (fieldInfo.contains(":")) { // dao:jndi:dataSource/jdbc形式
                         String[] datas = fieldInfo.split(":", 2);
-                        //完整形式, 与@Inject完全一致了
-                        iocField.setName(datas[0]); 
+                        // 完整形式, 与@Inject完全一致了
+                        iocField.setName(datas[0]);
                         iocField.setValue(convert(datas[1]));
                         iocObject.addField(iocField);
                     } else {
-                        //基本形式, 引用与自身同名的bean
+                        // 基本形式, 引用与自身同名的bean
                         iocField.setName(fieldInfo);
                         IocValue iocValue = new IocValue();
                         iocValue.setType(IocValue.TYPE_REFER);
@@ -184,8 +201,17 @@ public class AnnotationIocLoader implements IocLoader {
                     fieldList.add(iocField.getName());
                 }
             }
-            if (log.isDebugEnabled())
-                log.debugf("Processed Ioc Class : %s as [%s]", classZ, beanName);
+        } else {
+            if (log.isWarnEnabled()) {
+                Field[] fields = classZ.getDeclaredFields();
+                for (Field field : fields)
+                    if (field.getAnnotation(Inject.class) != null) {
+                        log.warnf("class(%s) don't has @IocBean, but field(%s) has @Inject! Miss @IocBean ??",
+                                  classZ.getName(),
+                                  field.getName());
+                        break;
+                    }
+            }
         }
     }
 
@@ -195,7 +221,7 @@ public class AnnotationIocLoader implements IocLoader {
             iocValue.setType(value.substring(0, value.indexOf(':')));
             iocValue.setValue(value.substring(value.indexOf(':') + 1));
         } else {
-            iocValue.setValue(value); //TODO 是否应该改为默认refer呢?
+            iocValue.setValue(value); // TODO 是否应该改为默认refer呢?
         }
         return iocValue;
     }
@@ -213,14 +239,15 @@ public class AnnotationIocLoader implements IocLoader {
             return map.get(name);
         throw new ObjectLoadException("Object '" + name + "' without define!");
     }
-    
-    private static final IocException duplicateField(Class<?> classZ, String name){
-        return Lang.makeThrow(IocException.class,    "Duplicate filed defined! Class=%s,FileName=%s",
-                classZ,
-                name);
+
+    private static final IocException duplicateField(Class<?> classZ, String name) {
+        return Lang.makeThrow(IocException.class,
+                              "Duplicate filed defined! Class=%s,FileName=%s",
+                              classZ,
+                              name);
     }
-    
+
     public String toString() {
-        return "/*AnnotationIocLoader*/\n"+Json.toJson(map);
+        return "/*AnnotationIocLoader*/\n" + Json.toJson(map);
     }
 }

@@ -200,6 +200,8 @@ public class Mirror<T> {
         for (Method method : klass.getMethods()) {
             if (method.getParameterTypes().length != 0)
                 continue;
+            if (!method.isAccessible()) //有些时候,即使是public的方法,也不一定能访问
+            	method.setAccessible(true);
             if (_get.equals(method.getName()))
                 return method;
             if (_is.equals(method.getName())) {
@@ -773,6 +775,36 @@ public class Mirror<T> {
         return klass;
     }
 
+    private String _type_id;
+
+    /**
+     * @return 本类型的唯一标识名称
+     */
+    public String getTypeId() {
+        if (null == _type_id) {
+            if (null != type && type instanceof ParameterizedType) {
+                ParameterizedType pmType = (ParameterizedType) type;
+                List<Type> list = new ArrayList<Type>(pmType.getActualTypeArguments().length);
+                for (Type pmA : pmType.getActualTypeArguments()) {
+                    list.add(pmA);
+                }
+                _type_id = String.format("%s<%s>", klass.getName(), Lang.concat(",", list));
+            }
+            // TODO 这里应该作一些更多的判断
+            else {
+                _type_id = klass.getName();
+            }
+        }
+        return _type_id;
+    }
+
+    /**
+     * @return 本类型真实的类型（保留了范型信息）
+     */
+    public Type getActuallyType() {
+        return type == null ? klass : type;
+    }
+
     /**
      * @return 对象提炼类型数组。从对象自身的类型到 Object，中间的继承关系中最有特点的几个类型
      */
@@ -870,6 +902,7 @@ public class Mirror<T> {
      * 
      * @throws BorningException
      *             当没有发现合适的 Borning 时抛出
+     * @throws NullPointerException when args is null
      */
     public Borning<T> getBorningByArgTypes(Class<?>... argTypes) throws BorningException {
         BornContext<T> bc = Borns.evalByArgTypes(klass, argTypes);
@@ -1280,7 +1313,7 @@ public class Mirror<T> {
      * @return 当前类型是不是接口
      */
     public boolean isInterface() {
-        return null == klass ? null : klass.isInterface();
+        return klass.isInterface();
     }
 
     /**
@@ -1457,8 +1490,8 @@ public class Mirror<T> {
      *            函数参数类型列表
      * @return 变参空数组
      */
-    public static Object[] blankArrayArg(Class<?>[] pts) {
-        return (Object[]) Array.newInstance(pts[pts.length - 1].getComponentType(), 0);
+    public static Object blankArrayArg(Class<?>[] pts) {
+        return Array.newInstance(pts[pts.length - 1].getComponentType(), 0);
     }
 
     /**

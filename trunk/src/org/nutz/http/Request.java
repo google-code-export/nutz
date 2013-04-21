@@ -1,5 +1,6 @@
 package org.nutz.http;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 import org.nutz.json.Json;
 import org.nutz.lang.Encoding;
-import org.nutz.lang.util.ByteInputStream;
+import org.nutz.lang.Strings;
 
 public class Request {
 
@@ -43,10 +44,10 @@ public class Request {
         return Request.create(url, method, params, Header.create());
     }
 
-    public static Request create(    String url,
-                                    METHOD method,
-                                    Map<String, Object> params,
-                                    Header header) {
+    public static Request create(String url,
+                                 METHOD method,
+                                 Map<String, Object> params,
+                                 Header header) {
         return new Request().setMethod(method).setParams(params).setUrl(url).setHeader(header);
     }
 
@@ -57,15 +58,21 @@ public class Request {
     private Header header;
     private Map<String, Object> params;
     private byte[] data;
+    private URL cacheUrl;
 
     public URL getUrl() {
+        if (cacheUrl != null) {
+            return cacheUrl;
+        }
+
         StringBuilder sb = new StringBuilder(url);
         try {
             if (this.isGet() && null != params && params.size() > 0) {
                 sb.append(url.indexOf('?') > 0 ? '&' : '?');
                 sb.append(getURLEncodedParams());
             }
-            return new URL(sb.toString());
+            cacheUrl = new URL(sb.toString());
+            return cacheUrl;
         }
         catch (Exception e) {
             throw new HttpException(sb.toString(), e);
@@ -90,9 +97,9 @@ public class Request {
     public InputStream getInputStream() {
         // TODO 需要根据请求来进行编码，这里首先先固定用 UTF-8 好了
         if (null == data) {
-            return new ByteInputStream(getURLEncodedParams().getBytes(Encoding.CHARSET_UTF8));
+            return new ByteArrayInputStream(Strings.getBytesUTF8(getURLEncodedParams()));
         }
-        return new ByteInputStream(data);
+        return new ByteArrayInputStream(data);
     }
 
     public byte[] getData() {
@@ -118,7 +125,11 @@ public class Request {
     }
 
     public Request setUrl(String url) {
-        this.url = url;
+        if (url != null && url.indexOf("://") < 0)
+            //默认采用http协议
+            this.url = "http://" + url;
+        else
+            this.url = url;
         return this;
     }
 
@@ -159,5 +170,4 @@ public class Request {
             return new Cookie();
         return new Cookie(s);
     }
-
 }

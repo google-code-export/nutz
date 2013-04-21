@@ -1,18 +1,24 @@
 package org.nutz.el;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.nutz.conf.NutConf;
-import org.nutz.el.El;
+import org.nutz.el.issue.Issue293;
+import org.nutz.el.issue.Issue303;
+import org.nutz.el.issue.Issue314;
 import org.nutz.el.speed.SimpleSpeedTest;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Maths;
+import org.nutz.lang.Mirror;
 import org.nutz.lang.Strings;
 import org.nutz.lang.util.Context;
 
@@ -310,16 +316,16 @@ public class El2Test {
     @Test
     public void complexOperation() {
         assertEquals(1000
-                        + 100.0
-                        * 99
-                        - (600 - 3 * 15)
-                        % (((68 - 9) - 3) * 2 - 100)
-                        + 10000
-                        % 7
-                        * 71, El.eval("1000+100.0*99-(600-3*15)%(((68-9)-3)*2-100)+10000%7*71"));
-        assertEquals(    6.7 - 100 > 39.6 ? true ? 4 + 5 : 6 - 1
-                                        : !(100 % 3 - 39.0 < 27) ? 8 * 2 - 199 : 100 % 3,
-                        El.eval("6.7-100>39.6 ? 5==5? 4+5:6-1 : !(100%3-39.0<27) ? 8*2-199: 100%3"));
+                     + 100.0
+                     * 99
+                     - (600 - 3 * 15)
+                     % (((68 - 9) - 3) * 2 - 100)
+                     + 10000
+                     % 7
+                     * 71, El.eval("1000+100.0*99-(600-3*15)%(((68-9)-3)*2-100)+10000%7*71"));
+        assertEquals(6.7 - 100 > 39.6 ? true ? 4 + 5 : 6 - 1 : !(100 % 3 - 39.0 < 27) ? 8 * 2 - 199
+                                                                                     : 100 % 3,
+                     El.eval("6.7-100>39.6 ? 5==5? 4+5:6-1 : !(100%3-39.0<27) ? 8*2-199: 100%3"));
 
         Context vars = Lang.context();
         vars.set("i", 100);
@@ -336,47 +342,155 @@ public class El2Test {
         // assertEquals('A' == ('A') || 'B' == 'B' && "ABCD" == "" && 'A' ==
         // 'A', el.eval(vars,
         // "'A' == 'A' || 'B' == 'B' && 'ABCD' == t &&  'A' == 'A'"));
-        assertEquals(    true || true && false && true,
-                        El.eval(vars, "'A' == 'A' || 'B' == 'B' && 'ABCD' == t &&  'A' == 'A'"));
+        assertEquals(true || true && false && true,
+                     El.eval(vars, "'A' == 'A' || 'B' == 'B' && 'ABCD' == t &&  'A' == 'A'"));
     }
-    
+
     @Test
-    public void testIssues87(){
+    public void testIssues87() {
         Context context = Lang.context();
         context.set("a", new BigDecimal("7"));
         context.set("b", new BigDecimal("3"));
         assertEquals(10, El.eval(context, "a.add(b).intValue()"));
     }
-    
+
     @Test
-    public void testIssue168(){
-        assertEquals(El.eval("0.1354*((70-8)%70)*100"), 0.1354*((70-8)%70)*100);
-        assertEquals(El.eval("0.1354*((70d-8)/70)*100"), 0.1354*((70d-8)/70)*100);
-        assertEquals(El.eval("0.5006*(70/600*100)"), 0.5006*(70/600*100));
+    public void testIssue168() {
+        assertEquals(El.eval("0.1354*((70-8)%70)*100"), 0.1354 * ((70 - 8) % 70) * 100);
+        assertEquals(El.eval("0.1354*((70d-8)/70)*100"), 0.1354 * ((70d - 8) / 70) * 100);
+        assertEquals(El.eval("0.5006*(70/600*100)"), 0.5006 * (70 / 600 * 100));
     }
-    
+
     @Test
-    public void testIssue277(){
+    public void testIssue277() {
         Context context = Lang.context();
         context.set("strings", Strings.class);
         assertEquals("a", El.eval(context, "strings.trim(\"  a  \")"));
     }
+
     @Test
-    public void testIssue277_2(){
+    public void testIssue277_2() {
         Context context = Lang.context();
         context.set("math", Maths.class);
         assertEquals(2, El.eval(context, "math.max(1, 2)"));
     }
-    
+
     @Test
-    public void testIssue279() throws InterruptedException{
+    public void testIssue279() throws InterruptedException {
         Context context = Lang.context();
         context.set("math", Maths.class);
         System.out.println(Maths.class.toString());
         assertEquals("class org.nutz.lang.Maths", El.eval(context, "math.toString()"));
-        
+
         NutConf.load("org/nutz/el/issue279/279.js");
         assertEquals(El.eval("uuuid(false)"), "abc");
         assertEquals(El.eval("uuuid()"), "abc");
+    }
+
+    @Test
+    public void testIssue292() {
+        Context context = Lang.context();
+        context.set("a", 123);
+        context.set("b", 20);
+        Object o = El.eval(context, "a>b?a:b");
+        assertEquals(123, o);
+    }
+
+    @Test
+    public void testIssue293() {
+
+        Context context = Lang.context();
+        context.set("static", new Issue293());
+        context.set("a", Issue293.class);
+
+        assertEquals("xxx", El.eval(context, "a.printParam(a.info)"));
+    }
+
+    @Test
+    public void testIssue303() {
+        Context context = Lang.context();
+        Issue303 item = new Issue303("item");
+        item.child = new Issue303("child");
+        context.set("item", item);
+
+        assertEquals("child", El.eval(context, "item.child.getName()"));
+        assertEquals(0, El.eval(context, "item.list.size()"));
+    }
+
+    @Test
+    public void testIssue306() throws InterruptedException {
+        int size = 100;
+        final CountDownLatch count = new CountDownLatch(size);
+        final List<Integer> error = new ArrayList<Integer>();
+        for (int index = 0; index < size; index++) {
+            new Thread() {
+                public void run() {
+                    try {
+                        El.eval("1+1");
+                    }
+                    catch (Exception e) {
+                        error.add(1);
+                    }
+                    finally {
+                        count.countDown();
+                    }
+                }
+
+            }.start();
+        }
+        count.await();
+        if (error.size() > 0) {
+            fail();
+        }
+    }
+    
+    @Test
+    public void testIssue307(){
+        Context context = Lang.context();
+        List<String> list = new ArrayList<String>();
+        list.add("jk");
+        context.set("list", list);
+        context.set("System", System.class);
+        
+        El.eval(context, "list.add(list.get(0))");
+        assertEquals(2, list.size());
+    }
+    
+    @Test
+    public void testIssue308(){
+        Context context = Lang.context();
+        List<String> list = new ArrayList<String>();
+        list.add("jk");
+        context.set("list", list);
+        context.set("System", System.class);
+        
+        El.eval(context, "System.getenv('PATH').getClass().getName()");
+        assertEquals("1", Mirror.me(String.class).invoke(String.class, "valueOf", 1));
+        
+        assertEquals("jk", Mirror.me(String.class).invoke(String.class, "valueOf", "jk"));
+    }
+    
+    @Test
+    public void test_issue314() {
+        Context context = Lang.context();
+        
+        context.set("String", String.class);
+        
+        Issue314 i314 = new Issue314();
+        List<String> list = new ArrayList<String>();
+        list.add("123");
+        i314.setList(list);
+        context.set("map", i314);
+        
+        assertEquals("123", El.eval(context, "String.valueOf(123)"));
+        assertEquals("123", El.eval(context, "map.list.get(0)"));
+    }
+    
+    @Test
+    public void test_issue411(){
+    	El el=new El("a[0].b.isPass('')?'1':'2'");
+        Context ctx = Lang.context();
+        ctx.set("a",new Object[]{new org.nutz.el.issue411.Issue411.A()} );
+        assertEquals("1", el.eval(ctx));
     }
 }

@@ -6,8 +6,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.nutz.Nutz;
 import org.nutz.castor.Castors;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
@@ -20,14 +20,15 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.test.DaoCase;
 import org.nutz.dao.test.meta.Abc;
+import org.nutz.dao.test.meta.Master;
 import org.nutz.dao.test.meta.Pet;
 import org.nutz.dao.test.meta.PetObj;
 import org.nutz.dao.test.meta.SimplePOJO;
+import org.nutz.dao.test.meta.issue396.Issue396Master;
 import org.nutz.lang.Lang;
 
 public class SimpleDaoTest extends DaoCase {
 
-    @Before
     public void before() {
         dao.create(Pet.class, true);
     }
@@ -220,5 +221,35 @@ public class SimpleDaoTest extends DaoCase {
         assertEquals("record22", pets.get(2).getName());
         assertEquals("record23", pets.get(3).getName());
         assertEquals("record24", pets.get(4).getName());
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void test_fetch_null_name() {
+        dao.fetch(Pet.class, (String)null);
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void test_create_error_class() {
+        dao.create(Nutz.class, true);
+    }
+    
+    // issue 395 删除一个不存在的管理对象
+    @Test
+    public void test_delete_null_many() {
+    	 dao.create(Master.class, true);
+         Master master = new Master();
+         master.setName("ACB");
+         dao.insert(master);
+         master = dao.fetch(Master.class);
+         dao.fetchLinks(master, null);
+         dao.deleteWith(master, null);
+    }
+    
+    // issue 396
+    @Test
+    public void test_insert_with() {
+    	if (!dao.meta().isOracle())
+    		return;
+    	dao.create(Issue396Master.class, true);
     }
 }

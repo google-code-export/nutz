@@ -187,8 +187,11 @@ public class UpdateTest extends DaoCase {
     
     @Test
     public void test_update_self_plus() {
-        pojos.initData();
-        Pet pet = dao.fetch(Pet.class, (Cnd)null);
+        dao.create(Pet.class, true);
+        Pet pet = Pet.create("Xy");
+        pet.setAge(98);
+        dao.insert(pet);
+        pet = dao.fetch(Pet.class, (Cnd)null);
         dao.update(Pet.class, Chain.makeSpecial("age", "+1"), null);
         assertEquals(pet.getAge() + 1, dao.fetch(Pet.class, pet.getId()).getAge());
     }

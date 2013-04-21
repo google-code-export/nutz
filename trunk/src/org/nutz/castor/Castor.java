@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.nutz.lang.Lang;
 import org.nutz.lang.Mirror;
 
 /**
@@ -57,13 +58,13 @@ public abstract class Castor<FROM, TO> {
             if (null == coll)
                 throw new FailToCastObjectException(String.format(    "Castors don't know how to implement '%s'",
                                                                     toType.getName()),
-                                                    e);
+                                                    Lang.unwrapThrow(e));
         }
         return coll;
     }
     
     public int hashCode() {
-        return fetchHash(fromClass.getName() ,toClass.getName());
+        return toString().hashCode();
     }
     
     public boolean equals(Object obj) {
@@ -73,20 +74,12 @@ public abstract class Castor<FROM, TO> {
         Castor<?, ?> castor = (Castor<?, ?>) obj;
         return toString().equals(castor.toString());
     }
-    /**
-     * 取得hash值
-     */
-    public static int fetchHash(Class<?> from, Class<?> to){
-        return fetchHash(from.getName(), to.getName());
-    }
-    /**
-     * 取得Hash值
-     */
-    public static int fetchHash(String from, String to){
-        return (from + "2" + to).hashCode();
-    }
     
     public String toString() {
+        return fromClass.getName() + "2" + toClass.getName();
+    }
+    
+    public static final String key(Class<?> fromClass, Class<?> toClass) {
         return fromClass.getName() + "2" + toClass.getName();
     }
 }
